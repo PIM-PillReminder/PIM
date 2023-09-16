@@ -13,6 +13,12 @@
 		57461C4E2AB58C540026F903 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57461C4D2AB58C540026F903 /* Preview Assets.xcassets */; };
 		57461C502AB58C540026F903 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C4F2AB58C540026F903 /* Persistence.swift */; };
 		57461C532AB58C540026F903 /* PIM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57461C512AB58C540026F903 /* PIM.xcdatamodeld */; };
+		57461C5A2AB5919F0026F903 /* OnboardingView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C592AB5919F0026F903 /* OnboardingView1.swift */; };
+		57461C5C2AB59B070026F903 /* OnboardingView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C5B2AB59B070026F903 /* OnboardingView2.swift */; };
+		57461C5E2AB59D5F0026F903 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C5D2AB59D5F0026F903 /* MainView.swift */; };
+		57461C602AB59E0A0026F903 /* OnboardingView3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C5F2AB59E0A0026F903 /* OnboardingView3.swift */; };
+		57461C622AB5B0220026F903 /* OnboardingView4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C612AB5B0220026F903 /* OnboardingView4.swift */; };
+		57461C642AB5B56E0026F903 /* OnboardingView5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C632AB5B56E0026F903 /* OnboardingView5.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +29,12 @@
 		57461C4D2AB58C540026F903 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		57461C4F2AB58C540026F903 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		57461C522AB58C540026F903 /* PIM.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PIM.xcdatamodel; sourceTree = "<group>"; };
+		57461C592AB5919F0026F903 /* OnboardingView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView1.swift; sourceTree = "<group>"; };
+		57461C5B2AB59B070026F903 /* OnboardingView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView2.swift; sourceTree = "<group>"; };
+		57461C5D2AB59D5F0026F903 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		57461C5F2AB59E0A0026F903 /* OnboardingView3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView3.swift; sourceTree = "<group>"; };
+		57461C612AB5B0220026F903 /* OnboardingView4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView4.swift; sourceTree = "<group>"; };
+		57461C632AB5B56E0026F903 /* OnboardingView5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView5.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +73,12 @@
 				57461C4F2AB58C540026F903 /* Persistence.swift */,
 				57461C512AB58C540026F903 /* PIM.xcdatamodeld */,
 				57461C4C2AB58C540026F903 /* Preview Content */,
+				57461C592AB5919F0026F903 /* OnboardingView1.swift */,
+				57461C5B2AB59B070026F903 /* OnboardingView2.swift */,
+				57461C5F2AB59E0A0026F903 /* OnboardingView3.swift */,
+				57461C612AB5B0220026F903 /* OnboardingView4.swift */,
+				57461C632AB5B56E0026F903 /* OnboardingView5.swift */,
+				57461C5D2AB59D5F0026F903 /* MainView.swift */,
 			);
 			path = PIM;
 			sourceTree = "<group>";
@@ -143,10 +161,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57461C622AB5B0220026F903 /* OnboardingView4.swift in Sources */,
 				57461C502AB58C540026F903 /* Persistence.swift in Sources */,
+				57461C602AB59E0A0026F903 /* OnboardingView3.swift in Sources */,
+				57461C5E2AB59D5F0026F903 /* MainView.swift in Sources */,
 				57461C492AB58C520026F903 /* ContentView.swift in Sources */,
 				57461C532AB58C540026F903 /* PIM.xcdatamodeld in Sources */,
 				57461C472AB58C520026F903 /* PIMApp.swift in Sources */,
+				57461C642AB5B56E0026F903 /* OnboardingView5.swift in Sources */,
+				57461C5C2AB59B070026F903 /* OnboardingView2.swift in Sources */,
+				57461C5A2AB5919F0026F903 /* OnboardingView1.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
