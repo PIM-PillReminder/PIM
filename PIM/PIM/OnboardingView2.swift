@@ -12,7 +12,6 @@ struct OnboardingView2: View {
     @State var isYesButtonClicked : Bool = false
     @State var isNoButtonClicked : Bool = false
     @Environment(\.presentationMode) var presentationMode
-    @State private var progressValue: Double = 0
     
     var body: some View {
         NavigationView{
@@ -35,7 +34,7 @@ struct OnboardingView2: View {
                         .padding(.trailing, 25)
                     Spacer()
                 }
-                ProgressView(value: progressValue, total: 100)
+                ProgressView(value: 20, total: 100)
                     .progressViewStyle(LinearProgressViewStyle(tint: .red))
                     .padding(.bottom, 40)
 //                    .onAppear {
