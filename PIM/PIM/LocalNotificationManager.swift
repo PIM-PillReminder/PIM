@@ -26,7 +26,22 @@ class LocalNotificationManager {
     }
     
     func addNotification(title: String) -> Void {
-        notifications.append(Notification(id: UUID().uuidString, title: title))
+//        notifications.append(Notification(id: UUID().uuidString, title: title))
+        let notification = Notification(id: UUID().uuidString, title: title)
+        notifications.append(notification)
+        
+        let checkAction = UNNotificationAction(
+        identifier: "checkAction",
+        title: "💊약 먹었다고 체크하기",
+        options: [.foreground])
+        
+        let category = UNNotificationCategory(
+        identifier: "checkCategory",
+        actions: [checkAction],
+        intentIdentifiers: [],
+        options: [])
+        
+        UNUserNotificationCenter.current().setNotificationCategories([category])
     }
     
     func schedule() -> Void {
@@ -61,6 +76,7 @@ class LocalNotificationManager {
             content.sound = UNNotificationSound.default
             content.subtitle = "약 먹을 시간이에요.💊"
             content.body = "먹었다고 체크하기"
+            content.categoryIdentifier = "checkCategory"
 
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
             let request = UNNotificationRequest(identifier: notification.id, content: content, trigger: trigger)
