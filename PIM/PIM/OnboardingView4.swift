@@ -59,7 +59,7 @@ struct OnboardingView4: View {
                 .environment(\.locale, .init(identifier: "ko_KR"))
                
                 Spacer()
-                NavigationLink(destination: OnboardingView5()) {
+                NavigationLink(destination: OnboardingView5(selectedTime: $date)) {
                     Text("선택했어요")
                         .font(.system(size: 20))
                         .fontWeight(.bold)

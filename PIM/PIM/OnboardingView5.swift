@@ -10,7 +10,10 @@ import SwiftUI
 struct OnboardingView5: View {
     
     @Environment(\.presentationMode) var presentationMode
-    @State private var time = Date()
+//    @State private var time = Date()
+    @Binding var selectedTime: Date
+    @State private var isMainViewActive = false
+    let notificationManager = LocalNotificationManager()
     
     var body: some View {
         NavigationView{
@@ -52,14 +55,53 @@ struct OnboardingView5: View {
                 
                 DatePicker(
                     "",
-                    selection: $time,
+                    selection: $selectedTime,
                     displayedComponents: [.hourAndMinute]
                 )
                 .datePickerStyle(.wheel)
                 .environment(\.locale, .init(identifier: "ko_KR"))
+                .onChange(of: selectedTime) { newValue in
+                    print("Selected time changed to \(newValue)")
+                }
                 
                 Spacer()
-                NavigationLink(destination: MainView()) {
+//                NavigationLink(destination: MainView()) {
+//                    Text("선택했어요")
+//                        .font(.system(size: 20))
+//                        .fontWeight(.bold)
+//                        .foregroundColor(Color.black)
+//                }
+//                .frame(width: UIScreen.main.bounds.width)
+//                .padding(.top, 40)
+//                .padding(.bottom, 10)
+//                .background(Color.gray)
+//                .contentShape(Rectangle())
+//                .onTapGesture {
+//                    print("Selected time: \(selectedTime)")
+//                    let calendar = Calendar.current
+//                    let hour = calendar.component(.hour, from: selectedTime)
+//                    let minute = calendar.component(.minute, from: selectedTime)
+//                    let selectedTimeString = "\(hour):\(minute)"
+//                    notificationManager.addNotification(title: "약 먹을 시간: \(selectedTimeString)")
+//                    UserDefaults.standard.set(selectedTime, forKey: "SelectedTime") // 사용자가 선택한 시간을 UserDefaults에 저장
+//                    notificationManager.schedule()
+//                    print("alert, at onboarding5: \(selectedTime)\n")
+//                }
+                NavigationLink(destination: MainView(), isActive: $isMainViewActive) {
+                    EmptyView()
+                }
+                Button(action: {
+                    print("Button tapped")
+                    let calendar = Calendar.current
+                    let hour = calendar.component(.hour, from: selectedTime)
+                    let minute = calendar.component(.minute, from: selectedTime)
+                    let selectedTimeString = "\(hour):\(minute)"
+                    notificationManager.addNotification(title: "PIM")
+                    UserDefaults.standard.set(selectedTime, forKey: "SelectedTime")
+                    notificationManager.schedule()
+                    print("alert, at onboarding5: \(selectedTime)\n")
+                    isMainViewActive = true
+                }) {
                     Text("선택했어요")
                         .font(.system(size: 20))
                         .fontWeight(.bold)
@@ -69,6 +111,8 @@ struct OnboardingView5: View {
                 .padding(.top, 40)
                 .padding(.bottom, 10)
                 .background(Color.gray)
+
+
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -78,6 +122,6 @@ struct OnboardingView5: View {
 
 struct OnboardingView5_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView5()
+        OnboardingView5(selectedTime: .constant(Date()))
     }
 }

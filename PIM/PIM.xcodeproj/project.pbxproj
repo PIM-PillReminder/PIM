@@ -19,6 +19,7 @@
 		57461C602AB59E0A0026F903 /* OnboardingView3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C5F2AB59E0A0026F903 /* OnboardingView3.swift */; };
 		57461C622AB5B0220026F903 /* OnboardingView4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C612AB5B0220026F903 /* OnboardingView4.swift */; };
 		57461C642AB5B56E0026F903 /* OnboardingView5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C632AB5B56E0026F903 /* OnboardingView5.swift */; };
+		57461C9C2AB76ABC0026F903 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C9B2AB76ABC0026F903 /* LocalNotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		57461C5F2AB59E0A0026F903 /* OnboardingView3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView3.swift; sourceTree = "<group>"; };
 		57461C612AB5B0220026F903 /* OnboardingView4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView4.swift; sourceTree = "<group>"; };
 		57461C632AB5B56E0026F903 /* OnboardingView5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView5.swift; sourceTree = "<group>"; };
+		57461C9B2AB76ABC0026F903 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
+		57461C9D2AB773430026F903 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +70,7 @@
 		57461C452AB58C520026F903 /* PIM */ = {
 			isa = PBXGroup;
 			children = (
+				57461C9D2AB773430026F903 /* Info.plist */,
 				57461C462AB58C520026F903 /* PIMApp.swift */,
 				57461C482AB58C520026F903 /* ContentView.swift */,
 				57461C4A2AB58C540026F903 /* Assets.xcassets */,
@@ -79,6 +83,7 @@
 				57461C612AB5B0220026F903 /* OnboardingView4.swift */,
 				57461C632AB5B56E0026F903 /* OnboardingView5.swift */,
 				57461C5D2AB59D5F0026F903 /* MainView.swift */,
+				57461C9B2AB76ABC0026F903 /* LocalNotificationManager.swift */,
 			);
 			path = PIM;
 			sourceTree = "<group>";
@@ -161,6 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57461C9C2AB76ABC0026F903 /* LocalNotificationManager.swift in Sources */,
 				57461C622AB5B0220026F903 /* OnboardingView4.swift in Sources */,
 				57461C502AB58C540026F903 /* Persistence.swift in Sources */,
 				57461C602AB59E0A0026F903 /* OnboardingView3.swift in Sources */,
@@ -302,6 +308,8 @@
 				DEVELOPMENT_TEAM = MTUYFM4K8P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PIM/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -331,6 +339,8 @@
 				DEVELOPMENT_TEAM = MTUYFM4K8P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PIM/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
