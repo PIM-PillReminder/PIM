@@ -15,12 +15,12 @@ struct Notification {
 class LocalNotificationManager {
     var notifications = [Notification]()
     
+    //알림 허용 관련
     func requestPermission() -> Void {
         UNUserNotificationCenter
             .current()
             .requestAuthorization(options: [.alert, .badge, .alert]) { granted, error in
                 if granted == true && error == nil {
-                    //we have permission!
                 }
             }
     }
@@ -29,8 +29,7 @@ class LocalNotificationManager {
         let notification = Notification(id: UUID().uuidString, title: title)
         notifications.append(notification)
         
-         //notification -> 꾹 누르면 noti action으로 버튼 생성
-        
+        //notification -> 꾹 누르면 noti action으로 버튼 생성
         let checkAction = UNNotificationAction(
         identifier: "checkAction",
         title: "💊약 먹었다고 체크하기",
@@ -75,7 +74,7 @@ class LocalNotificationManager {
             //정시 알림
             let content = UNMutableNotificationContent()
             content.title = notification.title
-            //            content.sound = UNNotificationSound.default
+            content.sound = UNNotificationSound.default
             content.subtitle = "약 먹을 시간이에요.💊"
             content.body = "먹었다고 체크하기"
             content.categoryIdentifier = "checkCategory"
@@ -93,14 +92,14 @@ class LocalNotificationManager {
             let before5MinutesContent = UNMutableNotificationContent()
             before5MinutesContent.title = "약을 먹을 시간이 얼마 남지 않았어요!"
             before5MinutesContent.sound = UNNotificationSound.default
-            before5MinutesContent.subtitle = "약 먹을 시간이에요.💊"
+            before5MinutesContent.subtitle = "5분 뒤 약 먹을 시간이에요.💊"
             before5MinutesContent.body = "먹었다고 체크하기"
             before5MinutesContent.categoryIdentifier = "checkCategory"
             
             let before5MinutesTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
             let before5MinutesRequest = UNNotificationRequest(identifier: notification.id + "_5min", content: before5MinutesContent, trigger: before5MinutesTrigger)
             
-            UNUserNotificationCenter.current().add(request) { error in
+            UNUserNotificationCenter.current().add(before5MinutesRequest) { error in
                 guard error == nil else { return }
                 print("Scheduling 5 minutes before notification with id:\(notification.id + "_5min")")
             }
@@ -118,7 +117,7 @@ class LocalNotificationManager {
             let after1HourRequest = UNNotificationRequest(identifier: notification.id
                                                            + "_1hour", content: after1HourContent, trigger: after1HourTrigger)
             
-            UNUserNotificationCenter.current().add(request) { error in
+            UNUserNotificationCenter.current().add(after1HourRequest) { error in
                 guard error == nil else { return }
                 print("Scheduling 1 hour after notification with id:\(notification.id + "_5min")")
             }

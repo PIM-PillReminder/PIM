@@ -19,6 +19,7 @@ enum Pills: String, CaseIterable, Identifiable {
 struct OnboardingView3: View {
     
     let pills = ["쎄스콘정", "에이리스정", "미니보라30", "트리퀼라"]
+    @State var progressValue : Double = 0
     @State private var selectedPill : String = ""
     @State private var isPickerVisible = false
     @Environment(\.presentationMode) var presentationMode
@@ -45,9 +46,14 @@ struct OnboardingView3: View {
                         .padding(.trailing, 25)
                     Spacer()
                 }
-                ProgressView(value: 40, total: 100)
+                ProgressView(value: progressValue, total: 100)
                     .progressViewStyle(LinearProgressViewStyle(tint: .red))
                     .padding(.bottom, 40)
+                    .onAppear{
+                        withAnimation(.linear(duration: 2)) { // 애니메이션 설정
+                            progressValue = 20
+                        }
+                    }
                 Text("어떤 약인가요?")
                     .font(.system(size: 24))
                     .fontWeight(.bold)

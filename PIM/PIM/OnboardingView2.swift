@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OnboardingView2: View {
+    @State var progressValue : Double = 0
     @State var isPillExist : Bool = false
     @State var isYesButtonClicked : Bool = false
     @State var isNoButtonClicked : Bool = false
@@ -34,14 +35,14 @@ struct OnboardingView2: View {
                         .padding(.trailing, 25)
                     Spacer()
                 }
-                ProgressView(value: 20, total: 100)
+                ProgressView(value: progressValue, total: 100)
                     .progressViewStyle(LinearProgressViewStyle(tint: .red))
                     .padding(.bottom, 40)
-//                    .onAppear {
-//                        withAnimation(.linear(duration: 2)) { // 애니메이션 설정
-//                            progressValue = 80
-//                        }
-//                    }
+                    .onAppear {
+                        withAnimation(.linear(duration: 2)) { // 애니메이션 설정
+                            progressValue = 20
+                        }
+                    }
                 Text("현재 복용중인 약이 있나요?")
                     .font(.system(size: 24))
                     .fontWeight(.bold)
