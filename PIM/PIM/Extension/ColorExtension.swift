@@ -11,12 +11,8 @@ import SwiftUI
 import SwiftUI
 
 extension Color {
-    static let paleRed = Color(hex: "ECAAAA")
-    static let paleBlue = Color(hex: "C2D7EF")
-    static let paleYellow = Color(hex: "F3DAA8")
-    static let pastelLilac = Color(hex: "D4B1CA")
-    static let lightGray = Color(hex: "D9D9D9")
-    static let textBlack = Color(hex: "1D1D1D")
+    static let pimGreen = Color(hex: "#6CC244")
+    static let lightGray = Color(hex: "#F2F2F2")
     
   init(hex: String) {
     let scanner = Scanner(string: hex)
@@ -37,18 +33,11 @@ struct Color_Previews: PreviewProvider {
         VStack {
 
             Rectangle()
-                .foregroundColor(.paleRed)
-            Rectangle()
-                .foregroundColor(.paleBlue)
-            Rectangle()
-                .foregroundColor(.paleYellow)
-            Rectangle()
-                .foregroundColor(.pastelLilac)
+                .foregroundColor(.pimGreen)
+                .overlay(Text("pimGreen"))
             Rectangle()
                 .foregroundColor(.lightGray)
-            Rectangle()
-                .foregroundColor(.textBlack)
-                
+                .overlay(Text("lightGray"))
         }
     }
 }
