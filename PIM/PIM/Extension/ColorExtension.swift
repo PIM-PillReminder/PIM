@@ -14,6 +14,8 @@ extension Color {
     static let pimGreen = Color(hex: "#6CC244")
     static let lightGray = Color(hex: "#F2F2F2")
     
+    // lightGreen은 투명도만 조절한 거라 따로 추가는 안 했습니다
+    
   init(hex: String) {
     let scanner = Scanner(string: hex)
     _ = scanner.scanString("#")
