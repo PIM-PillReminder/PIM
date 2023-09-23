@@ -24,28 +24,25 @@ struct OnboardingView4: View {
                     }) {
                         Image(systemName: "chevron.left")
                             .foregroundColor(Color.black)
-                            .font(.system(size: 24))
-                            .fontWeight(.regular)
+                            .font(.pretendard(.regular, size: 24))
                     }
                     .padding(.leading, 15)
                     Spacer()
-                    Text("당신의 일상에, 핌")
-                        .font(.system(size: 18))
-                        .fontWeight(.bold)
+                    Text("시작하기")
+                        .font(.pretendard(.bold, size: 18))
                         .frame(alignment: .center)
-                        .padding(.trailing, 25)
+                        .padding(.trailing, 30)
                     Spacer()
                 }
                 ProgressView(value: 80, total: 100)
-                    .progressViewStyle(LinearProgressViewStyle(tint: .red))
+                    .progressViewStyle(LinearProgressViewStyle(tint: .pimGreen))
                     .padding(.bottom, 40)
                 Text("몇 시에 약을 먹나요?")
+                    .font(.pretendard(.bold, size: 24))
                     .frame(alignment: .center)
-                    .font(.system(size: 24))
-                    .fontWeight(.bold)
                     .padding(.bottom, 5)
                 Text("선택한 복용 시간을 바탕으로 알림이 울려요.")
-                    .font(.body)
+                    .font(.pretendard(.regular, size: 18))
                     .foregroundColor(.gray)
                     .padding(.bottom, 40)
                 Image("character_onboarding_big")
@@ -106,14 +103,13 @@ struct OnboardingView4: View {
                     isMainViewActive = true
                 }) {
                     Text("선택했어요")
-                        .font(.system(size: 20))
-                        .fontWeight(.bold)
+                        .font(.pretendard(.bold, size: 20))
                         .foregroundColor(Color.black)
                 }
                 .frame(width: UIScreen.main.bounds.width)
                 .padding(.top, 40)
                 .padding(.bottom, 10)
-                .background(Color.gray)
+                .background(Color.pimGreen)
             }
         }
         .navigationBarBackButtonHidden(true)

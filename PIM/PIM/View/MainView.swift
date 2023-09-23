@@ -26,8 +26,7 @@ struct MainView: View {
                 }
                 Spacer()
                 Text(dateFormatter.string(from: Date()))
-                    .font(.system(size: 18))
-                    .fontWeight(.bold)
+                    .font(.pretendard(.bold, size: 18))
                 Spacer()
                 // TODO: CalendarView로 연결
                 NavigationLink(destination: MainView()) {
@@ -43,9 +42,8 @@ struct MainView: View {
                 Image("pill")
                     .padding(.bottom, 10)
                 Text(isPillEaten ? "약을 먹었어요\n오늘도 힘차는 하루!" : "오늘의 약을 아직 안 먹었어요")
-                    .font(.system(size: 24))
+                    .font(.pretendard(.bold, size: 24))
                     .multilineTextAlignment(.center)
-                    .fontWeight(.bold)
             }
             Spacer()
             Image("character_onboarding_big")
@@ -72,14 +70,13 @@ struct MainView: View {
             }) {
                 ZStack {
                     Rectangle()
-                        .fill(Color.gray)
+                        .fill(Color.pimGreen)
                         .cornerRadius(16)
                         .frame(width: UIScreen.main.bounds.width * 0.9, height: 60)
                         .padding(.top, 40)
                         .padding(.bottom, 10)
                     Text("오늘의 약을 복용 했어요")
-                        .font(.system(size: 18))
-                        .fontWeight(.medium)
+                        .font(.pretendard(.medium, size: 18))
                         .foregroundColor(Color.black)
                         .padding(.top, 30)
                 }

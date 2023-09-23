@@ -17,6 +17,7 @@ extension Font {
         case light
         case bold
         case medium
+        case regular
         
         var value: String {
             switch self {
@@ -26,6 +27,8 @@ extension Font {
                 return "Pretendard-Medium"
             case .bold:
                 return "Pretendard-Bold"
+            case .regular:
+                return "Pretendard-Regular"
             }
         }
     }
