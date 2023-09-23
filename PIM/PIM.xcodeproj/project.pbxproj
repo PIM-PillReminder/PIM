@@ -13,10 +13,14 @@
 		57461C4E2AB58C540026F903 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57461C4D2AB58C540026F903 /* Preview Assets.xcassets */; };
 		57461C502AB58C540026F903 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C4F2AB58C540026F903 /* Persistence.swift */; };
 		57461C532AB58C540026F903 /* PIM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57461C512AB58C540026F903 /* PIM.xcdatamodeld */; };
+		57461C5A2AB5919F0026F903 /* OnboardingView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C592AB5919F0026F903 /* OnboardingView1.swift */; };
+		57461C5C2AB59B070026F903 /* OnboardingView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C5B2AB59B070026F903 /* OnboardingView2.swift */; };
+		57461C5E2AB59D5F0026F903 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C5D2AB59D5F0026F903 /* MainView.swift */; };
+		57461C602AB59E0A0026F903 /* OnboardingView3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C5F2AB59E0A0026F903 /* OnboardingView3.swift */; };
+		57461C622AB5B0220026F903 /* OnboardingView4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C612AB5B0220026F903 /* OnboardingView4.swift */; };
+		57461C9C2AB76ABC0026F903 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C9B2AB76ABC0026F903 /* LocalNotificationManager.swift */; };
 		7954A7E02AB9D082000D1E8F /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7DF2AB9D082000D1E8F /* SettingView.swift */; };
 		7954A7E22AB9D096000D1E8F /* SettingNotiVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7E12AB9D096000D1E8F /* SettingNotiVIew.swift */; };
-		7954A7E72AB9E6D0000D1E8F /* CustomPickerMenuList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7E62AB9E6D0000D1E8F /* CustomPickerMenuList.swift */; };
-		7954A7E92AB9E9CE000D1E8F /* CustomPickerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7E82AB9E9CE000D1E8F /* CustomPickerMenu.swift */; };
 		7954A7ED2ABA8881000D1E8F /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7EC2ABA8881000D1E8F /* FontExtension.swift */; };
 		7954A7EF2ABA888B000D1E8F /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7EE2ABA888B000D1E8F /* ColorExtension.swift */; };
 		7954A7FB2ABA88E8000D1E8F /* Pretendard-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7954A7F12ABA88E7000D1E8F /* Pretendard-ExtraLight.ttf */; };
@@ -28,13 +32,6 @@
 		7954A8022ABA88E8000D1E8F /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7954A7F82ABA88E8000D1E8F /* Pretendard-Bold.ttf */; };
 		7954A8032ABA88E8000D1E8F /* Pretendard-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7954A7F92ABA88E8000D1E8F /* Pretendard-Regular.ttf */; };
 		7954A8042ABA88E8000D1E8F /* Pretendard-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7954A7FA2ABA88E8000D1E8F /* Pretendard-Light.ttf */; };
-		57461C5A2AB5919F0026F903 /* OnboardingView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C592AB5919F0026F903 /* OnboardingView1.swift */; };
-		57461C5C2AB59B070026F903 /* OnboardingView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C5B2AB59B070026F903 /* OnboardingView2.swift */; };
-		57461C5E2AB59D5F0026F903 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C5D2AB59D5F0026F903 /* MainView.swift */; };
-		57461C602AB59E0A0026F903 /* OnboardingView3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C5F2AB59E0A0026F903 /* OnboardingView3.swift */; };
-		57461C622AB5B0220026F903 /* OnboardingView4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C612AB5B0220026F903 /* OnboardingView4.swift */; };
-		57461C642AB5B56E0026F903 /* OnboardingView5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C632AB5B56E0026F903 /* OnboardingView5.swift */; };
-		57461C9C2AB76ABC0026F903 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C9B2AB76ABC0026F903 /* LocalNotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,10 +42,15 @@
 		57461C4D2AB58C540026F903 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		57461C4F2AB58C540026F903 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		57461C522AB58C540026F903 /* PIM.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PIM.xcdatamodel; sourceTree = "<group>"; };
+		57461C592AB5919F0026F903 /* OnboardingView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView1.swift; sourceTree = "<group>"; };
+		57461C5B2AB59B070026F903 /* OnboardingView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView2.swift; sourceTree = "<group>"; };
+		57461C5D2AB59D5F0026F903 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		57461C5F2AB59E0A0026F903 /* OnboardingView3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView3.swift; sourceTree = "<group>"; };
+		57461C612AB5B0220026F903 /* OnboardingView4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView4.swift; sourceTree = "<group>"; };
+		57461C9B2AB76ABC0026F903 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
+		57461C9D2AB773430026F903 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7954A7DF2AB9D082000D1E8F /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		7954A7E12AB9D096000D1E8F /* SettingNotiVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotiVIew.swift; sourceTree = "<group>"; };
-		7954A7E62AB9E6D0000D1E8F /* CustomPickerMenuList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerMenuList.swift; sourceTree = "<group>"; };
-		7954A7E82AB9E9CE000D1E8F /* CustomPickerMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerMenu.swift; sourceTree = "<group>"; };
 		7954A7EC2ABA8881000D1E8F /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
 		7954A7EE2ABA888B000D1E8F /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		7954A7F12ABA88E7000D1E8F /* Pretendard-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -60,16 +62,6 @@
 		7954A7F82ABA88E8000D1E8F /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
 		7954A7F92ABA88E8000D1E8F /* Pretendard-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.ttf"; sourceTree = "<group>"; };
 		7954A7FA2ABA88E8000D1E8F /* Pretendard-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.ttf"; sourceTree = "<group>"; };
-
-		57461C592AB5919F0026F903 /* OnboardingView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView1.swift; sourceTree = "<group>"; };
-		57461C5B2AB59B070026F903 /* OnboardingView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView2.swift; sourceTree = "<group>"; };
-		57461C5D2AB59D5F0026F903 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		57461C5F2AB59E0A0026F903 /* OnboardingView3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView3.swift; sourceTree = "<group>"; };
-		57461C612AB5B0220026F903 /* OnboardingView4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView4.swift; sourceTree = "<group>"; };
-		57461C632AB5B56E0026F903 /* OnboardingView5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView5.swift; sourceTree = "<group>"; };
-		57461C9B2AB76ABC0026F903 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
-		57461C9D2AB773430026F903 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +107,6 @@
 				57461C5B2AB59B070026F903 /* OnboardingView2.swift */,
 				57461C5F2AB59E0A0026F903 /* OnboardingView3.swift */,
 				57461C612AB5B0220026F903 /* OnboardingView4.swift */,
-				57461C632AB5B56E0026F903 /* OnboardingView5.swift */,
 				57461C5D2AB59D5F0026F903 /* MainView.swift */,
 				57461C9B2AB76ABC0026F903 /* LocalNotificationManager.swift */,
 			);
@@ -130,25 +121,15 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-
 		7954A7DE2AB9D069000D1E8F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				7954A7EA2AB9EA3D000D1E8F /* CustomPicker */,
 				7954A7DF2AB9D082000D1E8F /* SettingView.swift */,
 				7954A7E12AB9D096000D1E8F /* SettingNotiVIew.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		7954A7EA2AB9EA3D000D1E8F /* CustomPicker */ = {
-			isa = PBXGroup;
-			children = (
-				7954A7E82AB9E9CE000D1E8F /* CustomPickerMenu.swift */,
-				7954A7E62AB9E6D0000D1E8F /* CustomPickerMenuList.swift */,
-			);
-			path = CustomPicker;
-
 		7954A7EB2ABA8862000D1E8F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,7 +154,6 @@
 				7954A7F72ABA88E7000D1E8F /* Pretendard-Thin.ttf */,
 			);
 			path = Font;
-
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,25 +239,16 @@
 				57461C9C2AB76ABC0026F903 /* LocalNotificationManager.swift in Sources */,
 				57461C622AB5B0220026F903 /* OnboardingView4.swift in Sources */,
 				57461C502AB58C540026F903 /* Persistence.swift in Sources */,
-
 				7954A7E02AB9D082000D1E8F /* SettingView.swift in Sources */,
-				7954A7E72AB9E6D0000D1E8F /* CustomPickerMenuList.swift in Sources */,
-
 				57461C602AB59E0A0026F903 /* OnboardingView3.swift in Sources */,
 				57461C5E2AB59D5F0026F903 /* MainView.swift in Sources */,
-
 				57461C492AB58C520026F903 /* ContentView.swift in Sources */,
 				7954A7EF2ABA888B000D1E8F /* ColorExtension.swift in Sources */,
 				57461C532AB58C540026F903 /* PIM.xcdatamodeld in Sources */,
 				57461C472AB58C520026F903 /* PIMApp.swift in Sources */,
-
 				7954A7E22AB9D096000D1E8F /* SettingNotiVIew.swift in Sources */,
-				7954A7E92AB9E9CE000D1E8F /* CustomPickerMenu.swift in Sources */,
-
-				57461C642AB5B56E0026F903 /* OnboardingView5.swift in Sources */,
 				57461C5C2AB59B070026F903 /* OnboardingView2.swift in Sources */,
 				57461C5A2AB5919F0026F903 /* OnboardingView1.swift in Sources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
