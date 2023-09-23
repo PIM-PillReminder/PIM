@@ -15,11 +15,17 @@ import SwiftUI
 extension Font {
     enum Pretendard {
         case light
+        case bold
+        case medium
         
         var value: String {
             switch self {
             case .light:
                 return "Pretendard-Light"
+            case .medium:
+                return "Pretendard-Medium"
+            case .bold:
+                return "Pretendard-Bold"
             }
         }
     }
@@ -35,18 +41,18 @@ extension Font {
 struct Font_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            Text("이것은 Pretendard")
-                .font(.custom("Pretendard-Light", size: 17, relativeTo: .body))
             
             // 프리텐다드 사용법
-            Text("이것 또한 Pretendard")
+            Text("이것은 Pretendard")
                 .font(.pretendard(.light, size: 17))
+            Text("Pretendard Medium")
+                .font(.pretendard(.medium, size: 17))
+            Text("Pretendard bold")
+                .font(.pretendard(.bold, size: 17))
             
-            Text("이것은 Cafe24 Ohsquare air")
-                .font(.custom("Cafe24-Ohsquareair", size: 17, relativeTo: .body))
             
             // 카페24 사용법
-            Text("이것 also Cafe24 Ohsquare air \n근데 폰트 사이즈는 똑같은데 왜 크기가 다를까요?...")
+            Text("이것은 cafe24 Ohsquare air \n근데 폰트 사이즈는 똑같은데 왜 크기가 다를까요?...")
                 .font(.cafe24OhsquareAir(size: 17))
         }
     }
