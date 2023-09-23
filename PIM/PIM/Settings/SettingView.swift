@@ -8,74 +8,120 @@
 import SwiftUI
 
 struct SettingView: View {
-    
-    @State var pillName: String = "미뉴렛정"
-    @State private var isLinkActive = false // 비활성화 부분
-    @State var toggleSwitch: Bool = false // 앱 잠금 임시 토글
-    @Binding var selectedStrength: AlertStrength
-    
+    @State var isDeactivated = true
+    @State var isLocked = false
     var body: some View {
         NavigationView {
-            VStack {
-                List {
-                    Section {
-                        plainCell(icon: "clock", text: "오전   10:00")
-                        plainCell(icon: "pill", text: "미뉴렛정")
+            ZStack {
+                
+                Color.gray
+                    .ignoresSafeArea()
+                
+                VStack {
+                    GroupBox {
+                        plainCell(icon: "pill", text: "복용중인 약")
+                        Divider()
+                        plainCell(icon: "clock", text: "오전 10:00")
+                        
                     }
-                    Section {
+                    .groupBoxStyle(CustomListGroupBoxStyle())
+                    .padding(.bottom)
+                    
+                    GroupBox {
                         plainCell(icon: "arrow.down.to.line", text: "데이터 백업")
+                        
+                        Divider()
+                        
                         HStack{
                             Image(systemName: "lock")
+                                .padding(.trailing, 8)
                             Text("앱 잠금")
                             
                             Spacer()
                             
-                            Toggle("", isOn: $toggleSwitch)
-                                            .toggleStyle(SwitchToggleStyle(tint: Color.pink))
+                            
+                            Toggle("", isOn: $isLocked)
+                                            .toggleStyle(SwitchToggleStyle(tint: Color.green))
+                                            .disabled(isDeactivated)
                         }
+                        .padding(.horizontal, 10)
                         .padding(.vertical, 5)
+                        
+                        Divider()
                         
                         HStack {
                             Image(systemName: "bell")
+                                .padding(.trailing, 8)
                             Text("알림")
                             
+                            Spacer()
+                            
                             NavigationLink {
-                                SettingNotiVIew(selectedStrength: $selectedStrength)
+                                SettingNotiView()
                             } label: {
-
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.black)
                             }
                         }
                         .padding(.vertical, 8)
+                        .padding(.horizontal, 10)
+                        
+                        Divider()
                         
                         plainCell(icon: "message", text: "FAQ")
                     }
+                    .groupBoxStyle(CustomListGroupBoxStyle())
+                    
+                    Spacer()
                 }
-                .listStyle(.insetGrouped)
+                .padding(.vertical)
+                .padding(.horizontal, 18)
+                .navigationTitle("설정")
+                .navigationBarTitleDisplayMode(.inline)
             }
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("설정")
         }
     }
+    
 }
 
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingView(selectedStrength: .constant(AlertStrength.list[0]))
+        SettingView()
     }
 }
 
-// 이 코드는 어디에 따로 빼는게 좋을까요? 스타일 정의해두는 파일을 따로 만들까요?
 @ViewBuilder
-func plainCell(icon: String, text: String, destination: String = "추후 업데이트 예정 :)") -> some View {
+func plainCell(icon: String, text: String) -> some View {
+    
+    let isDeactivated: Bool = true
+    
     HStack {
         Image(systemName: "\(icon)")
+            .padding(.trailing, 8)
+        
         Text("\(text)")
         
-        NavigationLink {
-            Text("\(destination)")
-        } label: {
-
+        Spacer()
+        
+        NavigationLink(destination: Text("dummy")) {
+            Image(systemName: "chevron.right")
+                .foregroundColor(.gray)
         }
+        .disabled(isDeactivated)
     }
+    .padding(.horizontal, 10)
     .padding(.vertical, 8)
+}
+
+struct CustomListGroupBoxStyle: GroupBoxStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        VStack {
+            configuration.label
+            configuration.content
+                
+        }
+        .frame(maxWidth: .infinity)
+        .padding()
+        .background(RoundedRectangle(cornerRadius: 16).fill(Color.white))
+    }
 }

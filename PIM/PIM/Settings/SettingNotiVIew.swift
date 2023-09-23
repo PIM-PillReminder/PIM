@@ -7,40 +7,56 @@
 
 import SwiftUI
 
-struct SettingNotiVIew: View {
-    
-    @State var alertToggleSwitch: Bool = false
+struct SettingNotiView: View {
+    @State var isDeactivaated: Bool = true
     @State var callToggleSwitch: Bool = false
-    @Binding var selectedStrength: AlertStrength
+    
+    @State var isNotiActivated: Bool = false
     
     var body: some View {
+        ZStack {
+            Color.gray
+                .ignoresSafeArea()
             VStack {
-                List {
-                    Section {
-                        HStack{
-                            Text("알림 허용")
-                            Spacer()
-                            Toggle("", isOn: $alertToggleSwitch)
-                                            .toggleStyle(SwitchToggleStyle(tint: Color.pink))
-                        }
+                GroupBox {
+                    HStack{
+                        Text("알림 허용")
+                        
+                        Spacer()
+                        
+                        Toggle("", isOn: $isNotiActivated)
+                                        .toggleStyle(SwitchToggleStyle(tint: Color.green))
                     }
+                    .padding(.horizontal, 10)
                     .padding(.vertical, 5)
-                    
-                    Section {
-                        VStack(alignment: .leading) {
+                }
+                .groupBoxStyle(CustomListGroupBoxStyle())
+                .padding(.bottom)
+                
+                GroupBox {
+                    HStack {
+                        VStack(alignment: .leading ) {
                             Text("알림 강도")
-                                .padding(.bottom, 8)
+                                .padding(.bottom)
                             
-                            HStack (alignment: .top) {
-                                CustomPickerMenu(selectedStrength: $selectedStrength)
+                            HStack {
+                                Text("하루에")
+                                
+                                RoundedRectangle(cornerRadius: 14)
+                                    .frame(height: 50)
+                                
                                 Text("알림을 받을래요")
-                                    .padding(.vertical)
                             }
                         }
+                        Spacer()
                     }
+                    .padding(.horizontal, 10)
                     .padding(.vertical, 5)
-                    
-                    Section {
+                }
+                .groupBoxStyle(CustomListGroupBoxStyle())
+                .padding(.bottom)
+
+                GroupBox {
                     ZStack{
                         HStack {
                             VStack(alignment: .leading) {
@@ -54,21 +70,29 @@ struct SettingNotiVIew: View {
                             Spacer()
                         }
                         Toggle("", isOn: $callToggleSwitch)
-                                            .toggleStyle(SwitchToggleStyle(tint: Color.pink))
+                                            .toggleStyle(SwitchToggleStyle(tint: Color.green))
+                                            .disabled(isDeactivaated)
                         }
-                    }
+                    .padding(.horizontal, 10)
                     .padding(.vertical, 5)
-
                 }
-                .listStyle(.insetGrouped)
+                .groupBoxStyle(CustomListGroupBoxStyle())
+                .padding(.bottom)
+                
+                Spacer()
+
             }
-            .navigationBarTitleDisplayMode(.inline)
+            .padding(.vertical)
+            .padding(.horizontal, 18)
             .navigationTitle("알림 설정")
+            .navigationBarTitleDisplayMode(.inline)
+            
+        }
     }
 }
 
-struct SettingNotiVIew_Previews: PreviewProvider {
+struct SettingNotiView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingNotiVIew(selectedStrength: .constant(AlertStrength.list[0]))
+        SettingNotiView()
     }
 }
