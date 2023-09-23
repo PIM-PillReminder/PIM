@@ -13,9 +13,12 @@ struct MainView: View {
         formatter.dateFormat = "M월 d일"
         return formatter
     }()
+    
+    @State private var isPillEaten : Bool = false
     var body: some View {
         VStack {
             HStack {
+                // TODO: SettingView로 연결
                 NavigationLink(destination: MainView()) {
                     Image(systemName: "gearshape")
                         .foregroundColor(Color.black)
@@ -26,6 +29,7 @@ struct MainView: View {
                     .font(.system(size: 18))
                     .fontWeight(.bold)
                 Spacer()
+                // TODO: CalendarView로 연결
                 NavigationLink(destination: MainView()) {
                     Image(systemName: "calendar")
                         .padding(.trailing, 20)
@@ -37,7 +41,11 @@ struct MainView: View {
                 .resizable()
                 .frame(width: 200, height: 200)
                 .padding(.bottom, 50)
+                .onTapGesture {
+                    isPillEaten = true
+                }
             Spacer()
+            // TODO: isPillEaten -> 약을 먹었는지 확인하는 부분 연결
 //            NavigationLink(destination: MainView()) {
 //                ZStack {
 //                    Rectangle()
