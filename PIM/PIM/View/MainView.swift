@@ -18,8 +18,7 @@ struct MainView: View {
     var body: some View {
         VStack {
             HStack {
-                // TODO: SettingView로 연결
-                NavigationLink(destination: MainView()) {
+                NavigationLink(destination: SettingView()) {
                     Image(systemName: "gearshape")
                         .font(.system(size: 24))
                         .foregroundColor(Color.black)

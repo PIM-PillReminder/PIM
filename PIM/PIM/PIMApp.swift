@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct PIMApp: App {
     let persistenceController = PersistenceController.shared
-    @State private var selectedStrength: AlertStrength = AlertStrength.list[0]
+//    @State private var selectedStrength: AlertStrength = AlertStrength.list[0]
     
     var body: some Scene {
         WindowGroup {

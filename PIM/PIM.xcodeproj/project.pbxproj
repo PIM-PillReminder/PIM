@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		573942552ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 573942542ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf */; };
+		573942572ABEE85C0001906B /* OnboardingMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573942562ABEE85C0001906B /* OnboardingMainView.swift */; };
 		57461C472AB58C520026F903 /* PIMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C462AB58C520026F903 /* PIMApp.swift */; };
 		57461C492AB58C520026F903 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C482AB58C520026F903 /* ContentView.swift */; };
 		57461C4B2AB58C540026F903 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57461C4A2AB58C540026F903 /* Assets.xcassets */; };
@@ -26,7 +28,6 @@
 		7954A7FB2ABA88E8000D1E8F /* Pretendard-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7954A7F12ABA88E7000D1E8F /* Pretendard-ExtraLight.ttf */; };
 		7954A7FC2ABA88E8000D1E8F /* Pretendard-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7954A7F22ABA88E7000D1E8F /* Pretendard-ExtraBold.ttf */; };
 		7954A7FD2ABA88E8000D1E8F /* Pretendard-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7954A7F32ABA88E7000D1E8F /* Pretendard-SemiBold.ttf */; };
-		7954A7FF2ABA88E8000D1E8F /* Cafe24OhsquareAir-v2.0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7954A7F52ABA88E7000D1E8F /* Cafe24OhsquareAir-v2.0.ttf */; };
 		7954A8002ABA88E8000D1E8F /* Pretendard-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7954A7F62ABA88E7000D1E8F /* Pretendard-Medium.ttf */; };
 		7954A8012ABA88E8000D1E8F /* Pretendard-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7954A7F72ABA88E7000D1E8F /* Pretendard-Thin.ttf */; };
 		7954A8022ABA88E8000D1E8F /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7954A7F82ABA88E8000D1E8F /* Pretendard-Bold.ttf */; };
@@ -35,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		573942542ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cafe24OhsquareAir-v2.0.ttf"; sourceTree = "<group>"; };
+		573942562ABEE85C0001906B /* OnboardingMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingMainView.swift; sourceTree = "<group>"; };
 		57461C432AB58C520026F903 /* PIM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PIM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57461C462AB58C520026F903 /* PIMApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIMApp.swift; sourceTree = "<group>"; };
 		57461C482AB58C520026F903 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,7 +59,6 @@
 		7954A7F12ABA88E7000D1E8F /* Pretendard-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraLight.ttf"; sourceTree = "<group>"; };
 		7954A7F22ABA88E7000D1E8F /* Pretendard-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.ttf"; sourceTree = "<group>"; };
 		7954A7F32ABA88E7000D1E8F /* Pretendard-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.ttf"; sourceTree = "<group>"; };
-		7954A7F52ABA88E7000D1E8F /* Cafe24OhsquareAir-v2.0.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cafe24OhsquareAir-v2.0.ttf"; path = "../../../../../../../Downloads/Cafe24OhsquareAir-v2.0/Cafe24OhsquareAir-v2.0.ttf"; sourceTree = "<group>"; };
 		7954A7F62ABA88E7000D1E8F /* Pretendard-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.ttf"; sourceTree = "<group>"; };
 		7954A7F72ABA88E7000D1E8F /* Pretendard-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.ttf"; sourceTree = "<group>"; };
 		7954A7F82ABA88E8000D1E8F /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
@@ -75,6 +77,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		573942582ABEE8820001906B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				57461C5D2AB59D5F0026F903 /* MainView.swift */,
+				573942592ABEE88B0001906B /* Onboarding */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		573942592ABEE88B0001906B /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				573942562ABEE85C0001906B /* OnboardingMainView.swift */,
+				57461C592AB5919F0026F903 /* OnboardingView1.swift */,
+				57461C5B2AB59B070026F903 /* OnboardingView2.swift */,
+				57461C5F2AB59E0A0026F903 /* OnboardingView3.swift */,
+				57461C612AB5B0220026F903 /* OnboardingView4.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		57461C3A2AB58C520026F903 = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +117,7 @@
 		57461C452AB58C520026F903 /* PIM */ = {
 			isa = PBXGroup;
 			children = (
+				573942582ABEE8820001906B /* View */,
 				57461C9D2AB773430026F903 /* Info.plist */,
 				57461C462AB58C520026F903 /* PIMApp.swift */,
 				57461C482AB58C520026F903 /* ContentView.swift */,
@@ -103,11 +127,6 @@
 				57461C4F2AB58C540026F903 /* Persistence.swift */,
 				57461C512AB58C540026F903 /* PIM.xcdatamodeld */,
 				57461C4C2AB58C540026F903 /* Preview Content */,
-				57461C592AB5919F0026F903 /* OnboardingView1.swift */,
-				57461C5B2AB59B070026F903 /* OnboardingView2.swift */,
-				57461C5F2AB59E0A0026F903 /* OnboardingView3.swift */,
-				57461C612AB5B0220026F903 /* OnboardingView4.swift */,
-				57461C5D2AB59D5F0026F903 /* MainView.swift */,
 				57461C9B2AB76ABC0026F903 /* LocalNotificationManager.swift */,
 			);
 			path = PIM;
@@ -143,7 +162,7 @@
 		7954A7F02ABA88C0000D1E8F /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				7954A7F52ABA88E7000D1E8F /* Cafe24OhsquareAir-v2.0.ttf */,
+				573942542ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf */,
 				7954A7F82ABA88E8000D1E8F /* Pretendard-Bold.ttf */,
 				7954A7F22ABA88E7000D1E8F /* Pretendard-ExtraBold.ttf */,
 				7954A7F12ABA88E7000D1E8F /* Pretendard-ExtraLight.ttf */,
@@ -217,7 +236,6 @@
 				7954A8012ABA88E8000D1E8F /* Pretendard-Thin.ttf in Resources */,
 				7954A8032ABA88E8000D1E8F /* Pretendard-Regular.ttf in Resources */,
 				7954A8002ABA88E8000D1E8F /* Pretendard-Medium.ttf in Resources */,
-				7954A7FF2ABA88E8000D1E8F /* Cafe24OhsquareAir-v2.0.ttf in Resources */,
 				7954A7FB2ABA88E8000D1E8F /* Pretendard-ExtraLight.ttf in Resources */,
 				57461C4E2AB58C540026F903 /* Preview Assets.xcassets in Resources */,
 				7954A8042ABA88E8000D1E8F /* Pretendard-Light.ttf in Resources */,
@@ -225,6 +243,7 @@
 				7954A8022ABA88E8000D1E8F /* Pretendard-Bold.ttf in Resources */,
 				57461C4B2AB58C540026F903 /* Assets.xcassets in Resources */,
 				7954A7FC2ABA88E8000D1E8F /* Pretendard-ExtraBold.ttf in Resources */,
+				573942552ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +267,7 @@
 				57461C472AB58C520026F903 /* PIMApp.swift in Sources */,
 				7954A7E22AB9D096000D1E8F /* SettingNotiVIew.swift in Sources */,
 				57461C5C2AB59B070026F903 /* OnboardingView2.swift in Sources */,
+				573942572ABEE85C0001906B /* OnboardingMainView.swift in Sources */,
 				57461C5A2AB5919F0026F903 /* OnboardingView1.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
