@@ -1,5 +1,5 @@
 //
-//  OnboardingView2.swift
+//  OnboardingView3.swift
 //  PIM
 //
 //  Created by 신정연 on 2023/09/16.
@@ -7,92 +7,140 @@
 
 import SwiftUI
 
+
+enum Pills: String, CaseIterable, Identifiable {
+    case 쎄스콘정
+    case 에이리스정
+    case 미니보라30
+    case 트리퀼라
+    var id: String { self.rawValue }
+}
+
 struct OnboardingView2: View {
-    @State var progressValue : Double = 0
-    @State var isPillExist : Bool = false
-    @State var isYesButtonClicked : Bool = false
-    @State var isNoButtonClicked : Bool = false
+     
     @Environment(\.presentationMode) var presentationMode
     
+    
+    let pills = ["쎄스콘정", "에이리스정", "미니보라30", "트리퀼라"]
+
+    @State private var selectedPill : String = ""
+    @State private var isPickerVisible = false
+    @State private var isNextButtonActive : Bool = false
+    
+    
+    
     var body: some View {
-        NavigationView{
-            VStack {
-                HStack{
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(Color.black)
-                            .font(.system(size: 24))
-                            .fontWeight(.regular)
-                    }
-                    .padding(.leading, 15)
-                    Spacer()
-                    Text("당신의 일상에, 핌")
-                        .font(.system(size: 18))
-                        .fontWeight(.bold)
-                        .frame(alignment: .center)
-                        .padding(.trailing, 25)
-                    Spacer()
-                }
-                ProgressView(value: progressValue, total: 100)
-                    .progressViewStyle(LinearProgressViewStyle(tint: .red))
-                    .padding(.bottom, 40)
-                    .onAppear {
-                        withAnimation(.linear(duration: 2)) { // 애니메이션 설정
-                            progressValue = 20
-                        }
-                    }
-                Text("현재 복용중인 약이 있나요?")
-                    .font(.system(size: 24))
-                    .fontWeight(.bold)
-                    .padding(.bottom, 5)
-                Image("character_onboarding_big")
-                    .resizable()
-                    .frame(width: 200, height: 200)
-                    .padding(.bottom, 50)
-                Button {
-                    isPillExist = true
-                    isYesButtonClicked.toggle()
-                    isNoButtonClicked = false
-                } label: {
-                    ZStack {
-                        Image(isYesButtonClicked ? "button_selected" : "button_unselected")
-                        Text("네, 있어요")
-                            .foregroundColor(isYesButtonClicked ? .black : .gray)
-                            .fontWeight(.bold)
-                    }
-                }
-                .padding(.bottom, 10)
-                Button {
-                    isPillExist = true
-                    isNoButtonClicked.toggle()
-                    isYesButtonClicked = false
-                } label: {
-                    ZStack {
-                        Image(isNoButtonClicked ? "button_selected" : "button_unselected")
-                        Text("아니오, 없어요")
-                            .foregroundColor(isNoButtonClicked ? .black : .gray)
-                            .fontWeight(.bold)
-                    }
-                }
-                .padding(.bottom, 15)
-                Spacer()
-                NavigationLink(destination: OnboardingView3()) {
-                    Text("선택했어요")
-                        .font(.system(size: 20))
-                        .fontWeight(.bold)
+        VStack {
+            HStack {
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }) {
+                    Image(systemName: "chevron.left")
                         .foregroundColor(Color.black)
+                        .font(.system(size: 24))
+                        .fontWeight(.regular)
                 }
-                .frame(width: UIScreen.main.bounds.width)
-                .padding(.top, 40)
-                .padding(.bottom, 10)
-                .background(Color.gray)
+                .padding(.leading, 15)
+                Spacer()
+                Text("당신의 일상에, 핌")
+                    .font(.system(size: 18))
+                    .fontWeight(.bold)
+                    .frame(alignment: .center)
+                    .padding(.trailing, 25)
+                Spacer()
             }
+            ProgressView(value: 40, total: 100)
+                .progressViewStyle(LinearProgressViewStyle(tint: .red))
+                .padding(.bottom, 40)
+            Text("어떤 약인가요?")
+                .font(.system(size: 24))
+                .fontWeight(.bold)
+                .padding(.bottom, 5)
+            Text("약 종류를 기록하면 내게 맞는 약을 찾기가 쉬워져요.")
+                .font(.body)
+                .foregroundColor(.gray)
+                .padding(.bottom, 40)
+            Image("character_onboarding_big")
+                .resizable()
+                .frame(width: 200, height: 200)
+                .padding(.bottom, 50)
+            
+            //                Picker("약을 선택해주세요.", selection: $selected_pill){
+            //                    ForEach(0..<pills.count){
+            //                        Text(self.pills[$0])
+            //                    }
+            //                }
+            //                List{
+            //                    Picker("약을 선택해주세요.", selection: $selected_pill) {
+            //                        Text("쎄스콘정").tag(Pills.쎄스콘정)
+            //                        Text("미니보라30").tag(Pills.미니보라30)
+            //                        Text("에이리스정").tag(Pills.에이리스정)
+            //                        Text("트리퀼라").tag(Pills.트리퀼라)
+            //                    }
+            //                    .pickerStyle(.inline)
+            //                }
+            Button(action: {
+                isPickerVisible.toggle()
+            }) {
+                HStack {
+                    Text("약을 선택해주세요")
+                        .foregroundColor(.black)
+                        .font(.headline)
+                        .padding()
+//                            .background(Color.white)
+                        .cornerRadius(20)
+                    Spacer()
+                    Image(systemName: "chevron.down")
+                        .foregroundColor(Color.black)
+                        .padding(.trailing, 10)
+                }
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color.gray, lineWidth: 2)
+                )
+                
+                    
+            }
+            .padding(.leading, 20)
+            .padding(.trailing, 20)
+            .padding(.bottom, 10)
+            
+            if isPickerVisible {
+                Picker("약을 선택해주세요", selection: $selectedPill) {
+                    ForEach(pills, id: \.self) { pill in
+                        Text(pill)
+                            .tag(pill)
+                            .font(.system(size: 18))
+                            .foregroundColor(selectedPill == pill ? .black : .gray)
+                            .fontWeight(selectedPill == pill ? .bold : .medium)
+                            .padding()
+//                                .background(
+//                                    RoundedRectangle(cornerRadius: 12)
+//                                        .frame(width: UIScreen.main.bounds.width * 0.8, height: 30)
+//                                        .foregroundColor(selectedPill == pill ? .gray : .clear)
+//                                )
+                    }
+                }
+                
+                .pickerStyle(.inline)
+                .transition(.slide) // Picker를 부드럽게 보이도록 애니메이션 추가
+            }
+            Spacer()
+            
+            NavigationLink(destination: OnboardingView3()) {
+                Text("선택했어요")
+                    .font(.system(size: 20))
+                    .fontWeight(.bold)
+                    .foregroundColor(Color.black)
+            }
+            .frame(width: UIScreen.main.bounds.width)
+            .padding(.top, 40)
+            .padding(.bottom, 10)
+            .background(Color.gray)
         }
         .navigationBarBackButtonHidden(true)
     }
-        
+    
 }
 
 struct OnboardingView2_Previews: PreviewProvider {
