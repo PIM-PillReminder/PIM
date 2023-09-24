@@ -33,6 +33,7 @@ struct OnboardingView3: View {
                         .padding(.trailing, 30)
                     Spacer()
                 }
+                .padding(.top, 10)
                 ProgressView(value: 60, total: 100)
                     .progressViewStyle(LinearProgressViewStyle(tint: .pimGreen))
                     .padding(.bottom, 40)
@@ -62,7 +63,7 @@ struct OnboardingView3: View {
                
                 Spacer()
                 
-                NavigationLink(destination: OnboardingView4(selectedTime: .constant(Date()))) {
+                NavigationLink(destination: OnboardingView4(selectedTime: Date())) {
                     Text("선택했어요")
                         .font(.pretendard(.bold, size: 20))
                         .foregroundColor(Color.black)

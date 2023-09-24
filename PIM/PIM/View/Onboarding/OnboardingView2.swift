@@ -47,6 +47,7 @@ struct OnboardingView2: View {
                     .padding(.trailing, 30)
                 Spacer()
             }
+            .padding(.top, 10)
             ProgressView(value: 40, total: 100)
                 .progressViewStyle(LinearProgressViewStyle(tint: .pimGreen))
                 .padding(.bottom, 40)
@@ -94,8 +95,20 @@ struct OnboardingView2: View {
                         .padding(.trailing, 10)
                 }
                 .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.gray, lineWidth: 2)
+                  RoundedRectangle(cornerRadius: 16)
+                      .inset(by: 1)
+                      .stroke(
+                          RadialGradient(
+                              gradient: Gradient(stops: [
+                                  Gradient.Stop(color: .gradientGreen, location: 0),
+                                  Gradient.Stop(color: .pimGreen, location: 1)
+                              ]),
+                              center: .leading,
+                              startRadius: 0,
+                              endRadius: 300
+                          ),
+                          lineWidth: 2
+                      )
                 )
             }
             .padding(.leading, 20)
@@ -110,11 +123,6 @@ struct OnboardingView2: View {
                             .font(.pretendard(selectedPill == pill ? .bold : .medium, size: 18))
                             .foregroundColor(selectedPill == pill ? .black : .gray)
                             .padding()
-//                                .background(
-//                                    RoundedRectangle(cornerRadius: 12)
-//                                        .frame(width: UIScreen.main.bounds.width * 0.8, height: 30)
-//                                        .foregroundColor(selectedPill == pill ? .gray : .clear)
-//                                )
                     }
                 }
                 

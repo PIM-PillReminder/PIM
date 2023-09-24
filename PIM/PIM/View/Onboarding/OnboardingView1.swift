@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct OnboardingView1: View {
+    
     @Environment(\.presentationMode) var presentationMode
     
     @State private var isPillExist : Bool = false
     @State private var isYesButtonClicked : Bool = false
     @State private var isNoButtonClicked : Bool = false
     @State private var isNextButtonActive : Bool = false
+    
     var body: some View {
         VStack {
             HStack {
@@ -32,6 +34,7 @@ struct OnboardingView1: View {
                     .padding(.trailing, 30)
                 Spacer()
             }
+            .padding(.top, 10)
             ProgressView(value: 20, total: 100)
                 .progressViewStyle(LinearProgressViewStyle(tint: .pimGreen))
                 .padding(.bottom, 40)
@@ -49,7 +52,35 @@ struct OnboardingView1: View {
                 isNoButtonClicked = false
             } label: {
                 ZStack {
-                    Image(isYesButtonClicked ? "button_selected" : "button_unselected")
+                    if(isYesButtonClicked){
+                        Rectangle()
+                          .foregroundColor(.clear)
+                          .frame(width: UIScreen.main.bounds.width * 0.9, height: 80)
+                          .background(.white)
+                          .cornerRadius(16)
+                          .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .inset(by: 1)
+                                .stroke(
+                                    RadialGradient(
+                                        gradient: Gradient(stops: [
+                                            Gradient.Stop(color: .gradientGreen, location: 0),
+                                            Gradient.Stop(color: .pimGreen, location: 1)
+                                        ]),
+                                        center: .leading,
+                                        startRadius: 0,
+                                        endRadius: 300
+                                    ),
+                                    lineWidth: 2
+                                )
+                          )
+                    }
+                    else{
+                        Rectangle()
+                            .foregroundColor(.lightGray)
+                            .frame(width: UIScreen.main.bounds.width * 0.9, height: 80)
+                            .cornerRadius(16)
+                    }
                     Text("네, 있어요")
                         .foregroundColor(isYesButtonClicked ? .black : .gray)
                         .font(.pretendard(.bold, size: 18))
@@ -62,7 +93,35 @@ struct OnboardingView1: View {
                 isYesButtonClicked = false
             } label: {
                 ZStack {
-                    Image(isNoButtonClicked ? "button_selected" : "button_unselected")
+                    if(isNoButtonClicked){
+                        Rectangle()
+                          .foregroundColor(.clear)
+                          .frame(width: UIScreen.main.bounds.width * 0.9, height: 80)
+                          .background(.white)
+                          .cornerRadius(16)
+                          .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .inset(by: 1)
+                                .stroke(
+                                    RadialGradient(
+                                        gradient: Gradient(stops: [
+                                            Gradient.Stop(color: .gradientGreen, location: 0),
+                                            Gradient.Stop(color: .pimGreen, location: 1)
+                                        ]),
+                                        center: .leading,
+                                        startRadius: 0,
+                                        endRadius: 300
+                                    ),
+                                    lineWidth: 2
+                                )
+                          )
+                    }
+                    else{
+                        Rectangle()
+                            .foregroundColor(.lightGray)
+                            .frame(width: UIScreen.main.bounds.width * 0.9, height: 80)
+                            .cornerRadius(16)
+                    }
                     Text("아니오, 없어요")
                         .foregroundColor(isNoButtonClicked ? .black : .gray)
                         .font(.pretendard(.bold, size: 18))
