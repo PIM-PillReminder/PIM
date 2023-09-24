@@ -68,7 +68,7 @@ struct SettingView: View {
                                        .foregroundColor(.gray02)
                                }
                                .sheet(isPresented: $showSheet2) {
-                                   SettingNotiView()
+                                   SettingNotiView(showSheet2: $showSheet2)
                                        .presentationDetents([.height(geo.size.height * 0.8 )])
                                        .presentationDragIndicator(.visible)
                                }
