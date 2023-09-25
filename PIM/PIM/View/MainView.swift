@@ -68,40 +68,22 @@ struct MainView: View {
             }
             Spacer()
             // TODO: isPillEaten -> 약을 먹었는지 확인하는 부분 연결
-            Button(action: {
-                isPillEaten.toggle()
-                UserDefaults.standard.set(isPillEaten, forKey: "PillEaten")
-            }) {
-                ZStack {
-                    if(!isPillEaten){
-                        Rectangle()
-                            .fill(Color.pimGreen)
-                            .cornerRadius(16)
-                            .frame(width: UIScreen.main.bounds.width * 0.9, height: 60)
-                            .padding(.top, 40)
-                            .padding(.bottom, 10)
-                    }
-                    else{
-                        Rectangle()
-                            .fill(Color.white)
-                            .cornerRadius(16)
-                            .frame(width: UIScreen.main.bounds.width * 0.9, height: 60)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 16)
-                                    .stroke(Color.pimGreen, lineWidth: 2)
-                            )
-                            .padding(.top, 40)
-                            .padding(.bottom, 10)
-                        
-                    }
-                    
-                    Text(isPillEaten ? "약 복용을 취소할게요" : "오늘의 약을 복용 했어요")
-                        .font(.pretendard(.medium, size: 18))
-                        .foregroundColor(isPillEaten ? Color.pimGreen : Color.white)
-                        .padding(.top, 30)
-                }
-            }
             
+            if(!isPillEaten){
+                Button("오늘의 약을 먹었어요") {
+                    isPillEaten = true
+                    UserDefaults.standard.set(isPillEaten, forKey: "PillEaten")
+                }
+                .buttonStyle(PIMGreenButton())
+                .padding(.bottom, 10)
+            } else {
+                Button("앗! 잘못 눌렀어요") {
+                    isPillEaten = false
+                    UserDefaults.standard.set(isPillEaten, forKey: "PillEaten")
+                }
+                .buttonStyle(PIMStrokeButton())
+                .padding(.bottom, 10)
+            }
         }
         .navigationBarBackButtonHidden(true)
     }

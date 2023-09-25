@@ -45,13 +45,13 @@ struct OnboardingView4: View {
                 Text("선택한 복용 시간을 바탕으로 알림이 울려요.")
                     .font(.pretendard(.regular, size: 18))
                     .foregroundColor(.gray)
-                    .padding(.bottom, 40)
+                    .padding(.bottom, 10)
                 Image("character_time")
                     .shadow(color: Color(red: 0, green: 0, blue: 0),
                             radius: 28,
                             x: 0,
                             y: 4)
-                    .padding(.bottom, 10)
+//                    .padding(.bottom, 10)
                 DatePicker(
                     "",
                     selection: $selectedTime,
@@ -99,8 +99,8 @@ struct OnboardingView4: View {
                 .frame(width: UIScreen.main.bounds.width)
                 .padding(.top, 40)
                 .padding(.bottom, 10)
-                .background(Color.pimGreen)
-
+                .background(Color.green03)
+                
 //
 //                NavigationLink(destination: MainView()) {
 //                    Text("선택하기")

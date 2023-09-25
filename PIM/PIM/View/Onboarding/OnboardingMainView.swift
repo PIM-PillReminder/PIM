@@ -28,8 +28,7 @@ struct OnboardingMainView: View {
                             radius: 20,
                             x: 0,
                             y: 6)
-//                    .opacity(0.4)
-
+                
                 Text("pim을 더 잘 이용하기 위해\n몇가지 질문에 답이 필요해요.")
                     .font(.pretendard(.regular, size: 16))
                     .foregroundColor(Color.black)
@@ -45,7 +44,7 @@ struct OnboardingMainView: View {
                 .frame(width: UIScreen.main.bounds.width)
                 .padding(.top, 40)
                 .padding(.bottom, 10)
-                .background(Color.pimGreen)
+                .background(Color.green03)
             }
         }
         .navigationBarBackButtonHidden(true)
