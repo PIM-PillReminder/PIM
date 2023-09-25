@@ -8,24 +8,25 @@
 import SwiftUI
 
 struct SettingNotiView: View {
-    @State var isDeactivaated: Bool = true
+    @State var isDeactivated: Bool = true
     @State var callToggleSwitch: Bool = false
-    
     @State var isNotiActivated: Bool = false
+    @Binding var showSheet2: Bool
     
     var body: some View {
         ZStack {
-            Color.gray
+            Color.lightGray
                 .ignoresSafeArea()
             VStack {
                 GroupBox {
                     HStack{
                         Text("알림 허용")
+                            .font(.pretendard(.bold))
                         
                         Spacer()
                         
                         Toggle("", isOn: $isNotiActivated)
-                                        .toggleStyle(SwitchToggleStyle(tint: Color.green))
+                                        .toggleStyle(SwitchToggleStyle(tint: Color.green03))
                     }
                     .padding(.horizontal, 10)
                     .padding(.vertical, 5)
@@ -36,17 +37,18 @@ struct SettingNotiView: View {
                 GroupBox {
                     HStack {
                         VStack(alignment: .leading ) {
-                            Text("알림 강도")
+                            HStack {
+                                Text("알림 빈도")
+                                    .font(.pretendard(.bold))
+                            }
+                            
+                            Text("약 먹기를 완료할 때까지\n하루에 몇 번 알림을 받을지 선택해주세요.")
+                                .foregroundColor(.gray)
+                                .font(.pretendard(.medium))
                                 .padding(.bottom)
                             
-                            HStack {
-                                Text("하루에")
-                                
-                                RoundedRectangle(cornerRadius: 14)
-                                    .frame(height: 50)
-                                
-                                Text("알림을 받을래요")
-                            }
+                            PIMCustomSlider()
+                            
                         }
                         Spacer()
                     }
@@ -54,45 +56,57 @@ struct SettingNotiView: View {
                     .padding(.vertical, 5)
                 }
                 .groupBoxStyle(CustomListGroupBoxStyle())
-                .padding(.bottom)
-
-                GroupBox {
-                    ZStack{
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text("전화 알림 허용")
-                                    .padding(.bottom, 7)
-                                
-                                Text("설정 시간에서 12시간이 지나면 전화를 드려요")
-                                    .foregroundColor(.gray)
-                                    .font(.system(.caption))
-                            }
-                            Spacer()
-                        }
-                        Toggle("", isOn: $callToggleSwitch)
-                                            .toggleStyle(SwitchToggleStyle(tint: Color.green))
-                                            .disabled(isDeactivaated)
-                        }
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 5)
+                .padding(.bottom, 45)
+                
+                HStack {
+                    HStack {
+                        Button("닫기") {
+                            showSheet2 = false
+                        }.buttonStyle(PIMSmallStrokeButton())
+                            .padding(.trailing, 7)
+                        Button("설정 완료하기") {
+                        }.buttonStyle(PIMSmallGreenButton())
+                            .padding(.leading, 7)
+                    }
                 }
-                .groupBoxStyle(CustomListGroupBoxStyle())
-                .padding(.bottom)
+
+//                GroupBox {
+//                    ZStack{
+//                        HStack {
+//                            VStack(alignment: .leading) {
+//                                Text("전화 알림 허용")
+//                                    .padding(.bottom, 7)
+//
+//                                Text("설정 시간에서 12시간이 지나면 전화를 드려요")
+//                                    .foregroundColor(.gray)
+//                                    .font(.system(.caption))
+//                            }
+//                            Spacer()
+//                        }
+//                        Toggle("", isOn: $callToggleSwitch)
+//                                            .toggleStyle(SwitchToggleStyle(tint: Color.pimGreen))
+//                                            .disabled(isDeactivated)
+//                        }
+//                    .padding(.horizontal, 10)
+//                    .padding(.vertical, 5)
+//                }
+//                .groupBoxStyle(CustomListGroupBoxStyle())
+//                .padding(.bottom)
                 
                 Spacer()
 
             }
-            .padding(.vertical)
+            .padding(.vertical, 48)
             .padding(.horizontal, 18)
-            .navigationTitle("알림 설정")
-            .navigationBarTitleDisplayMode(.inline)
+//            .navigationTitle("알림 설정")
+//            .navigationBarTitleDisplayMode(.inline)
             
         }
     }
 }
 
-struct SettingNotiView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingNotiView()
-    }
-}
+//struct SettingNotiView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SettingNotiView(showSheet2: )
+//    }
+//}
