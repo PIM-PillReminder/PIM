@@ -15,8 +15,23 @@ struct Notification {
 
 class LocalNotificationManager {
     var notifications = [Notification]()
+
+    // 알림 활성화
+    func enableNotifications() {
+        requestPermission() // 알림 권한 요청
+        addNotification(title: "PIM")
+        schedule() // 알림 스케줄
+        print("매니저: enableNotifications - scheduleNotifications")
+    }
     
-    //알림 허용 관련
+    // 알림 비활성화
+    func disableNotifications() {
+        // 알림을 취소합니다.
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        print("매니저: disableNotifications")
+    }
+    
+    // 알림 허용 관련
     func requestPermission() -> Void {
         UNUserNotificationCenter
             .current()
@@ -24,6 +39,7 @@ class LocalNotificationManager {
                 if granted == true && error == nil {
                 }
             }
+        print("매니저: requestPermission")
     }
     
     func addNotification(title: String) -> Void {
@@ -43,6 +59,7 @@ class LocalNotificationManager {
         options: [])
         
         UNUserNotificationCenter.current().setNotificationCategories([category])
+        print("매니저: addNotification")
     }
     
     func schedule() -> Void {
@@ -56,9 +73,24 @@ class LocalNotificationManager {
                 break
             }
         }
+        
     }
     
     func scheduleNotifications() -> Void {
+        
+//        if let selectedTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date {
+//            let dateFormatter = DateFormatter()
+//            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+//
+//            // TimeZone을 한국 시간으로 설정
+//            dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul")
+//
+//            let formattedTime = dateFormatter.string(from: selectedTime)
+//            print("SelectedTime Value (Korean Time): \(formattedTime)")
+//        } else {
+//            print("SelectedTime Value is nil or not a Date")
+//        }
+
         for notification in notifications {
             var dateComponents = Calendar.current.dateComponents([.hour, .minute], from: Date())
             
@@ -70,6 +102,10 @@ class LocalNotificationManager {
                 dateComponents.minute = selectedMinute
             }
             dateComponents.second = 0
+            
+            
+
+            print("매니저: scheduleNotifications")
             
             // 정시 알림
             let content = UNMutableNotificationContent()

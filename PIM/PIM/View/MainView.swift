@@ -73,6 +73,9 @@ struct MainView: View {
                 Button("오늘의 약을 먹었어요") {
                     isPillEaten = true
                     UserDefaults.standard.set(isPillEaten, forKey: "PillEaten")
+                    // 알림 비활성화
+                    notificationManager.disableNotifications()
+                    print("메인뷰: removeAllPendingNotificationRequests\n")
                 }
                 .buttonStyle(PIMGreenButton())
                 .padding(.bottom, 10)
@@ -80,6 +83,9 @@ struct MainView: View {
                 Button("앗! 잘못 눌렀어요") {
                     isPillEaten = false
                     UserDefaults.standard.set(isPillEaten, forKey: "PillEaten")
+                    // 알림 활성화
+                    notificationManager.enableNotifications()
+                    print("메인뷰: enableNotifications\n")
                 }
                 .buttonStyle(PIMStrokeButton())
                 .padding(.bottom, 10)
