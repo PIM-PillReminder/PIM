@@ -13,35 +13,39 @@ struct OnboardingMainView: View {
             VStack {
                 Spacer()
                 Text("반가워요!")
-                    .font(.system(size: 24))
-                    .fontWeight(.bold)
+                    .font(.pretendard(.bold, size: 24))
                     .padding(.bottom, 10)
-                Text("당신의 피임약 관리를\nPIM이 도와줄게요.")
+                Text("당신의 피임약 관리를\npim이 도와줄게요.")
+                    .font(.pretendard(.regular, size: 16))
                     .foregroundColor(Color.gray)
                     .multilineTextAlignment(.center)
-                    .font(.system(size: 16))
-                    .fontWeight(.regular)
                     .lineSpacing(3)
                 Spacer()
-                Image("character_onboarding_big")
+                Image("character_shining")
                     .padding(.bottom, 50)
+                    .shadow(color: Color(red: 0.5, green: 0.5, blue: 0.5)
+                        .opacity(0.25),
+                            radius: 20,
+                            x: 0,
+                            y: 6)
+//                    .opacity(0.4)
+
                 Text("pim을 더 잘 이용하기 위해\n몇가지 질문에 답이 필요해요.")
+                    .font(.pretendard(.regular, size: 16))
                     .foregroundColor(Color.black)
                     .multilineTextAlignment(.center)
-                    .font(.system(size: 16))
-                    .fontWeight(.regular)
                     .lineSpacing(3)
                 Spacer()
-                NavigationLink(destination: OnboardingView1()) {
+                // TODO: 2차 스프린트 업데이트때 OnboardingView2로 수정
+                NavigationLink(destination: OnboardingView4(selectedTime: Date())) {
                     Text("시작하기")
-                        .font(.system(size: 20))
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.black)
+                        .font(.pretendard(.bold, size: 20))
+                        .foregroundColor(Color.white)
                 }
                 .frame(width: UIScreen.main.bounds.width)
                 .padding(.top, 40)
                 .padding(.bottom, 10)
-                .background(Color.gray)
+                .background(Color.pimGreen)
             }
         }
         .navigationBarBackButtonHidden(true)

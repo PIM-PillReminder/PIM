@@ -13,7 +13,6 @@ import SwiftUI
 extension Color {
     static let pimGreen = Color(hex: "#6CC244")
     static let lightGray = Color(hex: "#F2F2F2")
-    
     static let green01 = Color(hex: "#9BDDA4")
     static let green02 = Color(hex: "#60BF6C")
     static let green03 = Color(hex: "#119822")
@@ -26,8 +25,7 @@ extension Color {
     static let gray01 = Color(hex: "#F2F2F2")
     static let gray02 = Color(hex: "#D9D9D9")
     static let gray03 = Color(hex: "#9D9D9D")
-    
-    
+    static let gradientGreen = Color(hex: "C8E770")
     // lightGreen은 투명도만 조절한 거라 따로 추가는 안 했습니다
     
   init(hex: String) {

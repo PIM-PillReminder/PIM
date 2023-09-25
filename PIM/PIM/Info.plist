@@ -4,11 +4,11 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Pretendard-Regular.ttf</string>
 		<string>Pretendard-Light.ttf</string>
 		<string>Cafe24OhsquareAir-v2.0.ttf</string>
 		<string></string>
 		<string>Pretendard-Bold.ttf</string>
 	</array>
 </dict>
-
 </plist>

@@ -19,14 +19,12 @@ enum Pills: String, CaseIterable, Identifiable {
 struct OnboardingView2: View {
      
     @Environment(\.presentationMode) var presentationMode
-    
-    
-    let pills = ["쎄스콘정", "에이리스정", "미니보라30", "트리퀼라"]
 
     @State private var selectedPill : String = ""
     @State private var isPickerVisible = false
     @State private var isNextButtonActive : Bool = false
     
+    let pills = ["쎄스콘정", "에이리스정", "미니보라30", "트리퀼라"]
     
     
     var body: some View {
@@ -37,28 +35,26 @@ struct OnboardingView2: View {
                 }) {
                     Image(systemName: "chevron.left")
                         .foregroundColor(Color.black)
-                        .font(.system(size: 24))
-                        .fontWeight(.regular)
+                        .font(.pretendard(.regular, size: 24))
                 }
                 .padding(.leading, 15)
                 Spacer()
-                Text("당신의 일상에, 핌")
-                    .font(.system(size: 18))
-                    .fontWeight(.bold)
+                Text("시작하기")
+                    .font(.pretendard(.bold, size: 18))
                     .frame(alignment: .center)
-                    .padding(.trailing, 25)
+                    .padding(.trailing, 30)
                 Spacer()
             }
+            .padding(.top, 10)
             ProgressView(value: 40, total: 100)
-                .progressViewStyle(LinearProgressViewStyle(tint: .red))
+                .progressViewStyle(LinearProgressViewStyle(tint: .pimGreen))
                 .padding(.bottom, 40)
             Text("어떤 약인가요?")
-                .font(.system(size: 24))
-                .fontWeight(.bold)
+                .font(.pretendard(.bold, size: 24))
                 .padding(.bottom, 5)
             Text("약 종류를 기록하면\n내게 맞는 약을 찾기가 쉬워져요.")
+                .font(.pretendard(.regular, size: 16))
                 .multilineTextAlignment(.center)
-                .font(.body)
                 .foregroundColor(.gray)
                 .padding(.bottom, 40)
                 .lineSpacing(3)
@@ -86,8 +82,8 @@ struct OnboardingView2: View {
             }) {
                 HStack {
                     Text("약을 선택해주세요")
+                        .font(.pretendard(.bold, size: 18))
                         .foregroundColor(.black)
-                        .font(.headline)
                         .padding()
 //                            .background(Color.white)
                         .cornerRadius(20)
@@ -97,11 +93,21 @@ struct OnboardingView2: View {
                         .padding(.trailing, 10)
                 }
                 .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.gray, lineWidth: 2)
+                  RoundedRectangle(cornerRadius: 16)
+                      .inset(by: 1)
+                      .stroke(
+                          RadialGradient(
+                              gradient: Gradient(stops: [
+                                  Gradient.Stop(color: .gradientGreen, location: 0),
+                                  Gradient.Stop(color: .pimGreen, location: 1)
+                              ]),
+                              center: .leading,
+                              startRadius: 0,
+                              endRadius: 300
+                          ),
+                          lineWidth: 2
+                      )
                 )
-                
-                    
             }
             .padding(.leading, 20)
             .padding(.trailing, 20)
@@ -112,15 +118,9 @@ struct OnboardingView2: View {
                     ForEach(pills, id: \.self) { pill in
                         Text(pill)
                             .tag(pill)
-                            .font(.system(size: 18))
+                            .font(.pretendard(selectedPill == pill ? .bold : .medium, size: 18))
                             .foregroundColor(selectedPill == pill ? .black : .gray)
-                            .fontWeight(selectedPill == pill ? .bold : .medium)
                             .padding()
-//                                .background(
-//                                    RoundedRectangle(cornerRadius: 12)
-//                                        .frame(width: UIScreen.main.bounds.width * 0.8, height: 30)
-//                                        .foregroundColor(selectedPill == pill ? .gray : .clear)
-//                                )
                     }
                 }
                 
@@ -131,14 +131,13 @@ struct OnboardingView2: View {
             
             NavigationLink(destination: OnboardingView3()) {
                 Text("선택했어요")
-                    .font(.system(size: 20))
-                    .fontWeight(.bold)
+                    .font(.pretendard(.bold, size: 20))
                     .foregroundColor(Color.black)
             }
             .frame(width: UIScreen.main.bounds.width)
             .padding(.top, 40)
             .padding(.bottom, 10)
-            .background(Color.gray)
+            .background(Color.pimGreen)
         }
         .navigationBarBackButtonHidden(true)
     }
