@@ -67,7 +67,6 @@ struct MainView: View {
                     .padding(.bottom, 50)
             }
             Spacer()
-            // TODO: isPillEaten -> 약을 먹었는지 확인하는 부분 연결
             
             if(!isPillEaten){
                 Button("오늘의 약을 먹었어요") {
