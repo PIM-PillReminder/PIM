@@ -19,14 +19,12 @@ enum Pills: String, CaseIterable, Identifiable {
 struct OnboardingView2: View {
      
     @Environment(\.presentationMode) var presentationMode
-    
-    
-    let pills = ["쎄스콘정", "에이리스정", "미니보라30", "트리퀼라"]
 
     @State private var selectedPill : String = ""
     @State private var isPickerVisible = false
     @State private var isNextButtonActive : Bool = false
     
+    let pills = ["쎄스콘정", "에이리스정", "미니보라30", "트리퀼라"]
     
     
     var body: some View {

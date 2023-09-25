@@ -10,7 +10,6 @@ import SwiftUI
 struct OnboardingView4: View {
     
     @Environment(\.presentationMode) var presentationMode
-
     @State var selectedTime: Date
     @State private var isMainViewActive = false
     let notificationManager = LocalNotificationManager()
@@ -53,17 +52,6 @@ struct OnboardingView4: View {
                             x: 0,
                             y: 4)
                     .padding(.bottom, 10)
-                
-//                DatePicker(
-//                    "",
-//                    selection: $selectedTime,
-//                    displayedComponents: [.hourAndMinute]
-//                )
-//                .datePickerStyle(.wheel)
-//                .environment(\.locale, .init(identifier: "ko_KR"))
-//                .onChange(of: selectedTime) { newValue in
-//                    print("Selected time changed to \(newValue)")
-//                }
                 DatePicker(
                     "",
                     selection: $selectedTime,
@@ -72,52 +60,80 @@ struct OnboardingView4: View {
                 .labelsHidden()
                 .datePickerStyle(.wheel)
                 .environment(\.locale, .init(identifier: "ko_KR"))
-//                .font(.pretendard(.bold, size: 18))
                 .frame(width: UIScreen.main.bounds.width * 0.9)
-                .overlay(
-                    Text("\(selectedTime, formatter: DateFormatter())")
-                        .font(.pretendard(.bold, size: 18))
-                        .foregroundColor(.red)
-                )
 //                .overlay(
-//                    RoundedRectangle(cornerRadius: 16)
-//                        .stroke(
-//                            RadialGradient(
-//                                gradient: Gradient(stops: [
-//                                    Gradient.Stop(color: .gradientGreen, location: 0),
-//                                    Gradient.Stop(color: .pimGreen, location: 1)
-//                                ]),
-//                                center: .leading,
-//                                startRadius: 0,
-//                                endRadius: 300
-//                            ),
-//                            lineWidth: 2
-//                        )
+//                    Text("\(selectedTime, formatter: DateFormatter())")
+//                        .font(.pretendard(.bold, size: 18))
+//                        .foregroundColor(.red)
 //                )
-//                CustomTimePicker(selectedTime: $selectedTime)
-                
                 
                 Spacer()
-                NavigationLink(destination: MainView()) {
-                    Text("선택하기")
+                
+                NavigationLink(
+                    destination: MainView().navigationBarHidden(true),
+                    isActive: $isMainViewActive) {
+                        EmptyView()
+                    }
+                
+                Button(action: {
+                    print("Selected time: \(selectedTime)")
+                    let calendar = Calendar.current
+                    _ = calendar.component(.hour, from: selectedTime)
+                    _ = calendar.component(.minute, from: selectedTime)
+                    UNUserNotificationCenter.current().getNotificationSettings { settings in
+                        if settings.authorizationStatus == .authorized {
+                            notificationManager.addNotification(title: "PIM")
+                            UserDefaults.standard.set(selectedTime, forKey: "SelectedTime")
+                            notificationManager.schedule()
+                            print("알림 예약 완료 : \(selectedTime)\n")
+                        } else {
+                            notificationManager.requestPermission()
+                        }
+                    }
+                    isMainViewActive = true
+                }) {
+                    Text("선택했어요")
                         .font(.pretendard(.bold, size: 20))
-                        .foregroundColor(Color.black)
+                        .foregroundColor(Color.white)
                 }
                 .frame(width: UIScreen.main.bounds.width)
                 .padding(.top, 40)
                 .padding(.bottom, 10)
                 .background(Color.pimGreen)
-                .contentShape(Rectangle())
-                .onTapGesture {
-                    print("Selected time: \(selectedTime)")
-                    let calendar = Calendar.current
-                    _ = calendar.component(.hour, from: selectedTime)
-                    _ = calendar.component(.minute, from: selectedTime)
-                    notificationManager.addNotification(title: "PIM")
-                    UserDefaults.standard.set(selectedTime, forKey: "SelectedTime")
-                    notificationManager.schedule()
-                    print("alert, at onboarding5: \(selectedTime)\n")
-                }
+
+//
+//                NavigationLink(destination: MainView()) {
+//                    Text("선택하기")
+//                        .font(.pretendard(.bold, size: 20))
+//                        .foregroundColor(Color.black)
+//                }
+//                .frame(width: UIScreen.main.bounds.width)
+//                .padding(.top, 40)
+//                .padding(.bottom, 10)
+//                .background(Color.pimGreen)
+//                .contentShape(Rectangle())
+//                .onTapGesture {
+//                    print("Selected time: \(selectedTime)")
+//                    let calendar = Calendar.current
+//                    _ = calendar.component(.hour, from: selectedTime)
+//                    _ = calendar.component(.minute, from: selectedTime)
+//                    // 요청한 알림 권한을 확인
+//                    UNUserNotificationCenter.current().getNotificationSettings { settings in
+//                        if settings.authorizationStatus == .authorized {
+//                            notificationManager.addNotification(title: "PIM")
+//                            UserDefaults.standard.set(selectedTime, forKey: "SelectedTime")
+//                            notificationManager.schedule()
+//                            print("알림 예약 완료 : \(selectedTime)\n")
+//                        } else {
+//                            // 알림 권한을 사용자에게 요청
+//                            notificationManager.requestPermission()
+//                        }
+//                    }
+//                }
+//                    notificationManager.addNotification(title: "PIM")
+//                    UserDefaults.standard.set(selectedTime, forKey: "SelectedTime")
+//                    notificationManager.schedule()
+//                    print("alert, at onboarding5: \(selectedTime)\n")
             }
                 
         }

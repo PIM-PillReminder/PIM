@@ -14,8 +14,9 @@ struct MainView: View {
         formatter.dateFormat = "M월 d일"
         return formatter
     }()
+    let notificationManager = LocalNotificationManager()
     
-    @State private var isPillEaten : Bool = false
+    @State private var isPillEaten: Bool = UserDefaults.standard.bool(forKey: "PillEaten")
     
     var body: some View {
         VStack {
@@ -67,16 +68,6 @@ struct MainView: View {
             }
             Spacer()
             // TODO: isPillEaten -> 약을 먹었는지 확인하는 부분 연결
-//            NavigationLink(destination: MainView()) {
-//                ZStack {
-//                    Rectangle()
-//                        .fill(Color.gray)
-//                        .cornerRadius(16)
-//                        .frame(width: UIScreen.main.bounds.width * 0.8, height: 60)
-//                        .padding(.top, 40)
-//                        .padding(.bottom, 10)
-//                }
-//            }
             Button(action: {
                 isPillEaten.toggle()
                 UserDefaults.standard.set(isPillEaten, forKey: "PillEaten")
@@ -96,12 +87,12 @@ struct MainView: View {
                             .cornerRadius(16)
                             .frame(width: UIScreen.main.bounds.width * 0.9, height: 60)
                             .overlay(
-                                    RoundedRectangle(cornerRadius: 16)
-                                        .stroke(Color.pimGreen, lineWidth: 2)
-                                )
+                                RoundedRectangle(cornerRadius: 16)
+                                    .stroke(Color.pimGreen, lineWidth: 2)
+                            )
                             .padding(.top, 40)
                             .padding(.bottom, 10)
-                            
+                        
                     }
                     
                     Text(isPillEaten ? "약 복용을 취소할게요" : "오늘의 약을 복용 했어요")
@@ -110,7 +101,7 @@ struct MainView: View {
                         .padding(.top, 30)
                 }
             }
-
+            
         }
         .navigationBarBackButtonHidden(true)
     }

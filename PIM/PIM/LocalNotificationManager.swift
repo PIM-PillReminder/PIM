@@ -60,7 +60,7 @@ class LocalNotificationManager {
     
     func scheduleNotifications() -> Void {
         for notification in notifications {
-            var dateComponents = Calendar.current.dateComponents([.hour, .minute], from: Date()) // 기본 값 (현재 시간) 가져옴
+            var dateComponents = Calendar.current.dateComponents([.hour, .minute], from: Date())
             
             if let selectedTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date {
                 let calendar = Calendar.current
