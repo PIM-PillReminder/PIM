@@ -60,7 +60,7 @@ class LocalNotificationManager {
     
     func scheduleNotifications() -> Void {
         for notification in notifications {
-            var dateComponents = Calendar.current.dateComponents([.hour, .minute], from: Date()) // 기본 값 (현재 시간) 가져옴
+            var dateComponents = Calendar.current.dateComponents([.hour, .minute], from: Date())
             
             if let selectedTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date {
                 let calendar = Calendar.current
@@ -69,10 +69,9 @@ class LocalNotificationManager {
                 dateComponents.hour = selectedHour
                 dateComponents.minute = selectedMinute
             }
-            
             dateComponents.second = 0
             
-            //정시 알림
+            // 정시 알림
             let content = UNMutableNotificationContent()
             content.title = notification.title
             content.sound = UNNotificationSound.default
@@ -88,28 +87,11 @@ class LocalNotificationManager {
                 print("Scheduling notification with id:\(notification.id)")
             }
             
-            //5분 전 알림
-            dateComponents.minute! -= 5;
-            let before5MinutesContent = UNMutableNotificationContent()
-            before5MinutesContent.title = "약을 먹을 시간이 얼마 남지 않았어요!"
-            before5MinutesContent.sound = UNNotificationSound.default
-            before5MinutesContent.subtitle = "5분 뒤 약 먹을 시간이에요.💊"
-            before5MinutesContent.body = "먹었다고 체크하기"
-            before5MinutesContent.categoryIdentifier = "checkCategory"
-            
-            let before5MinutesTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-            let before5MinutesRequest = UNNotificationRequest(identifier: notification.id + "_5min", content: before5MinutesContent, trigger: before5MinutesTrigger)
-            
-            UNUserNotificationCenter.current().add(before5MinutesRequest) { error in
-                guard error == nil else { return }
-                print("Scheduling 5 minutes before notification with id:\(notification.id + "_5min")")
-            }
-            
-            //1시간 후 알림
-            dateComponents.minute! += 65;
+            // 1시간 후 알림
+            dateComponents.minute! += 60;
             let after1HourContent = UNMutableNotificationContent()
             after1HourContent.title = "1시간이 지났어요."
-            before5MinutesContent.sound = UNNotificationSound.default
+            after1HourContent.sound = UNNotificationSound.default
             after1HourContent.subtitle = "괜찮아요. 지금 약을 먹으세요."
             after1HourContent.body = "먹었다고 체크하기"
             after1HourContent.categoryIdentifier = "checkCategory"
