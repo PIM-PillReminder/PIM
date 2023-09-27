@@ -42,7 +42,7 @@ struct SettingView: View {
                                 }
                                 .sheet(isPresented: $showSheet) {
                                     Text("피커 들어갈 자리 ^.^")
-                                        .presentationDetents([.height(geo.size.height * 0.8 )])
+                                        .presentationDetents([.height(geo.size.height * 0.6 )])
                                         .presentationDragIndicator(.visible)
                                 }
                             }
@@ -69,8 +69,8 @@ struct SettingView: View {
                                }
                                .sheet(isPresented: $showSheet2) {
                                    SettingNotiView(showSheet2: $showSheet2)
-                                       .presentationDetents([.height(geo.size.height * 0.8 )])
-                                       .presentationDragIndicator(.visible)
+                                       .presentationDetents([.height(geo.size.height * 0.7)])
+                                       .presentationDragIndicator(.hidden)
                                }
                             }
                             .padding(.vertical, 8)
