@@ -16,16 +16,14 @@ struct SettingNotiView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.lightGray
+                Color.gray01
                     .ignoresSafeArea()
                 VStack {
                     GroupBox {
                         HStack{
                             Text("알림 허용")
                                 .font(.pretendard(.bold))
-                            
                             Spacer()
-                            
                             Toggle("", isOn: $isNotiActivated)
                                             .toggleStyle(SwitchToggleStyle(tint: Color.green03))
                         }
@@ -44,30 +42,23 @@ struct SettingNotiView: View {
                                 }
                                 Spacer()
                                     .frame(height: 7)
-                                
                                 Text("약 먹기를 완료할 때까지\n하루에 몇 번 알림을 받을지 선택해주세요.")
                                     .foregroundColor(.gray)
                                     .font(.pretendard(.medium,size: 14))
-                                    
                                 Spacer()
                                     .frame(height: 20)
-                                
                                 PIMCustomSlider()
-                                
                             }
                         }
                         .padding(.horizontal, 10)
                         .padding(.vertical, 5)
                     }
                     .groupBoxStyle(CustomListGroupBoxStyle())
-                    
                     Spacer()
                         .frame(height: 36)
-                    
-                   
-                            Button("설정 완료하기") {
-                                showSheet2 = false
-                            }.buttonStyle(PIMGreenButton())
+                    Button("설정 완료하기") {
+                        showSheet2 = false
+                    }.buttonStyle(PIMGreenButton())
 
     //                GroupBox {
     //                    ZStack{
@@ -91,14 +82,10 @@ struct SettingNotiView: View {
     //                }
     //                .groupBoxStyle(CustomListGroupBoxStyle())
     //                .padding(.bottom)
-                    
                     Spacer()
-
                 }
                 .padding(.bottom, 23)
                 .padding(.horizontal, 18)
-    //            .navigationTitle("알림 설정")
-    //            .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     Button {
                         showSheet2 = false
@@ -107,7 +94,6 @@ struct SettingNotiView: View {
                             .foregroundColor(.black)
                     }
                 }
-                
             }
         }
     }

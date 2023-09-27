@@ -12,10 +12,13 @@ struct SettingView: View {
     @State var isLocked = false
     @State var showSheet = false
     @State var showSheet2 = false
+    
+    let notificationManager = LocalNotificationManager()
 
     var selectedTime: String = "오전 10:00"
+    
     var body: some View {
-        NavigationView {
+        NavigationStack {
             GeometryReader { geo in
                 ZStack {
                     
@@ -41,7 +44,7 @@ struct SettingView: View {
                                         .foregroundColor(.gray02)
                                 }
                                 .sheet(isPresented: $showSheet) {
-                                    Text("피커 들어갈 자리 ^.^")
+                                    TimePickerView(selectedTime: Date(), showSheet2: $showSheet2)
                                         .presentationDetents([.height(geo.size.height * 0.6 )])
                                         .presentationDragIndicator(.visible)
                                 }
