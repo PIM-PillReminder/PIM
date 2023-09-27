@@ -21,13 +21,14 @@ struct OnboardingMainView: View {
                     .multilineTextAlignment(.center)
                     .lineSpacing(3)
                 Spacer()
-                Image("character_shining")
-                    .padding(.bottom, 50)
-                    .shadow(color: Color(red: 0.5, green: 0.5, blue: 0.5)
-                        .opacity(0.25),
-                            radius: 20,
-                            x: 0,
-                            y: 6)
+//                Image("character_shining")
+//                    .padding(.bottom, 50)
+//                    .shadow(color: Color(red: 0.5, green: 0.5, blue: 0.5)
+//                        .opacity(0.25),
+//                            radius: 20,
+//                            x: 0,
+//                            y: 6)
+                LottieView(jsonName: "PimiShining")
                 
                 Text("pim을 더 잘 이용하기 위해\n몇가지 질문에 답이 필요해요.")
                     .font(.pretendard(.regular, size: 16))

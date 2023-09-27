@@ -50,21 +50,35 @@ struct MainView: View {
             }
             Spacer()
             if(isPillEaten){
-                Image("charactermain_yes_pill")
-                    .resizable()
-                    .frame(width: 340, height: 260)
+//                LottieView(jsonName: "great", loopMode: .loop)
+//                                    .frame(height: 340)
+//                                    .offset(y:35)
+                LottieView(jsonName: "PimiYesPill")
+//                    .frame(width: 340, height: 260)
                     .padding(.bottom, 50)
-                    .shadow(color: Color(red: 0.5, green: 0.5, blue: 0.5)
-                        .opacity(0.25),
-                            radius: 20,
-                            x: 0,
-                            y: 6)
+//                    .shadow(color: Color(red: 0.5, green: 0.5, blue: 0.5)
+//                        .opacity(0.25),
+//                            radius: 20,
+//                            x: 0,
+//                            y: 6)
+//                Image("PimiYesPill")
+//                    .resizable()
+//                    .frame(width: 340, height: 260)
+//                    .padding(.bottom, 50)
+//                    .shadow(color: Color(red: 0.5, green: 0.5, blue: 0.5)
+//                        .opacity(0.25),
+//                            radius: 20,
+//                            x: 0,
+//                            y: 6)
             }
             else{
-                Image("charactermain_no_pill")
-                    .resizable()
-                    .frame(width: 300, height: 220)
+                LottieView(jsonName:"PimiNoPill", loopMode: .playOnce)
+//                    .frame(width: 300, height: 220)
                     .padding(.bottom, 50)
+//                Image("PimiNoPill")
+//                    .resizable()
+//                    .frame(width: 300, height: 220)
+//                    .padding(.bottom, 50)
             }
             Spacer()
             

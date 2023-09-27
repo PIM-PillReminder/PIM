@@ -46,11 +46,13 @@ struct OnboardingView4: View {
                     .font(.pretendard(.regular, size: 18))
                     .foregroundColor(.gray)
                     .padding(.bottom, 10)
-                Image("character_time")
-                    .shadow(color: Color(red: 0, green: 0, blue: 0),
-                            radius: 28,
-                            x: 0,
-                            y: 4)
+                LottieView(jsonName: "PimiTime")
+//                    .frame(width: 300, height: 300)
+//                Image("character_time")
+//                    .shadow(color: Color(red: 0, green: 0, blue: 0),
+//                            radius: 28,
+//                            x: 0,
+//                            y: 4)
 //                    .padding(.bottom, 10)
                 DatePicker(
                     "",
