@@ -14,93 +14,88 @@ struct SettingNotiView: View {
     @Binding var showSheet2: Bool
     
     var body: some View {
-        ZStack {
-            Color.lightGray
-                .ignoresSafeArea()
-            VStack {
-                GroupBox {
-                    HStack{
-                        Text("알림 허용")
-                            .font(.pretendard(.bold))
-                        
-                        Spacer()
-                        
-                        Toggle("", isOn: $isNotiActivated)
-                                        .toggleStyle(SwitchToggleStyle(tint: Color.green03))
-                    }
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 5)
-                }
-                .groupBoxStyle(CustomListGroupBoxStyle())
-                .padding(.bottom)
-                
-                GroupBox {
-                    HStack {
-                        VStack(alignment: .leading ) {
-                            HStack {
-                                Text("알림 빈도")
-                                    .font(.pretendard(.bold))
-                            }
-                            
-                            Text("약 먹기를 완료할 때까지\n하루에 몇 번 알림을 받을지 선택해주세요.")
-                                .foregroundColor(.gray)
-                                .font(.pretendard(.medium))
-                                .padding(.bottom)
-                            
-                            PIMCustomSlider()
-                            
+        NavigationStack {
+            ZStack {
+                Color.gray01
+                    .ignoresSafeArea()
+                VStack {
+                    GroupBox {
+                        HStack{
+                            Text("알림 허용")
+                                .font(.pretendard(.bold))
+                            Spacer()
+                            Toggle("", isOn: $isNotiActivated)
+                                            .toggleStyle(SwitchToggleStyle(tint: Color.green03))
                         }
-                        Spacer()
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
                     }
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 5)
+                    .groupBoxStyle(CustomListGroupBoxStyle())
+                    Spacer()
+                        .frame(height: 16)
+                    GroupBox {
+                        HStack {
+                            VStack(alignment: .leading ) {
+                                HStack {
+                                    Text("알림 빈도")
+                                        .font(.pretendard(.bold))
+                                }
+                                Spacer()
+                                    .frame(height: 7)
+                                Text("약 먹기를 완료할 때까지\n하루에 몇 번 알림을 받을지 선택해주세요.")
+                                    .foregroundColor(.gray)
+                                    .font(.pretendard(.medium,size: 14))
+                                Spacer()
+                                    .frame(height: 20)
+                                PIMCustomSlider()
+                            }
+                            .padding(.bottom, 35)
+                        }
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
+                    }
+                    .groupBoxStyle(CustomListGroupBoxStyle())
+                    Spacer()
+                        .frame(height: 36)
+                    Button("설정 완료하기") {
+                        showSheet2 = false
+                    }.buttonStyle(PIMGreenButton())
+
+    //                GroupBox {
+    //                    ZStack{
+    //                        HStack {
+    //                            VStack(alignment: .leading) {
+    //                                Text("전화 알림 허용")
+    //                                    .padding(.bottom, 7)
+    //
+    //                                Text("설정 시간에서 12시간이 지나면 전화를 드려요")
+    //                                    .foregroundColor(.gray)
+    //                                    .font(.system(.caption))
+    //                            }
+    //                            Spacer()
+    //                        }
+    //                        Toggle("", isOn: $callToggleSwitch)
+    //                                            .toggleStyle(SwitchToggleStyle(tint: Color.pimGreen))
+    //                                            .disabled(isDeactivated)
+    //                        }
+    //                    .padding(.horizontal, 10)
+    //                    .padding(.vertical, 5)
+    //                }
+    //                .groupBoxStyle(CustomListGroupBoxStyle())
+    //                .padding(.bottom)
+                    Spacer()
                 }
-                .groupBoxStyle(CustomListGroupBoxStyle())
-                .padding(.bottom, 45)
-                
-                HStack {
-                    HStack {
-                        Button("닫기") {
-                            showSheet2 = false
-                        }.buttonStyle(PIMSmallStrokeButton())
-                            .padding(.trailing, 7)
-                        Button("설정 완료하기") {
-                        }.buttonStyle(PIMSmallGreenButton())
-                            .padding(.leading, 7)
+                .padding(.bottom, 23)
+                .padding(.horizontal, 18)
+                .toolbar {
+                    Button {
+                        showSheet2 = false
+                    } label: {
+                        Image(systemName: "xmark")
+                            .foregroundColor(.black)
                     }
                 }
-
-//                GroupBox {
-//                    ZStack{
-//                        HStack {
-//                            VStack(alignment: .leading) {
-//                                Text("전화 알림 허용")
-//                                    .padding(.bottom, 7)
-//
-//                                Text("설정 시간에서 12시간이 지나면 전화를 드려요")
-//                                    .foregroundColor(.gray)
-//                                    .font(.system(.caption))
-//                            }
-//                            Spacer()
-//                        }
-//                        Toggle("", isOn: $callToggleSwitch)
-//                                            .toggleStyle(SwitchToggleStyle(tint: Color.pimGreen))
-//                                            .disabled(isDeactivated)
-//                        }
-//                    .padding(.horizontal, 10)
-//                    .padding(.vertical, 5)
-//                }
-//                .groupBoxStyle(CustomListGroupBoxStyle())
-//                .padding(.bottom)
-                
-                Spacer()
-
             }
-            .padding(.vertical, 48)
-            .padding(.horizontal, 18)
-//            .navigationTitle("알림 설정")
-//            .navigationBarTitleDisplayMode(.inline)
-            
         }
     }
 }
