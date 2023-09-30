@@ -17,8 +17,8 @@ struct PIMGreenButton: ButtonStyle {
             .foregroundColor(.white)
             .font(.pretendard(.bold, size: 20))
             .multilineTextAlignment(.center)
-            .frame(maxWidth: .infinity)
-            .frame(height: 60)
+            .frame(width: UIScreen.main.bounds.width * 0.9)
+            .frame(height: 74)
             .background(
                 RoundedRectangle(cornerRadius: 37.5)
                     .foregroundColor(.green03)
@@ -64,8 +64,8 @@ struct PIMStrokeButton: ButtonStyle {
             .foregroundColor(.green03)
             .font(.pretendard(.bold, size: 20))
             .multilineTextAlignment(.center)
-            .frame(maxWidth: .infinity)
-            .frame(height: 60)
+            .frame(width: UIScreen.main.bounds.width * 0.9)
+            .frame(height: 74)
             .background(
                 RoundedRectangle(cornerRadius: 37.5)
                     .stroke(Color.green03, lineWidth: 2)
@@ -110,11 +110,11 @@ struct OnboardingButton: ButtonStyle {
        }
     func makeBody (configuration: Configuration) -> some View {
         configuration.label
-            .padding(.horizontal)
+            .padding(.vertical)
             .foregroundColor(.white)
             .font(.pretendard(.bold, size: 18))
             .multilineTextAlignment(.center)
-            .frame(maxWidth: .infinity)
+            .frame(width: UIScreen.main.bounds.width)
             .frame(height: 100)
             .background(
                 Rectangle()
