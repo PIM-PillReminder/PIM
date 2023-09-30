@@ -49,6 +49,7 @@ struct SettingNotiView: View {
                                     .frame(height: 20)
                                 PIMCustomSlider()
                             }
+                            .padding(.bottom, 35)
                         }
                         .padding(.horizontal, 10)
                         .padding(.vertical, 5)

@@ -44,9 +44,9 @@ struct SettingView: View {
                                         .foregroundColor(.gray02)
                                 }
                                 .sheet(isPresented: $showSheet) {
-                                    TimePickerView(selectedTime: Date(), showSheet2: $showSheet2)
-                                        .presentationDetents([.height(geo.size.height * 0.6 )])
-                                        .presentationDragIndicator(.visible)
+                                    TimePickerView(selectedTime: Date(), showSheet1: $showSheet)
+                                        .presentationDetents([.height(geo.size.height * 0.8 )])
+                                        .presentationDragIndicator(.hidden)
                                 }
                             }
                             .padding(.vertical, 8)
@@ -72,7 +72,7 @@ struct SettingView: View {
                                }
                                .sheet(isPresented: $showSheet2) {
                                    SettingNotiView(showSheet2: $showSheet2)
-                                       .presentationDetents([.height(geo.size.height * 0.7)])
+                                       .presentationDetents([.height(geo.size.height * 0.8)])
                                        .presentationDragIndicator(.hidden)
                                }
                             }

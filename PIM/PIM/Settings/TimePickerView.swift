@@ -10,7 +10,7 @@ import SwiftUI
 struct TimePickerView: View {
     // 설정 화면에 있는 피커랑 온보딩 피커를 통일하는 게 좋을 것 같아여...! 지금은 이렇게 해두고 나중에 하나의 뷰로 만들어볼게요!!!
     @State var selectedTime: Date
-    @Binding var showSheet2: Bool
+    @Binding var showSheet1: Bool
     let notificationManager = LocalNotificationManager()
     
     var body: some View {
@@ -28,11 +28,12 @@ struct TimePickerView: View {
                         .labelsHidden()
                         .datePickerStyle(.wheel)
                         .environment(\.locale, .init(identifier: "ko_KR"))
-//                        .frame(width: UIScreen.main.bounds.width * 0.9)
+                        .padding(.vertical, 30)
+
                     }
                     .groupBoxStyle(CustomListGroupBoxStyle())
                     Spacer()
-                        .frame(height: 39)
+                        .frame(height: 36)
                     Button(action: {
                         print("Selected time: \(selectedTime)")
                         let calendar = Calendar.current
@@ -48,20 +49,22 @@ struct TimePickerView: View {
                                 notificationManager.requestPermission()
                             }
                         }
+                        showSheet1 = false
                     }) {
                         Text("설정 완료하기")
                     }
                     .buttonStyle(PIMGreenButton())
+                    Spacer()
                 }
                 .padding(.horizontal, 18)
-            }
-        }
-        .toolbar {
-            Button {
-                showSheet2 = false
-            } label: {
-                Image(systemName: "xmark")
-                    .foregroundColor(.black)
+                .toolbar {
+                    Button {
+                        showSheet1 = false
+                    } label: {
+                        Image(systemName: "xmark")
+                            .foregroundColor(.black)
+                    }
+                }
             }
         }
     }
