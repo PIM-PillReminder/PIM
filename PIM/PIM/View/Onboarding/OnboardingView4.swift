@@ -45,13 +45,15 @@ struct OnboardingView4: View {
                 Text("선택한 복용 시간을 바탕으로 알림이 울려요.")
                     .font(.pretendard(.regular, size: 18))
                     .foregroundColor(.gray)
-                    .padding(.bottom, 40)
-                Image("character_time")
-                    .shadow(color: Color(red: 0, green: 0, blue: 0),
-                            radius: 28,
-                            x: 0,
-                            y: 4)
                     .padding(.bottom, 10)
+                LottieView(jsonName: "PimiTime")
+//                    .frame(width: 300, height: 300)
+//                Image("character_time")
+//                    .shadow(color: Color(red: 0, green: 0, blue: 0),
+//                            radius: 28,
+//                            x: 0,
+//                            y: 4)
+//                    .padding(.bottom, 10)
                 DatePicker(
                     "",
                     selection: $selectedTime,
@@ -81,14 +83,13 @@ struct OnboardingView4: View {
                     _ = calendar.component(.hour, from: selectedTime)
                     _ = calendar.component(.minute, from: selectedTime)
                     UNUserNotificationCenter.current().getNotificationSettings { settings in
-                        if settings.authorizationStatus == .authorized {
-                            notificationManager.addNotification(title: "PIM")
-                            UserDefaults.standard.set(selectedTime, forKey: "SelectedTime")
-                            notificationManager.schedule()
-                            print("알림 예약 완료 : \(selectedTime)\n")
-                        } else {
+                        if settings.authorizationStatus != .authorized {
                             notificationManager.requestPermission()
+                            print("온보딩4에서 버튼 눌러서 send request\n")
                         }
+                        UserDefaults.standard.set(selectedTime, forKey: "SelectedTime")
+                        notificationManager.enableNotifications()
+                        print("알림 예약 완료 : \(selectedTime)\n")
                     }
                     isMainViewActive = true
                 }) {
@@ -99,8 +100,8 @@ struct OnboardingView4: View {
                 .frame(width: UIScreen.main.bounds.width)
                 .padding(.top, 40)
                 .padding(.bottom, 10)
-                .background(Color.pimGreen)
-
+                .background(Color.green03)
+                
 //
 //                NavigationLink(destination: MainView()) {
 //                    Text("선택하기")

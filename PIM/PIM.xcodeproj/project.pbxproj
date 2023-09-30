@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57022BF52AC45B7A00070276 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57022BF42AC45B7A00070276 /* LottieView.swift */; };
+		57022BF82AC45C6500070276 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 57022BF72AC45C6500070276 /* Lottie */; };
+		57022BFE2AC45DFB00070276 /* PimiNoPill.json in Resources */ = {isa = PBXBuildFile; fileRef = 57022BFA2AC45DFB00070276 /* PimiNoPill.json */; };
+		57022BFF2AC45DFB00070276 /* PimiYesPill.json in Resources */ = {isa = PBXBuildFile; fileRef = 57022BFB2AC45DFB00070276 /* PimiYesPill.json */; };
+		57022C002AC45DFB00070276 /* PimiShining.json in Resources */ = {isa = PBXBuildFile; fileRef = 57022BFC2AC45DFB00070276 /* PimiShining.json */; };
+		57022C012AC45DFB00070276 /* PimiTime.json in Resources */ = {isa = PBXBuildFile; fileRef = 57022BFD2AC45DFB00070276 /* PimiTime.json */; };
+		57022C032AC462D100070276 /* LottieTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57022C022AC462D100070276 /* LottieTestView.swift */; };
 		573942552ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 573942542ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf */; };
 		573942572ABEE85C0001906B /* OnboardingMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573942562ABEE85C0001906B /* OnboardingMainView.swift */; };
 		57461C472AB58C520026F903 /* PIMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C462AB58C520026F903 /* PIMApp.swift */; };
@@ -39,6 +46,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		57022BF42AC45B7A00070276 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		57022BFA2AC45DFB00070276 /* PimiNoPill.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PimiNoPill.json; sourceTree = "<group>"; };
+		57022BFB2AC45DFB00070276 /* PimiYesPill.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PimiYesPill.json; sourceTree = "<group>"; };
+		57022BFC2AC45DFB00070276 /* PimiShining.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PimiShining.json; sourceTree = "<group>"; };
+		57022BFD2AC45DFB00070276 /* PimiTime.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PimiTime.json; sourceTree = "<group>"; };
+		57022C022AC462D100070276 /* LottieTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieTestView.swift; sourceTree = "<group>"; };
 		573942542ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cafe24OhsquareAir-v2.0.ttf"; sourceTree = "<group>"; };
 		573942562ABEE85C0001906B /* OnboardingMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingMainView.swift; sourceTree = "<group>"; };
 		57461C432AB58C520026F903 /* PIM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PIM.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,17 +90,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57022BF82AC45C6500070276 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57022BF92AC45DE400070276 /* LottieFile */ = {
+			isa = PBXGroup;
+			children = (
+				57022BFA2AC45DFB00070276 /* PimiNoPill.json */,
+				57022BFC2AC45DFB00070276 /* PimiShining.json */,
+				57022BFD2AC45DFB00070276 /* PimiTime.json */,
+				57022BFB2AC45DFB00070276 /* PimiYesPill.json */,
+			);
+			path = LottieFile;
+			sourceTree = "<group>";
+		};
 		573942582ABEE8820001906B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				57022BF42AC45B7A00070276 /* LottieView.swift */,
 				57461C5D2AB59D5F0026F903 /* MainView.swift */,
 				573942592ABEE88B0001906B /* Onboarding */,
+				57022C022AC462D100070276 /* LottieTestView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -123,7 +150,9 @@
 		57461C452AB58C520026F903 /* PIM */ = {
 			isa = PBXGroup;
 			children = (
+				57022BF92AC45DE400070276 /* LottieFile */,
 				573942582ABEE8820001906B /* View */,
+				57461C9B2AB76ABC0026F903 /* LocalNotificationManager.swift */,
 				57461C9D2AB773430026F903 /* Info.plist */,
 				57461C462AB58C520026F903 /* PIMApp.swift */,
 				57461C482AB58C520026F903 /* ContentView.swift */,
@@ -133,7 +162,6 @@
 				57461C4F2AB58C540026F903 /* Persistence.swift */,
 				57461C512AB58C540026F903 /* PIM.xcdatamodeld */,
 				57461C4C2AB58C540026F903 /* Preview Content */,
-				57461C9B2AB76ABC0026F903 /* LocalNotificationManager.swift */,
 			);
 			path = PIM;
 			sourceTree = "<group>";
@@ -208,6 +236,9 @@
 			dependencies = (
 			);
 			name = PIM;
+			packageProductDependencies = (
+				57022BF72AC45C6500070276 /* Lottie */,
+			);
 			productName = PIM;
 			productReference = 57461C432AB58C520026F903 /* PIM.app */;
 			productType = "com.apple.product-type.application";
@@ -236,6 +267,9 @@
 				Base,
 			);
 			mainGroup = 57461C3A2AB58C520026F903;
+			packageReferences = (
+				57022BF62AC45C6500070276 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = 57461C442AB58C520026F903 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -255,9 +289,13 @@
 				7954A8002ABA88E8000D1E8F /* Pretendard-Medium.ttf in Resources */,
 				7954A7FB2ABA88E8000D1E8F /* Pretendard-ExtraLight.ttf in Resources */,
 				57461C4E2AB58C540026F903 /* Preview Assets.xcassets in Resources */,
+				57022C002AC45DFB00070276 /* PimiShining.json in Resources */,
 				7954A8042ABA88E8000D1E8F /* Pretendard-Light.ttf in Resources */,
+				57022BFF2AC45DFB00070276 /* PimiYesPill.json in Resources */,
 				7954A7FD2ABA88E8000D1E8F /* Pretendard-SemiBold.ttf in Resources */,
 				7954A8022ABA88E8000D1E8F /* Pretendard-Bold.ttf in Resources */,
+				57022BFE2AC45DFB00070276 /* PimiNoPill.json in Resources */,
+				57022C012AC45DFB00070276 /* PimiTime.json in Resources */,
 				57461C4B2AB58C540026F903 /* Assets.xcassets in Resources */,
 				7954A7FC2ABA88E8000D1E8F /* Pretendard-ExtraBold.ttf in Resources */,
 				573942552ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf in Resources */,
@@ -282,7 +320,9 @@
 				57461C492AB58C520026F903 /* ContentView.swift in Sources */,
 				799B0EC82ABEEE5200AE9865 /* CustomStyle.swift in Sources */,
 				7954A7EF2ABA888B000D1E8F /* ColorExtension.swift in Sources */,
+				57022C032AC462D100070276 /* LottieTestView.swift in Sources */,
 				57461C532AB58C540026F903 /* PIM.xcdatamodeld in Sources */,
+				57022BF52AC45B7A00070276 /* LottieView.swift in Sources */,
 				57461C472AB58C520026F903 /* PIMApp.swift in Sources */,
 				7954A7E22AB9D096000D1E8F /* SettingNotiVIew.swift in Sources */,
 				57461C5C2AB59B070026F903 /* OnboardingView2.swift in Sources */,
@@ -491,6 +531,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		57022BF62AC45C6500070276 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		57022BF72AC45C6500070276 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 57022BF62AC45C6500070276 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		57461C512AB58C540026F903 /* PIM.xcdatamodeld */ = {
