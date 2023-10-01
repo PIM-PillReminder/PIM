@@ -13,7 +13,11 @@ struct SettingNotiView: View {
     @State var isNotiActivated: Bool = false
     @Binding var showSheet2: Bool
     
+    let notificationManager = LocalNotificationManager()
+    
+    
     var body: some View {
+        
         NavigationStack {
             ZStack {
                 Color.gray01
@@ -25,7 +29,16 @@ struct SettingNotiView: View {
                                 .font(.pretendard(.bold))
                             Spacer()
                             Toggle("", isOn: $isNotiActivated)
-                                            .toggleStyle(SwitchToggleStyle(tint: Color.green03))
+                                .toggleStyle(SwitchToggleStyle(tint: Color.green03))
+                                .onChange(of: isNotiActivated) { alertActivated in
+                                    if alertActivated {
+                                        // isNotiActivated가 true일 때 알림 활성화
+                                        notificationManager.enableNotifications()
+                                    } else {
+                                        // isNotiActivated가 false일 때 알림 비활성화
+                                        notificationManager.disableNotifications()
+                                    }
+                                }
                         }
                         .padding(.horizontal, 10)
                         .padding(.vertical, 5)
@@ -95,13 +108,11 @@ struct SettingNotiView: View {
                             .foregroundColor(.black)
                     }
                 }
+                .onDisappear {
+                    let repeatingTimes = notificationManager.repeatingTimes
+                    print(repeatingTimes)
+                }
             }
         }
     }
 }
-
-//struct SettingNotiView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SettingNotiView(showSheet2: )
-//    }
-//}

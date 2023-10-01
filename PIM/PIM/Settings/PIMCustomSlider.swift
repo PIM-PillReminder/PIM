@@ -37,12 +37,13 @@ struct PIMCustomSlider_Previews: PreviewProvider {
 struct NotiSlider: View {
     @Binding var value: Double
     @State var lastCoordinateValue: CGFloat = 0.0
-    
+//    @ObservedObject var notificationManager = LocalNotificationManager()
+    let notificationManager = LocalNotificationManager()
     // 스냅 지점을 변경
     let snapPoints: [Double] = [0.0, 0.5, 1.0]
     
     // 1, 3, 5 숫자를 관리하는 변수 -> 알람 횟수
-    @State private var displayedNumber: Int = 1
+//    @State private var repeatingTimes: Int = 1
     
     var body: some View {
         GeometryReader { gr in
@@ -99,9 +100,7 @@ struct NotiSlider: View {
                                 }
                                 
                                 // 스냅된 값을 1, 3, 5로 변환
-                                self.displayedNumber = self.value == 1.0 ? 5 : Int(self.value * 5) + 1
-
-                                 
+                                self.notificationManager.repeatingTimes = self.value == 1.0 ? 5 : Int(self.value * 5) + 1
                             }
                     )
                     Spacer()
