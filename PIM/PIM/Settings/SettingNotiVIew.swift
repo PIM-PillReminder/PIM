@@ -10,8 +10,9 @@ import SwiftUI
 struct SettingNotiView: View {
     @State var isDeactivated: Bool = true
     @State var callToggleSwitch: Bool = false
-    @State var isNotiActivated: Bool = false
     @Binding var showSheet2: Bool
+    // 사용자의 알림 권한 여부 UserDefaults로 받아오기
+    @State private var isAllowedNoti = UserDefaults.standard.bool(forKey: "PillEaten")
     
     let notificationManager = LocalNotificationManager()
     
@@ -28,15 +29,19 @@ struct SettingNotiView: View {
                             Text("알림 허용")
                                 .font(.pretendard(.bold))
                             Spacer()
-                            Toggle("", isOn: $isNotiActivated)
+                            Toggle("", isOn: $isAllowedNoti)
                                 .toggleStyle(SwitchToggleStyle(tint: Color.green03))
-                                .onChange(of: isNotiActivated) { alertActivated in
-                                    if alertActivated {
-                                        // isNotiActivated가 true일 때 알림 활성화
+                                .onChange(of: isAllowedNoti) { notiActivated in
+                                    if notiActivated {
+                                        // 알림 활성화
                                         notificationManager.enableNotifications()
+                                        UserDefaults.standard.set(isAllowedNoti, forKey: "PillEaten")
+                                        print("허용")
                                     } else {
-                                        // isNotiActivated가 false일 때 알림 비활성화
+                                        // 알림 비활성화
                                         notificationManager.disableNotifications()
+                                        UserDefaults.standard.set(isAllowedNoti, forKey: "PillEaten")
+                                        print("거부")
                                     }
                                 }
                         }
