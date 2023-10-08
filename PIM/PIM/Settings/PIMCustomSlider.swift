@@ -97,11 +97,9 @@ struct NotiSlider: View {
                                     let newValue = max(minValue, self.lastCoordinateValue + v.translation.width * (1.0 / (maxValue - minValue)))
                                     self.value = snapToNearestPoint(newValue, in: snapPoints) // 스냅 지점을 고려하여 값 설정
                                 }
-                                
-                                // 스냅된 값을 1, 3, 5로 변환
-                                self.displayedNumber = self.value == 1.0 ? 5 : Int(self.value * 5) + 1
-
-                                 
+//                                self.displayedNumber = self.value == 1.0 ? 5 : Int(self.value * 5) + 1
+                                // 0, 2, 4번으로 변환
+                                self.displayedNumber = self.value == 0.0 ? 0 : Int(self.value * 2) * 2
                             }
                     )
                     Spacer()
