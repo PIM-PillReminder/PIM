@@ -16,7 +16,21 @@ struct MainView: View {
     }()
     let notificationManager = LocalNotificationManager()
     
-    @State private var isPillEaten: Bool = UserDefaults.standard.bool(forKey: "PillEaten")
+    @State private var isPillEaten: Bool = false
+    @State private var playLottie: Bool = true
+    @State private var tapPlay: Bool = true
+    
+    // 앱 시작 혹은 뷰가 로드될 때 현재 날짜의 약 복용 여부를 가져옴
+    init() {
+        let currentDateStr = dateFormatter.string(from: Date())
+        
+        if let savedStatus = UserDefaults.standard.object(forKey: currentDateStr) as? Bool {
+            isPillEaten = savedStatus
+        } else {
+            isPillEaten = false
+        }
+    }
+
     
     var body: some View {
         VStack {
@@ -24,7 +38,7 @@ struct MainView: View {
                 NavigationLink(destination: SettingView()) {
                     Image(systemName: "gearshape")
                         .font(.system(size: 24))
-                        .foregroundColor(Color.black)
+                        .foregroundColor(Color.green03)
                         .padding(.leading, 20)
                 }
                 Spacer()
@@ -36,7 +50,8 @@ struct MainView: View {
                     Image(systemName: "calendar")
                         .font(.system(size: 24))
                         .padding(.trailing, 20)
-                        .foregroundColor(Color.white)
+                        .foregroundColor(Color.green03)
+                        .opacity(100)
                 }
             }
             .padding(.top, 10)
@@ -50,34 +65,32 @@ struct MainView: View {
             }
             Spacer()
             if(isPillEaten) {
-                LottieView(jsonName: "happyPimiwoArms")
+                LottieView(jsonName: "happyPimiwoArms", loopMode: .playOnce, playLottie: $playLottie, tapPlay: true)
                     .padding(.bottom, 50)
+                    .onTapGesture {
+                        playLottie.toggle()
+                    }
             }
             else {
-                LottieView(jsonName:"sadPimiwoArms", loopMode: .playOnce)
+                LottieView(jsonName:"sadPimiwoArms", loopMode: .playOnce, playLottie: $playLottie, tapPlay: true)
                     .padding(.bottom, 50)
+                    .onTapGesture {
+                        playLottie.toggle()
+                    }
             }
             Spacer()
             
             if(!isPillEaten){
                 Button("오늘의 약을 먹었어요") {
-                    isPillEaten = true
-                    UserDefaults.standard.set(isPillEaten, forKey: "PillEaten")
-                    // 알림 비활성화
-                    notificationManager.disableNotifications()
-                    notificationManager.printAllNotificationUUIDs()
-                    print("메인뷰: removeAllPendingNotificationRequests\n")
+                    savePillStatus(true)
+                    printPendingNotificationTimes()
                 }
                 .buttonStyle(PIMGreenButton())
                 .padding(.bottom, 10)
             } else {
                 Button("앗! 잘못 눌렀어요") {
-                    isPillEaten = false
-                    UserDefaults.standard.set(isPillEaten, forKey: "PillEaten")
-                    // 알림 활성화
-                    notificationManager.enableNotifications()
-//                    notificationManager.didTakeMedicine()
-                    print("메인뷰: enableNotifications\n")
+                    savePillStatus(false)
+                    printPendingNotificationTimes()
                 }
                 .buttonStyle(PIMStrokeButton())
                 .padding(.bottom, 10)
@@ -85,7 +98,39 @@ struct MainView: View {
         }
         .navigationBarBackButtonHidden(true)
     }
+    
+    // 약 복용 여부를 UserDefaults에 저장하는 함수
+    func savePillStatus(_ status: Bool) {
+        let currentDateStr = dateFormatter.string(from: Date())
+        UserDefaults.standard.set(status, forKey: currentDateStr)
+        isPillEaten = status
+        
+        // UserDefaults에서 오늘 날짜에 대한 값을 가져와서 출력합니다.
+        if let savedStatus = UserDefaults.standard.object(forKey: currentDateStr) as? Bool {
+            print("오늘의 약 복용 여부: \(savedStatus ? "약 먹음" : "약 안 먹음")")
+        } else {
+            print("오늘의 약 복용 여부 정보가 저장되지 않았습니다.")
+        }
+        
+        if status {
+            // 약을 먹었다면, 모든 예정된 알림을 취소하고 다음날 알림을 설정합니다.
+            notificationManager.userDidTakePill()
+        } else {
+            // 약을 먹지 않았다면, 알림을 다시 활성화합니다.
+            notificationManager.enableNotifications()
+        }
+    }
+    
+    func printPendingNotificationTimes() {
+        notificationManager.getPendingNotificationTimes { dates in
+            for date in dates {
+                print("예정된 알림 시간: \(dateFormatter.string(from: date))")
+            }
+        }
+    }
+
 }
+
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {

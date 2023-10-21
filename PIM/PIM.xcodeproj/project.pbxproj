@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		57022BF52AC45B7A00070276 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57022BF42AC45B7A00070276 /* LottieView.swift */; };
 		57022BF82AC45C6500070276 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 57022BF72AC45C6500070276 /* Lottie */; };
-		57022C032AC462D100070276 /* LottieTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57022C022AC462D100070276 /* LottieTestView.swift */; };
 		573942552ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 573942542ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf */; };
 		573942572ABEE85C0001906B /* OnboardingMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573942562ABEE85C0001906B /* OnboardingMainView.swift */; };
 		57461C472AB58C520026F903 /* PIMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C462AB58C520026F903 /* PIMApp.swift */; };
@@ -47,7 +46,6 @@
 
 /* Begin PBXFileReference section */
 		57022BF42AC45B7A00070276 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
-		57022C022AC462D100070276 /* LottieTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieTestView.swift; sourceTree = "<group>"; };
 		573942542ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cafe24OhsquareAir-v2.0.ttf"; sourceTree = "<group>"; };
 		573942562ABEE85C0001906B /* OnboardingMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingMainView.swift; sourceTree = "<group>"; };
 		57461C432AB58C520026F903 /* PIM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PIM.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,7 +112,6 @@
 				57022BF42AC45B7A00070276 /* LottieView.swift */,
 				57461C5D2AB59D5F0026F903 /* MainView.swift */,
 				573942592ABEE88B0001906B /* Onboarding */,
-				57022C022AC462D100070276 /* LottieTestView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -320,7 +317,6 @@
 				57461C492AB58C520026F903 /* ContentView.swift in Sources */,
 				799B0EC82ABEEE5200AE9865 /* CustomStyle.swift in Sources */,
 				7954A7EF2ABA888B000D1E8F /* ColorExtension.swift in Sources */,
-				57022C032AC462D100070276 /* LottieTestView.swift in Sources */,
 				57461C532AB58C540026F903 /* PIM.xcdatamodeld in Sources */,
 				57022BF52AC45B7A00070276 /* LottieView.swift in Sources */,
 				57461C472AB58C520026F903 /* PIMApp.swift in Sources */,
