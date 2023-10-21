@@ -9,10 +9,6 @@
 /* Begin PBXBuildFile section */
 		57022BF52AC45B7A00070276 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57022BF42AC45B7A00070276 /* LottieView.swift */; };
 		57022BF82AC45C6500070276 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 57022BF72AC45C6500070276 /* Lottie */; };
-		57022BFE2AC45DFB00070276 /* PimiNoPill.json in Resources */ = {isa = PBXBuildFile; fileRef = 57022BFA2AC45DFB00070276 /* PimiNoPill.json */; };
-		57022BFF2AC45DFB00070276 /* PimiYesPill.json in Resources */ = {isa = PBXBuildFile; fileRef = 57022BFB2AC45DFB00070276 /* PimiYesPill.json */; };
-		57022C002AC45DFB00070276 /* PimiShining.json in Resources */ = {isa = PBXBuildFile; fileRef = 57022BFC2AC45DFB00070276 /* PimiShining.json */; };
-		57022C012AC45DFB00070276 /* PimiTime.json in Resources */ = {isa = PBXBuildFile; fileRef = 57022BFD2AC45DFB00070276 /* PimiTime.json */; };
 		57022C032AC462D100070276 /* LottieTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57022C022AC462D100070276 /* LottieTestView.swift */; };
 		573942552ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 573942542ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf */; };
 		573942572ABEE85C0001906B /* OnboardingMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573942562ABEE85C0001906B /* OnboardingMainView.swift */; };
@@ -28,6 +24,10 @@
 		57461C602AB59E0A0026F903 /* OnboardingView3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C5F2AB59E0A0026F903 /* OnboardingView3.swift */; };
 		57461C622AB5B0220026F903 /* OnboardingView4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C612AB5B0220026F903 /* OnboardingView4.swift */; };
 		57461C9C2AB76ABC0026F903 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C9B2AB76ABC0026F903 /* LocalNotificationManager.swift */; };
+		575677B42AD58B4C002E01BE /* helloPimi.json in Resources */ = {isa = PBXBuildFile; fileRef = 575677B32AD58B4C002E01BE /* helloPimi.json */; };
+		575677B92AD58C64002E01BE /* clockPimi.json in Resources */ = {isa = PBXBuildFile; fileRef = 575677B52AD58C63002E01BE /* clockPimi.json */; };
+		575677BA2AD58C64002E01BE /* happyPimiwoArms.json in Resources */ = {isa = PBXBuildFile; fileRef = 575677B62AD58C64002E01BE /* happyPimiwoArms.json */; };
+		575677BC2AD58C64002E01BE /* sadPimiwoArms.json in Resources */ = {isa = PBXBuildFile; fileRef = 575677B82AD58C64002E01BE /* sadPimiwoArms.json */; };
 		7954A7E02AB9D082000D1E8F /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7DF2AB9D082000D1E8F /* SettingView.swift */; };
 		7954A7E22AB9D096000D1E8F /* SettingNotiVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7E12AB9D096000D1E8F /* SettingNotiVIew.swift */; };
 		7954A7ED2ABA8881000D1E8F /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7EC2ABA8881000D1E8F /* FontExtension.swift */; };
@@ -47,10 +47,6 @@
 
 /* Begin PBXFileReference section */
 		57022BF42AC45B7A00070276 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
-		57022BFA2AC45DFB00070276 /* PimiNoPill.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PimiNoPill.json; sourceTree = "<group>"; };
-		57022BFB2AC45DFB00070276 /* PimiYesPill.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PimiYesPill.json; sourceTree = "<group>"; };
-		57022BFC2AC45DFB00070276 /* PimiShining.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PimiShining.json; sourceTree = "<group>"; };
-		57022BFD2AC45DFB00070276 /* PimiTime.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PimiTime.json; sourceTree = "<group>"; };
 		57022C022AC462D100070276 /* LottieTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieTestView.swift; sourceTree = "<group>"; };
 		573942542ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cafe24OhsquareAir-v2.0.ttf"; sourceTree = "<group>"; };
 		573942562ABEE85C0001906B /* OnboardingMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingMainView.swift; sourceTree = "<group>"; };
@@ -68,6 +64,10 @@
 		57461C612AB5B0220026F903 /* OnboardingView4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView4.swift; sourceTree = "<group>"; };
 		57461C9B2AB76ABC0026F903 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		57461C9D2AB773430026F903 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		575677B32AD58B4C002E01BE /* helloPimi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = helloPimi.json; sourceTree = "<group>"; };
+		575677B52AD58C63002E01BE /* clockPimi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clockPimi.json; sourceTree = "<group>"; };
+		575677B62AD58C64002E01BE /* happyPimiwoArms.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = happyPimiwoArms.json; sourceTree = "<group>"; };
+		575677B82AD58C64002E01BE /* sadPimiwoArms.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sadPimiwoArms.json; sourceTree = "<group>"; };
 		7954A7DF2AB9D082000D1E8F /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		7954A7E12AB9D096000D1E8F /* SettingNotiVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotiVIew.swift; sourceTree = "<group>"; };
 		7954A7EC2ABA8881000D1E8F /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
@@ -100,10 +100,10 @@
 		57022BF92AC45DE400070276 /* LottieFile */ = {
 			isa = PBXGroup;
 			children = (
-				57022BFA2AC45DFB00070276 /* PimiNoPill.json */,
-				57022BFC2AC45DFB00070276 /* PimiShining.json */,
-				57022BFD2AC45DFB00070276 /* PimiTime.json */,
-				57022BFB2AC45DFB00070276 /* PimiYesPill.json */,
+				575677B52AD58C63002E01BE /* clockPimi.json */,
+				575677B62AD58C64002E01BE /* happyPimiwoArms.json */,
+				575677B82AD58C64002E01BE /* sadPimiwoArms.json */,
+				575677B32AD58B4C002E01BE /* helloPimi.json */,
 			);
 			path = LottieFile;
 			sourceTree = "<group>";
@@ -150,15 +150,15 @@
 		57461C452AB58C520026F903 /* PIM */ = {
 			isa = PBXGroup;
 			children = (
+				57461C462AB58C520026F903 /* PIMApp.swift */,
+				57461C482AB58C520026F903 /* ContentView.swift */,
 				57022BF92AC45DE400070276 /* LottieFile */,
+				7954A7EB2ABA8862000D1E8F /* Extension */,
+				7954A7DE2AB9D069000D1E8F /* Settings */,
 				573942582ABEE8820001906B /* View */,
 				57461C9B2AB76ABC0026F903 /* LocalNotificationManager.swift */,
 				57461C9D2AB773430026F903 /* Info.plist */,
-				57461C462AB58C520026F903 /* PIMApp.swift */,
-				57461C482AB58C520026F903 /* ContentView.swift */,
-				7954A7EB2ABA8862000D1E8F /* Extension */,
 				57461C4A2AB58C540026F903 /* Assets.xcassets */,
-				7954A7DE2AB9D069000D1E8F /* Settings */,
 				57461C4F2AB58C540026F903 /* Persistence.swift */,
 				57461C512AB58C540026F903 /* PIM.xcdatamodeld */,
 				57461C4C2AB58C540026F903 /* Preview Content */,
@@ -285,17 +285,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				7954A8012ABA88E8000D1E8F /* Pretendard-Thin.ttf in Resources */,
+				575677BC2AD58C64002E01BE /* sadPimiwoArms.json in Resources */,
 				7954A8032ABA88E8000D1E8F /* Pretendard-Regular.ttf in Resources */,
 				7954A8002ABA88E8000D1E8F /* Pretendard-Medium.ttf in Resources */,
 				7954A7FB2ABA88E8000D1E8F /* Pretendard-ExtraLight.ttf in Resources */,
 				57461C4E2AB58C540026F903 /* Preview Assets.xcassets in Resources */,
-				57022C002AC45DFB00070276 /* PimiShining.json in Resources */,
+				575677BA2AD58C64002E01BE /* happyPimiwoArms.json in Resources */,
+				575677B92AD58C64002E01BE /* clockPimi.json in Resources */,
+				575677B42AD58B4C002E01BE /* helloPimi.json in Resources */,
 				7954A8042ABA88E8000D1E8F /* Pretendard-Light.ttf in Resources */,
-				57022BFF2AC45DFB00070276 /* PimiYesPill.json in Resources */,
 				7954A7FD2ABA88E8000D1E8F /* Pretendard-SemiBold.ttf in Resources */,
 				7954A8022ABA88E8000D1E8F /* Pretendard-Bold.ttf in Resources */,
-				57022BFE2AC45DFB00070276 /* PimiNoPill.json in Resources */,
-				57022C012AC45DFB00070276 /* PimiTime.json in Resources */,
 				57461C4B2AB58C540026F903 /* Assets.xcassets in Resources */,
 				7954A7FC2ABA88E8000D1E8F /* Pretendard-ExtraBold.ttf in Resources */,
 				573942552ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf in Resources */,

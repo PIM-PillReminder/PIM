@@ -28,7 +28,7 @@ struct OnboardingMainView: View {
 //                            radius: 20,
 //                            x: 0,
 //                            y: 6)
-                LottieView(jsonName: "PimiShining")
+                LottieView(jsonName: "helloPimi", loopMode: .loop)
                 
                 Text("pim을 더 잘 이용하기 위해\n몇가지 질문에 답이 필요해요.")
                     .font(.pretendard(.regular, size: 16))

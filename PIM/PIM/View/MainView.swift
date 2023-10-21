@@ -28,8 +28,8 @@ struct MainView: View {
                         .padding(.leading, 20)
                 }
                 Spacer()
-                Text(dateFormatter.string(from: Date()))
-                    .font(.pretendard(.bold, size: 18))
+//                Text(dateFormatter.string(from: Date()))
+//                    .font(.pretendard(.bold, size: 18))
                 Spacer()
                 // TODO: CalendarView로 연결
                 NavigationLink(destination: MainView()) {
@@ -40,45 +40,22 @@ struct MainView: View {
                 }
             }
             .padding(.top, 10)
-            Spacer()
+            .padding(.bottom, 50)
             VStack{
                 Image("pill")
-                    .padding(.bottom, 10)
+                    .padding(.bottom, 30)
                 Text(isPillEaten ? "약 먹기 완료! 내일 만나요!" : "오늘의 약을 아직 안 먹었어요")
                     .font(.pretendard(.bold, size: 18))
                     .multilineTextAlignment(.center)
             }
             Spacer()
-            if(isPillEaten){
-//                LottieView(jsonName: "great", loopMode: .loop)
-//                                    .frame(height: 340)
-//                                    .offset(y:35)
-                LottieView(jsonName: "PimiYesPill")
-//                    .frame(width: 340, height: 260)
+            if(isPillEaten) {
+                LottieView(jsonName: "happyPimiwoArms")
                     .padding(.bottom, 50)
-//                    .shadow(color: Color(red: 0.5, green: 0.5, blue: 0.5)
-//                        .opacity(0.25),
-//                            radius: 20,
-//                            x: 0,
-//                            y: 6)
-//                Image("PimiYesPill")
-//                    .resizable()
-//                    .frame(width: 340, height: 260)
-//                    .padding(.bottom, 50)
-//                    .shadow(color: Color(red: 0.5, green: 0.5, blue: 0.5)
-//                        .opacity(0.25),
-//                            radius: 20,
-//                            x: 0,
-//                            y: 6)
             }
-            else{
-                LottieView(jsonName:"PimiNoPill", loopMode: .playOnce)
-//                    .frame(width: 300, height: 220)
+            else {
+                LottieView(jsonName:"sadPimiwoArms", loopMode: .playOnce)
                     .padding(.bottom, 50)
-//                Image("PimiNoPill")
-//                    .resizable()
-//                    .frame(width: 300, height: 220)
-//                    .padding(.bottom, 50)
             }
             Spacer()
             
@@ -88,6 +65,7 @@ struct MainView: View {
                     UserDefaults.standard.set(isPillEaten, forKey: "PillEaten")
                     // 알림 비활성화
                     notificationManager.disableNotifications()
+                    notificationManager.printAllNotificationUUIDs()
                     print("메인뷰: removeAllPendingNotificationRequests\n")
                 }
                 .buttonStyle(PIMGreenButton())
@@ -98,6 +76,7 @@ struct MainView: View {
                     UserDefaults.standard.set(isPillEaten, forKey: "PillEaten")
                     // 알림 활성화
                     notificationManager.enableNotifications()
+//                    notificationManager.didTakeMedicine()
                     print("메인뷰: enableNotifications\n")
                 }
                 .buttonStyle(PIMStrokeButton())

@@ -42,7 +42,7 @@ struct SettingNotiView: View {
                                 }
                                 Spacer()
                                     .frame(height: 7)
-                                Text("약 먹기를 완료할 때까지\n하루에 몇 번 알림을 받을지 선택해주세요.")
+                                Text("첫 알림 이후 한 시간 단위로\n몇 번 더 알림을 받을지 선택해주세요")
                                     .foregroundColor(.gray)
                                     .font(.pretendard(.medium,size: 14))
                                 Spacer()

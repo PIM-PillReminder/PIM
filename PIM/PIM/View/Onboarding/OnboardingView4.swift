@@ -46,7 +46,7 @@ struct OnboardingView4: View {
                     .font(.pretendard(.regular, size: 18))
                     .foregroundColor(.gray)
                     .padding(.bottom, 10)
-                LottieView(jsonName: "PimiTime")
+                LottieView(jsonName: "clockPimi", loopMode: .loop)
 //                    .frame(width: 300, height: 300)
 //                Image("character_time")
 //                    .shadow(color: Color(red: 0, green: 0, blue: 0),
