@@ -82,15 +82,13 @@ struct MainView: View {
             
             if(!isPillEaten){
                 Button("오늘의 약을 먹었어요") {
-                    savePillStatus(true)
-                    printPendingNotificationTimes()
+                    isPillEaten = true
                 }
                 .buttonStyle(PIMGreenButton())
                 .padding(.bottom, 10)
             } else {
                 Button("앗! 잘못 눌렀어요") {
-                    savePillStatus(false)
-                    printPendingNotificationTimes()
+                    isPillEaten = false
                 }
                 .buttonStyle(PIMStrokeButton())
                 .padding(.bottom, 10)
@@ -100,35 +98,26 @@ struct MainView: View {
     }
     
     // 약 복용 여부를 UserDefaults에 저장하는 함수
-    func savePillStatus(_ status: Bool) {
-        let currentDateStr = dateFormatter.string(from: Date())
-        UserDefaults.standard.set(status, forKey: currentDateStr)
-        isPillEaten = status
-        
-        // UserDefaults에서 오늘 날짜에 대한 값을 가져와서 출력합니다.
-        if let savedStatus = UserDefaults.standard.object(forKey: currentDateStr) as? Bool {
-            print("오늘의 약 복용 여부: \(savedStatus ? "약 먹음" : "약 안 먹음")")
-        } else {
-            print("오늘의 약 복용 여부 정보가 저장되지 않았습니다.")
-        }
-        
-        if status {
-            // 약을 먹었다면, 모든 예정된 알림을 취소하고 다음날 알림을 설정합니다.
-            notificationManager.userDidTakePill()
-        } else {
-            // 약을 먹지 않았다면, 알림을 다시 활성화합니다.
-            notificationManager.enableNotifications()
-        }
-    }
-    
-    func printPendingNotificationTimes() {
-        notificationManager.getPendingNotificationTimes { dates in
-            for date in dates {
-                print("예정된 알림 시간: \(dateFormatter.string(from: date))")
-            }
-        }
-    }
-
+//    func savePillStatus(_ status: Bool) {
+//        let currentDateStr = dateFormatter.string(from: Date())
+//        UserDefaults.standard.set(status, forKey: currentDateStr)
+//        isPillEaten = status
+//
+//        // UserDefaults에서 오늘 날짜에 대한 값을 가져와서 출력합니다.
+//        if let savedStatus = UserDefaults.standard.object(forKey: currentDateStr) as? Bool {
+//            print("오늘의 약 복용 여부: \(savedStatus ? "약 먹음" : "약 안 먹음")")
+//        } else {
+//            print("오늘의 약 복용 여부 정보가 저장되지 않았습니다.")
+//        }
+//
+//        if status {
+//            // 약을 먹었다면, 모든 예정된 알림을 취소하고 다음날 알림을 설정합니다.
+//            notificationManager.userDidTakePill()
+//        } else {
+//            // 약을 먹지 않았다면, 알림을 다시 활성화합니다.
+//            notificationManager.enableNotifications()
+//        }
+//    }
 }
 
 

@@ -35,20 +35,16 @@ struct TimePickerView: View {
                     Spacer()
                         .frame(height: 36)
                     Button(action: {
-                        print("Selected time: \(selectedTime)")
-                        let calendar = Calendar.current
-                        _ = calendar.component(.hour, from: selectedTime)
-                        _ = calendar.component(.minute, from: selectedTime)
-                        UNUserNotificationCenter.current().getNotificationSettings { settings in
-                            if settings.authorizationStatus == .authorized {
-                                notificationManager.addNotification(title: "PIM")
-                                UserDefaults.standard.set(selectedTime, forKey: "SelectedTime")
-                                notificationManager.schedule()
-                                print("알림 예약 완료 : \(selectedTime)\n")
-                            } else {
-                                notificationManager.requestPermission()
-                            }
-                        }
+                        // 1. 이전 알림 삭제
+                        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                        
+                        // 2. 새로운 알림 추가
+                        notificationManager.addNotification(title: "PIM")
+                        UserDefaults.standard.set(selectedTime, forKey: "SelectedTime")
+                        
+                        // 3. 스케줄링
+                        notificationManager.schedule()
+                        
                         showSheet1 = false
                     }) {
                         Text("설정 완료하기")
