@@ -4,16 +4,19 @@
 //
 //  Created by 장수민 on 2023/09/19.
 //
-
 import SwiftUI
 
 struct SettingNotiView: View {
     @State var isDeactivated: Bool = true
     @State var callToggleSwitch: Bool = false
-    @State var isNotiActivated: Bool = false
     @Binding var showSheet2: Bool
+    // 사용자의 알림 권한 여부 UserDefaults로 받아오기
+    @State private var isAllowedNoti = UserDefaults.standard.bool(forKey: "PillEaten")
+    
+    let notificationManager = LocalNotificationManager()
     
     var body: some View {
+        
         NavigationStack {
             ZStack {
                 Color.gray01
@@ -24,8 +27,21 @@ struct SettingNotiView: View {
                             Text("알림 허용")
                                 .font(.pretendard(.bold))
                             Spacer()
-                            Toggle("", isOn: $isNotiActivated)
-                                            .toggleStyle(SwitchToggleStyle(tint: Color.green03))
+                            Toggle("", isOn: $isAllowedNoti)
+                                .toggleStyle(SwitchToggleStyle(tint: Color.green03))
+                                .onChange(of: isAllowedNoti) { notiActivated in
+                                    if notiActivated {
+                                        // 알림 활성화
+                                        notificationManager.enableNotifications()
+                                        UserDefaults.standard.set(isAllowedNoti, forKey: "PillEaten")
+                                        print("허용")
+                                    } else {
+                                        // 알림 비활성화
+                                        notificationManager.disableNotifications()
+                                        UserDefaults.standard.set(isAllowedNoti, forKey: "PillEaten")
+                                        print("거부")
+                                    }
+                                }
                         }
                         .padding(.horizontal, 10)
                         .padding(.vertical, 5)
@@ -95,13 +111,11 @@ struct SettingNotiView: View {
                             .foregroundColor(.black)
                     }
                 }
+                .onDisappear {
+                    let repeatingTimes = notificationManager.repeatingTimes
+                    print(repeatingTimes)
+                }
             }
         }
     }
 }
-
-//struct SettingNotiView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SettingNotiView(showSheet2: )
-//    }
-//}
