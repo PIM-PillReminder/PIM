@@ -33,7 +33,6 @@ struct TimePickerView: View {
                     }
                     .groupBoxStyle(CustomListGroupBoxStyle())
                     Spacer()
-                        .frame(height: 36)
                     Button(action: {
                         // 1. 이전 알림 삭제
                         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
