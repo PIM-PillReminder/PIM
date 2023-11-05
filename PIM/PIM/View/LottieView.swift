@@ -8,42 +8,38 @@ import SwiftUI
 import Lottie
 
 struct LottieView: UIViewRepresentable {
+    @Binding var playLottie: Bool
+    
+    var tapPlay: Bool
     var name : String
     var loopMode: LottieLoopMode
     var delay: Double
-    var playAnimation : Bool
     
-    // 간단하게 View로 JSON 파일 이름으로 애니메이션을 실행합니다.
-    init(jsonName: String = "", loopMode : LottieLoopMode = .playOnce, delay: Double = 0.0, playAnimation : Bool = true){
+    init(jsonName: String = "", loopMode: LottieLoopMode = .playOnce, delay: Double = 0.0, playLottie: Binding<Bool>, tapPlay: Bool = false){
         self.name = jsonName
         self.loopMode = loopMode
         self.delay = delay
-        self.playAnimation = playAnimation
+        _playLottie = playLottie
+        self.tapPlay = tapPlay
     }
     
     func makeUIView(context: UIViewRepresentableContext<LottieView>) -> UIView {
         let view = UIView(frame: .zero)
-        
         let animationView = LottieAnimationView()
         let animation = LottieAnimation.named(name)
         animationView.animation = animation
-        // AspectFit으로 적절한 크기의 에니매이션을 불러옵니다.
         animationView.contentMode = .scaleAspectFit
-        // 애니메이션 Loop
         animationView.loopMode = loopMode
-        if playAnimation{
-            // 애니메이션 딜레이 후 재생
-            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                animationView.play()
-            }
-            // 백그라운드에서 재생이 멈추는 오류를 잡습니다
-            animationView.backgroundBehavior = .pauseAndRestore
+        animationView.translatesAutoresizingMaskIntoConstraints = false
+        animationView.backgroundBehavior = .pauseAndRestore
+        
+        if tapPlay {
+            let tapGesture = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleTap))
+            animationView.addGestureRecognizer(tapGesture)
         }
         
-        animationView.translatesAutoresizingMaskIntoConstraints = false
-        
         view.addSubview(animationView)
-        //레이아웃의 높이와 넓이의 제약
+        // 레이아웃의 높이와 넓이의 제약
         NSLayoutConstraint.activate([
             animationView.heightAnchor.constraint(equalTo: view.heightAnchor),
             animationView.widthAnchor.constraint(equalTo: view.widthAnchor)
@@ -53,5 +49,28 @@ struct LottieView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
+        let animationView = uiView.subviews.first(where: { $0 is LottieAnimationView }) as? LottieAnimationView
+        
+        if playLottie {
+            animationView?.play()
+        } else {
+            animationView?.stop()
+        }
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
+    class Coordinator: NSObject {
+        var parent: LottieView
+        
+        init(_ parent: LottieView) {
+            self.parent = parent
+        }
+        
+        @objc func handleTap() {
+            parent.playLottie = true
+        }
     }
 }

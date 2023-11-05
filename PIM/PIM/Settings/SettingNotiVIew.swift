@@ -47,20 +47,22 @@ struct SettingNotiView: View {
                         .padding(.vertical, 5)
                     }
                     .groupBoxStyle(CustomListGroupBoxStyle())
+                    .padding(.top, 20)
                     Spacer()
                         .frame(height: 16)
                     GroupBox {
                         HStack {
                             VStack(alignment: .leading ) {
-                                HStack {
-                                    Text("알림 빈도")
-                                        .font(.pretendard(.bold))
-                                }
+                                Text("알림 빈도")
+                                    .font(.pretendard(.bold))
+                                    .font(.system(size: 18))
+                                    .padding(.bottom, 7)
                                 Spacer()
                                     .frame(height: 7)
-                                Text("약 먹기를 완료할 때까지\n하루에 몇 번 알림을 받을지 선택해주세요.")
+                                Text("첫 알림 이후 한 시간 단위로\n몇 번 더 알림을 받을지 선택해주세요.")
+                                    .lineSpacing(4)
                                     .foregroundColor(.gray)
-                                    .font(.pretendard(.medium,size: 14))
+                                    .font(.pretendard(.regular,size: 14))
                                 Spacer()
                                     .frame(height: 20)
                                 PIMCustomSlider()
@@ -117,5 +119,13 @@ struct SettingNotiView: View {
                 }
             }
         }
+    }
+}
+
+struct SettingNotiView_Previews: PreviewProvider {
+    @State static var showSheet2 = true
+    
+    static var previews: some View {
+        SettingNotiView(showSheet2: $showSheet2)
     }
 }
