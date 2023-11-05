@@ -33,68 +33,71 @@ struct MainView: View {
 
     
     var body: some View {
+      NavigationStack {
         VStack {
-            HStack {
-                NavigationLink(destination: SettingView()) {
-                    Image(systemName: "gearshape")
-                        .font(.system(size: 24))
-                        .foregroundColor(Color.green03)
-                        .padding(.leading, 20)
-                }
-                Spacer()
-//                Text(dateFormatter.string(from: Date()))
-//                    .font(.pretendard(.bold, size: 18))
-                Spacer()
-                // TODO: CalendarView로 연결
-                NavigationLink(destination: MainView()) {
-                    Image(systemName: "calendar")
-                        .font(.system(size: 24))
-                        .padding(.trailing, 20)
-                        .foregroundColor(Color.green03)
-                        .opacity(100)
-                }
-            }
-            .padding(.top, 10)
-            .padding(.bottom, 50)
-            VStack{
-                Image("pill")
-                    .padding(.bottom, 30)
-                Text(isPillEaten ? "약 먹기 완료! 내일 만나요!" : "오늘의 약을 아직 안 먹었어요")
-                    .font(.pretendard(.bold, size: 18))
-                    .multilineTextAlignment(.center)
-            }
-            Spacer()
-            if(isPillEaten) {
-                LottieView(jsonName: "happyPimiwoArms", loopMode: .playOnce, playLottie: $playLottie, tapPlay: true)
-                    .padding(.bottom, 50)
-                    .onTapGesture {
-                        playLottie.toggle()
-                    }
-            }
-            else {
-                LottieView(jsonName:"sadPimiwoArms", loopMode: .playOnce, playLottie: $playLottie, tapPlay: true)
-                    .padding(.bottom, 50)
-                    .onTapGesture {
-                        playLottie.toggle()
-                    }
-            }
-            Spacer()
-            
-            if(!isPillEaten){
-                Button("오늘의 약을 먹었어요") {
-                    isPillEaten = true
-                }
-                .buttonStyle(PIMGreenButton())
-                .padding(.bottom, 10)
-            } else {
-                Button("앗! 잘못 눌렀어요") {
-                    isPillEaten = false
-                }
-                .buttonStyle(PIMStrokeButton())
-                .padding(.bottom, 10)
-            }
-        }
+              HStack {
+                  NavigationLink(destination: SettingView().toolbarRole(.editor)) {
+                      Image(systemName: "gearshape")
+                          .font(.system(size: 24))
+                          .foregroundColor(Color.green03)
+                          .padding(.leading, 20)
+                  }
+                  Spacer()
+  //                Text(dateFormatter.string(from: Date()))
+  //                    .font(.pretendard(.bold, size: 18))
+                  Spacer()
+                  // TODO: CalendarView로 연결
+                  NavigationLink(destination: MainView()) {
+                      Image(systemName: "calendar")
+                          .font(.system(size: 24))
+                          .padding(.trailing, 20)
+                          .foregroundColor(Color.green03)
+                          .opacity(100)
+                  }
+                  .disabled(true)
+              }
+              .padding(.top, 10)
+              .padding(.bottom, 50)
+              VStack{
+                  Image("pill")
+                      .padding(.bottom, 30)
+                  Text(isPillEaten ? "약 먹기 완료! 내일 만나요!" : "오늘의 약을 아직 안 먹었어요")
+                      .font(.pretendard(.bold, size: 18))
+                      .multilineTextAlignment(.center)
+              }
+              Spacer()
+              if(isPillEaten) {
+                  LottieView(jsonName: "happyPimiwoArms", loopMode: .playOnce, playLottie: $playLottie, tapPlay: true)
+                      .padding(.bottom, 50)
+                      .onTapGesture {
+                          playLottie.toggle()
+                      }
+              }
+              else {
+                  LottieView(jsonName:"sadPimiwoArms", loopMode: .playOnce, playLottie: $playLottie, tapPlay: true)
+                      .padding(.bottom, 50)
+                      .onTapGesture {
+                          playLottie.toggle()
+                      }
+              }
+              Spacer()
+              
+              if(!isPillEaten){
+                  Button("오늘의 약을 먹었어요") {
+                      isPillEaten = true
+                  }
+                  .buttonStyle(PIMGreenButton())
+                  .padding(.bottom, 10)
+              } else {
+                  Button("앗! 잘못 눌렀어요") {
+                      isPillEaten = false
+                  }
+                  .buttonStyle(PIMStrokeButton())
+                  .padding(.bottom, 10)
+              }
+          }
         .navigationBarBackButtonHidden(true)
+      }
     }
     
     // 약 복용 여부를 UserDefaults에 저장하는 함수
