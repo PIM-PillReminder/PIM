@@ -23,6 +23,11 @@ class LocalNotificationManager {
         schedule()
     }
     
+    public func disableNotifications(){
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+    }
+    
     // 알림 권한 요청
     public func requestPermission() {
         UNUserNotificationCenter.current()

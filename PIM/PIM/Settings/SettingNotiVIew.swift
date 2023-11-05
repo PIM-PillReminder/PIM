@@ -113,10 +113,10 @@ struct SettingNotiView: View {
                             .foregroundColor(.black)
                     }
                 }
-                .onDisappear {
-                    let repeatingTimes = notificationManager.repeatingTimes
-                    print(repeatingTimes)
-                }
+//                .onDisappear {
+//                    let repeatingTimes = notificationManager.repeatingTimes
+//                    print(repeatingTimes)
+//                }
             }
         }
     }

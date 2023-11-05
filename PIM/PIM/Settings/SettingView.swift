@@ -43,14 +43,17 @@ struct SettingView: View {
                                     Image(systemName: "chevron.right")
                                         .foregroundColor(.gray02)
                                 }
-                                .sheet(isPresented: $showSheet) {
-                                    TimePickerView(selectedTime: Date(), showSheet1: $showSheet)
-                                        .presentationDetents([.height(geo.size.height * 0.8 )])
-                                        .presentationDragIndicator(.hidden)
-                                }
+                            }
+                            .onTapGesture {
+                                showSheet = true
                             }
                             .padding(.vertical, 8)
                             .padding(.horizontal, 10)
+                            .sheet(isPresented: $showSheet) {
+                                TimePickerView(selectedTime: Date(), showSheet1: $showSheet)
+                                    .presentationDetents([.height(geo.size.height * 0.8 )])
+                                    .presentationDragIndicator(.hidden)
+                            }
                             
                         }
                         .groupBoxStyle(CustomListGroupBoxStyle())
@@ -70,11 +73,14 @@ struct SettingView: View {
                                    Image(systemName: "chevron.right")
                                        .foregroundColor(.gray02)
                                }
-                               .sheet(isPresented: $showSheet2) {
-                                   SettingNotiView(showSheet2: $showSheet2)
-                                       .presentationDetents([.height(geo.size.height * 0.8)])
-                                       .presentationDragIndicator(.hidden)
-                               }
+                            }
+                            .onTapGesture {
+                                showSheet2 = true
+                            }
+                            .sheet(isPresented: $showSheet2) {
+                                SettingNotiView(showSheet2: $showSheet2)
+                                    .presentationDetents([.height(geo.size.height * 0.8)])
+                                    .presentationDragIndicator(.hidden)
                             }
                             .padding(.vertical, 8)
                             .padding(.horizontal, 10)
