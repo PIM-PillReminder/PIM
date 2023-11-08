@@ -107,7 +107,6 @@ struct NotiSlider: View {
             }
         }
     }
-    
     // 가장 가까운 고정 지점에 스냅하는 함수
     private func snapToNearestPoint(_ value: Double, in snapPoints: [Double]) -> Double {
         var closestPoint = snapPoints[0]

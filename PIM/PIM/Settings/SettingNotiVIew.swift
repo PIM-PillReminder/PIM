@@ -12,7 +12,7 @@ struct SettingNotiView: View {
   @Binding var showSheet2: Bool
   // 사용자의 알림 권한 여부 UserDefaults로 받아오기
   @State private var isAllowedNoti = UserDefaults.standard.bool(forKey: "PillEaten")
-  
+
   let notificationManager = LocalNotificationManager()
   let screenWidth = UIScreen.main.bounds.width
   

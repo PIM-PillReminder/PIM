@@ -9,12 +9,12 @@ import SwiftUI
 
 struct TimePickerView: View {
     // 설정 화면에 있는 피커랑 온보딩 피커를 통일하는 게 좋을 것 같아여...! 지금은 이렇게 해두고 나중에 하나의 뷰로 만들어볼게요!!!
-    @State var selectedTime: Date
+//    @State var selectedTime: Date
     @Binding var showSheet1: Bool
     let notificationManager = LocalNotificationManager()
-    
+  @State var selectedTime: Date = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? Date()
+  
     var body: some View {
-        NavigationStack {
             ZStack {
                 Color.gray01
                     .ignoresSafeArea()
@@ -61,7 +61,9 @@ struct TimePickerView: View {
                     }
                 }
             }
-        }
+            .onAppear {
+              selectedTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? Date()
+            }
     }
 }
 
