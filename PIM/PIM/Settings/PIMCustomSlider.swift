@@ -18,10 +18,13 @@ struct PIMCustomSlider: View {
             
             HStack {
                 Text("1번")
+                .font(.pretendard(.bold, size: 18))
                 Spacer()
                 Text("3번")
+                .font(.pretendard(.bold, size: 18))
                 Spacer()
                 Text("5번")
+                .font(.pretendard(.bold, size: 18))
             }
             .font(.pretendard(.medium, size: 18))
         }

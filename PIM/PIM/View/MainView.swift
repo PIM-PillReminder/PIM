@@ -63,7 +63,6 @@ struct MainView: View {
                   Text(isPillEaten ? "약 먹기 완료! 내일 만나요!" : "오늘의 약을 아직 안 먹었어요")
                       .font(.pretendard(.bold, size: 18))
                       .multilineTextAlignment(.center)
-                      .animation(.easeInOut(duration: 0.1))
               }
               Spacer()
               if(isPillEaten) {
@@ -94,7 +93,6 @@ struct MainView: View {
                   }
                   .buttonStyle(PIMStrokeButton())
                   .padding(.bottom, 10)
-                  .animation(.easeInOut(duration: 0.2))
               }
           }
         .navigationBarBackButtonHidden(true)

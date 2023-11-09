@@ -26,7 +26,7 @@ struct SettingNotiView: View {
           GroupBox {
             HStack{
               Text("알림 허용")
-                .font(.pretendard(.bold))
+                .font(.pretendard(.bold, size: 18))
               Spacer()
               Toggle("", isOn: $isAllowedNoti)
                 .toggleStyle(SwitchToggleStyle(tint: Color.green03))
@@ -55,7 +55,7 @@ struct SettingNotiView: View {
             HStack {
               VStack(alignment: .leading ) {
                 Text("알림 빈도")
-                  .font(.pretendard(.bold))
+                  .font(.pretendard(.bold, size: 18))
                   .font(.system(size: 18))
                   .padding(.bottom, 7)
                 Spacer()

@@ -47,6 +47,7 @@ struct TimePickerView: View {
                         showSheet1 = false
                     }) {
                         Text("설정 완료하기")
+                        .font(.pretendard(.bold, size: 18))
                     }
                     .buttonStyle(PIMGreenButton())
                     Spacer()

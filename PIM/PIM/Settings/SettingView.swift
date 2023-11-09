@@ -36,6 +36,7 @@ struct SettingView: View {
           GroupBox {
             plainCell(icon: "pill", text: "복용중인 약")
               .foregroundColor(Color.gray03)
+              .font(.pretendard(.medium, size: 18))
             Divider()
             HStack {
               Image(systemName: "clock")
@@ -45,6 +46,7 @@ struct SettingView: View {
                 Text("\(selectedTime, formatter: SettingView.dateFormatter)")
                       } else {
                           Text("알림을 선택하지 않으셨습니다.")
+                          .font(.pretendard(.medium, size: 18))
                       }
               
               Spacer()
@@ -72,6 +74,7 @@ struct SettingView: View {
               Image(systemName: "bell")
                 .padding(.trailing, 8)
               Text("알림")
+                .font(.pretendard(.medium, size: 18))
               
               Spacer()
               
@@ -100,6 +103,7 @@ struct SettingView: View {
               Image(systemName: "lock")
                 .padding(.trailing, 8)
               Text("앱 잠금")
+                .font(.pretendard(.bold, size: 18))
               Spacer()
               Toggle("", isOn: $isLocked)
                 .toggleStyle(SwitchToggleStyle(tint: Color.pimGreen))
@@ -146,6 +150,7 @@ func plainCell(icon: String, text: String) -> some View {
       .padding(.trailing, 8)
     
     Text("\(text)")
+      .font(.pretendard(.medium, size: 18))
     
     Spacer()
     
