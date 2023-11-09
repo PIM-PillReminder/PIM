@@ -15,10 +15,11 @@ struct SettingView: View {
   @State private var selectedTime: Date = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? Date()
   
   let notificationManager = LocalNotificationManager()
+  //TODO: 한국어 표기
   static let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateFormat = "a hh:mm"
-    formatter.locale = Locale(identifier: "ko_KR")
+    formatter.locale = Locale(identifier:"ko_KR")
     return formatter
   }()
   

@@ -51,8 +51,7 @@ struct MainView: View {
                       Image(systemName: "calendar")
                           .font(.system(size: 24))
                           .padding(.trailing, 20)
-                          .foregroundColor(Color.green03)
-                          .opacity(100)
+                          .foregroundColor(Color.green01)
                   }
                   .disabled(true)
               }
