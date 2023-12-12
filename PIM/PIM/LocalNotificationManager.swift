@@ -65,7 +65,7 @@ class LocalNotificationManager {
             let content = UNMutableNotificationContent()
             content.title = notification.title
             content.sound = UNNotificationSound.default
-            content.body = "먹었다고 체크하기"
+            content.body = "약을 먹고 잊지 않게 기록하세요!"
             
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
             let request = UNNotificationRequest(identifier: notification.id, content: content, trigger: trigger)

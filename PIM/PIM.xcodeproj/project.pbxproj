@@ -27,6 +27,7 @@
 		575677B92AD58C64002E01BE /* clockPimi.json in Resources */ = {isa = PBXBuildFile; fileRef = 575677B52AD58C63002E01BE /* clockPimi.json */; };
 		575677BA2AD58C64002E01BE /* happyPimiwoArms.json in Resources */ = {isa = PBXBuildFile; fileRef = 575677B62AD58C64002E01BE /* happyPimiwoArms.json */; };
 		575677BC2AD58C64002E01BE /* sadPimiwoArms.json in Resources */ = {isa = PBXBuildFile; fileRef = 575677B82AD58C64002E01BE /* sadPimiwoArms.json */; };
+		5762705F2B28AD7700115612 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 5762705E2B28AD7700115612 /* .gitignore */; };
 		7954A7E02AB9D082000D1E8F /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7DF2AB9D082000D1E8F /* SettingView.swift */; };
 		7954A7E22AB9D096000D1E8F /* SettingNotiVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7E12AB9D096000D1E8F /* SettingNotiVIew.swift */; };
 		7954A7ED2ABA8881000D1E8F /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7EC2ABA8881000D1E8F /* FontExtension.swift */; };
@@ -66,6 +67,7 @@
 		575677B52AD58C63002E01BE /* clockPimi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clockPimi.json; sourceTree = "<group>"; };
 		575677B62AD58C64002E01BE /* happyPimiwoArms.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = happyPimiwoArms.json; sourceTree = "<group>"; };
 		575677B82AD58C64002E01BE /* sadPimiwoArms.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sadPimiwoArms.json; sourceTree = "<group>"; };
+		5762705E2B28AD7700115612 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		7954A7DF2AB9D082000D1E8F /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		7954A7E12AB9D096000D1E8F /* SettingNotiVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotiVIew.swift; sourceTree = "<group>"; };
 		7954A7EC2ABA8881000D1E8F /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 		57461C3A2AB58C520026F903 = {
 			isa = PBXGroup;
 			children = (
+				5762705E2B28AD7700115612 /* .gitignore */,
 				57461C452AB58C520026F903 /* PIM */,
 				57461C442AB58C520026F903 /* Products */,
 			);
@@ -281,6 +284,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5762705F2B28AD7700115612 /* .gitignore in Resources */,
 				7954A8012ABA88E8000D1E8F /* Pretendard-Thin.ttf in Resources */,
 				575677BC2AD58C64002E01BE /* sadPimiwoArms.json in Resources */,
 				7954A8032ABA88E8000D1E8F /* Pretendard-Regular.ttf in Resources */,
@@ -381,7 +385,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -435,7 +439,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
