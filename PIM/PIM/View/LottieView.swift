@@ -4,6 +4,7 @@
 //
 //  Created by 신정연 on 2023/09/27.
 //
+
 import SwiftUI
 import Lottie
 

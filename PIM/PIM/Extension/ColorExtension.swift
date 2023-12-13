@@ -8,8 +8,6 @@
 import Foundation
 import SwiftUI
 
-import SwiftUI
-
 extension Color {
     static let pimGreen = Color(hex: "#6CC244")
     static let lightGray = Color(hex: "#F2F2F2")

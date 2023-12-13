@@ -28,8 +28,10 @@ struct OnboardingView4: View {
                                 .font(.pretendard(.regular, size: 24))
                         }
                         .padding(.leading, 15)
+                        
                         Spacer()
                     }
+                    
                     Text("시작하기")
                         .font(.pretendard(.bold, size: 18))
                         .frame(alignment: .center)
@@ -40,14 +42,17 @@ struct OnboardingView4: View {
                 ProgressView(value: 0, total: 100)
                     .progressViewStyle(LinearProgressViewStyle(tint: .pimGreen))
                     .padding(.bottom, 30)
+                
                 Text("몇 시에 약을 먹나요?")
                     .font(.pretendard(.bold, size: 24))
                     .frame(alignment: .center)
                     .padding(.bottom, 9)
+                
                 Text("선택한 복용 시간을 바탕으로 알림이 울려요.")
                     .font(.pretendard(.regular, size: 16))
                     .foregroundColor(.gray)
                     .padding(.bottom, 10)
+                
                 LottieView(jsonName: "clockPimi", loopMode: .repeat(10), playLottie: $playLottie)
 
                 DatePicker(

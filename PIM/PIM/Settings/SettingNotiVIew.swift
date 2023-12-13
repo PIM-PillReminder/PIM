@@ -4,6 +4,7 @@
 //
 //  Created by 장수민 on 2023/09/19.
 //
+
 import SwiftUI
 
 struct SettingNotiView: View {
