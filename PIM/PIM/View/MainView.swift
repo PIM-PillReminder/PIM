@@ -44,6 +44,7 @@ struct MainView: View {
 
     
     var body: some View {
+      NavigationStack {
         VStack {
             HStack {
                 NavigationLink(destination: SettingView()) {
@@ -114,6 +115,7 @@ struct MainView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+      }
     }
     
     private func getCurrentDateString() -> String {

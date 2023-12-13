@@ -18,10 +18,13 @@ struct PIMCustomSlider: View {
             
             HStack {
                 Text("1번")
+                .font(.pretendard(.bold, size: 18))
                 Spacer()
                 Text("3번")
+                .font(.pretendard(.bold, size: 18))
                 Spacer()
                 Text("5번")
+                .font(.pretendard(.bold, size: 18))
             }
             .font(.pretendard(.medium, size: 18))
         }
@@ -107,7 +110,6 @@ struct NotiSlider: View {
             }
         }
     }
-    
     // 가장 가까운 고정 지점에 스냅하는 함수
     private func snapToNearestPoint(_ value: Double, in snapPoints: [Double]) -> Double {
         var closestPoint = snapPoints[0]
