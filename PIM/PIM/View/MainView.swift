@@ -96,6 +96,11 @@ struct MainView: View {
               }
           }
         .navigationBarBackButtonHidden(true)
+        .onAppear {
+          UNUserNotificationCenter.current().getNotificationSettings { settings in
+              UserDefaults.standard.set(settings.authorizationStatus == .authorized, forKey: "NotificationPermission")
+          }
+        }
       }
     }
     

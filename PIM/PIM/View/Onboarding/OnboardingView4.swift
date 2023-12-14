@@ -14,6 +14,7 @@ struct OnboardingView4: View {
     @State private var isMainViewActive = false
     @State private var playLottie: Bool = true
     let notificationManager = LocalNotificationManager()
+  @AppStorage("isOnboarding") var isOnboarding: Bool?
     
     var body: some View {
         NavigationView{
@@ -62,11 +63,11 @@ struct OnboardingView4: View {
                 
                 Spacer()
                 
-                NavigationLink(
-                    destination: MainView().navigationBarHidden(true),
-                    isActive: $isMainViewActive) {
-                        EmptyView()
-                    }
+//                NavigationLink(
+//                    destination: MainView().navigationBarHidden(true),
+//                    isActive: $isMainViewActive) {
+//                        EmptyView()
+//                    }
                 
                 Button(action: {
                     let calendar = Calendar.current
@@ -80,6 +81,7 @@ struct OnboardingView4: View {
                         notificationManager.enableNotifications()
                     }
                     isMainViewActive = true
+                  isOnboarding = false
                 }) {
                     Text("선택했어요")
                         .font(.pretendard(.bold, size: 20))

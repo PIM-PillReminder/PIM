@@ -13,6 +13,7 @@ struct TimePickerView: View {
     @Binding var showSheet1: Bool
     let notificationManager = LocalNotificationManager()
   @State var selectedTime: Date = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? Date()
+  @StateObject var settingViewModel: SettingViewModel
   
     var body: some View {
             ZStack {
@@ -43,7 +44,7 @@ struct TimePickerView: View {
                         
                         // 3. 스케줄링
                         notificationManager.schedule()
-                        
+                      settingViewModel.selectedTime = selectedTime
                         showSheet1 = false
                     }) {
                         Text("설정 완료하기")

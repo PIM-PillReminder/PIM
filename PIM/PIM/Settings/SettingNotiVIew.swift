@@ -11,7 +11,8 @@ struct SettingNotiView: View {
   @State var callToggleSwitch: Bool = false
   @Binding var showSheet2: Bool
   // 사용자의 알림 권한 여부 UserDefaults로 받아오기
-  @State private var isAllowedNoti = UserDefaults.standard.bool(forKey: "PillEaten")
+  @State private var isAllowedNoti = UserDefaults.standard.bool(forKey: "NotificationPermission")
+  @StateObject var settingViewModel: SettingViewModel
 
   let notificationManager = LocalNotificationManager()
   let screenWidth = UIScreen.main.bounds.width
@@ -34,15 +35,23 @@ struct SettingNotiView: View {
                   if notiActivated {
                     // 알림 활성화
                     notificationManager.enableNotifications()
-                    UserDefaults.standard.set(isAllowedNoti, forKey: "PillEaten")
+                    //MARK: 근데 이렇게 해도 권한 자체가 바뀌는 건 아닌데...
+                    UNUserNotificationCenter.current().getNotificationSettings { settings in
+                        UserDefaults.standard.set(settings.authorizationStatus == .authorized, forKey: "NotificationPermission")
+                    }
+                    UserDefaults.standard.set(isAllowedNoti, forKey: "NotificationPermission")
                     print("허용")
                   } else {
                     // 알림 비활성화
                     notificationManager.disableNotifications()
-                    UserDefaults.standard.set(isAllowedNoti, forKey: "PillEaten")
+                    //MARK: 근데 이렇게 해도 권한 자체가 바뀌는 건 아닌데...
+                    UserDefaults.standard.set(isAllowedNoti, forKey: "NotificationPermission")
                     print("거부")
                   }
                 }
+            }
+            .onAppear{
+              print(isAllowedNoti)
             }
             .padding(.horizontal, 10)
             .padding(.vertical, 5)
@@ -130,6 +139,6 @@ struct SettingNotiView_Previews: PreviewProvider {
   @State static var showSheet2 = true
   
   static var previews: some View {
-    SettingNotiView(showSheet2: $showSheet2)
+    SettingNotiView(showSheet2: $showSheet2, settingViewModel: SettingViewModel())
   }
 }
