@@ -49,7 +49,7 @@ struct SettingView: View {
                 if let selectedTime = settingViewModel.selectedTime {
                   Text("\(selectedTime, formatter: SettingView.dateFormatter)")
                 } else {
-                  Text("알림을 선택하지 않으셨습니다.")
+                  Text("알림 시간을 선택하지 않았습니다.")
                   .font(.pretendard(.medium, size: 18))
               }
                 Spacer()
@@ -123,7 +123,7 @@ struct SettingView: View {
         .navigationTitle("설정")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-          settingViewModel.selectedTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? Date()
+          settingViewModel.selectedTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? nil
         }
       }
     }
