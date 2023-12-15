@@ -20,6 +20,17 @@ struct TimePickerView: View {
                 Color.gray01
                     .ignoresSafeArea()
                 VStack {
+                  HStack {
+                    Spacer()
+                    Button {
+                      showSheet1 = false
+                    } label: {
+                      Image(systemName: "xmark")
+                        .foregroundStyle(Color.black)
+                        .font(.title3)
+                    }
+                    .padding(.top)
+                  }
                     GroupBox {
                         DatePicker(
                             "",
@@ -33,6 +44,7 @@ struct TimePickerView: View {
 
                     }
                     .groupBoxStyle(CustomListGroupBoxStyle())
+                    .padding(.vertical)
                     Spacer()
                     Button(action: {
                         // 1. 이전 알림 삭제
@@ -48,7 +60,6 @@ struct TimePickerView: View {
                         showSheet1 = false
                     }) {
                         Text("설정 완료하기")
-                        .font(.pretendard(.bold, size: 18))
                     }
                     .buttonStyle(PIMGreenButton())
                     Spacer()
@@ -68,9 +79,3 @@ struct TimePickerView: View {
             }
     }
 }
-
-//struct TimePickerView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TimePickerView(selectedTime: Date(), showSheet2: true)
-//    }
-//}

@@ -77,8 +77,6 @@ struct OnboardingView4: View {
                         if settings.authorizationStatus != .authorized {
                             notificationManager.requestPermission()
                         }
-                        UserDefaults.standard.set(selectedTime, forKey: "SelectedTime")
-                        notificationManager.enableNotifications()
                     }
                     isMainViewActive = true
                   isOnboarding = false
@@ -94,6 +92,18 @@ struct OnboardingView4: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        .onAppear {
+          UNUserNotificationCenter.current().getNotificationSettings { settings in
+              if settings.authorizationStatus != .authorized {
+                  notificationManager.requestPermission()
+              }
+          }
+        }
+        .onDisappear {
+          UNUserNotificationCenter.current().getNotificationSettings { settings in
+              UserDefaults.standard.set(settings.authorizationStatus == .authorized, forKey: "NotificationPermission")
+          }
+        }
     }
 }
 
