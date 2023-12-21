@@ -16,7 +16,7 @@ PIM(iOS)_Pill Reminder App
 - **잊어버리지 않기** 위한 기능
 ---
 
-### 🟠 팀원 소개
+### 🍀 팀원 소개
 
 | 소혜미(미로) | 신정연(매들린) | 장수민(로렌조) | 박민교(쏘니아) |
 | :--------------: | :----------------: | :--------------: | :--------------: |
@@ -24,28 +24,3 @@ PIM(iOS)_Pill Reminder App
 |  | <img src="https://avatars.githubusercontent.com/u/88757043?v=4" width=150> | <img src="https://github.com/PIM-PillReminder/PIM/assets/88757043/fcdd103c-8388-4f8e-8a00-3b7f5c5550c7" width=150> |  |
 
 ---
-
-### 🍀 앱 이미지
-<table>
-<tr>
-<td>
-[메인 화면]
-<img src="[https://avatars.githubusercontent.com/u/88757043?v=4](https://github.com/PIM-PillReminder/PIM/assets/88757043/ad3ad075-b2ac-4c42-be8e-ef9892a18abe)" width=150>
-
-
-</td>
-<td>
-[온보딩 화면]
-  <img src="[[https://avatars.githubusercontent.com/u/88757043?v=4](https://github.com/PIM-PillReminder/PIM/assets/88757043/ad3ad075-b2ac-4c42-be8e-ef9892a18abe)](https://github.com/PIM-PillReminder/PIM/assets/88757043/34592e6f-5e89-4fb2-8304-bdcf262e5bda)" width=150>
-
-</td>
-<td>
-[설정 화면]
-![Settings](https://github.com/PIM-PillReminder/PIM/assets/88757043/87f39636-ef1e-4f85-992f-a6baefac6c74)
-
-
-</td>
-</tr>
-</table>
-
-
