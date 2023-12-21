@@ -10,31 +10,45 @@ import SwiftUI
 import WatchConnectivity
 
 struct ShakeEffect: GeometryEffect {
-    var angle: CGFloat = 5  // 회전 각도 (도 단위)
-        var shakesPerUnit = 3   // 단위당 흔들림 횟수
-        var animatableData: CGFloat
-
-        func effectValue(size: CGSize) -> ProjectionTransform {
-            let rotationAngle = (angle / 360 * .pi * 2) * sin(animatableData * .pi * CGFloat(shakesPerUnit))
-            return ProjectionTransform(CGAffineTransform(rotationAngle: rotationAngle))
-        }
+    var angle: CGFloat = 10
+    var shakesPerUnit = 4
+    var animatableData: CGFloat
+    
+    func effectValue(size: CGSize) -> ProjectionTransform {
+        let rotationAngle = (angle / 360 * .pi * 2) * sin(animatableData * .pi * CGFloat(shakesPerUnit))
+        let translation = CGAffineTransform(translationX: -size.width / 2, y: -size.height / 2)
+        let rotation = CGAffineTransform(rotationAngle: rotationAngle)
+        
+        let inverseTranslation = CGAffineTransform(translationX: size.width / 2, y: size.height / 2)
+        
+        return ProjectionTransform(translation.concatenating(rotation).concatenating(inverseTranslation))
+    }
+    
 }
-
 
 struct ContentView: View {
     @ObservedObject var pillStatusObserver: PillStatusObserver
     @State private var isPillEaten: Bool = false
     @State private var shakeAttempts: Int = 0
+    @State private var yOffset: CGFloat = 0
     
     var body: some View {
         VStack {
+            
+            Text(!isPillEaten ? "오늘의 약을 아직 안 먹었어요" : "약 먹기 완료! 내일 만나요!")
+                .font(.system(size: 15))
+                .fontWeight(.medium)
+                .foregroundStyle(Color.green04)
+                .padding(.bottom, 10)
+            
+            Spacer()
+            
             imageForPillStatus()
                 .resizable()
-                .scaledToFit()
+                .frame(width: 80, height: 80)
                 .padding(.bottom, 13)
-                .modifier(ShakeEffect(animatableData: CGFloat(shakeAttempts))) // ShakeEffect 적용
-                .animation(.easeInOut(duration: 1))
-            
+                .offset(y: yOffset)
+                .modifier(ShakeEffect(animatableData: CGFloat(shakeAttempts)))
             
             Spacer()
             
@@ -44,24 +58,34 @@ struct ContentView: View {
                     shakeImage()
                 })
             } else {
-                PIMStrokeButton(title: "약 복용을 취소할게요", action: {
+                PIMStrokeButton(title: "앗! 잘못 눌렀어요", action: {
                     updatePillStatus(false)
-                    shakeImage()
+                    moveImageDownAndUp()
                 })
             }
         }
+        .background(Color.white)
         .onAppear {
             isPillEaten = pillStatusObserver.isPillEaten
         }
     }
     
+    // MARK: 약 먹었어요 애니메이션
     private func shakeImage() {
-        withAnimation(.default) {
-            shakeAttempts += 1 // 흔들림 횟수 증가
+        withAnimation(.easeInOut(duration: 1.5)) {
+            shakeAttempts += 1
         }
     }
     
-    
+    // MARK: 앗 잘못 눌렀어요 애니메이션
+    private func moveImageDownAndUp() {
+        withAnimation(.easeInOut(duration: 1.0)) {
+            yOffset = 5  // 아래로 이동
+        }
+        withAnimation(.easeInOut(duration: 1.0).delay(1.0)) {
+            yOffset = 0  // 다시 위로 이동
+        }
+    }
     
     private func imageForPillStatus() -> Image {
         if isPillEaten {
@@ -118,9 +142,8 @@ class PillStatusObserver: ObservableObject {
     }
     
     private func getCurrentDateString() -> String {
-        // DateFormatter를 사용하여 현재 날짜를 문자열로 변환
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd" // 예: "2023-09-27"
+        formatter.dateFormat = "yyyy-MM-dd"
         return formatter.string(from: Date())
     }
 }

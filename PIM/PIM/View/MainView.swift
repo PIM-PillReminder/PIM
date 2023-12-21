@@ -98,16 +98,21 @@ struct MainView: View {
                 if(!pillStatusObserver.isPillEaten){
                     Button("오늘의 약을 먹었어요") {
                         pillStatusObserver.isPillEaten = true
+                        updatePillStatus(true)
                     }
                     .buttonStyle(PIMGreenButton())
                     .padding(.bottom, 10)
                 } else {
                     Button("앗! 잘못 눌렀어요") {
                         pillStatusObserver.isPillEaten = false
+                        updatePillStatus(false)
                     }
                     .buttonStyle(PIMStrokeButton())
                     .padding(.bottom, 10)
                 }
+            }
+            .onAppear {
+                fetchPillStatusFromWatch()
             }
             .onChange(of: scenePhase) { newPhase in
                 if newPhase == .active {
@@ -118,6 +123,26 @@ struct MainView: View {
                 }
             }
             .navigationBarBackButtonHidden(true)
+        }
+    }
+    
+    // 상태 업데이트 및 워치에 전송
+    private func updatePillStatus(_ status: Bool) {
+        pillStatusObserver.isPillEaten = status
+    }
+    
+    // MARK: (GET) 워치로부터 데이터 받아오기
+    private func fetchPillStatusFromWatch() {
+        if WCSession.default.isReachable {
+            WCSession.default.sendMessage(["RequestPillStatus": true], replyHandler: { response in
+                DispatchQueue.main.async {
+                    if let status = response["PillEaten"] as? Bool {
+                        pillStatusObserver.isPillEaten = status
+                    }
+                }
+            }) { error in
+                print("Error requesting pill status: \(error.localizedDescription)")
+            }
         }
     }
     
@@ -151,6 +176,7 @@ class PillStatusObserver: ObservableObject {
         return DateFormatter.localizedString(from: Date(), dateStyle: .medium, timeStyle: .none)
     }
     
+    // MARK: (POST) 워치로 데이터 보내기
     private func sendPillStatusToWatch(_ status: Bool) {
         if WCSession.default.isReachable {
             WCSession.default.sendMessage(["PillEaten": status], replyHandler: nil) { error in
