@@ -30,14 +30,13 @@ PIM(iOS)_Pill Reminder App
 <tr>
 <td>
 [메인 화면]
-![Main](https://github.com/PIM-PillReminder/PIM/assets/88757043/ad3ad075-b2ac-4c42-be8e-ef9892a18abe)
+<img src="[https://avatars.githubusercontent.com/u/88757043?v=4](https://github.com/PIM-PillReminder/PIM/assets/88757043/ad3ad075-b2ac-4c42-be8e-ef9892a18abe)" width=150>
 
 
 </td>
 <td>
 [온보딩 화면]
-![Onboarding](https://github.com/PIM-PillReminder/PIM/assets/88757043/34592e6f-5e89-4fb2-8304-bdcf262e5bda)
-
+  <img src="[[https://avatars.githubusercontent.com/u/88757043?v=4](https://github.com/PIM-PillReminder/PIM/assets/88757043/ad3ad075-b2ac-4c42-be8e-ef9892a18abe)](https://github.com/PIM-PillReminder/PIM/assets/88757043/34592e6f-5e89-4fb2-8304-bdcf262e5bda)" width=150>
 
 </td>
 <td>
