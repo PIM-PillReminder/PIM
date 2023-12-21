@@ -21,7 +21,8 @@ PIM(iOS)_Pill Reminder App
 | 소혜미(미로) | 신정연(매들린) | 장수민(로렌조) | 박민교(쏘니아) |
 | :--------------: | :----------------: | :--------------: | :--------------: |
 | `PM`    | `Developer`      | `Developer`    | `Designer`    |
-| <img src="https://avatars.githubusercontent.com/u/22471820?v=4" width=150> | <img src="https://avatars.githubusercontent.com/u/88757043?v=4" width=150> | <img src="https://avatars.githubusercontent.com/u/82270058?v=4" width=150> | <img src="https://avatars.githubusercontent.com/u/89244357?v=4" width=150> |
+| <img src="https://avatars.githubusercontent.com/u/22471820?v=4" width=150> | <img src="https://avatars.githubusercontent.com/u/88757043?v=4" width=150> | <img src=![image](https://github.com/PIM-PillReminder/PIM/assets/88757043/fcdd103c-8388-4f8e-8a00-3b7f5c5550c7)
+ width=150> | <img src="https://avatars.githubusercontent.com/u/89244357?v=4" width=150> |
 
 ---
 
