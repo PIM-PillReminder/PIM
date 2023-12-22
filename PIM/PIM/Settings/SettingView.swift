@@ -50,6 +50,7 @@ struct SettingView: View {
                 
                 if let selectedTime = settingViewModel.selectedTime {
                   Text("\(selectedTime, formatter: SettingView.dateFormatter)")
+                    .environment(\.locale, .init(identifier: "ko_KR"))
                 } else {
                   Text("알림 시간을 선택하지 않았습니다.")
                     .font(.pretendard(.medium, size: 18))
