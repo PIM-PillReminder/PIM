@@ -10,5 +10,5 @@ import SwiftUI
 import UserNotifications
 
 class SettingViewModel: ObservableObject {
-  @Published var selectedTime: Date?
+  @Published var selectedTime: Date? = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? nil
 }

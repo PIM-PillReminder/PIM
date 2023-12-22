@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct SettingView: View {
+  @Environment(\.scenePhase) var scenePhase
   @State var isDeactivated = true
   @State var isLocked = false
   @State var showSheet = false
   @State var showSheet2 = false
+  @State private var isNotificationsEnabled: Bool = false
   @State private var selectedTime: Date = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? Date()
   @ObservedObject var settingViewModel = SettingViewModel()
   
@@ -50,11 +52,11 @@ struct SettingView: View {
                   Text("\(selectedTime, formatter: SettingView.dateFormatter)")
                 } else {
                   Text("알림 시간을 선택하지 않았습니다.")
-                  .font(.pretendard(.medium, size: 18))
-              }
+                    .font(.pretendard(.medium, size: 18))
+                }
                 Spacer()
-                  Image(systemName: "chevron.right")
-                    .foregroundColor(Color.gray02)
+                Image(systemName: "chevron.right")
+                  .foregroundColor(Color.gray02)
               }
               .padding(.vertical, 8)
               .padding(.horizontal, 10)
@@ -63,33 +65,38 @@ struct SettingView: View {
               TimePickerView(showSheet1: $showSheet, settingViewModel: settingViewModel )
                 .presentationDetents([.height(geo.size.width * 1.3 )])
                 .presentationDragIndicator(.hidden)
-          }
+            }
           }
           .groupBoxStyle(CustomListGroupBoxStyle())
           .padding(.bottom)
           
           GroupBox {
             Button {
-              showSheet2 = true
+//              showSheet2 = true
+              UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
             } label: {
               HStack {
                 Image(systemName: "bell")
                   .padding(.trailing, 8)
+                
                 Text("알림")
                   .font(.pretendard(.medium, size: 18))
                 
                 Spacer()
-  
-                Image(systemName: "chevron.right")
-                  .foregroundColor(Color.gray02)
+                
+                Toggle("", isOn: .constant(isNotificationsEnabled))
+                  .toggleStyle(SwitchToggleStyle(tint: Color.pimGreen))
+                //                Image(systemName: "chevron.right")
+                //                  .foregroundColor(Color.gray02)
+                  .allowsHitTesting(false)
               }
-              .sheet(isPresented: $showSheet2) {
-                SettingNotiView(showSheet2: $showSheet2, settingViewModel: settingViewModel)
-                  .presentationDetents([.height(geo.size.width * 1.3)])
-                  .presentationDragIndicator(.hidden)
-              }
+//              .sheet(isPresented: $showSheet2) {
+//                SettingNotiView(showSheet2: $showSheet2, settingViewModel: settingViewModel)
+//                  .presentationDetents([.height(geo.size.width * 1.3)])
+//                  .presentationDragIndicator(.hidden)
+//              }
               .padding(.vertical, 8)
-            .padding(.horizontal, 10)
+              .padding(.horizontal, 10)
             }
             Divider()
             plainCell(icon: "message", text: "FAQ")
@@ -122,11 +129,24 @@ struct SettingView: View {
         .padding(.horizontal, 18)
         .navigationTitle("설정")
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-          settingViewModel.selectedTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? nil
-        }
       }
     }
+    .onAppear {
+      checkNotificationSettings()
+    }
+    .onChange(of: scenePhase) {
+      if scenePhase == .inactive || scenePhase == .background {
+        checkNotificationSettings()
+      }
+    }
+  }
+  
+  private func checkNotificationSettings() {
+      UNUserNotificationCenter.current().getNotificationSettings { settings in
+          DispatchQueue.main.async {
+              isNotificationsEnabled = settings.authorizationStatus == .authorized
+          }
+      }
   }
 }
 

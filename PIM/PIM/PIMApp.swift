@@ -16,7 +16,7 @@ struct PIMApp: App {
     init() {
         UNUserNotificationCenter.current().delegate = notificationDelegate
     }
-//    @State private var selectedStrength: AlertStrength = AlertStrength.list[0]
+  
   @AppStorage("isOnboarding") var isOnboarding = true
     
     var body: some Scene {
