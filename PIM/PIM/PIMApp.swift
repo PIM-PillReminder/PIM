@@ -20,10 +20,18 @@ struct PIMApp: App {
         UNUserNotificationCenter.current().delegate = notificationDelegate
         setupWatchConnectivity()
     }
+  
+  @AppStorage("isOnboarding") var isOnboarding = true
     
     var body: some Scene {
         WindowGroup {
+//            ContentView()
+//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+          if isOnboarding {
             OnboardingMainView()
+          } else {
+            MainView()
+          }
         }
     }
     
