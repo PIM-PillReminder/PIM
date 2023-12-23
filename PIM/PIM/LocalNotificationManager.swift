@@ -23,6 +23,7 @@ class LocalNotificationManager {
         schedule()
     }
     
+    // 모든 알림 끌 때 사용
     public func disableNotifications(){
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
@@ -50,11 +51,26 @@ class LocalNotificationManager {
                 self.requestPermission()
             case .authorized, .provisional:
                 if let selectedTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date {
-                    self.scheduleNotification(for: selectedTime)
+                    self.removeExistingNotifications {
+                        self.scheduleNotification(for: selectedTime)
+                    }
                 }
             default:
                 break
             }
+        }
+    }
+    
+    // 기존에 알림이 있다면 삭제하는 함수
+    private func removeExistingNotifications(completion: @escaping () -> Void) {
+        UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
+            let existingRequests = requests.filter { req in
+                self.notifications.contains(where: { $0.id == req.identifier })
+            }
+            for request in existingRequests {
+                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [request.identifier])
+            }
+            completion()
         }
     }
     

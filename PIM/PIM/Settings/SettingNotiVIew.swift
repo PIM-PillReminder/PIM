@@ -10,9 +10,11 @@ import SwiftUI
 struct SettingNotiView: View {
   @State var isDeactivated: Bool = true
   @State var callToggleSwitch: Bool = false
+  @State var isNotAuthorized: Bool = false
   @Binding var showSheet2: Bool
   // 사용자의 알림 권한 여부 UserDefaults로 받아오기
-  @State private var isAllowedNoti = UserDefaults.standard.bool(forKey: "PillEaten")
+  @State private var isAllowedNoti = UserDefaults.standard.bool(forKey: "NotificationPermission")
+  @StateObject var settingViewModel: SettingViewModel
 
   let notificationManager = LocalNotificationManager()
   let screenWidth = UIScreen.main.bounds.width
@@ -24,27 +26,62 @@ struct SettingNotiView: View {
         Color.gray01
           .ignoresSafeArea()
         VStack {
+          HStack {
+            Spacer()
+            Button {
+              showSheet2 = false
+            } label: {
+              Image(systemName: "xmark")
+                .foregroundStyle(Color.black)
+                .font(.title3)
+            }
+            .padding(.top)
+          }
           GroupBox {
-            HStack{
+            HStack {
               Text("알림 허용")
-                .font(.pretendard(.bold, size: 18))
+                .font(.pretendard(.medium, size: 18))
               Spacer()
               Toggle("", isOn: $isAllowedNoti)
                 .toggleStyle(SwitchToggleStyle(tint: Color.green03))
                 .onChange(of: isAllowedNoti) { notiActivated in
                   if notiActivated {
                     // 알림 활성화
-                    notificationManager.enableNotifications()
-                    UserDefaults.standard.set(isAllowedNoti, forKey: "PillEaten")
+                    //MARK: 근데 이렇게 해도 권한 자체가 바뀌는 건 아닌데...
+                    UNUserNotificationCenter.current().getNotificationSettings { settings in
+                        if settings.authorizationStatus != .authorized {
+                          notificationManager.requestPermission()
+                        } else {
+                          notificationManager.enableNotifications()
+                        }
+                    }
+                    UserDefaults.standard.set(isAllowedNoti, forKey: "NotificationPermission")
                     print("허용")
                   } else {
                     // 알림 비활성화
                     notificationManager.disableNotifications()
-                    UserDefaults.standard.set(isAllowedNoti, forKey: "PillEaten")
+                    //MARK: 근데 이렇게 해도 권한 자체가 바뀌는 건 아닌데...
+                    UserDefaults.standard.set(isAllowedNoti, forKey: "NotificationPermission")
                     print("거부")
                   }
                 }
             }
+//            .alert(isPresented: $isNotAuthorized) {
+//              Alert(
+//                title: Text(""),
+//                message: Text("알람 설정을 변경하려면 알람 권한을 허용해야 합니다."),
+//                primaryButton: .default(Text("취소")),
+//                secondaryButton: .default(Text("설정").bold(), action: {
+//                  UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+//                }))
+//            }
+//            .onAppear {
+//              UNUserNotificationCenter.current().getNotificationSettings { settings in
+//                  if settings.authorizationStatus != .authorized {
+//                      isNotAuthorized = true
+//                  }
+//            }
+//            }
             .padding(.horizontal, 10)
             .padding(.vertical, 5)
           }
@@ -56,7 +93,7 @@ struct SettingNotiView: View {
             HStack {
               VStack(alignment: .leading ) {
                 Text("알림 빈도")
-                  .font(.pretendard(.bold, size: 18))
+                  .font(.pretendard(.medium, size: 18))
                   .font(.system(size: 18))
                   .padding(.bottom, 7)
                 Spacer()
@@ -65,6 +102,7 @@ struct SettingNotiView: View {
                   .lineSpacing(4)
                   .foregroundColor(.gray)
                   .font(.pretendard(.regular,size: 14))
+                  .multilineTextAlignment(.leading)
                 
                 Spacer()
                 
@@ -110,14 +148,6 @@ struct SettingNotiView: View {
         }
         .padding(.bottom, 23)
         .padding(.horizontal, 18)
-        .toolbar {
-          Button {
-            showSheet2 = false
-          } label: {
-            Image(systemName: "xmark")
-              .foregroundColor(.black)
-          }
-        }
         //                .onDisappear {
         //                    let repeatingTimes = notificationManager.repeatingTimes
         //                    print(repeatingTimes)
@@ -131,6 +161,6 @@ struct SettingNotiView_Previews: PreviewProvider {
   @State static var showSheet2 = true
   
   static var previews: some View {
-    SettingNotiView(showSheet2: $showSheet2)
+    SettingNotiView(showSheet2: $showSheet2, settingViewModel: SettingViewModel())
   }
 }

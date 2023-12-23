@@ -7,19 +7,31 @@
 
 import SwiftUI
 import UserNotifications
+import WatchConnectivity
 
 @main
 struct PIMApp: App {
     let persistenceController = PersistenceController.shared
     let notificationDelegate = NotificationDelegate()
+    let pillStatusObserver = PillStatusObserver()
+    let connectivityProvider = ConnectivityProvider()
     
     init() {
         UNUserNotificationCenter.current().delegate = notificationDelegate
+        setupWatchConnectivity()
     }
+  
+  @AppStorage("isOnboarding") var isOnboarding = true
     
     var body: some Scene {
         WindowGroup {
+//            ContentView()
+//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+          if isOnboarding {
             OnboardingMainView()
+          } else {
+            MainView()
+          }
         }
     }
     
@@ -33,6 +45,19 @@ struct PIMApp: App {
         }
         completionHandler()
     }
+    
+    // MARK: WatchOS 연결
+    private func setupWatchConnectivity() {
+        connectivityProvider.pillStatusObserver = pillStatusObserver
+    }
+    
+//    private func setupWatchConnectivity() {
+//        if WCSession.isSupported() {
+//            let session = WCSession.default
+//            session.delegate = connectivityProvider
+//            session.activate()
+//        }
+//    }
 }
 
 class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
@@ -42,9 +67,47 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         if response.actionIdentifier == "checkAction" {
-            print("***")
             notificationManager.setUserHasTakenPill()
         }
         completionHandler()
+    }
+}
+
+class ConnectivityProvider: NSObject, WCSessionDelegate {
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        // watchOS에서 세션이 비활성화되었을 때의 처리
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        // watchOS에서 세션이 다시 활성화될 때의 처리
+        session.activate() // 필요한 경우 세션을 다시 활성화
+    }
+    
+    var pillStatusObserver: PillStatusObserver?
+
+    override init() {
+        super.init()
+        if WCSession.isSupported() {
+            let session = WCSession.default
+            session.delegate = self
+            session.activate()
+        }
+    }
+
+    // 세션 활성화 완료 처리
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        // 세션 활성화 완료 처리
+    }
+
+    // 메시지 수신 처리
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        if let status = message["PillEaten"] as? Bool {
+            DispatchQueue.main.async {
+                self.pillStatusObserver?.isPillEaten = status
+                print("Received PillEaten status from watchOS: \(status)")
+            }
+            print("iOS App: Received PillEaten status (\(status)) from Watch App")
+        }
     }
 }

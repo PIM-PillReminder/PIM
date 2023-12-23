@@ -41,8 +41,9 @@ struct OnboardingMainView: View {
                     Text("시작하기")
                         .font(.pretendard(.bold, size: 20))
                         .foregroundColor(Color.white)
+                        .padding(40)
                 }
-                .frame(width: UIScreen.main.bounds.width)
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.03)
                 .padding(.top, 40)
                 .padding(.bottom, 10)
                 .background(Color.green03)
