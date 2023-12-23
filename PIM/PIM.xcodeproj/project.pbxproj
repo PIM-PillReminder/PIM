@@ -28,6 +28,7 @@
 		575677BA2AD58C64002E01BE /* happyPimiwoArms.json in Resources */ = {isa = PBXBuildFile; fileRef = 575677B62AD58C64002E01BE /* happyPimiwoArms.json */; };
 		575677BC2AD58C64002E01BE /* sadPimiwoArms.json in Resources */ = {isa = PBXBuildFile; fileRef = 575677B82AD58C64002E01BE /* sadPimiwoArms.json */; };
 		5762705F2B28AD7700115612 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 5762705E2B28AD7700115612 /* .gitignore */; };
+		79326FCD2B371A3F0038CD7C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79326FCC2B371A3F0038CD7C /* Colors.xcassets */; };
 		7954A7E02AB9D082000D1E8F /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7DF2AB9D082000D1E8F /* SettingView.swift */; };
 		7954A7E22AB9D096000D1E8F /* SettingNotiVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7E12AB9D096000D1E8F /* SettingNotiVIew.swift */; };
 		7954A7ED2ABA8881000D1E8F /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7EC2ABA8881000D1E8F /* FontExtension.swift */; };
@@ -68,6 +69,7 @@
 		575677B62AD58C64002E01BE /* happyPimiwoArms.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = happyPimiwoArms.json; sourceTree = "<group>"; };
 		575677B82AD58C64002E01BE /* sadPimiwoArms.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sadPimiwoArms.json; sourceTree = "<group>"; };
 		5762705E2B28AD7700115612 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		79326FCC2B371A3F0038CD7C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		7954A7DF2AB9D082000D1E8F /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		7954A7E12AB9D096000D1E8F /* SettingNotiVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotiVIew.swift; sourceTree = "<group>"; };
 		7954A7EC2ABA8881000D1E8F /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				57461C9B2AB76ABC0026F903 /* LocalNotificationManager.swift */,
 				57461C9D2AB773430026F903 /* Info.plist */,
 				57461C4A2AB58C540026F903 /* Assets.xcassets */,
+				79326FCC2B371A3F0038CD7C /* Colors.xcassets */,
 				57461C4F2AB58C540026F903 /* Persistence.swift */,
 				57461C512AB58C540026F903 /* PIM.xcdatamodeld */,
 				57461C4C2AB58C540026F903 /* Preview Content */,
@@ -299,6 +302,7 @@
 				7954A8022ABA88E8000D1E8F /* Pretendard-Bold.ttf in Resources */,
 				57461C4B2AB58C540026F903 /* Assets.xcassets in Resources */,
 				7954A7FC2ABA88E8000D1E8F /* Pretendard-ExtraBold.ttf in Resources */,
+				79326FCD2B371A3F0038CD7C /* Colors.xcassets in Resources */,
 				573942552ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,7 +470,6 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -497,7 +500,6 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

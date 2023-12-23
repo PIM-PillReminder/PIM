@@ -12,10 +12,10 @@
 	</array>
 	<key>UILaunchScreen</key>
 	<dict>
+		<key>UIColorName</key>
+		<string>LaunchScreenBackgroundColor</string>
 		<key>UIImageName</key>
-		<string>Splash</string>
-		<key>UILaunchScreen</key>
-		<dict/>
+		<string>SplashLogo</string>
 	</dict>
 </dict>
 </plist>

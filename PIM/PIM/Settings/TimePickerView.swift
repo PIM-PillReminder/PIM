@@ -16,8 +16,6 @@ struct TimePickerView: View {
   
     var body: some View {
             ZStack {
-                Color.gray01
-                    .ignoresSafeArea()
                 VStack {
                     GroupBox {
                         DatePicker(
