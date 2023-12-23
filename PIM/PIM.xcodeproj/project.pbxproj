@@ -28,6 +28,22 @@
 		575677BA2AD58C64002E01BE /* happyPimiwoArms.json in Resources */ = {isa = PBXBuildFile; fileRef = 575677B62AD58C64002E01BE /* happyPimiwoArms.json */; };
 		575677BC2AD58C64002E01BE /* sadPimiwoArms.json in Resources */ = {isa = PBXBuildFile; fileRef = 575677B82AD58C64002E01BE /* sadPimiwoArms.json */; };
 		5762705F2B28AD7700115612 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 5762705E2B28AD7700115612 /* .gitignore */; };
+		576270672B299B2F00115612 /* PIM_watchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576270662B299B2F00115612 /* PIM_watchApp.swift */; };
+		576270692B299B2F00115612 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576270682B299B2F00115612 /* ContentView.swift */; };
+		5762706B2B299B3100115612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5762706A2B299B3100115612 /* Assets.xcassets */; };
+		5762706E2B299B3100115612 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5762706D2B299B3100115612 /* Preview Assets.xcassets */; };
+		576270712B299B3100115612 /* PIM_watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 576270642B299B2F00115612 /* PIM_watch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		576270772B299ED800115612 /* WatchButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576270762B299ED800115612 /* WatchButtonStyle.swift */; };
+		576270792B299EFD00115612 /* WatchColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576270782B299EFD00115612 /* WatchColorExtension.swift */; };
+		5762707C2B299F5600115612 /* Pretendard-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5762707B2B299F5600115612 /* Pretendard-Thin.ttf */; };
+		5762707E2B299F5E00115612 /* Pretendard-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5762707D2B299F5E00115612 /* Pretendard-SemiBold.ttf */; };
+		576270802B299F6600115612 /* Pretendard-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5762707F2B299F6600115612 /* Pretendard-Regular.ttf */; };
+		576270822B299F6F00115612 /* Pretendard-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 576270812B299F6F00115612 /* Pretendard-Medium.ttf */; };
+		576270842B299F7700115612 /* Pretendard-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 576270832B299F7700115612 /* Pretendard-Light.ttf */; };
+		576270862B299F8000115612 /* Pretendard-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 576270852B299F8000115612 /* Pretendard-ExtraLight.ttf */; };
+		576270882B299F8700115612 /* Pretendard-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 576270872B299F8700115612 /* Pretendard-ExtraBold.ttf */; };
+		5762708A2B299F8E00115612 /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 576270892B299F8E00115612 /* Pretendard-Bold.ttf */; };
+		5762708C2B299FB500115612 /* WatchFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5762708B2B299FB500115612 /* WatchFontExtension.swift */; };
 		7954A7E02AB9D082000D1E8F /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7DF2AB9D082000D1E8F /* SettingView.swift */; };
 		7954A7E22AB9D096000D1E8F /* SettingNotiVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7E12AB9D096000D1E8F /* SettingNotiVIew.swift */; };
 		7954A7ED2ABA8881000D1E8F /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7EC2ABA8881000D1E8F /* FontExtension.swift */; };
@@ -44,6 +60,30 @@
 		799B0ECA2ABEEE9300AE9865 /* PIMCustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799B0EC92ABEEE9300AE9865 /* PIMCustomSlider.swift */; };
 		79DD3B7F2AC3DCC600837E11 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD3B7E2AC3DCC600837E11 /* TimePickerView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5762706F2B299B3100115612 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 57461C3B2AB58C520026F903 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 576270632B299B2F00115612;
+			remoteInfo = "PIM_watch Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		576270722B299B3100115612 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				576270712B299B3100115612 /* PIM_watch Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		57022BF42AC45B7A00070276 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
@@ -68,6 +108,22 @@
 		575677B62AD58C64002E01BE /* happyPimiwoArms.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = happyPimiwoArms.json; sourceTree = "<group>"; };
 		575677B82AD58C64002E01BE /* sadPimiwoArms.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sadPimiwoArms.json; sourceTree = "<group>"; };
 		5762705E2B28AD7700115612 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		576270642B299B2F00115612 /* PIM_watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PIM_watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		576270662B299B2F00115612 /* PIM_watchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIM_watchApp.swift; sourceTree = "<group>"; };
+		576270682B299B2F00115612 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5762706A2B299B3100115612 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5762706D2B299B3100115612 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		576270762B299ED800115612 /* WatchButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchButtonStyle.swift; sourceTree = "<group>"; };
+		576270782B299EFD00115612 /* WatchColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchColorExtension.swift; sourceTree = "<group>"; };
+		5762707B2B299F5600115612 /* Pretendard-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.ttf"; sourceTree = "<group>"; };
+		5762707D2B299F5E00115612 /* Pretendard-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.ttf"; sourceTree = "<group>"; };
+		5762707F2B299F6600115612 /* Pretendard-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.ttf"; sourceTree = "<group>"; };
+		576270812B299F6F00115612 /* Pretendard-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.ttf"; sourceTree = "<group>"; };
+		576270832B299F7700115612 /* Pretendard-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.ttf"; sourceTree = "<group>"; };
+		576270852B299F8000115612 /* Pretendard-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraLight.ttf"; sourceTree = "<group>"; };
+		576270872B299F8700115612 /* Pretendard-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.ttf"; sourceTree = "<group>"; };
+		576270892B299F8E00115612 /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
+		5762708B2B299FB500115612 /* WatchFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchFontExtension.swift; sourceTree = "<group>"; };
 		7954A7DF2AB9D082000D1E8F /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		7954A7E12AB9D096000D1E8F /* SettingNotiVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotiVIew.swift; sourceTree = "<group>"; };
 		7954A7EC2ABA8881000D1E8F /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
@@ -91,6 +147,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				57022BF82AC45C6500070276 /* Lottie in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		576270612B299B2F00115612 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +198,7 @@
 			children = (
 				5762705E2B28AD7700115612 /* .gitignore */,
 				57461C452AB58C520026F903 /* PIM */,
+				576270652B299B2F00115612 /* PIM_watch Watch App */,
 				57461C442AB58C520026F903 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -143,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				57461C432AB58C520026F903 /* PIM.app */,
+				576270642B299B2F00115612 /* PIM_watch Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -172,6 +237,44 @@
 				57461C4D2AB58C540026F903 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		576270652B299B2F00115612 /* PIM_watch Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				5762707A2B299F2100115612 /* Font */,
+				576270662B299B2F00115612 /* PIM_watchApp.swift */,
+				576270682B299B2F00115612 /* ContentView.swift */,
+				576270762B299ED800115612 /* WatchButtonStyle.swift */,
+				576270782B299EFD00115612 /* WatchColorExtension.swift */,
+				5762708B2B299FB500115612 /* WatchFontExtension.swift */,
+				5762706A2B299B3100115612 /* Assets.xcassets */,
+				5762706C2B299B3100115612 /* Preview Content */,
+			);
+			path = "PIM_watch Watch App";
+			sourceTree = "<group>";
+		};
+		5762706C2B299B3100115612 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				5762706D2B299B3100115612 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5762707A2B299F2100115612 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				576270892B299F8E00115612 /* Pretendard-Bold.ttf */,
+				576270872B299F8700115612 /* Pretendard-ExtraBold.ttf */,
+				576270852B299F8000115612 /* Pretendard-ExtraLight.ttf */,
+				576270832B299F7700115612 /* Pretendard-Light.ttf */,
+				576270812B299F6F00115612 /* Pretendard-Medium.ttf */,
+				5762707F2B299F6600115612 /* Pretendard-Regular.ttf */,
+				5762707D2B299F5E00115612 /* Pretendard-SemiBold.ttf */,
+				5762707B2B299F5600115612 /* Pretendard-Thin.ttf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		7954A7DE2AB9D069000D1E8F /* Settings */ = {
@@ -230,10 +333,12 @@
 				57461C3F2AB58C520026F903 /* Sources */,
 				57461C402AB58C520026F903 /* Frameworks */,
 				57461C412AB58C520026F903 /* Resources */,
+				576270722B299B3100115612 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				576270702B299B3100115612 /* PBXTargetDependency */,
 			);
 			name = PIM;
 			packageProductDependencies = (
@@ -243,6 +348,23 @@
 			productReference = 57461C432AB58C520026F903 /* PIM.app */;
 			productType = "com.apple.product-type.application";
 		};
+		576270632B299B2F00115612 /* PIM_watch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 576270752B299B3100115612 /* Build configuration list for PBXNativeTarget "PIM_watch Watch App" */;
+			buildPhases = (
+				576270602B299B2F00115612 /* Sources */,
+				576270612B299B2F00115612 /* Frameworks */,
+				576270622B299B2F00115612 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PIM_watch Watch App";
+			productName = "PIM_watch Watch App";
+			productReference = 576270642B299B2F00115612 /* PIM_watch Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -250,11 +372,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					57461C422AB58C520026F903 = {
 						CreatedOnToolsVersion = 14.3.1;
+					};
+					576270632B299B2F00115612 = {
+						CreatedOnToolsVersion = 15.0.1;
 					};
 				};
 			};
@@ -275,6 +400,7 @@
 			projectRoot = "";
 			targets = (
 				57461C422AB58C520026F903 /* PIM */,
+				576270632B299B2F00115612 /* PIM_watch Watch App */,
 			);
 		};
 /* End PBXProject section */
@@ -300,6 +426,23 @@
 				57461C4B2AB58C540026F903 /* Assets.xcassets in Resources */,
 				7954A7FC2ABA88E8000D1E8F /* Pretendard-ExtraBold.ttf in Resources */,
 				573942552ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		576270622B299B2F00115612 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				576270882B299F8700115612 /* Pretendard-ExtraBold.ttf in Resources */,
+				5762707E2B299F5E00115612 /* Pretendard-SemiBold.ttf in Resources */,
+				5762707C2B299F5600115612 /* Pretendard-Thin.ttf in Resources */,
+				576270822B299F6F00115612 /* Pretendard-Medium.ttf in Resources */,
+				576270802B299F6600115612 /* Pretendard-Regular.ttf in Resources */,
+				5762706E2B299B3100115612 /* Preview Assets.xcassets in Resources */,
+				5762708A2B299F8E00115612 /* Pretendard-Bold.ttf in Resources */,
+				5762706B2B299B3100115612 /* Assets.xcassets in Resources */,
+				576270842B299F7700115612 /* Pretendard-Light.ttf in Resources */,
+				576270862B299F8000115612 /* Pretendard-ExtraLight.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,7 +475,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		576270602B299B2F00115612 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				576270692B299B2F00115612 /* ContentView.swift in Sources */,
+				576270772B299ED800115612 /* WatchButtonStyle.swift in Sources */,
+				576270672B299B2F00115612 /* PIM_watchApp.swift in Sources */,
+				576270792B299EFD00115612 /* WatchColorExtension.swift in Sources */,
+				5762708C2B299FB500115612 /* WatchFontExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		576270702B299B3100115612 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 576270632B299B2F00115612 /* PIM_watch Watch App */;
+			targetProxy = 5762706F2B299B3100115612 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		57461C542AB58C540026F903 /* Debug */ = {
@@ -452,12 +615,13 @@
 		57461C572AB58C540026F903 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PIM/Preview Content\"";
-				DEVELOPMENT_TEAM = X8LBXW983N;
+				DEVELOPMENT_TEAM = MTUYFM4K8P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PIM/Info.plist;
@@ -483,12 +647,13 @@
 		57461C582AB58C540026F903 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PIM/Preview Content\"";
-				DEVELOPMENT_TEAM = X8LBXW983N;
+				DEVELOPMENT_TEAM = MTUYFM4K8P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PIM/Info.plist;
@@ -511,6 +676,77 @@
 			};
 			name = Release;
 		};
+		576270732B299B3100115612 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"PIM_watch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = MTUYFM4K8P;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = PIM_watch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = madeline.PIM;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = madeline.PIM.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		576270742B299B3100115612 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"PIM_watch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = MTUYFM4K8P;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = PIM_watch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = madeline.PIM;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = madeline.PIM.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -528,6 +764,15 @@
 			buildConfigurations = (
 				57461C572AB58C540026F903 /* Debug */,
 				57461C582AB58C540026F903 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		576270752B299B3100115612 /* Build configuration list for PBXNativeTarget "PIM_watch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				576270732B299B3100115612 /* Debug */,
+				576270742B299B3100115612 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
