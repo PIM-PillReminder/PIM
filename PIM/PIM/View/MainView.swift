@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WatchConnectivity
 
 struct MainView: View {
     
@@ -30,94 +31,119 @@ struct MainView: View {
     }
     
     var body: some View {
-      NavigationStack {
-        VStack {
-            HStack {
-                NavigationLink(destination: SettingView()) {
-                    Image(systemName: "gearshape")
+        NavigationStack {
+            VStack {
+                HStack {
+                    NavigationLink(destination: SettingView()) {
+                        Image(systemName: "gearshape")
+                            .font(.system(size: 24))
+                            .foregroundColor(Color.green03)
+                            .padding(.leading, 20)
+                    }
+                    
+                    Spacer()
+                    
+                    // MARK: 날짜(추가될 수 있음)
+                    //                Text(dateFormatter.string(from: Date()))
+                    //                    .font(.pretendard(.bold, size: 18))
+                    
+                    Spacer()
+                    
+                    Image(systemName: "calendar")
                         .font(.system(size: 24))
-                        .foregroundColor(Color.green03)
-                        .padding(.leading, 20)
+                        .padding(.trailing, 20)
+                        .foregroundColor(Color.gray03)
+                        .opacity(50)
+                    
+                    // TODO: 2차 스프린트 - CalendarView로 연결
+                    //                NavigationLink(destination: MainView()) {
+                    //                    Image(systemName: "calendar")
+                    //                        .font(.system(size: 24))
+                    //                        .padding(.trailing, 20)
+                    //                        .foregroundColor(Color.green03)
+                    //                        .opacity(100)
+                    //                }
+                }
+                .padding(.top, 10)
+                .padding(.bottom, 50)
+                
+                VStack{
+                    Image("pill")
+                        .padding(.bottom, 30)
+                    
+                    Text(pillStatusObserver.isPillEaten ? "약 먹기 완료! 내일 만나요!" : "오늘의 약을 아직 안 먹었어요")
+                        .font(.pretendard(.bold, size: 18))
+                        .multilineTextAlignment(.center)
                 }
                 
                 Spacer()
                 
-                // MARK: 날짜(추가될 수 있음)
-//                Text(dateFormatter.string(from: Date()))
-//                    .font(.pretendard(.bold, size: 18))
+                if(pillStatusObserver.isPillEaten) {
+                    LottieView(jsonName: "happyPimiwoArms", loopMode: .playOnce, playLottie: $playLottie, tapPlay: true)
+                        .padding(.bottom, 50)
+                        .onTapGesture {
+                            playLottie.toggle()
+                        }
+                }
+                else {
+                    LottieView(jsonName:"sadPimiwoArms", loopMode: .playOnce, playLottie: $playLottie, tapPlay: true)
+                        .padding(.bottom, 50)
+                        .onTapGesture {
+                            playLottie.toggle()
+                        }
+                }
                 
                 Spacer()
                 
-                Image(systemName: "calendar")
-                    .font(.system(size: 24))
-                    .padding(.trailing, 20)
-                    .foregroundColor(Color.gray03)
-                    .opacity(50)
-                
-                // TODO: 2차 스프린트 - CalendarView로 연결
-//                NavigationLink(destination: MainView()) {
-//                    Image(systemName: "calendar")
-//                        .font(.system(size: 24))
-//                        .padding(.trailing, 20)
-//                        .foregroundColor(Color.green03)
-//                        .opacity(100)
-//                }
-            }
-            .padding(.top, 10)
-            .padding(.bottom, 50)
-            
-            VStack{
-                Image("pill")
-                    .padding(.bottom, 30)
-                
-                Text(pillStatusObserver.isPillEaten ? "약 먹기 완료! 내일 만나요!" : "오늘의 약을 아직 안 먹었어요")
-                    .font(.pretendard(.bold, size: 18))
-                    .multilineTextAlignment(.center)
-            }
-            
-            Spacer()
-            
-            if(pillStatusObserver.isPillEaten) {
-                LottieView(jsonName: "happyPimiwoArms", loopMode: .playOnce, playLottie: $playLottie, tapPlay: true)
-                    .padding(.bottom, 50)
-                    .onTapGesture {
-                        playLottie.toggle()
+                if(!pillStatusObserver.isPillEaten){
+                    Button("오늘의 약을 먹었어요") {
+                        pillStatusObserver.isPillEaten = true
+                        updatePillStatus(true)
                     }
-            }
-            else {
-                LottieView(jsonName:"sadPimiwoArms", loopMode: .playOnce, playLottie: $playLottie, tapPlay: true)
-                    .padding(.bottom, 50)
-                    .onTapGesture {
-                        playLottie.toggle()
+                    .buttonStyle(PIMGreenButton())
+                    .padding(.bottom, 10)
+                } else {
+                    Button("앗! 잘못 눌렀어요") {
+                        pillStatusObserver.isPillEaten = false
+                        updatePillStatus(false)
                     }
+                    .buttonStyle(PIMStrokeButton())
+                    .padding(.bottom, 10)
+                }
             }
-            
-            Spacer()
-            
-            if(!pillStatusObserver.isPillEaten){
-                Button("오늘의 약을 먹었어요") {
-                    pillStatusObserver.isPillEaten = true
+            .onAppear {
+                fetchPillStatusFromWatch()
+            }
+            .onChange(of: scenePhase) { newPhase in
+                if newPhase == .active {
+                    let currentDateStr = getCurrentDateString()
+                    if UserDefaults.standard.bool(forKey: currentDateStr) {
+                        pillStatusObserver.isPillEaten = true
+                    }
                 }
-                .buttonStyle(PIMGreenButton())
-                .padding(.bottom, 10)
-            } else {
-                Button("앗! 잘못 눌렀어요") {
-                    pillStatusObserver.isPillEaten = false
+            }
+            .navigationBarBackButtonHidden(true)
+        }
+    }
+    
+    // 상태 업데이트 및 워치에 전송
+    private func updatePillStatus(_ status: Bool) {
+        pillStatusObserver.isPillEaten = status
+    }
+    
+    // MARK: (GET) 워치로부터 데이터 받아오기
+    private func fetchPillStatusFromWatch() {
+        if WCSession.default.isReachable {
+            WCSession.default.sendMessage(["RequestPillStatus": true], replyHandler: { response in
+                DispatchQueue.main.async {
+                    if let status = response["PillEaten"] as? Bool {
+                        pillStatusObserver.isPillEaten = status
+                    }
                 }
-                .buttonStyle(PIMStrokeButton())
-                .padding(.bottom, 10)
+            }) { error in
+                print("Error requesting pill status: \(error.localizedDescription)")
             }
         }
-        .onChange(of: scenePhase) { newPhase in
-            if newPhase == .active {
-                let currentDateStr = getCurrentDateString()
-                if UserDefaults.standard.bool(forKey: currentDateStr) {
-                    pillStatusObserver.isPillEaten = true
-                }
-            }
-        }
-        .navigationBarBackButtonHidden(true)
-      }
     }
     
     private func getCurrentDateString() -> String {
@@ -131,21 +157,33 @@ class PillStatusObserver: ObservableObject {
         didSet {
             let currentDateStr = getCurrentDateString()
             UserDefaults.standard.set(isPillEaten, forKey: currentDateStr)
+            sendPillStatusToWatch(isPillEaten)
+            print("isPillEaten updated to: \(isPillEaten)")
             print("저장된 값 (\(currentDateStr)): \(isPillEaten)")
         }
     }
-
+    
     init() {
         self.isPillEaten = getCurrentPillStatus()
     }
-
+    
     private func getCurrentPillStatus() -> Bool {
         let currentDateStr = getCurrentDateString()
         return UserDefaults.standard.bool(forKey: currentDateStr)
     }
-
+    
     private func getCurrentDateString() -> String {
         return DateFormatter.localizedString(from: Date(), dateStyle: .medium, timeStyle: .none)
+    }
+    
+    // MARK: (POST) 워치로 데이터 보내기
+    private func sendPillStatusToWatch(_ status: Bool) {
+        if WCSession.default.isReachable {
+            WCSession.default.sendMessage(["PillEaten": status], replyHandler: nil) { error in
+                print("Error sending message: \(error.localizedDescription)")
+            }
+            print("iOS App: Sent PillEaten status (\(status)) to Watch App")
+        }
     }
 }
 
