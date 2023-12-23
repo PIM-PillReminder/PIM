@@ -47,7 +47,7 @@ struct OnboardingView2: View {
             }
             .padding(.top, 10)
             ProgressView(value: 40, total: 100)
-                .progressViewStyle(LinearProgressViewStyle(tint: .pimGreen))
+                .progressViewStyle(LinearProgressViewStyle(tint: .primaryGreen))
                 .padding(.bottom, 40)
             Text("어떤 약인가요?")
                 .font(.pretendard(.bold, size: 24))
@@ -98,8 +98,8 @@ struct OnboardingView2: View {
                       .stroke(
                           RadialGradient(
                               gradient: Gradient(stops: [
-                                  Gradient.Stop(color: .gradientGreen, location: 0),
-                                  Gradient.Stop(color: .pimGreen, location: 1)
+                                  Gradient.Stop(color: .primaryGreen, location: 0),
+                                  Gradient.Stop(color: .primaryGreen, location: 1)
                               ]),
                               center: .leading,
                               startRadius: 0,
@@ -137,8 +137,9 @@ struct OnboardingView2: View {
             .frame(width: UIScreen.main.bounds.width)
             .padding(.top, 40)
             .padding(.bottom, 10)
-            .background(Color.pimGreen)
+            .background(Color.primaryGreen)
         }
+        .background(Color.backgroundWhite)
         .navigationBarBackButtonHidden(true)
     }
     

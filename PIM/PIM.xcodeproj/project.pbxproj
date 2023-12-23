@@ -23,19 +23,13 @@
 		57461C602AB59E0A0026F903 /* OnboardingView3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C5F2AB59E0A0026F903 /* OnboardingView3.swift */; };
 		57461C622AB5B0220026F903 /* OnboardingView4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C612AB5B0220026F903 /* OnboardingView4.swift */; };
 		57461C9C2AB76ABC0026F903 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C9B2AB76ABC0026F903 /* LocalNotificationManager.swift */; };
-		575677B42AD58B4C002E01BE /* helloPimi.json in Resources */ = {isa = PBXBuildFile; fileRef = 575677B32AD58B4C002E01BE /* helloPimi.json */; };
-		575677B92AD58C64002E01BE /* clockPimi.json in Resources */ = {isa = PBXBuildFile; fileRef = 575677B52AD58C63002E01BE /* clockPimi.json */; };
-		575677BA2AD58C64002E01BE /* happyPimiwoArms.json in Resources */ = {isa = PBXBuildFile; fileRef = 575677B62AD58C64002E01BE /* happyPimiwoArms.json */; };
-		575677BC2AD58C64002E01BE /* sadPimiwoArms.json in Resources */ = {isa = PBXBuildFile; fileRef = 575677B82AD58C64002E01BE /* sadPimiwoArms.json */; };
 		5762705F2B28AD7700115612 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 5762705E2B28AD7700115612 /* .gitignore */; };
-		79326FCD2B371A3F0038CD7C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79326FCC2B371A3F0038CD7C /* Colors.xcassets */; };
 		576270672B299B2F00115612 /* PIM_watchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576270662B299B2F00115612 /* PIM_watchApp.swift */; };
 		576270692B299B2F00115612 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576270682B299B2F00115612 /* ContentView.swift */; };
 		5762706B2B299B3100115612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5762706A2B299B3100115612 /* Assets.xcassets */; };
 		5762706E2B299B3100115612 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5762706D2B299B3100115612 /* Preview Assets.xcassets */; };
 		576270712B299B3100115612 /* PIM_watch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 576270642B299B2F00115612 /* PIM_watch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		576270772B299ED800115612 /* WatchButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576270762B299ED800115612 /* WatchButtonStyle.swift */; };
-		576270792B299EFD00115612 /* WatchColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576270782B299EFD00115612 /* WatchColorExtension.swift */; };
 		5762707C2B299F5600115612 /* Pretendard-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5762707B2B299F5600115612 /* Pretendard-Thin.ttf */; };
 		5762707E2B299F5E00115612 /* Pretendard-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5762707D2B299F5E00115612 /* Pretendard-SemiBold.ttf */; };
 		576270802B299F6600115612 /* Pretendard-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5762707F2B299F6600115612 /* Pretendard-Regular.ttf */; };
@@ -45,6 +39,17 @@
 		576270882B299F8700115612 /* Pretendard-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 576270872B299F8700115612 /* Pretendard-ExtraBold.ttf */; };
 		5762708A2B299F8E00115612 /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 576270892B299F8E00115612 /* Pretendard-Bold.ttf */; };
 		5762708C2B299FB500115612 /* WatchFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5762708B2B299FB500115612 /* WatchFontExtension.swift */; };
+		7907B9672B374718002596E8 /* happyPimi.json in Resources */ = {isa = PBXBuildFile; fileRef = 7907B9632B374718002596E8 /* happyPimi.json */; };
+		7907B9682B374718002596E8 /* sadPimi.json in Resources */ = {isa = PBXBuildFile; fileRef = 7907B9642B374718002596E8 /* sadPimi.json */; };
+		7907B9692B374718002596E8 /* helloPimi.json in Resources */ = {isa = PBXBuildFile; fileRef = 7907B9652B374718002596E8 /* helloPimi.json */; };
+		7907B96B2B374733002596E8 /* clockPimi.json in Resources */ = {isa = PBXBuildFile; fileRef = 7907B96A2B374733002596E8 /* clockPimi.json */; };
+		7907B96D2B374773002596E8 /* happyPimiwoArms.json in Resources */ = {isa = PBXBuildFile; fileRef = 7907B96C2B374773002596E8 /* happyPimiwoArms.json */; };
+		7907B96F2B374781002596E8 /* sadPimiwoArms.json in Resources */ = {isa = PBXBuildFile; fileRef = 7907B96E2B374781002596E8 /* sadPimiwoArms.json */; };
+		79326FCD2B371A3F0038CD7C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79326FCC2B371A3F0038CD7C /* Colors.xcassets */; };
+		79326FD12B3728770038CD7C /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79326FD02B3728770038CD7C /* SettingViewModel.swift */; };
+		79326FD22B3728770038CD7C /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79326FD02B3728770038CD7C /* SettingViewModel.swift */; };
+		79326FD32B3736780038CD7C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79326FCC2B371A3F0038CD7C /* Colors.xcassets */; };
+		79326FD42B3736D30038CD7C /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7EE2ABA888B000D1E8F /* ColorExtension.swift */; };
 		7954A7E02AB9D082000D1E8F /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7DF2AB9D082000D1E8F /* SettingView.swift */; };
 		7954A7E22AB9D096000D1E8F /* SettingNotiVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7E12AB9D096000D1E8F /* SettingNotiVIew.swift */; };
 		7954A7ED2ABA8881000D1E8F /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7EC2ABA8881000D1E8F /* FontExtension.swift */; };
@@ -104,19 +109,13 @@
 		57461C612AB5B0220026F903 /* OnboardingView4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView4.swift; sourceTree = "<group>"; };
 		57461C9B2AB76ABC0026F903 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		57461C9D2AB773430026F903 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		575677B32AD58B4C002E01BE /* helloPimi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = helloPimi.json; sourceTree = "<group>"; };
-		575677B52AD58C63002E01BE /* clockPimi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clockPimi.json; sourceTree = "<group>"; };
-		575677B62AD58C64002E01BE /* happyPimiwoArms.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = happyPimiwoArms.json; sourceTree = "<group>"; };
-		575677B82AD58C64002E01BE /* sadPimiwoArms.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sadPimiwoArms.json; sourceTree = "<group>"; };
 		5762705E2B28AD7700115612 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		79326FCC2B371A3F0038CD7C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		576270642B299B2F00115612 /* PIM_watch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PIM_watch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		576270662B299B2F00115612 /* PIM_watchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIM_watchApp.swift; sourceTree = "<group>"; };
 		576270682B299B2F00115612 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5762706A2B299B3100115612 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5762706D2B299B3100115612 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		576270762B299ED800115612 /* WatchButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchButtonStyle.swift; sourceTree = "<group>"; };
-		576270782B299EFD00115612 /* WatchColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchColorExtension.swift; sourceTree = "<group>"; };
 		5762707B2B299F5600115612 /* Pretendard-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.ttf"; sourceTree = "<group>"; };
 		5762707D2B299F5E00115612 /* Pretendard-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.ttf"; sourceTree = "<group>"; };
 		5762707F2B299F6600115612 /* Pretendard-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.ttf"; sourceTree = "<group>"; };
@@ -126,6 +125,14 @@
 		576270872B299F8700115612 /* Pretendard-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.ttf"; sourceTree = "<group>"; };
 		576270892B299F8E00115612 /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
 		5762708B2B299FB500115612 /* WatchFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchFontExtension.swift; sourceTree = "<group>"; };
+		7907B9632B374718002596E8 /* happyPimi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = happyPimi.json; sourceTree = "<group>"; };
+		7907B9642B374718002596E8 /* sadPimi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sadPimi.json; sourceTree = "<group>"; };
+		7907B9652B374718002596E8 /* helloPimi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = helloPimi.json; sourceTree = "<group>"; };
+		7907B96A2B374733002596E8 /* clockPimi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clockPimi.json; sourceTree = "<group>"; };
+		7907B96C2B374773002596E8 /* happyPimiwoArms.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = happyPimiwoArms.json; sourceTree = "<group>"; };
+		7907B96E2B374781002596E8 /* sadPimiwoArms.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sadPimiwoArms.json; sourceTree = "<group>"; };
+		79326FCC2B371A3F0038CD7C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		79326FD02B3728770038CD7C /* SettingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		7954A7DF2AB9D082000D1E8F /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		7954A7E12AB9D096000D1E8F /* SettingNotiVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotiVIew.swift; sourceTree = "<group>"; };
 		7954A7EC2ABA8881000D1E8F /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
@@ -165,10 +172,12 @@
 		57022BF92AC45DE400070276 /* LottieFile */ = {
 			isa = PBXGroup;
 			children = (
-				575677B52AD58C63002E01BE /* clockPimi.json */,
-				575677B62AD58C64002E01BE /* happyPimiwoArms.json */,
-				575677B82AD58C64002E01BE /* sadPimiwoArms.json */,
-				575677B32AD58B4C002E01BE /* helloPimi.json */,
+				7907B96A2B374733002596E8 /* clockPimi.json */,
+				7907B9632B374718002596E8 /* happyPimi.json */,
+				7907B96E2B374781002596E8 /* sadPimiwoArms.json */,
+				7907B96C2B374773002596E8 /* happyPimiwoArms.json */,
+				7907B9652B374718002596E8 /* helloPimi.json */,
+				7907B9642B374718002596E8 /* sadPimi.json */,
 			);
 			path = LottieFile;
 			sourceTree = "<group>";
@@ -249,7 +258,6 @@
 				576270662B299B2F00115612 /* PIM_watchApp.swift */,
 				576270682B299B2F00115612 /* ContentView.swift */,
 				576270762B299ED800115612 /* WatchButtonStyle.swift */,
-				576270782B299EFD00115612 /* WatchColorExtension.swift */,
 				5762708B2B299FB500115612 /* WatchFontExtension.swift */,
 				5762706A2B299B3100115612 /* Assets.xcassets */,
 				5762706C2B299B3100115612 /* Preview Content */,
@@ -285,6 +293,7 @@
 			children = (
 				7954A7DF2AB9D082000D1E8F /* SettingView.swift */,
 				79DD3B7E2AC3DCC600837E11 /* TimePickerView.swift */,
+				79326FD02B3728770038CD7C /* SettingViewModel.swift */,
 				7954A7E12AB9D096000D1E8F /* SettingNotiVIew.swift */,
 				799B0EC92ABEEE9300AE9865 /* PIMCustomSlider.swift */,
 			);
@@ -294,10 +303,10 @@
 		7954A7EB2ABA8862000D1E8F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				799B0EC62ABEEE3D00AE9865 /* Style */,
-				7954A7EC2ABA8881000D1E8F /* FontExtension.swift */,
-				7954A7F02ABA88C0000D1E8F /* Font */,
 				7954A7EE2ABA888B000D1E8F /* ColorExtension.swift */,
+				7954A7EC2ABA8881000D1E8F /* FontExtension.swift */,
+				799B0EC62ABEEE3D00AE9865 /* Style */,
+				7954A7F02ABA88C0000D1E8F /* Font */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -414,19 +423,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				5762705F2B28AD7700115612 /* .gitignore in Resources */,
+				7907B9692B374718002596E8 /* helloPimi.json in Resources */,
 				7954A8012ABA88E8000D1E8F /* Pretendard-Thin.ttf in Resources */,
-				575677BC2AD58C64002E01BE /* sadPimiwoArms.json in Resources */,
 				7954A8032ABA88E8000D1E8F /* Pretendard-Regular.ttf in Resources */,
+				7907B9672B374718002596E8 /* happyPimi.json in Resources */,
 				7954A8002ABA88E8000D1E8F /* Pretendard-Medium.ttf in Resources */,
 				7954A7FB2ABA88E8000D1E8F /* Pretendard-ExtraLight.ttf in Resources */,
 				57461C4E2AB58C540026F903 /* Preview Assets.xcassets in Resources */,
-				575677BA2AD58C64002E01BE /* happyPimiwoArms.json in Resources */,
-				575677B92AD58C64002E01BE /* clockPimi.json in Resources */,
-				575677B42AD58B4C002E01BE /* helloPimi.json in Resources */,
+				7907B96D2B374773002596E8 /* happyPimiwoArms.json in Resources */,
 				7954A8042ABA88E8000D1E8F /* Pretendard-Light.ttf in Resources */,
+				7907B96B2B374733002596E8 /* clockPimi.json in Resources */,
 				7954A7FD2ABA88E8000D1E8F /* Pretendard-SemiBold.ttf in Resources */,
 				7954A8022ABA88E8000D1E8F /* Pretendard-Bold.ttf in Resources */,
 				57461C4B2AB58C540026F903 /* Assets.xcassets in Resources */,
+				7907B9682B374718002596E8 /* sadPimi.json in Resources */,
+				7907B96F2B374781002596E8 /* sadPimiwoArms.json in Resources */,
 				7954A7FC2ABA88E8000D1E8F /* Pretendard-ExtraBold.ttf in Resources */,
 				79326FCD2B371A3F0038CD7C /* Colors.xcassets in Resources */,
 				573942552ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf in Resources */,
@@ -439,6 +450,7 @@
 			files = (
 				576270882B299F8700115612 /* Pretendard-ExtraBold.ttf in Resources */,
 				5762707E2B299F5E00115612 /* Pretendard-SemiBold.ttf in Resources */,
+				79326FD32B3736780038CD7C /* Colors.xcassets in Resources */,
 				5762707C2B299F5600115612 /* Pretendard-Thin.ttf in Resources */,
 				576270822B299F6F00115612 /* Pretendard-Medium.ttf in Resources */,
 				576270802B299F6600115612 /* Pretendard-Regular.ttf in Resources */,
@@ -472,6 +484,7 @@
 				57022BF52AC45B7A00070276 /* LottieView.swift in Sources */,
 				57461C472AB58C520026F903 /* PIMApp.swift in Sources */,
 				7954A7E22AB9D096000D1E8F /* SettingNotiVIew.swift in Sources */,
+				79326FD12B3728770038CD7C /* SettingViewModel.swift in Sources */,
 				57461C5C2AB59B070026F903 /* OnboardingView2.swift in Sources */,
 				573942572ABEE85C0001906B /* OnboardingMainView.swift in Sources */,
 				57461C5A2AB5919F0026F903 /* OnboardingView1.swift in Sources */,
@@ -484,9 +497,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				576270692B299B2F00115612 /* ContentView.swift in Sources */,
+				79326FD22B3728770038CD7C /* SettingViewModel.swift in Sources */,
 				576270772B299ED800115612 /* WatchButtonStyle.swift in Sources */,
 				576270672B299B2F00115612 /* PIM_watchApp.swift in Sources */,
-				576270792B299EFD00115612 /* WatchColorExtension.swift in Sources */,
+				79326FD42B3736D30038CD7C /* ColorExtension.swift in Sources */,
 				5762708C2B299FB500115612 /* WatchFontExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -682,7 +696,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOL_FRAMEWORKS = SwiftUI;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -718,7 +733,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOL_FRAMEWORKS = SwiftUI;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

@@ -25,7 +25,7 @@ struct OnboardingView4: View {
               presentationMode.wrappedValue.dismiss()
             }) {
               Image(systemName: "chevron.left")
-                .foregroundColor(Color.black)
+                .foregroundColor(Color.pimBlack)
                 .font(.pretendard(.regular, size: 24))
             }
             .padding(.leading, 15)
@@ -39,7 +39,7 @@ struct OnboardingView4: View {
         
         // TODO: 2차 업데이트 시 value: 80으로 변경
         ProgressView(value: 0, total: 100)
-          .progressViewStyle(LinearProgressViewStyle(tint: .pimGreen))
+          .progressViewStyle(LinearProgressViewStyle(tint: .primaryGreen))
           .padding(.bottom, 30)
         Text("몇 시에 약을 먹나요?")
           .font(.pretendard(.bold, size: 24))
@@ -47,7 +47,7 @@ struct OnboardingView4: View {
           .padding(.bottom, 9)
         Text("선택한 복용 시간을 바탕으로 알림이 울려요.")
           .font(.pretendard(.regular, size: 16))
-          .foregroundColor(.gray)
+          .foregroundColor(.subtitleGray)
           .padding(.bottom, 10)
         LottieView(jsonName: "clockPimi", loopMode: .repeat(10), playLottie: $playLottie)
         
@@ -88,8 +88,9 @@ struct OnboardingView4: View {
         .frame(width: UIScreen.main.bounds.width)
         .padding(.top, 40)
         .padding(.bottom, 10)
-        .background(Color.green03)
+        .background(Color.primaryGreen)
       }
+      .background(Color.backgroundWhite)
     }
     .navigationBarBackButtonHidden(true)
     .onAppear {

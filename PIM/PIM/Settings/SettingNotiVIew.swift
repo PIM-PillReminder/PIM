@@ -22,9 +22,6 @@ struct SettingNotiView: View {
   var body: some View {
     
     NavigationStack {
-      ZStack {
-        Color.gray01
-          .ignoresSafeArea()
         VStack {
           HStack {
             Spacer()
@@ -32,7 +29,7 @@ struct SettingNotiView: View {
               showSheet2 = false
             } label: {
               Image(systemName: "xmark")
-                .foregroundStyle(Color.black)
+                .foregroundStyle(Color.pimBlack)
                 .font(.title3)
             }
             .padding(.top)
@@ -43,7 +40,7 @@ struct SettingNotiView: View {
                 .font(.pretendard(.medium, size: 18))
               Spacer()
               Toggle("", isOn: $isAllowedNoti)
-                .toggleStyle(SwitchToggleStyle(tint: Color.green03))
+                .toggleStyle(SwitchToggleStyle(tint: Color.primaryGreen))
                 .onChange(of: isAllowedNoti) { notiActivated in
                   if notiActivated {
                     // 알림 활성화
@@ -152,7 +149,6 @@ struct SettingNotiView: View {
         //                    let repeatingTimes = notificationManager.repeatingTimes
         //                    print(repeatingTimes)
         //                }
-      }
     }
   }
 }

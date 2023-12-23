@@ -58,11 +58,12 @@ struct NotiSlider: View {
             ZStack {
                 ZStack {
                     RoundedRectangle(cornerRadius: radius)
-                        .foregroundColor(.lightGray)
+                        .foregroundColor(.boxChevronGray)
+                  //MARK: 색상 추후 수정
                     HStack {
                         // 스냅된 값을 기반으로 표시 값을 설정
                         RoundedRectangle(cornerRadius: radius)
-                            .foregroundColor(.green03)
+                            .foregroundColor(.primaryGreen)
                             .frame(width: (self.value * maxValue) + (thumbSize / 2))
                         
                         Spacer()
@@ -73,14 +74,14 @@ struct NotiSlider: View {
                 HStack {
                     ZStack {
                         Circle()
-                            .foregroundColor(Color.white)
+                            .foregroundColor(Color.pimWhite)
                             .frame(width: thumbSize, height: thumbSize)
                             // 원의 위치를 스냅된 값에 따라 조정
                             .offset(x: snappedValue * (maxValue - minValue))
                             .shadow(radius: 4)
                         
                         Circle()
-                            .foregroundColor(Color.green03)
+                            .foregroundColor(Color.primaryGreen)
                             .frame(width: thumbSize * 0.5, height: thumbSize * 0.5)
                             // 원의 위치를 스냅된 값에 따라 조정
                             .offset(x: snappedValue * (maxValue - minValue))

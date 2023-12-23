@@ -16,9 +16,6 @@ struct TimePickerView: View {
   @StateObject var settingViewModel: SettingViewModel
   
   var body: some View {
-    ZStack {
-      Color.gray01
-        .ignoresSafeArea()
       VStack {
         HStack {
           Spacer()
@@ -26,26 +23,22 @@ struct TimePickerView: View {
             showSheet1 = false
           } label: {
             Image(systemName: "xmark")
-              .foregroundStyle(Color.black)
+              .foregroundStyle(Color.pimBlack)
               .font(.title3)
           }
           .padding(.top)
         }
-        GroupBox {
-          DatePicker(
-            "",
-            selection: $selectedTime,
-            displayedComponents: [.hourAndMinute]
-          )
-          .labelsHidden()
-          .datePickerStyle(.wheel)
-          .environment(\.locale, .init(identifier: "ko_KR"))
-          .padding(.vertical, 30)
-          
-        }
-        .groupBoxStyle(CustomListGroupBoxStyle())
-        .padding(.vertical)
-        Spacer()
+        
+        DatePicker(
+          "",
+          selection: $selectedTime,
+          displayedComponents: [.hourAndMinute]
+        )
+        .labelsHidden()
+        .datePickerStyle(.wheel)
+        .environment(\.locale, .init(identifier: "ko_KR"))
+        .padding(.bottom, UIScreen.main.bounds.width * 0.12)
+        
         Button(action: {
           // 1. 이전 알림 삭제
           UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
@@ -65,15 +58,8 @@ struct TimePickerView: View {
         Spacer()
       }
       .padding(.horizontal, 18)
-      .toolbar {
-        Button {
-          showSheet1 = false
-        } label: {
-          Image(systemName: "xmark")
-            .foregroundColor(.black)
-        }
-      }
-    }
+      .background(Color.modalGray)
+    
     .onAppear {
       selectedTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? Date()
     }
