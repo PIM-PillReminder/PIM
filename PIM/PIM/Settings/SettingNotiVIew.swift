@@ -63,22 +63,6 @@ struct SettingNotiView: View {
                   }
                 }
             }
-//            .alert(isPresented: $isNotAuthorized) {
-//              Alert(
-//                title: Text(""),
-//                message: Text("알람 설정을 변경하려면 알람 권한을 허용해야 합니다."),
-//                primaryButton: .default(Text("취소")),
-//                secondaryButton: .default(Text("설정").bold(), action: {
-//                  UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-//                }))
-//            }
-//            .onAppear {
-//              UNUserNotificationCenter.current().getNotificationSettings { settings in
-//                  if settings.authorizationStatus != .authorized {
-//                      isNotAuthorized = true
-//                  }
-//            }
-//            }
             .padding(.horizontal, 10)
             .padding(.vertical, 5)
           }

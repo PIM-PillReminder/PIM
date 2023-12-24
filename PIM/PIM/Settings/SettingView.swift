@@ -14,8 +14,8 @@ struct SettingView: View {
   @State var showSheet = false
   @State var showSheet2 = false
   @State private var isNotificationsEnabled: Bool = false
-  @State private var selectedTime: Date = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? Date()
-  @ObservedObject var settingViewModel = SettingViewModel()
+  @State private var selectedTime: Date? = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? nil
+  @StateObject var settingViewModel = SettingViewModel()
   @Environment(\.presentationMode) var presentationMode
   
   let notificationManager = LocalNotificationManager()
@@ -86,6 +86,7 @@ struct SettingView: View {
               TimePickerView(showSheet1: $showSheet, settingViewModel: settingViewModel )
                 .presentationDetents([.height(geo.size.width)])
                 .presentationDragIndicator(.hidden)
+                .environment(\.scenePhase, scenePhase)
             }
           }
           .groupBoxStyle(CustomListGroupBoxStyle())
@@ -160,10 +161,12 @@ struct SettingView: View {
     }
     .onAppear {
       checkNotificationSettings()
+      settingViewModel.selectedTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? nil
     }
     .onChange(of: scenePhase) {
       if scenePhase == .inactive || scenePhase == .background {
         checkNotificationSettings()
+        settingViewModel.selectedTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? nil
       }
     }
   }
@@ -174,6 +177,9 @@ struct SettingView: View {
               isNotificationsEnabled = settings.authorizationStatus == .authorized
           }
       }
+  }
+  private func setSelectedTime() {
+    settingViewModel.selectedTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? nil
   }
 }
 
