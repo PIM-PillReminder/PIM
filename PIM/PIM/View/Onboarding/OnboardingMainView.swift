@@ -23,7 +23,7 @@ struct OnboardingMainView: View {
                 
                 Text("당신의 피임약 관리를\npim이 도와줄게요.")
                     .font(.pretendard(.regular, size: 16))
-                    .foregroundColor(Color.gray)
+                    .foregroundColor(.subtitleGray)
                     .multilineTextAlignment(.center)
                     .lineSpacing(3)
                 
@@ -31,7 +31,7 @@ struct OnboardingMainView: View {
                     
                 Text("pim을 더 잘 이용하기 위해\n몇 가지 질문에 답이 필요해요.")
                     .font(.pretendard(.regular, size: 16))
-                    .foregroundColor(Color.black)
+                    .foregroundColor(Color.pimBlack)
                     .multilineTextAlignment(.center)
                     .lineSpacing(3)
                     .padding(.bottom, 80)
@@ -40,14 +40,15 @@ struct OnboardingMainView: View {
                 NavigationLink(destination: OnboardingView4(selectedTime: Date())) {
                     Text("시작하기")
                         .font(.pretendard(.bold, size: 20))
-                        .foregroundColor(Color.white)
+                        .foregroundColor(Color.pimWhite)
                         .padding(40)
                 }
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.03)
                 .padding(.top, 40)
                 .padding(.bottom, 10)
-                .background(Color.green03)
+                .background(Color.primaryGreen)
             }
+            .background(Color.backgroundWhite)
         }
         .navigationBarBackButtonHidden(true)
     }

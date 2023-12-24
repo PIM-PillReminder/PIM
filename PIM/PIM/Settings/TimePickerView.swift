@@ -11,14 +11,12 @@ struct TimePickerView: View {
   // 설정 화면에 있는 피커랑 온보딩 피커를 통일하는 게 좋을 것 같아여...! 지금은 이렇게 해두고 나중에 하나의 뷰로 만들어볼게요!!!
   //    @State var selectedTime: Date
   @Binding var showSheet1: Bool
+//  @Binding var displayedTime: Date?
   let notificationManager = LocalNotificationManager()
   @State var selectedTime: Date = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? Date()
-  @StateObject var settingViewModel: SettingViewModel
+  @ObservedObject var settingViewModel: SettingViewModel
   
   var body: some View {
-    ZStack {
-      Color.gray01
-        .ignoresSafeArea()
       VStack {
         HStack {
           Spacer()
@@ -26,26 +24,22 @@ struct TimePickerView: View {
             showSheet1 = false
           } label: {
             Image(systemName: "xmark")
-              .foregroundStyle(Color.black)
+              .foregroundStyle(Color.pimBlack)
               .font(.title3)
           }
           .padding(.top)
         }
-        GroupBox {
-          DatePicker(
-            "",
-            selection: $selectedTime,
-            displayedComponents: [.hourAndMinute]
-          )
-          .labelsHidden()
-          .datePickerStyle(.wheel)
-          .environment(\.locale, .init(identifier: "ko_KR"))
-          .padding(.vertical, 30)
-          
-        }
-        .groupBoxStyle(CustomListGroupBoxStyle())
-        .padding(.vertical)
-        Spacer()
+        
+        DatePicker(
+          "",
+          selection: $selectedTime,
+          displayedComponents: [.hourAndMinute]
+        )
+        .labelsHidden()
+        .datePickerStyle(.wheel)
+        .environment(\.locale, .init(identifier: "ko_KR"))
+        .padding(.bottom, UIScreen.main.bounds.width * 0.12)
+        
         Button(action: {
           // 1. 이전 알림 삭제
           UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
@@ -56,6 +50,7 @@ struct TimePickerView: View {
           
           // 3. 스케줄링
           notificationManager.schedule()
+//          displayedTime = selectedTime
           settingViewModel.selectedTime = selectedTime
           showSheet1 = false
         }) {
@@ -65,17 +60,13 @@ struct TimePickerView: View {
         Spacer()
       }
       .padding(.horizontal, 18)
-      .toolbar {
-        Button {
-          showSheet1 = false
-        } label: {
-          Image(systemName: "xmark")
-            .foregroundColor(.black)
-        }
-      }
-    }
+      .background(Color.modalGray)
+    
     .onAppear {
       selectedTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? Date()
     }
+//    .onDisappear {
+//      settingViewModel.selectedTime = selectedTime
+//    }
   }
 }

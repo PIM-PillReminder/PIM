@@ -37,7 +37,7 @@ struct MainView: View {
                     NavigationLink(destination: SettingView()) {
                         Image(systemName: "gearshape")
                             .font(.system(size: 24))
-                            .foregroundColor(Color.green03)
+                            .foregroundColor(Color.primaryGreen)
                             .padding(.leading, 20)
                     }
                     
@@ -52,7 +52,7 @@ struct MainView: View {
                     Image(systemName: "calendar")
                         .font(.system(size: 24))
                         .padding(.trailing, 20)
-                        .foregroundColor(Color.gray03)
+                        .foregroundColor(.disabledGray)
                         .opacity(50)
                     
                     // TODO: 2차 스프린트 - CalendarView로 연결
@@ -79,14 +79,14 @@ struct MainView: View {
                 Spacer()
                 
                 if(pillStatusObserver.isPillEaten) {
-                    LottieView(jsonName: "happyPimiwoArms", loopMode: .playOnce, playLottie: $playLottie, tapPlay: true)
+                    LottieView(jsonName: "happyPimi", loopMode: .playOnce, playLottie: $playLottie, tapPlay: true)
                         .padding(.bottom, 50)
                         .onTapGesture {
                             playLottie.toggle()
                         }
                 }
                 else {
-                    LottieView(jsonName:"sadPimiwoArms", loopMode: .playOnce, playLottie: $playLottie, tapPlay: true)
+                    LottieView(jsonName:"sadPimi", loopMode: .playOnce, playLottie: $playLottie, tapPlay: true)
                         .padding(.bottom, 50)
                         .onTapGesture {
                             playLottie.toggle()
@@ -123,6 +123,8 @@ struct MainView: View {
                 }
             }
             .navigationBarBackButtonHidden(true)
+            .navigationTitle("")
+            .background(Color.backgroundWhite)
         }
     }
     

@@ -35,7 +35,7 @@ struct OnboardingView3: View {
                 }
                 .padding(.top, 10)
                 ProgressView(value: 60, total: 100)
-                    .progressViewStyle(LinearProgressViewStyle(tint: .pimGreen))
+                    .progressViewStyle(LinearProgressViewStyle(tint: .primaryGreen))
                     .padding(.bottom, 40)
                 Text("현재 복용중인 패키지를\n시작한 알려주세요")
                     .font(.pretendard(.bold, size: 24))
@@ -71,8 +71,9 @@ struct OnboardingView3: View {
                 .frame(width: UIScreen.main.bounds.width)
                 .padding(.top, 40)
                 .padding(.bottom, 10)
-                .background(Color.pimGreen)
+                .background(Color.primaryGreen)
             }
+            .background(Color.backgroundWhite)
         }
         .navigationBarBackButtonHidden(true)
     }

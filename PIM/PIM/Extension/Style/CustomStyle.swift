@@ -22,7 +22,7 @@ struct PIMGreenButton: ButtonStyle {
             .frame(height: 74)
             .background(
                 RoundedRectangle(cornerRadius: 37.5)
-                    .foregroundColor(.green03)
+                    .foregroundColor(.primaryGreen)
             )
             .scaleEffect(configuration.isPressed ? scaledAmount : 1.0)
             .brightness(configuration.isPressed ? 0.05 : 0)
@@ -46,7 +46,7 @@ struct PIMSmallGreenButton: ButtonStyle {
             .frame(height: 49)
             .background(
                 RoundedRectangle(cornerRadius: 37.5)
-                    .foregroundColor(.green03)
+                    .foregroundColor(.primaryGreen)
             )
             .scaleEffect(configuration.isPressed ? scaledAmount : 1.0)
             .brightness(configuration.isPressed ? 0.05 : 0)
@@ -62,14 +62,14 @@ struct PIMStrokeButton: ButtonStyle {
        }
     func makeBody (configuration: Configuration) -> some View {
         configuration.label
-            .foregroundColor(.green03)
+            .foregroundColor(.buttonStrokeGreen)
             .font(.pretendard(.bold, size: 20))
             .multilineTextAlignment(.center)
             .frame(width: UIScreen.main.bounds.width * 0.9)
             .frame(height: 74)
             .background(
                 RoundedRectangle(cornerRadius: 37.5)
-                    .stroke(Color.green03, lineWidth: 2)
+                    .stroke(Color.buttonStrokeGreen, lineWidth: 2)
                     .foregroundColor(.clear)
             )
             .scaleEffect(configuration.isPressed ? scaledAmount : 1.0)
@@ -87,14 +87,14 @@ struct PIMSmallStrokeButton: ButtonStyle {
     func makeBody (configuration: Configuration) -> some View {
         configuration.label
             .padding(.horizontal)
-            .foregroundColor(.green03)
+            .foregroundColor(.buttonStrokeGreen)
             .font(.pretendard(.bold, size: 18))
             .multilineTextAlignment(.center)
             .frame(maxWidth: .infinity)
             .frame(height: 49)
             .background(
                 RoundedRectangle(cornerRadius: 37.5)
-                    .stroke(Color.green03, lineWidth: 2)
+                    .stroke(Color.buttonStrokeGreen, lineWidth: 2)
                     .foregroundColor(.clear)
             )
             .scaleEffect(configuration.isPressed ? scaledAmount : 1.0)
@@ -119,7 +119,7 @@ struct OnboardingButton: ButtonStyle {
             .frame(height: 100)
             .background(
                 Rectangle()
-                    .foregroundColor(.green03)
+                    .foregroundColor(.primaryGreen)
             )
             .scaleEffect(configuration.isPressed ? scaledAmount : 1.0)
             .brightness(configuration.isPressed ? 0.1 : 0)

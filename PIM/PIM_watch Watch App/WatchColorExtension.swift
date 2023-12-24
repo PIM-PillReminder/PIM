@@ -9,6 +9,19 @@ import Foundation
 import SwiftUI
 
 extension Color {
+//    static let backgroundGray = Color("backgroundGray")
+//    static let backgroundWhite = Color("backgroundWhite")
+//    static let boxWhite = Color("boxWhite")
+//    static let buttonStrokeGreen = Color("buttonStrokeGreen")
+//    static let disabledGray = Color("disabledGray")
+//    static let primaryGreen = Color("primaryGreen")
+//    static let subtitleGray = Color("subtitleGray")
+//    static let modalGray = Color("modalGray")
+//    static let boxChevronGray = Color("boxChevronGray")
+//    static let pimBlack = Color("pimBlack")
+//    static let settingDisabledGray = Color("settingDisabledGray")
+//    static let pimWhite = Color("pimWhite")
+
     static let pimGreen = Color(hex: "#6CC244")
     static let lightGray = Color(hex: "#F2F2F2")
     static let green01 = Color(hex: "#9BDDA4")
@@ -24,20 +37,6 @@ extension Color {
     static let gray02 = Color(hex: "#D9D9D9")
     static let gray03 = Color(hex: "#9D9D9D")
     static let gradientGreen = Color(hex: "C8E770")
-    // lightGreen은 투명도만 조절한 거라 따로 추가는 안 했습니다
-    
-  init(hex: String) {
-    let scanner = Scanner(string: hex)
-    _ = scanner.scanString("#")
-    
-    var rgb: UInt64 = 0
-    scanner.scanHexInt64(&rgb)
-    
-    let r = Double((rgb >> 16) & 0xFF) / 255.0
-    let g = Double((rgb >>  8) & 0xFF) / 255.0
-    let b = Double((rgb >>  0) & 0xFF) / 255.0
-    self.init(red: r, green: g, blue: b)
-  }
 }
 
 struct Color_Previews: PreviewProvider {

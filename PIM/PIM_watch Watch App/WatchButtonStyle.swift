@@ -14,12 +14,12 @@ struct PIMGreenButton: View {
     var body: some View {
         Button(action: action) {
             Text(title)
-                .foregroundColor(.white)
+                .foregroundColor(Color.pimWhite)
                 .font(.system(size: 15, weight: .medium))
                 .frame(maxWidth: .infinity)
                 .padding()
                 .background(RoundedRectangle(cornerRadius: 16)
-                                .fill(Color.green03))
+                                .fill(Color.primaryGreen))
         }
     }
 }
@@ -31,12 +31,12 @@ struct PIMStrokeButton: View {
     var body: some View {
         Button(action: action) {
             Text(title)
-                .foregroundColor(Color.green03)
+                .foregroundColor(Color.buttonStrokeGreen)
                 .font(.system(size: 15, weight: .medium))
                 .frame(maxWidth: .infinity)
                 .padding()
                 .background(RoundedRectangle(cornerRadius: 16)
-                                .stroke(Color.green03, lineWidth: 1))
+                                .stroke(Color.buttonStrokeGreen, lineWidth: 1))
         }
     }
 }

@@ -14,8 +14,9 @@ struct SettingView: View {
   @State var showSheet = false
   @State var showSheet2 = false
   @State private var isNotificationsEnabled: Bool = false
-  @State private var selectedTime: Date = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? Date()
-  @ObservedObject var settingViewModel = SettingViewModel()
+  @State private var selectedTime: Date? = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? nil
+  @StateObject var settingViewModel = SettingViewModel()
+  @Environment(\.presentationMode) var presentationMode
   
   let notificationManager = LocalNotificationManager()
   //TODO: 한국어 표기
@@ -30,15 +31,27 @@ struct SettingView: View {
   
   var body: some View {
     GeometryReader { geo in
-      ZStack {
-        
-        Color.gray01
-          .ignoresSafeArea()
-        
         VStack {
+          ZStack {
+            HStack {
+              Button(action: {
+                presentationMode.wrappedValue.dismiss()
+              }) {
+                Image(systemName: "chevron.left")
+                  .foregroundColor(Color.pimBlack)
+                  .font(.title3)
+              }
+              Spacer()
+            }
+            Text("설정")
+              .font(.pretendard(.bold, size: 18))
+              .frame(alignment: .center)
+          }
+          .padding(.bottom, UIScreen.main.bounds.width * 0.08)
+
           GroupBox {
             plainCell(icon: "pill", text: "복용중인 약")
-              .foregroundColor(Color.gray03)
+              .foregroundColor(Color.settingDisabledGray)
               .font(.pretendard(.medium, size: 18))
             Divider()
             Button {
@@ -46,30 +59,38 @@ struct SettingView: View {
             } label: {
               HStack {
                 Image(systemName: "clock")
+                  .font(.title3)
                   .padding(.trailing, 8)
+                  .foregroundStyle(Color.pimBlack)
                 
                 if let selectedTime = settingViewModel.selectedTime {
                   Text("\(selectedTime, formatter: SettingView.dateFormatter)")
+                    .font(.pretendard(.medium, size: 18))
                     .environment(\.locale, .init(identifier: "ko_KR"))
+                    .foregroundStyle(Color.pimBlack)
                 } else {
                   Text("알림 시간을 선택하지 않았습니다.")
                     .font(.pretendard(.medium, size: 18))
+                    .foregroundStyle(Color.pimBlack)
                 }
+                
                 Spacer()
                 Image(systemName: "chevron.right")
-                  .foregroundColor(Color.gray02)
+                  .foregroundColor(.boxChevronGray)
+                  .font(.title3)
               }
               .padding(.vertical, 8)
               .padding(.horizontal, 10)
             }
             .sheet(isPresented: $showSheet) {
               TimePickerView(showSheet1: $showSheet, settingViewModel: settingViewModel )
-                .presentationDetents([.height(geo.size.width * 1.3 )])
+                .presentationDetents([.height(geo.size.width)])
                 .presentationDragIndicator(.hidden)
+                .environment(\.scenePhase, scenePhase)
             }
           }
           .groupBoxStyle(CustomListGroupBoxStyle())
-          .padding(.bottom)
+          .padding(.vertical)
           
           GroupBox {
             Button {
@@ -78,15 +99,18 @@ struct SettingView: View {
             } label: {
               HStack {
                 Image(systemName: "bell")
+                  .font(.title3)
                   .padding(.trailing, 8)
+                  .foregroundStyle(Color.pimBlack)
                 
                 Text("알림")
                   .font(.pretendard(.medium, size: 18))
+                  .foregroundStyle(Color.pimBlack)
                 
                 Spacer()
                 
                 Toggle("", isOn: .constant(isNotificationsEnabled))
-                  .toggleStyle(SwitchToggleStyle(tint: Color.pimGreen))
+                  .toggleStyle(SwitchToggleStyle(tint: Color.primaryGreen))
                 //                Image(systemName: "chevron.right")
                 //                  .foregroundColor(Color.gray02)
                   .allowsHitTesting(false)
@@ -101,43 +125,48 @@ struct SettingView: View {
             }
             Divider()
             plainCell(icon: "message", text: "FAQ")
-              .foregroundColor(Color.gray03)
+              .foregroundColor(Color.settingDisabledGray)
             Divider()
             HStack{
               Image(systemName: "lock")
                 .padding(.trailing, 8)
+                .font(.title3)
               Text("앱 잠금")
                 .font(.pretendard(.medium, size: 18))
               Spacer()
               Toggle("", isOn: $isLocked)
-                .toggleStyle(SwitchToggleStyle(tint: Color.pimGreen))
+                .toggleStyle(SwitchToggleStyle(tint: Color.primaryGreen))
                 .disabled(isDeactivated)
             }
-            .foregroundColor(Color.gray03)
+            .foregroundColor(Color.settingDisabledGray)
             .padding(.horizontal, 10)
             .padding(.vertical, 5)
             
             Divider()
             
             plainCell(icon: "arrow.down.to.line", text: "데이터 백업")
-              .foregroundColor(Color.gray03)
+              .foregroundColor(Color.settingDisabledGray)
           }
           .groupBoxStyle(CustomListGroupBoxStyle())
           
           Spacer()
         }
-        .padding(.vertical)
+        .padding(.top, 10)
+        .padding(.bottom)
         .padding(.horizontal, 18)
-        .navigationTitle("설정")
-        .navigationBarTitleDisplayMode(.inline)
-      }
+//        .navigationTitle("설정")
+//        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .background(Color.backgroundGray)
     }
     .onAppear {
       checkNotificationSettings()
+      settingViewModel.selectedTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? nil
     }
     .onChange(of: scenePhase) {
       if scenePhase == .inactive || scenePhase == .background {
         checkNotificationSettings()
+        settingViewModel.selectedTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? nil
       }
     }
   }
@@ -148,6 +177,9 @@ struct SettingView: View {
               isNotificationsEnabled = settings.authorizationStatus == .authorized
           }
       }
+  }
+  private func setSelectedTime() {
+    settingViewModel.selectedTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? nil
   }
 }
 
@@ -164,6 +196,7 @@ func plainCell(icon: String, text: String) -> some View {
   
   HStack {
     Image(systemName: "\(icon)")
+      .font(.title3)
       .padding(.trailing, 8)
     
     Text("\(text)")
@@ -173,7 +206,7 @@ func plainCell(icon: String, text: String) -> some View {
     
     NavigationLink(destination: Text("추후 업데이트 예정")) {
       Image(systemName: "chevron.right")
-        .foregroundColor(.gray02)
+        .foregroundColor(.settingDisabledGray)
     }
     .disabled(isDeactivated)
   }
@@ -190,6 +223,6 @@ struct CustomListGroupBoxStyle: GroupBoxStyle {
     }
     .frame(maxWidth: .infinity)
     .padding()
-    .background(RoundedRectangle(cornerRadius: 16).fill(Color.white))
+    .background(RoundedRectangle(cornerRadius: 16).fill(Color.boxWhite))
   }
 }

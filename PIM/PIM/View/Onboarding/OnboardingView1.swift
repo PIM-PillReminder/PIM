@@ -36,7 +36,7 @@ struct OnboardingView1: View {
             }
             .padding(.top, 10)
             ProgressView(value: 20, total: 100)
-                .progressViewStyle(LinearProgressViewStyle(tint: .pimGreen))
+                .progressViewStyle(LinearProgressViewStyle(tint: Color("primaryGreen")))
                 .padding(.bottom, 40)
             Text("현재 복용중인 약이 있나요?")
                 .font(.pretendard(.bold, size: 24))
@@ -56,7 +56,7 @@ struct OnboardingView1: View {
                         Rectangle()
                           .foregroundColor(.clear)
                           .frame(width: UIScreen.main.bounds.width * 0.9, height: 80)
-                          .background(.white)
+                          .background(Color(.pimWhite))
                           .cornerRadius(16)
                           .overlay(
                             RoundedRectangle(cornerRadius: 16)
@@ -64,8 +64,8 @@ struct OnboardingView1: View {
                                 .stroke(
                                     RadialGradient(
                                         gradient: Gradient(stops: [
-                                            Gradient.Stop(color: .gradientGreen, location: 0),
-                                            Gradient.Stop(color: .pimGreen, location: 1)
+                                            Gradient.Stop(color: .primaryGreen, location: 0),
+                                            Gradient.Stop(color: .primaryGreen, location: 1)
                                         ]),
                                         center: .leading,
                                         startRadius: 0,
@@ -77,12 +77,12 @@ struct OnboardingView1: View {
                     }
                     else{
                         Rectangle()
-                            .foregroundColor(.lightGray)
+                            .foregroundColor(.boxChevronGray)
                             .frame(width: UIScreen.main.bounds.width * 0.9, height: 80)
                             .cornerRadius(16)
                     }
                     Text("네, 있어요")
-                        .foregroundColor(isYesButtonClicked ? .black : .gray)
+                        .foregroundColor(isYesButtonClicked ? .pimBlack : .gray)
                         .font(.pretendard(.bold, size: 18))
                 }
             }
@@ -97,7 +97,7 @@ struct OnboardingView1: View {
                         Rectangle()
                           .foregroundColor(.clear)
                           .frame(width: UIScreen.main.bounds.width * 0.9, height: 80)
-                          .background(.white)
+                          .background(Color.pimWhite)
                           .cornerRadius(16)
                           .overlay(
                             RoundedRectangle(cornerRadius: 16)
@@ -105,8 +105,8 @@ struct OnboardingView1: View {
                                 .stroke(
                                     RadialGradient(
                                         gradient: Gradient(stops: [
-                                            Gradient.Stop(color: .gradientGreen, location: 0),
-                                            Gradient.Stop(color: .pimGreen, location: 1)
+                                            Gradient.Stop(color: .primaryGreen, location: 0),
+                                            Gradient.Stop(color: .primaryGreen, location: 1)
                                         ]),
                                         center: .leading,
                                         startRadius: 0,
@@ -118,7 +118,7 @@ struct OnboardingView1: View {
                     }
                     else{
                         Rectangle()
-                            .foregroundColor(.lightGray)
+                            .foregroundColor(.boxChevronGray)
                             .frame(width: UIScreen.main.bounds.width * 0.9, height: 80)
                             .cornerRadius(16)
                     }
@@ -138,8 +138,9 @@ struct OnboardingView1: View {
             .frame(width: UIScreen.main.bounds.width)
             .padding(.top, 40)
             .padding(.bottom, 10)
-            .background(Color.pimGreen)
+            .background(Color.primaryGreen)
         }
+        .background(Color.backgroundWhite)
         .navigationBarBackButtonHidden(true)
     }
 }

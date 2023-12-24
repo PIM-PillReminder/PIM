@@ -38,7 +38,7 @@ struct ContentView: View {
             Text(!isPillEaten ? "오늘의 약을 아직 안 먹었어요" : "약 먹기 완료! 내일 만나요!")
                 .font(.system(size: 15))
                 .fontWeight(.medium)
-                .foregroundStyle(Color.green04)
+                .foregroundStyle(Color.watchTextGreen)
                 .padding(.bottom, 10)
             
             Spacer()
@@ -64,7 +64,7 @@ struct ContentView: View {
                 })
             }
         }
-        .background(Color.white)
+        .background(Color.backgroundWhite)
         .onAppear {
             isPillEaten = pillStatusObserver.isPillEaten
         }
