@@ -185,6 +185,7 @@
 		573942582ABEE8820001906B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7954A7DE2AB9D069000D1E8F /* Settings */,
 				57022BF42AC45B7A00070276 /* LottieView.swift */,
 				57461C5D2AB59D5F0026F903 /* MainView.swift */,
 				573942592ABEE88B0001906B /* Onboarding */,
@@ -230,7 +231,6 @@
 				57461C482AB58C520026F903 /* ContentView.swift */,
 				57022BF92AC45DE400070276 /* LottieFile */,
 				7954A7EB2ABA8862000D1E8F /* Extension */,
-				7954A7DE2AB9D069000D1E8F /* Settings */,
 				573942582ABEE8820001906B /* View */,
 				57461C9B2AB76ABC0026F903 /* LocalNotificationManager.swift */,
 				57461C9D2AB773430026F903 /* Info.plist */,

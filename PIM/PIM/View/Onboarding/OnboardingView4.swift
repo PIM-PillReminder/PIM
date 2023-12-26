@@ -47,7 +47,7 @@ struct OnboardingView4: View {
           .padding(.bottom, 9)
         Text("선택한 복용 시간을 바탕으로 알림이 울려요.")
           .font(.pretendard(.regular, size: 16))
-          .foregroundColor(.subtitleGray)
+          .foregroundColor(Color.subtitleGray)
           .padding(.bottom, 10)
         LottieView(jsonName: "clockPimi", loopMode: .repeat(10), playLottie: $playLottie)
         
