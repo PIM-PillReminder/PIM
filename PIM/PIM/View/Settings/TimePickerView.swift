@@ -18,18 +18,22 @@ struct TimePickerView: View {
   
   var body: some View {
       VStack {
-        HStack {
-          Spacer()
-          Button {
-            showSheet1 = false
-          } label: {
-            Image(systemName: "xmark")
-              .foregroundStyle(Color.pimBlack)
-              .font(.title3)
+        ZStack(alignment: .centerFirstTextBaseline) {
+          Text("알람 시간 설정하기")
+            .font(.pretendard(.bold, size: 18))
+            .foregroundStyle(Color.pimBlack)
+          HStack {
+            Spacer()
+            Button {
+              showSheet1 = false
+            } label: {
+              Image(systemName: "xmark")
+                .foregroundStyle(Color.pimBlack)
+                .font(.title3)
+            }
           }
-          .padding(.top)
         }
-        
+        .padding(.top, UIScreen.main.bounds.width * 0.06)
         DatePicker(
           "",
           selection: $selectedTime,

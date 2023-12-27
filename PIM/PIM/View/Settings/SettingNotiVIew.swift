@@ -23,17 +23,22 @@ struct SettingNotiView: View {
     
     NavigationStack {
         VStack {
-          HStack {
-            Spacer()
-            Button {
-              showSheet2 = false
-            } label: {
-              Image(systemName: "xmark")
-                .foregroundStyle(Color.pimBlack)
-                .font(.title3)
+          ZStack(alignment: .center) {
+            Text("알람 시간 설정하기")
+              .font(.pretendard(.bold, size: 18))
+            HStack {
+              Spacer()
+              Button {
+                showSheet2 = false
+              } label: {
+                Image(systemName: "xmark")
+                  .foregroundStyle(Color.pimBlack)
+                  .font(.title3)
+              }
+              
             }
-            .padding(.top)
           }
+          .padding(.top)
           GroupBox {
             HStack {
               Text("알림 허용")
