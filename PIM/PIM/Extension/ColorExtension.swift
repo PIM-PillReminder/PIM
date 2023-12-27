@@ -15,7 +15,7 @@ extension Color {
     static var buttonStrokeGreen = Color("buttonStrokeGreen")
     static var disabledGray = Color("disabledGray")
     static var primaryGreen = Color("primaryGreen")
-    static var subtitleGray = Color("subtitleGray")
+    static var subtitleGray = Color("subtitleTextGray")
     static var modalGray = Color("modalGray")
     static var boxChevronGray = Color("boxChevronGray")
     static var pimBlack = Color("pimBlack")
