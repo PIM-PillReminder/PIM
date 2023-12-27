@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		57022BF52AC45B7A00070276 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57022BF42AC45B7A00070276 /* LottieView.swift */; };
 		57022BF82AC45C6500070276 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 57022BF72AC45C6500070276 /* Lottie */; };
+		573919EE2B3C433F008A7787 /* View+SwipeGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573919ED2B3C433F008A7787 /* View+SwipeGesture.swift */; };
 		573942552ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 573942542ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf */; };
 		573942572ABEE85C0001906B /* OnboardingMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573942562ABEE85C0001906B /* OnboardingMainView.swift */; };
 		57461C472AB58C520026F903 /* PIMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57461C462AB58C520026F903 /* PIMApp.swift */; };
@@ -93,6 +94,7 @@
 
 /* Begin PBXFileReference section */
 		57022BF42AC45B7A00070276 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		573919ED2B3C433F008A7787 /* View+SwipeGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+SwipeGesture.swift"; sourceTree = "<group>"; };
 		573942542ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cafe24OhsquareAir-v2.0.ttf"; sourceTree = "<group>"; };
 		573942562ABEE85C0001906B /* OnboardingMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingMainView.swift; sourceTree = "<group>"; };
 		57461C432AB58C520026F903 /* PIM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PIM.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -303,6 +305,7 @@
 		7954A7EB2ABA8862000D1E8F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				573919ED2B3C433F008A7787 /* View+SwipeGesture.swift */,
 				7954A7EE2ABA888B000D1E8F /* ColorExtension.swift */,
 				7954A7EC2ABA8881000D1E8F /* FontExtension.swift */,
 				799B0EC62ABEEE3D00AE9865 /* Style */,
@@ -485,6 +488,7 @@
 				57461C472AB58C520026F903 /* PIMApp.swift in Sources */,
 				7954A7E22AB9D096000D1E8F /* SettingNotiVIew.swift in Sources */,
 				79326FD12B3728770038CD7C /* SettingViewModel.swift in Sources */,
+				573919EE2B3C433F008A7787 /* View+SwipeGesture.swift in Sources */,
 				57461C5C2AB59B070026F903 /* OnboardingView2.swift in Sources */,
 				573942572ABEE85C0001906B /* OnboardingMainView.swift in Sources */,
 				57461C5A2AB5919F0026F903 /* OnboardingView1.swift in Sources */,
