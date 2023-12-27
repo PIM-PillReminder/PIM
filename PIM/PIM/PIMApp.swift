@@ -19,6 +19,7 @@ struct PIMApp: App {
     init() {
         UNUserNotificationCenter.current().delegate = notificationDelegate
         setupWatchConnectivity()
+        Thread.sleep(forTimeInterval: 2)
     }
   
   @AppStorage("isOnboarding") var isOnboarding = true
