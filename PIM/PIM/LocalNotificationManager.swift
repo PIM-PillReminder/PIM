@@ -24,7 +24,7 @@ class LocalNotificationManager {
     }
     
     // 모든 알림 끌 때 사용
-    public func disableNotifications(){
+    public func disableNotifications() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
     }

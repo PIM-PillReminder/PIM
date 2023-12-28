@@ -34,12 +34,12 @@ struct MainView: View {
         NavigationStack {
             VStack {
                 HStack {
-                    NavigationLink(destination: SettingView()) {
-                        Image(systemName: "gearshape")
-                            .font(.system(size: 24))
-                            .foregroundColor(Color.primaryGreen)
-                            .padding(.leading, 20)
-                    }
+                    
+                    Image(systemName: "calendar")
+                        .font(.system(size: 24))
+                        .padding(.leading, 20)
+                        .foregroundColor(.disabledGray)
+                        .opacity(50)
                     
                     Spacer()
                     
@@ -49,11 +49,12 @@ struct MainView: View {
                     
                     Spacer()
                     
-                    Image(systemName: "calendar")
-                        .font(.system(size: 24))
-                        .padding(.trailing, 20)
-                        .foregroundColor(.disabledGray)
-                        .opacity(50)
+                    NavigationLink(destination: SettingView()) {
+                        Image(systemName: "gearshape")
+                            .font(.system(size: 24))
+                            .foregroundColor(Color.primaryGreen)
+                            .padding(.trailing, 20)
+                    }
                     
                     // TODO: 2차 스프린트 - CalendarView로 연결
                     //                NavigationLink(destination: MainView()) {

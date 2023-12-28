@@ -13,7 +13,9 @@ struct OnboardingView4: View {
   @State var selectedTime: Date
   @State private var isMainViewActive = false
   @State private var playLottie: Bool = true
+    
   let notificationManager = LocalNotificationManager()
+    
   @AppStorage("isOnboarding") var isOnboarding: Bool?
   
   var body: some View {
@@ -29,8 +31,10 @@ struct OnboardingView4: View {
                 .font(.pretendard(.regular, size: 24))
             }
             .padding(.leading, 15)
+              
             Spacer()
           }
+            
           Text("시작하기")
             .font(.pretendard(.bold, size: 18))
             .frame(alignment: .center)
