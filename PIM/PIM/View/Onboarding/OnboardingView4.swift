@@ -77,14 +77,23 @@ struct OnboardingView4: View {
                 //                    }
                 
                 Button(action: {
-                    let calendar = Calendar.current
-                    _ = calendar.component(.hour, from: selectedTime)
-                    _ = calendar.component(.minute, from: selectedTime)
+                    // 사용자가 선택한 시간을 가져옴
+                    let selectedTime = self.selectedTime
+                    
+                    // 사용자가 알림을 허용했는지 확인하고, 허용하지 않았다면 요청함
                     UNUserNotificationCenter.current().getNotificationSettings { settings in
                         if settings.authorizationStatus != .authorized {
                             notificationManager.requestPermission()
                         }
                     }
+
+                    // UserDefaults에 선택한 시간을 저장
+                    UserDefaults.standard.set(selectedTime, forKey: "SelectedTime")
+
+                    // 알림을 활성화하고 스케줄링
+                    notificationManager.enableNotifications()
+
+                    // Onboarding 상태 업데이트
                     isMainViewActive = true
                     isOnboarding = false
                 }) {
@@ -96,6 +105,7 @@ struct OnboardingView4: View {
                 .padding(.top, 40)
                 .padding(.bottom, 10)
                 .background(Color.primaryGreen)
+
             }
             .background(Color.backgroundWhite)
         }
