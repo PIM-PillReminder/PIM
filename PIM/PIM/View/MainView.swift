@@ -130,17 +130,25 @@ struct MainView: View {
         .onAppear {
             // 현재 날짜를 문자열로 가져옴
             let currentDateStr = getCurrentDateString()
-
+            
+            // 현재 날짜에 대한 isPillEaten 값을 가져오기
+            if let pillStatus = UserDefaults.standard.object(forKey: currentDateStr) as? Bool {
+                pillStatusObserver.isPillEaten = pillStatus
+            } else {
+                // 값이 없다면 false로 설정
+                pillStatusObserver.isPillEaten = false
+            }
+            
             // UserDefaults에서 현재 날짜에 해당하는 isPillEaten 값을 가져옴
             let eatenStatus = UserDefaults.standard.bool(forKey: currentDateStr)
-
+            
             // 가져온 값으로 isPillEaten 상태를 업데이트
             pillStatusObserver.isPillEaten = eatenStatus
-
+            
             // 워치로부터 약 복용 상태를 받아오는 함수 호출
             fetchPillStatusFromWatch()
         }
-
+        
     }
     
     // 상태 업데이트 및 워치에 전송
