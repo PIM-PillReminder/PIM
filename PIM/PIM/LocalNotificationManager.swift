@@ -24,7 +24,7 @@ class LocalNotificationManager {
     }
     
     // 모든 알림 끌 때 사용
-    public func disableNotifications(){
+    public func disableNotifications() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
     }
@@ -94,7 +94,8 @@ class LocalNotificationManager {
             let content = UNMutableNotificationContent()
             content.title = notification.title
             content.sound = UNNotificationSound.default
-            content.body = "약을 먹고 잊지 않게 기록하세요!"
+            content.body = "약 먹을 시간이에요"
+            content.subtitle = "약을 먹고 잊지 않게 기록하세요!"
             content.categoryIdentifier = "checkCategory"
             
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)

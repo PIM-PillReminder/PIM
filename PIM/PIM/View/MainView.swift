@@ -34,12 +34,12 @@ struct MainView: View {
         NavigationStack {
             VStack {
                 HStack {
-                    NavigationLink(destination: SettingView()) {
-                        Image(systemName: "gearshape")
-                            .font(.system(size: 24))
-                            .foregroundColor(Color.primaryGreen)
-                            .padding(.leading, 20)
-                    }
+                    
+                    Image(systemName: "calendar")
+                        .font(.system(size: 24))
+                        .padding(.leading, 20)
+                        .foregroundColor(.disabledGray)
+                        .opacity(50)
                     
                     Spacer()
                     
@@ -49,11 +49,12 @@ struct MainView: View {
                     
                     Spacer()
                     
-                    Image(systemName: "calendar")
-                        .font(.system(size: 24))
-                        .padding(.trailing, 20)
-                        .foregroundColor(.disabledGray)
-                        .opacity(50)
+                    NavigationLink(destination: SettingView()) {
+                        Image(systemName: "gearshape")
+                            .font(.system(size: 24))
+                            .foregroundColor(Color.primaryGreen)
+                            .padding(.trailing, 20)
+                    }
                     
                     // TODO: 2차 스프린트 - CalendarView로 연결
                     //                NavigationLink(destination: MainView()) {
@@ -126,6 +127,28 @@ struct MainView: View {
             .navigationTitle("")
             .background(Color.backgroundWhite)
         }
+        .onAppear {
+            // 현재 날짜를 문자열로 가져옴
+            let currentDateStr = getCurrentDateString()
+            
+            // 현재 날짜에 대한 isPillEaten 값을 가져오기
+            if let pillStatus = UserDefaults.standard.object(forKey: currentDateStr) as? Bool {
+                pillStatusObserver.isPillEaten = pillStatus
+            } else {
+                // 값이 없다면 false로 설정
+                pillStatusObserver.isPillEaten = false
+            }
+            
+            // UserDefaults에서 현재 날짜에 해당하는 isPillEaten 값을 가져옴
+            let eatenStatus = UserDefaults.standard.bool(forKey: currentDateStr)
+            
+            // 가져온 값으로 isPillEaten 상태를 업데이트
+            pillStatusObserver.isPillEaten = eatenStatus
+            
+            // 워치로부터 약 복용 상태를 받아오는 함수 호출
+            fetchPillStatusFromWatch()
+        }
+        
     }
     
     // 상태 업데이트 및 워치에 전송

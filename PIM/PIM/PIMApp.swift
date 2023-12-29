@@ -51,14 +51,6 @@ struct PIMApp: App {
     private func setupWatchConnectivity() {
         connectivityProvider.pillStatusObserver = pillStatusObserver
     }
-    
-//    private func setupWatchConnectivity() {
-//        if WCSession.isSupported() {
-//            let session = WCSession.default
-//            session.delegate = connectivityProvider
-//            session.activate()
-//        }
-//    }
 }
 
 class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
