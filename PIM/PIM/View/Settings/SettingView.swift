@@ -93,6 +93,9 @@ struct SettingView: View {
                 .onDisappear{
                   settingViewModel.modalBackground = false
                 }
+                .onWillDisappear{
+                  settingViewModel.modalBackground = false
+                }
             }
           }
           .groupBoxStyle(CustomListGroupBoxStyle())
@@ -173,10 +176,16 @@ struct SettingView: View {
           settingViewModel.selectedTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? nil
         }
       }
-      if settingViewModel.modalBackground {
-        Color.black.opacity(0.7)
-          .ignoresSafeArea()
-      }
+//      if settingViewModel.modalBackground {
+//        Color.black.opacity(0.7)
+//          .ignoresSafeArea()
+//          
+//      }
+    }
+    .overlay {
+      Color.black.opacity(settingViewModel.modalBackground ? 0.7 : 0)
+        .animation(.easeIn)
+        .ignoresSafeArea()
     }
   }
   

@@ -67,6 +67,7 @@
 		799B0ECA2ABEEE9300AE9865 /* PIMCustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799B0EC92ABEEE9300AE9865 /* PIMCustomSlider.swift */; };
 		79DD3B7F2AC3DCC600837E11 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD3B7E2AC3DCC600837E11 /* TimePickerView.swift */; };
 		79FA64882B41277200DEA24D /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79FA64872B41277200DEA24D /* Launch Screen.storyboard */; };
+		79FA64A42B4143AF00DEA24D /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FA64A32B4143AF00DEA24D /* ViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +153,7 @@
 		799B0EC92ABEEE9300AE9865 /* PIMCustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIMCustomSlider.swift; sourceTree = "<group>"; };
 		79DD3B7E2AC3DCC600837E11 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		79FA64872B41277200DEA24D /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		79FA64A32B4143AF00DEA24D /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				573919ED2B3C433F008A7787 /* View+SwipeGesture.swift */,
+				79FA64A32B4143AF00DEA24D /* ViewExtension.swift */,
 				7954A7EE2ABA888B000D1E8F /* ColorExtension.swift */,
 				7954A7EC2ABA8881000D1E8F /* FontExtension.swift */,
 				799B0EC62ABEEE3D00AE9865 /* Style */,
@@ -482,6 +485,7 @@
 				57461C622AB5B0220026F903 /* OnboardingView4.swift in Sources */,
 				57461C502AB58C540026F903 /* Persistence.swift in Sources */,
 				7954A7E02AB9D082000D1E8F /* SettingView.swift in Sources */,
+				79FA64A42B4143AF00DEA24D /* ViewExtension.swift in Sources */,
 				57461C602AB59E0A0026F903 /* OnboardingView3.swift in Sources */,
 				57461C5E2AB59D5F0026F903 /* MainView.swift in Sources */,
 				57461C492AB58C520026F903 /* ContentView.swift in Sources */,
