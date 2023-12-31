@@ -66,6 +66,7 @@
 		799B0EC82ABEEE5200AE9865 /* CustomStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799B0EC72ABEEE5200AE9865 /* CustomStyle.swift */; };
 		799B0ECA2ABEEE9300AE9865 /* PIMCustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799B0EC92ABEEE9300AE9865 /* PIMCustomSlider.swift */; };
 		79DD3B7F2AC3DCC600837E11 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD3B7E2AC3DCC600837E11 /* TimePickerView.swift */; };
+		79FA64882B41277200DEA24D /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79FA64872B41277200DEA24D /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +151,7 @@
 		799B0EC72ABEEE5200AE9865 /* CustomStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStyle.swift; sourceTree = "<group>"; };
 		799B0EC92ABEEE9300AE9865 /* PIMCustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIMCustomSlider.swift; sourceTree = "<group>"; };
 		79DD3B7E2AC3DCC600837E11 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
+		79FA64872B41277200DEA24D /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +212,7 @@
 		57461C3A2AB58C520026F903 = {
 			isa = PBXGroup;
 			children = (
+				79FA64872B41277200DEA24D /* Launch Screen.storyboard */,
 				5762705E2B28AD7700115612 /* .gitignore */,
 				57461C452AB58C520026F903 /* PIM */,
 				576270652B299B2F00115612 /* PIM_watch Watch App */,
@@ -443,6 +446,7 @@
 				7907B96F2B374781002596E8 /* sadPimiwoArms.json in Resources */,
 				7954A7FC2ABA88E8000D1E8F /* Pretendard-ExtraBold.ttf in Resources */,
 				79326FCD2B371A3F0038CD7C /* Colors.xcassets in Resources */,
+				79FA64882B41277200DEA24D /* Launch Screen.storyboard in Resources */,
 				573942552ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -650,6 +654,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -681,6 +686,7 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

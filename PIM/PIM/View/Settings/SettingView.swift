@@ -47,12 +47,11 @@ struct SettingView: View {
               .font(.pretendard(.bold, size: 18))
               .frame(alignment: .center)
           }
-          .padding(.bottom, UIScreen.main.bounds.width * 0.08)
+          .padding(.bottom)
 
           GroupBox {
             plainCell(icon: "pill", text: "복용중인 약")
-              .foregroundColor(Color.settingDisabledGray)
-              .font(.pretendard(.medium, size: 18))
+        
             Divider()
             Button {
               showSheet = true
@@ -76,7 +75,7 @@ struct SettingView: View {
                 
                 Spacer()
                 Image(systemName: "chevron.right")
-                  .foregroundColor(.boxChevronGray)
+                  .foregroundColor(.pimBlack)
                   .font(.title3)
               }
               .padding(.vertical, 8)
@@ -125,7 +124,7 @@ struct SettingView: View {
             }
             Divider()
             plainCell(icon: "message", text: "FAQ")
-              .foregroundColor(Color.settingDisabledGray)
+            
             Divider()
             HStack{
               Image(systemName: "lock")
@@ -198,6 +197,7 @@ func plainCell(icon: String, text: String) -> some View {
     Image(systemName: "\(icon)")
       .font(.title3)
       .padding(.trailing, 8)
+      .foregroundStyle(Color.settingDisabledGray)
     
     Text("\(text)")
       .font(.pretendard(.medium, size: 18))

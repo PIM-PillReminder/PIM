@@ -10,12 +10,5 @@
 		<string></string>
 		<string>Pretendard-Bold.ttf</string>
 	</array>
-	<key>UILaunchScreen</key>
-	<dict>
-		<key>UIColorName</key>
-		<string>LaunchScreenBackgroundColor</string>
-		<key>UIImageName</key>
-		<string>SplashLogo</string>
-	</dict>
 </dict>
 </plist>
