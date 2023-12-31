@@ -145,7 +145,7 @@ struct SettingView: View {
             Divider()
             
             plainCell(icon: "arrow.down.to.line", text: "데이터 백업")
-              .foregroundColor(Color.settingDisabledGray)
+              
           }
           .groupBoxStyle(CustomListGroupBoxStyle())
           
@@ -201,12 +201,13 @@ func plainCell(icon: String, text: String) -> some View {
     
     Text("\(text)")
       .font(.pretendard(.medium, size: 18))
+      .foregroundColor(Color.settingDisabledGray)
     
     Spacer()
     
     NavigationLink(destination: Text("추후 업데이트 예정")) {
       Image(systemName: "chevron.right")
-        .foregroundColor(.settingDisabledGray)
+        .foregroundColor(.settingChevronDisabledGray)
     }
     .disabled(isDeactivated)
   }

@@ -40,7 +40,7 @@ struct OnboardingMainView: View {
                 NavigationLink(destination: OnboardingView4(selectedTime: Date())) {
                     Text("시작하기")
                         .font(.pretendard(.bold, size: 20))
-                        .foregroundColor(Color.pimWhite)
+                        .foregroundColor(Color.white)
                         .padding(40)
                 }
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.03)

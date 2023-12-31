@@ -22,6 +22,7 @@ extension Color {
     static var settingDisabledGray = Color("settingDisabledGray")
     static var pimWhite = Color("pimWhite")
     static var watchTextGreen = Color("watchTextGreen")
+    static var settingChevronDisabledGray = Color("settingChevronDisabledGray")
     
   init(hex: String) {
     let scanner = Scanner(string: hex)
