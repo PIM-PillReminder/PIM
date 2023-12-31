@@ -11,4 +11,5 @@ import UserNotifications
 
 class SettingViewModel: ObservableObject {
   @Published var selectedTime: Date? = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? nil
+  @Published var modalBackground: Bool = false
 }
