@@ -86,7 +86,7 @@ struct SettingView: View {
             }
             .sheet(isPresented: $showSheet) {
               TimePickerView(showSheet1: $showSheet, modalBackground: $modalBackground, settingViewModel: settingViewModel)
-                .presentationDetents([.height(geo.size.width)])
+                .presentationDetents([.height(geo.size.width * 1.02)])
                 .presentationDragIndicator(.hidden)
                 .presentationCornerRadius(16)
                 .environment(\.scenePhase, scenePhase)
@@ -198,12 +198,6 @@ struct SettingView: View {
   }
   private func setSelectedTime() {
     settingViewModel.selectedTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? nil
-  }
-}
-
-struct SettingView_Previews: PreviewProvider {
-  static var previews: some View {
-    SettingView()
   }
 }
 
