@@ -18,7 +18,7 @@ struct TimePickerView: View {
   @ObservedObject var settingViewModel: SettingViewModel
   
   var body: some View {
-      VStack {
+    VStack(spacing: 0) {
         ZStack(alignment: .centerFirstTextBaseline) {
           Text("알림 시간 설정하기")
             .font(.pretendard(.bold, size: 18))
@@ -36,7 +36,9 @@ struct TimePickerView: View {
             }
           }
         }
-        .padding(.top, UIScreen.main.bounds.width * 0.06)
+        .padding(.top, UIScreen.main.bounds.width * 0.05)
+        Spacer()
+        Spacer()
         DatePicker(
           "",
           selection: $selectedTime,
@@ -45,8 +47,8 @@ struct TimePickerView: View {
         .labelsHidden()
         .datePickerStyle(.wheel)
         .environment(\.locale, .init(identifier: "ko_KR"))
-        .padding(.bottom, UIScreen.main.bounds.width * 0.12)
-        
+        .font(.pretendard(.bold, size: 18))
+        Spacer()
         Button(action: {
           // 1. 이전 알림 삭제
           UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
