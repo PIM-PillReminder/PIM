@@ -101,7 +101,7 @@ struct OnboardingView4: View {
                         .font(.pretendard(.bold, size: 20))
                         .foregroundColor(Color.white)
                 }
-                .frame(width: UIScreen.main.bounds.width)
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.025)
                 .padding(.top, 40)
                 .padding(.bottom, 10)
                 .background(Color.primaryGreen)

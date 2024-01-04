@@ -26,6 +26,7 @@ struct OnboardingMainView: View {
                     .foregroundColor(.subtitleGray)
                     .multilineTextAlignment(.center)
                     .lineSpacing(3)
+                    .padding(.bottom, 50)
                 
                 LottieView(jsonName: "helloPimi", loopMode: .repeat(10), playLottie: $playLottie)
                     
@@ -43,7 +44,7 @@ struct OnboardingMainView: View {
                         .foregroundColor(Color.pimWhite)
                         .padding(40)
                 }
-                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.03)
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.025)
                 .padding(.top, 40)
                 .padding(.bottom, 10)
                 .background(Color.primaryGreen)
