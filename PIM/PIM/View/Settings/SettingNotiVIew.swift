@@ -24,7 +24,7 @@ struct SettingNotiView: View {
     NavigationStack {
         VStack {
           ZStack(alignment: .center) {
-            Text("알람 시간 설정하기")
+            Text("알림 시간 설정하기")
               .font(.pretendard(.bold, size: 18))
             HStack {
               Spacer()

@@ -16,10 +16,10 @@ struct SettingView: View {
   @State private var isNotificationsEnabled: Bool = false
   @State private var selectedTime: Date? = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? nil
   @StateObject var settingViewModel = SettingViewModel()
+  @State var modalBackground: Bool = false
   @Environment(\.presentationMode) var presentationMode
   
   let notificationManager = LocalNotificationManager()
-  //TODO: 한국어 표기
   static let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateFormat = "a hh:mm"
@@ -30,7 +30,8 @@ struct SettingView: View {
   //TODO: 다음 스프린트 때 나머지 리스트 버튼 영역 수정하기!
   
   var body: some View {
-    GeometryReader { geo in
+    ZStack {
+      GeometryReader { geo in
         VStack {
           ZStack {
             HStack {
@@ -47,15 +48,16 @@ struct SettingView: View {
               .font(.pretendard(.bold, size: 18))
               .frame(alignment: .center)
           }
-          .padding(.bottom, UIScreen.main.bounds.width * 0.08)
-
+          .padding(.bottom)
+          
           GroupBox {
             plainCell(icon: "pill", text: "복용중인 약")
-              .foregroundColor(Color.settingDisabledGray)
-              .font(.pretendard(.medium, size: 18))
+            
             Divider()
             Button {
               showSheet = true
+              settingViewModel.modalBackground = true
+              modalBackground = true
             } label: {
               HStack {
                 Image(systemName: "clock")
@@ -76,17 +78,24 @@ struct SettingView: View {
                 
                 Spacer()
                 Image(systemName: "chevron.right")
-                  .foregroundColor(.boxChevronGray)
+                  .foregroundColor(.pimBlack)
                   .font(.title3)
               }
               .padding(.vertical, 8)
               .padding(.horizontal, 10)
             }
             .sheet(isPresented: $showSheet) {
-              TimePickerView(showSheet1: $showSheet, settingViewModel: settingViewModel )
+              TimePickerView(showSheet1: $showSheet, modalBackground: $modalBackground, settingViewModel: settingViewModel)
                 .presentationDetents([.height(geo.size.width)])
                 .presentationDragIndicator(.hidden)
+                .presentationCornerRadius(16)
                 .environment(\.scenePhase, scenePhase)
+                .onDisappear{
+                  settingViewModel.modalBackground = false
+                }
+                .onWillDisappear{
+                  settingViewModel.modalBackground = false
+                }
             }
           }
           .groupBoxStyle(CustomListGroupBoxStyle())
@@ -94,7 +103,7 @@ struct SettingView: View {
           
           GroupBox {
             Button {
-//              showSheet2 = true
+              //              showSheet2 = true
               UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
             } label: {
               HStack {
@@ -115,17 +124,17 @@ struct SettingView: View {
                 //                  .foregroundColor(Color.gray02)
                   .allowsHitTesting(false)
               }
-//              .sheet(isPresented: $showSheet2) {
-//                SettingNotiView(showSheet2: $showSheet2, settingViewModel: settingViewModel)
-//                  .presentationDetents([.height(geo.size.width * 1.3)])
-//                  .presentationDragIndicator(.hidden)
-//              }
+              //              .sheet(isPresented: $showSheet2) {
+              //                SettingNotiView(showSheet2: $showSheet2, settingViewModel: settingViewModel)
+              //                  .presentationDetents([.height(geo.size.width * 1.3)])
+              //                  .presentationDragIndicator(.hidden)
+              //              }
               .padding(.vertical, 8)
               .padding(.horizontal, 10)
             }
             Divider()
             plainCell(icon: "message", text: "FAQ")
-              .foregroundColor(Color.settingDisabledGray)
+            
             Divider()
             HStack{
               Image(systemName: "lock")
@@ -145,7 +154,7 @@ struct SettingView: View {
             Divider()
             
             plainCell(icon: "arrow.down.to.line", text: "데이터 백업")
-              .foregroundColor(Color.settingDisabledGray)
+            
           }
           .groupBoxStyle(CustomListGroupBoxStyle())
           
@@ -154,20 +163,29 @@ struct SettingView: View {
         .padding(.top, 10)
         .padding(.bottom)
         .padding(.horizontal, 18)
-//        .navigationTitle("설정")
-//        .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .background(Color.backgroundGray)
-    }
-    .onAppear {
-      checkNotificationSettings()
-      settingViewModel.selectedTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? nil
-    }
-    .onChange(of: scenePhase) {
-      if scenePhase == .inactive || scenePhase == .background {
+      }
+      .onAppear {
         checkNotificationSettings()
         settingViewModel.selectedTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? nil
       }
+      .onChange(of: scenePhase) {
+        if scenePhase == .inactive || scenePhase == .background {
+          checkNotificationSettings()
+          settingViewModel.selectedTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? nil
+        }
+      }
+//      if settingViewModel.modalBackground {
+//        Color.black.opacity(0.7)
+//          .ignoresSafeArea()
+//          
+//      }
+    }
+    .overlay {
+      Color.black.opacity(settingViewModel.modalBackground ? 0.7 : 0)
+        .animation(.easeIn)
+        .ignoresSafeArea()
     }
   }
   
@@ -198,15 +216,17 @@ func plainCell(icon: String, text: String) -> some View {
     Image(systemName: "\(icon)")
       .font(.title3)
       .padding(.trailing, 8)
+      .foregroundStyle(Color.settingDisabledGray)
     
     Text("\(text)")
       .font(.pretendard(.medium, size: 18))
+      .foregroundColor(Color.settingDisabledGray)
     
     Spacer()
     
     NavigationLink(destination: Text("추후 업데이트 예정")) {
       Image(systemName: "chevron.right")
-        .foregroundColor(.settingDisabledGray)
+        .foregroundColor(.settingChevronDisabledGray)
     }
     .disabled(isDeactivated)
   }

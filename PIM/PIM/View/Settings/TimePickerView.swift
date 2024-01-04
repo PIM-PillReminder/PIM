@@ -11,6 +11,7 @@ struct TimePickerView: View {
   // 설정 화면에 있는 피커랑 온보딩 피커를 통일하는 게 좋을 것 같아여...! 지금은 이렇게 해두고 나중에 하나의 뷰로 만들어볼게요!!!
   //    @State var selectedTime: Date
   @Binding var showSheet1: Bool
+  @Binding var modalBackground: Bool
 //  @Binding var displayedTime: Date?
   let notificationManager = LocalNotificationManager()
   @State var selectedTime: Date = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? Date()
@@ -19,12 +20,14 @@ struct TimePickerView: View {
   var body: some View {
       VStack {
         ZStack(alignment: .centerFirstTextBaseline) {
-          Text("알람 시간 설정하기")
+          Text("알림 시간 설정하기")
             .font(.pretendard(.bold, size: 18))
             .foregroundStyle(Color.pimBlack)
           HStack {
             Spacer()
             Button {
+              settingViewModel.modalBackground = false
+              modalBackground = false
               showSheet1 = false
             } label: {
               Image(systemName: "xmark")
@@ -57,6 +60,8 @@ struct TimePickerView: View {
 //          displayedTime = selectedTime
           settingViewModel.selectedTime = selectedTime
           showSheet1 = false
+          settingViewModel.modalBackground = false
+          modalBackground = false
         }) {
           Text("설정 완료하기")
         }
@@ -69,8 +74,5 @@ struct TimePickerView: View {
     .onAppear {
       selectedTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? Date()
     }
-//    .onDisappear {
-//      settingViewModel.selectedTime = selectedTime
-//    }
   }
 }
