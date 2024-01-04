@@ -86,7 +86,7 @@ struct SettingView: View {
             }
             .sheet(isPresented: $showSheet) {
               TimePickerView(showSheet1: $showSheet, modalBackground: $modalBackground, settingViewModel: settingViewModel)
-                .presentationDetents([.height(geo.size.width)])
+                .presentationDetents([.height(geo.size.width * 1.02)])
                 .presentationDragIndicator(.hidden)
                 .presentationCornerRadius(16)
                 .environment(\.scenePhase, scenePhase)
