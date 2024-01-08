@@ -40,7 +40,8 @@
 		576270882B299F8700115612 /* Pretendard-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 576270872B299F8700115612 /* Pretendard-ExtraBold.ttf */; };
 		5762708A2B299F8E00115612 /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 576270892B299F8E00115612 /* Pretendard-Bold.ttf */; };
 		5762708C2B299FB500115612 /* WatchFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5762708B2B299FB500115612 /* WatchFontExtension.swift */; };
-		7907B9672B374718002596E8 /* happyPimi.json in Resources */ = {isa = PBXBuildFile; fileRef = 7907B9632B374718002596E8 /* happyPimi.json */; };
+		57BA002E2B4C1B6B00501B83 /* happyPimi.json in Resources */ = {isa = PBXBuildFile; fileRef = 57BA002D2B4C1B6B00501B83 /* happyPimi.json */; };
+		57BA002F2B4C1B6B00501B83 /* happyPimi.json in Resources */ = {isa = PBXBuildFile; fileRef = 57BA002D2B4C1B6B00501B83 /* happyPimi.json */; };
 		7907B9682B374718002596E8 /* sadPimi.json in Resources */ = {isa = PBXBuildFile; fileRef = 7907B9642B374718002596E8 /* sadPimi.json */; };
 		7907B9692B374718002596E8 /* helloPimi.json in Resources */ = {isa = PBXBuildFile; fileRef = 7907B9652B374718002596E8 /* helloPimi.json */; };
 		7907B96B2B374733002596E8 /* clockPimi.json in Resources */ = {isa = PBXBuildFile; fileRef = 7907B96A2B374733002596E8 /* clockPimi.json */; };
@@ -129,7 +130,7 @@
 		576270872B299F8700115612 /* Pretendard-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.ttf"; sourceTree = "<group>"; };
 		576270892B299F8E00115612 /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
 		5762708B2B299FB500115612 /* WatchFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchFontExtension.swift; sourceTree = "<group>"; };
-		7907B9632B374718002596E8 /* happyPimi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = happyPimi.json; sourceTree = "<group>"; };
+		57BA002D2B4C1B6B00501B83 /* happyPimi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = happyPimi.json; sourceTree = "<group>"; };
 		7907B9642B374718002596E8 /* sadPimi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sadPimi.json; sourceTree = "<group>"; };
 		7907B9652B374718002596E8 /* helloPimi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = helloPimi.json; sourceTree = "<group>"; };
 		7907B96A2B374733002596E8 /* clockPimi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clockPimi.json; sourceTree = "<group>"; };
@@ -179,7 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				7907B96A2B374733002596E8 /* clockPimi.json */,
-				7907B9632B374718002596E8 /* happyPimi.json */,
+				57BA002D2B4C1B6B00501B83 /* happyPimi.json */,
 				7907B96E2B374781002596E8 /* sadPimiwoArms.json */,
 				7907B96C2B374773002596E8 /* happyPimiwoArms.json */,
 				7907B9652B374718002596E8 /* helloPimi.json */,
@@ -434,8 +435,8 @@
 				5762705F2B28AD7700115612 /* .gitignore in Resources */,
 				7907B9692B374718002596E8 /* helloPimi.json in Resources */,
 				7954A8012ABA88E8000D1E8F /* Pretendard-Thin.ttf in Resources */,
+				57BA002E2B4C1B6B00501B83 /* happyPimi.json in Resources */,
 				7954A8032ABA88E8000D1E8F /* Pretendard-Regular.ttf in Resources */,
-				7907B9672B374718002596E8 /* happyPimi.json in Resources */,
 				7954A8002ABA88E8000D1E8F /* Pretendard-Medium.ttf in Resources */,
 				7954A7FB2ABA88E8000D1E8F /* Pretendard-ExtraLight.ttf in Resources */,
 				57461C4E2AB58C540026F903 /* Preview Assets.xcassets in Resources */,
@@ -461,6 +462,7 @@
 				576270882B299F8700115612 /* Pretendard-ExtraBold.ttf in Resources */,
 				5762707E2B299F5E00115612 /* Pretendard-SemiBold.ttf in Resources */,
 				79326FD32B3736780038CD7C /* Colors.xcassets in Resources */,
+				57BA002F2B4C1B6B00501B83 /* happyPimi.json in Resources */,
 				5762707C2B299F5600115612 /* Pretendard-Thin.ttf in Resources */,
 				576270822B299F6F00115612 /* Pretendard-Medium.ttf in Resources */,
 				576270802B299F6600115612 /* Pretendard-Regular.ttf in Resources */,
