@@ -94,8 +94,8 @@ class LocalNotificationManager {
             let content = UNMutableNotificationContent()
             content.title = notification.title
             content.sound = UNNotificationSound.default
-            content.body = "약 먹을 시간이에요"
-            content.subtitle = "약을 먹고 잊지 않게 기록하세요!"
+            content.body = "약을 먹고 잊지 않게 기록하세요!"
+            content.subtitle = "약 먹을 시간이에요"
             content.categoryIdentifier = "checkCategory"
             
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
