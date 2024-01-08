@@ -44,8 +44,8 @@ struct MainView: View {
                     Spacer()
                     
                     // MARK: 날짜(추가될 수 있음)
-                    //                Text(dateFormatter.string(from: Date()))
-                    //                    .font(.pretendard(.bold, size: 18))
+                    Text(dateFormatter.string(from: Date()))
+                        .font(.pretendard(.bold, size: 18))
                     
                     Spacer()
                     
