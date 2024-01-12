@@ -723,7 +723,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = com.mmhmjg.pim.watch;
+				INFOPLIST_KEY_CFBundleDisplayName = Pim;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.mmhmjg.pim;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
@@ -760,7 +760,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = com.mmhmjg.pim.watch;
+				INFOPLIST_KEY_CFBundleDisplayName = Pim;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.mmhmjg.pim;
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
