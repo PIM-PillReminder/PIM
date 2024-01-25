@@ -16,9 +16,9 @@ struct PIMGreenButton: View {
             Text(title)
                 .foregroundColor(Color.pimWhite)
                 .font(.system(size: 15, weight: .medium))
+                .frame(height: 40)
                 .frame(maxWidth: .infinity)
-                .padding()
-                .background(RoundedRectangle(cornerRadius: 16)
+                .background(RoundedRectangle(cornerRadius: 40)
                                 .fill(Color.primaryGreen))
         }
     }
@@ -33,9 +33,9 @@ struct PIMStrokeButton: View {
             Text(title)
                 .foregroundColor(Color.buttonStrokeGreen)
                 .font(.system(size: 15, weight: .medium))
+                .frame(height: 40)
                 .frame(maxWidth: .infinity)
-                .padding()
-                .background(RoundedRectangle(cornerRadius: 16)
+                .background(RoundedRectangle(cornerRadius: 40)
                                 .stroke(Color.buttonStrokeGreen, lineWidth: 1))
         }
     }
