@@ -40,22 +40,30 @@ struct ContentView: View {
   
   var body: some View {
     NavigationStack {
-      VStack {
-        Text(!isPillEaten ? "오늘 약을 먹었나요?" : "약 먹기 완료! 내일 만나요!")
-          .font(.system(size: 15))
-          .fontWeight(.medium)
-          .padding(.bottom, 10)
+      VStack(spacing: 0) {
+                HStack {
+                  Text(dateFormatter.string(from: Date()))
+                  Spacer()
+                }
+                .padding(.top, hMargin())
+                .padding(.horizontal)
+                .ignoresSafeArea()
         
-        Spacer()
+        Text(!isPillEaten ? "오늘 약을 먹었나요?" : "약 먹기 완료! 내일 만나요!")
+          .font(.caption)
+          .fontWeight(.medium)
+          .padding(.bottom)
+        
+//        Spacer()
         
         imageForPillStatus()
           .resizable()
-          .frame(width: 90, height: 90)
+          .frame(width: 87, height: 87)
           .padding(.bottom, 13)
           .offset(y: yOffset)
           .modifier(ShakeEffect(animatableData: CGFloat(shakeAttempts)))
         
-        Spacer()
+//        Spacer()
         
         if !isPillEaten {
           PIMGreenButton(title: "네! 먹었어요", action: {
@@ -69,10 +77,9 @@ struct ContentView: View {
           })
         }
       }
-      .navigationTitle("??")
-      .navigationBarTitleDisplayMode(.automatic)
       .onAppear {
         isPillEaten = pillStatusObserver.isPillEaten
+        print( WKInterfaceDevice.current().screenBounds.size.height)
       }
     }
   }
@@ -154,3 +161,5 @@ class PillStatusObserver: ObservableObject {
     return formatter.string(from: Date())
   }
 }
+
+
