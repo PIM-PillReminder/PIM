@@ -72,7 +72,7 @@ struct MainView: View {
                     Image("pill")
                         .padding(.bottom, 30)
                     
-                    Text(pillStatusObserver.isPillEaten ? "약 먹기 완료! 내일 만나요!" : "오늘의 약을 아직 안 먹었어요")
+                    Text(pillStatusObserver.isPillEaten ? "약 먹기 완료! 내일 만나요!" : "오늘 약을 먹었나요?")
                         .font(.pretendard(.bold, size: 18))
                         .multilineTextAlignment(.center)
                 }
@@ -97,7 +97,7 @@ struct MainView: View {
                 Spacer()
                 
                 if(!pillStatusObserver.isPillEaten){
-                    Button("오늘의 약을 먹었어요") {
+                    Button("네! 먹었어요") {
                         pillStatusObserver.isPillEaten = true
                         updatePillStatus(true)
                     }

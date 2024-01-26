@@ -13,14 +13,17 @@ struct PIMGreenButton: View {
 
     var body: some View {
         Button(action: action) {
-            Text(title)
-                .foregroundColor(Color.pimWhite)
-                .font(.system(size: 15, weight: .medium))
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(RoundedRectangle(cornerRadius: 16)
-                                .fill(Color.primaryGreen))
+          RoundedRectangle(cornerRadius: 40)
+            .frame(width: wLength())
+            .frame(height: hLength())
+            .foregroundStyle(Color.primaryGreen)
+            .overlay {
+              Text(title)
+                .font(.caption)
+                .foregroundStyle(Color.pimWhite)
+            }
         }
+        .buttonStyle(PlainButtonStyle())
     }
 }
 
@@ -30,14 +33,31 @@ struct PIMStrokeButton: View {
 
     var body: some View {
         Button(action: action) {
-            Text(title)
-                .foregroundColor(Color.buttonStrokeGreen)
-                .font(.system(size: 15, weight: .medium))
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(RoundedRectangle(cornerRadius: 16)
-                                .stroke(Color.buttonStrokeGreen, lineWidth: 1))
+          RoundedRectangle(cornerRadius: 40)
+            .stroke(Color.buttonStrokeGreen, lineWidth: 1)
+            .frame(height: hLength())
+            .frame(maxWidth: wLength())
+            .overlay {
+              Text(title)
+                .font(.caption)
+                .foregroundStyle(Color.buttonStrokeGreen)
+            }
         }
+        .buttonStyle(PlainButtonStyle())
     }
 }
 
+public func hMargin() -> Double {
+    let screenHeight = WKInterfaceDevice.current().screenBounds.size.height
+    
+    return screenHeight >= 240 ? 11 : 10
+}
+public func wLength() -> Double {
+    let screenHeight = WKInterfaceDevice.current().screenBounds.size.height
+    
+  return screenHeight >= 240 ? 184 : 158
+}
+public func hLength() -> Double {
+  let screenHeight = WKInterfaceDevice.current().screenBounds.size.height
+  return screenHeight >= 240 ? 45 : 40
+}

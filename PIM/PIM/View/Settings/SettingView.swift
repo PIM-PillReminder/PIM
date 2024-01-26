@@ -33,22 +33,22 @@ struct SettingView: View {
     ZStack {
       GeometryReader { geo in
         VStack {
-          ZStack {
-            HStack {
-              Button(action: {
-                presentationMode.wrappedValue.dismiss()
-              }) {
-                Image(systemName: "chevron.left")
-                  .foregroundColor(Color.pimBlack)
-                  .font(.title3)
-              }
-              Spacer()
-            }
-            Text("설정")
-              .font(.pretendard(.bold, size: 18))
-              .frame(alignment: .center)
-          }
-          .padding(.bottom)
+//          ZStack {
+//            HStack {
+//              Button(action: {
+//                presentationMode.wrappedValue.dismiss()
+//              }) {
+//                Image(systemName: "chevron.left")
+//                  .foregroundColor(Color.pimBlack)
+//                  .font(.title3)
+//              }
+//              Spacer()
+//            }
+//            Text("설정")
+//              .font(.pretendard(.bold, size: 18))
+//              .frame(alignment: .center)
+//          }
+//          .padding(.bottom)
           
           GroupBox {
             plainCell(icon: "pill", text: "복용중인 약")
@@ -176,11 +176,21 @@ struct SettingView: View {
           settingViewModel.selectedTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? nil
         }
       }
-//      if settingViewModel.modalBackground {
-//        Color.black.opacity(0.7)
-//          .ignoresSafeArea()
-//          
-//      }
+    }
+    .toolbar {
+      ToolbarItem(placement: .topBarLeading) {
+        Button(action: {
+          presentationMode.wrappedValue.dismiss()
+        }) {
+          Image(systemName: "chevron.left")
+            .foregroundColor(Color.pimBlack)
+            .font(.title3)
+        }
+      }
+      ToolbarItem(placement: .principal) {
+                    Text("설정")
+                      .font(.pretendard(.bold, size: 18))
+      }
     }
     .overlay {
       Color.black.opacity(settingViewModel.modalBackground ? 0.7 : 0)
@@ -221,6 +231,7 @@ func plainCell(icon: String, text: String) -> some View {
     NavigationLink(destination: Text("추후 업데이트 예정")) {
       Image(systemName: "chevron.right")
         .foregroundColor(.settingChevronDisabledGray)
+        .font(.title3)
     }
     .disabled(isDeactivated)
   }
