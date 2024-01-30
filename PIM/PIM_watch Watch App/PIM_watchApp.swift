@@ -6,11 +6,15 @@
 //
 
 import SwiftUI
+import WatchConnectivity
 
 @main
-struct PIM_watch_Watch_AppApp: App {
-    
+struct PIM_watch_Watch_App: App {
     var pillStatusObserver = PillStatusObserver()
+    
+    init() {
+        _ = WatchSessionManager.shared
+    }
     
     var body: some Scene {
         WindowGroup {
