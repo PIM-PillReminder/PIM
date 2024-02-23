@@ -57,13 +57,13 @@ struct MainView: View {
                     }
                     
                     // TODO: 2차 스프린트 - CalendarView로 연결
-                    //                NavigationLink(destination: MainView()) {
-                    //                    Image(systemName: "calendar")
-                    //                        .font(.system(size: 24))
-                    //                        .padding(.trailing, 20)
-                    //                        .foregroundColor(Color.green03)
-                    //                        .opacity(100)
-                    //                }
+                    NavigationLink(destination: CalendarViewRepresentable()) {
+                        Image(systemName: "calendar")
+                            .font(.system(size: 24))
+                            .padding(.trailing, 20)
+                            .foregroundColor(Color.green03)
+                            .opacity(100)
+                    }
                 }
                 .padding(.top, 10)
                 .padding(.bottom, 50)
