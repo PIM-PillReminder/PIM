@@ -74,6 +74,7 @@
 		C1BC9A582B8889EF0083E181 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = C1BC9A572B8889EF0083E181 /* FSCalendar */; };
 		C1BC9A5B2B888A6F0083E181 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C1BC9A5A2B888A6F0083E181 /* SnapKit */; };
 		C1BC9A5D2B888C6A0083E181 /* CalendarViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC9A5C2B888C6A0083E181 /* CalendarViewRepresentable.swift */; };
+		C1BC9A5F2B888FA10083E181 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC9A5E2B888FA10083E181 /* CalendarCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +165,7 @@
 		C188793F2B63A540000A770C /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		C1BC9A542B88896D0083E181 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		C1BC9A5C2B888C6A0083E181 /* CalendarViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewRepresentable.swift; sourceTree = "<group>"; };
+		C1BC9A5E2B888FA10083E181 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,6 +366,7 @@
 			children = (
 				C1BC9A542B88896D0083E181 /* CalendarViewController.swift */,
 				C1BC9A5C2B888C6A0083E181 /* CalendarViewRepresentable.swift */,
+				C1BC9A5E2B888FA10083E181 /* CalendarCell.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				79DD3B7F2AC3DCC600837E11 /* TimePickerView.swift in Sources */,
 				57461C9C2AB76ABC0026F903 /* LocalNotificationManager.swift in Sources */,
 				57461C622AB5B0220026F903 /* OnboardingView4.swift in Sources */,
+				C1BC9A5F2B888FA10083E181 /* CalendarCell.swift in Sources */,
 				C1BC9A552B88896D0083E181 /* CalendarViewController.swift in Sources */,
 				57461C502AB58C540026F903 /* Persistence.swift in Sources */,
 				7954A7E02AB9D082000D1E8F /* SettingView.swift in Sources */,

@@ -35,11 +35,14 @@ struct MainView: View {
             VStack {
                 HStack {
                     
-                    Image(systemName: "calendar")
-                        .font(.system(size: 24))
-                        .padding(.leading, 20)
-                        .foregroundColor(.disabledGray)
-                        .opacity(50)
+                    // TODO: 2차 스프린트 - CalendarView로 연결
+                    NavigationLink(destination: CalendarViewRepresentable()) {
+                        Image(systemName: "calendar")
+                            .font(.system(size: 24))
+                            .padding(.leading, 20)
+                            .foregroundColor(Color.primaryGreen)
+                            .opacity(100)
+                    }
                     
                     Spacer()
                     
@@ -54,15 +57,6 @@ struct MainView: View {
                             .font(.system(size: 24))
                             .foregroundColor(Color.primaryGreen)
                             .padding(.trailing, 20)
-                    }
-                    
-                    // TODO: 2차 스프린트 - CalendarView로 연결
-                    NavigationLink(destination: CalendarViewRepresentable()) {
-                        Image(systemName: "calendar")
-                            .font(.system(size: 24))
-                            .padding(.trailing, 20)
-                            .foregroundColor(Color.green03)
-                            .opacity(100)
                     }
                 }
                 .padding(.top, 10)
