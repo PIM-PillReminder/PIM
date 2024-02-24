@@ -24,17 +24,18 @@ class CalendarCell: FSCalendarCell {
         
         // 날짜 텍스트가 디폴트로 약간 위로 올라가 있어서, 아예 레이아웃을 잡아준다
         self.titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(contentView)
+            make.top.equalTo(contentView).inset(6)
             make.centerX.equalTo(contentView)
         }
         
         contentView.insertSubview(backImageView, at: 0)
         backImageView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom)
+            make.top.equalTo(titleLabel.snp.bottom).inset(-6)
             make.centerX.equalTo(contentView)
             make.size.equalTo(minSize()/1.3)
         }
         backImageView.layer.cornerRadius = minSize()/3
+        backImageView.backgroundColor = .clear
     }
     
     required init(coder aDecoder: NSCoder!) {
@@ -49,6 +50,16 @@ class CalendarCell: FSCalendarCell {
         super.prepareForReuse()
         
         backImageView.image = nil
+    }
+    
+    override func configureAppearance() {
+        super.configureAppearance()
+        
+        if isSelected {
+            self.backgroundColor = .black
+        } else {
+            self.backgroundColor = .clear
+        }
     }
     
     // 셀의 높이와 너비 중 작은 값을 리턴한다
