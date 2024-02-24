@@ -15,7 +15,9 @@ struct MainView: View {
         formatter.dateFormat = "M월 d일"
         return formatter
     }()
+    
     let notificationManager = LocalNotificationManager()
+    @Environment(\.presentationMode) var presentationMode
     
     @Environment(\.scenePhase) var scenePhase
     
@@ -35,8 +37,9 @@ struct MainView: View {
             VStack {
                 HStack {
                     
-                    // TODO: 2차 스프린트 - CalendarView로 연결
-                    NavigationLink(destination: CalendarViewRepresentable()) {
+                    NavigationLink(destination: CalendarViewRepresentable()
+                        .navigationBarBackButtonHidden()
+                    ) {
                         Image(systemName: "calendar")
                             .font(.system(size: 24))
                             .padding(.leading, 20)
@@ -46,7 +49,6 @@ struct MainView: View {
                     
                     Spacer()
                     
-                    // MARK: 날짜(추가될 수 있음)
                     Text(dateFormatter.string(from: Date()))
                         .font(.pretendard(.bold, size: 18))
                     

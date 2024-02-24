@@ -19,6 +19,8 @@ class CalendarCell: FSCalendarCell {
         return view
     }()
     
+    var isToday: Bool = false
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -57,6 +59,8 @@ class CalendarCell: FSCalendarCell {
         
         if isSelected {
             self.backgroundColor = .black
+        } else if isToday {
+            backImageView.backgroundColor = .gray
         } else {
             self.backgroundColor = .clear
         }
@@ -70,4 +74,3 @@ class CalendarCell: FSCalendarCell {
         return (width > height) ? height : width
     }
 }
-

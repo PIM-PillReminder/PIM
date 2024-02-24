@@ -11,28 +11,74 @@ import UIKit
 
 class CalendarViewController: UIViewController {
     
-     let calendar = FSCalendar()
+    let calendar = FSCalendar()
+    let backButton = UIButton()
+    let monthLabel = UILabel()
+    let infoButton = UIButton()
     var selectedDate: Date?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
-        view.addSubview(calendar)
         configureHierarchy()
+        configureConstraints()
         configureView()
         
     }
-
+    
     func configureHierarchy() {
+        view.addSubview(calendar)
+        view.addSubview(backButton)
+        view.addSubview(monthLabel)
+        view.addSubview(infoButton)
+    }
+    
+    func configureConstraints() {
+        backButton.snp.makeConstraints { make in
+            make.top.leading.equalTo(view).inset(16)
+        }
+        monthLabel.snp.makeConstraints { make in
+            make.top.equalTo(view).inset(16)
+            make.centerX.equalTo(view)
+        }
+        
+        infoButton.snp.makeConstraints { make in
+            make.top.trailing.equalTo(view).inset(16)
+        }
+        
         calendar.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(-24)
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(16)
             make.height.equalTo(UIScreen.main.bounds.height * 0.65)
         }
     }
+
+    @objc func backButtonTapped() {
+        // 이전 화면으로 돌아가기
+        navigationController?.popViewController(animated: true)
+    }
+
+    @objc func infoButtonTapped() {
+        // 정보 버튼 동작
+        print("Info button tapped")
+    }
+
     
     func configureView() {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY년 M월"
+        let title = dateFormatter.string(from: Date())
+        
+        monthLabel.text = title
+        monthLabel.textColor = .black
+        monthLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        
+        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        
+        infoButton.setImage(UIImage(systemName: "info.circle"), for: .normal)
+        infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
         
         // MARK: Calendar View
         calendar.delegate = self
@@ -42,7 +88,7 @@ class CalendarViewController: UIViewController {
         calendar.select(Date())
         
         calendar.register(CalendarCell.self, forCellReuseIdentifier: CalendarCell.description())
-            
+        
         calendar.locale = Locale(identifier: "ko_KR")
         
         calendar.scope = .month
@@ -59,18 +105,20 @@ class CalendarViewController: UIViewController {
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
         
         calendar.weekdayHeight = 60
-       
+        
         calendar.calendarHeaderView.isHidden = true
         calendar.placeholderType = .fillHeadTail
         calendar.scrollDirection = .vertical
+        calendar.allowsMultipleSelection = false
     }
 }
 
 extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
+    
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
         
         guard let cell = calendar.dequeueReusableCell(withIdentifier: CalendarCell.description(), for: date, at: position) as? CalendarCell else { return FSCalendarCell() }
-
+        
         cell.clipsToBounds = true
         cell.layer.cornerRadius = 21
         
@@ -103,7 +151,13 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         }
         return nil
     }
-
+    
+    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY년 M월"
+        let title = dateFormatter.string(from: calendar.currentPage)
+        monthLabel.text = title
+    }
 }
 
 #Preview {
