@@ -15,6 +15,14 @@ class CalendarViewController: UIViewController {
     let backButton = UIButton()
     let monthLabel = UILabel()
     let infoButton = UIButton()
+    
+    let bottomView = UIView()
+    let bottomBackground = UIView()
+    let dateLabel = UILabel()
+    let todayLabel = UILabel()
+    let pillLabel = UILabel()
+    let pillImageView = UIImageView()
+    let timeLabel = UILabel()
     var selectedDate: Date?
     
     override func viewDidLoad() {
@@ -31,6 +39,13 @@ class CalendarViewController: UIViewController {
         view.addSubview(backButton)
         view.addSubview(monthLabel)
         view.addSubview(infoButton)
+        view.addSubview(bottomBackground)
+        view.addSubview(bottomView)
+        view.addSubview(dateLabel)
+        view.addSubview(todayLabel)
+        view.addSubview(pillLabel)
+        view.addSubview(pillImageView)
+        view.addSubview(timeLabel)
     }
     
     func configureConstraints() {
@@ -51,20 +66,52 @@ class CalendarViewController: UIViewController {
             make.top.equalTo(view.safeAreaLayoutGuide).inset(16)
             make.height.equalTo(UIScreen.main.bounds.height * 0.65)
         }
+        
+        bottomBackground.snp.makeConstraints { make in
+            make.top.equalTo(calendar.snp.bottom)
+            make.horizontalEdges.equalTo(view)
+            make.bottom.equalTo(view).inset(-50)
+        }
+        
+        dateLabel.snp.makeConstraints { make in
+            make.top.equalTo(calendar.snp.bottom).offset(20)
+            make.centerX.equalTo(view)
+        }
+        
+        bottomView.snp.makeConstraints { make in
+            make.top.equalTo(dateLabel.snp.bottom).offset(20)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.height.equalTo(70)
+        }
+        
+        pillLabel.snp.makeConstraints { make in
+            make.top.equalTo(bottomView.snp.top).offset(20)
+            make.leading.equalTo(bottomView.snp.leading).offset(16)
+            make.centerY.equalTo(bottomView)
+        }
+        
+        pillImageView.snp.makeConstraints { make in
+            make.top.equalTo(bottomView.snp.top).offset(20)
+            make.trailing.equalTo(bottomView.snp.trailing).inset(16)
+            make.centerY.equalTo(bottomView)
+            make.size.equalTo(30)
+        }
     }
-
+    
     @objc func backButtonTapped() {
         // 이전 화면으로 돌아가기
         navigationController?.popViewController(animated: true)
     }
-
+    
     @objc func infoButtonTapped() {
         // 정보 버튼 동작
         print("Info button tapped")
     }
-
+    
     
     func configureView() {
+        
+        bottomBackground.backgroundColor = UIColor(named: "settingChevronDisabledGray")
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY년 M월"
@@ -80,6 +127,28 @@ class CalendarViewController: UIViewController {
         infoButton.setImage(UIImage(systemName: "info.circle"), for: .normal)
         infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
         
+        configureCalendar()
+        
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        dateFormatter.dateFormat = "M월 d일 EEEE"
+        
+        bottomView.backgroundColor = .white
+        bottomView.layer.cornerRadius = 16
+        
+        dateLabel.text = dateFormatter.string(from: Date())
+        dateLabel.font = .systemFont(ofSize: 16, weight: .bold)
+        dateLabel.textColor = .black
+        
+        pillLabel.text = "n번째 미뉴렛정 복용 완료"
+        pillLabel.font = .systemFont(ofSize: 16, weight: .regular)
+        pillLabel.textColor = .black
+        
+        pillImageView.image = UIImage(named: "calendar_green")
+    }
+}
+
+extension CalendarViewController {
+    func configureCalendar() {
         // MARK: Calendar View
         calendar.delegate = self
         calendar.dataSource = self
@@ -140,6 +209,11 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         selectedDate = date
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        dateFormatter.dateFormat = "M월 d일 EEEE"
+        dateLabel.text = dateFormatter.string(from: date)
         if selectedDate != nil {
             calendar.reloadData()
         }
