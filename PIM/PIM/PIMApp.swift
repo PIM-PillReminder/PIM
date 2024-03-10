@@ -8,6 +8,7 @@
 import SwiftUI
 import UserNotifications
 import WatchConnectivity
+import FirebaseCore
 
 @main
 struct PIMApp: App {
@@ -20,19 +21,23 @@ struct PIMApp: App {
         UNUserNotificationCenter.current().delegate = notificationDelegate
         setupWatchConnectivity()
         Thread.sleep(forTimeInterval: 2)
+        FirebaseApp.configure()
     }
   
   @AppStorage("isOnboarding") var isOnboarding = true
+  @StateObject var firestoreManager = FireStoreManager()
     
     var body: some Scene {
         WindowGroup {
 //            ContentView()
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-          if isOnboarding {
-            OnboardingMainView()
-          } else {
-            MainView()
-          }
+          Group {
+            if isOnboarding {
+              OnboardingMainView()
+            } else {
+              MainView()
+            }
+          }.environmentObject(firestoreManager)
         }
     }
     

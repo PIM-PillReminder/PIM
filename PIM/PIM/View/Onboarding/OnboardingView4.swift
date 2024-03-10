@@ -13,6 +13,7 @@ struct OnboardingView4: View {
     @State var selectedTime: Date
     @State private var isMainViewActive = false
     @State private var playLottie: Bool = true
+    @EnvironmentObject var firestoreManager: FireStoreManager
     
     let notificationManager = LocalNotificationManager()
     
