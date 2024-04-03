@@ -99,15 +99,24 @@ class CalendarViewController: UIViewController {
     }
     
     @objc func backButtonTapped() {
-        // 이전 화면으로 돌아가기
         navigationController?.popViewController(animated: true)
     }
     
     @objc func infoButtonTapped() {
-        // 정보 버튼 동작
-        print("Info button tapped")
+        let infoViewController = CalendarInfoViewController()
+        infoViewController.modalPresentationStyle = .overCurrentContext
+        infoViewController.modalTransitionStyle = .crossDissolve
+        
+        infoViewController.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        
+        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        
+        present(infoViewController, animated: true)
+        
+        infoViewController.dismissalCompletion = { [weak self] in
+            self?.view.backgroundColor = .white
+        }
     }
-    
     
     func configureView() {
         
@@ -140,7 +149,7 @@ class CalendarViewController: UIViewController {
         dateLabel.textColor = .black
         
         pillLabel.text = "n번째 미뉴렛정 복용 완료"
-        pillLabel.font = .systemFont(ofSize: 16, weight: .regular)
+        pillLabel.font = .systemFont(ofSize: 16, weight: .medium)
         pillLabel.textColor = .black
         
         pillImageView.image = UIImage(named: "calendar_green")
@@ -197,7 +206,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
             Calendar.current.isDate(date, equalTo: today, toGranularity: .month) &&
             Calendar.current.isDate(date, equalTo: today, toGranularity: .year) {
             cell.backImageView.image = UIImage(named: "calendar_today")
-            cell.backImageView.backgroundColor = .white
+            cell.backImageView.backgroundColor = .clear
         } else if date < today {
             cell.backImageView.image = UIImage(named: "calendar_green")
         } else {
