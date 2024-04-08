@@ -10,34 +10,44 @@ import UserNotifications
 import WatchConnectivity
 import FirebaseCore
 
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        return true
+    }
+}
+
 @main
 struct PIMApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     let persistenceController = PersistenceController.shared
     let notificationDelegate = NotificationDelegate()
     let pillStatusObserver = PillStatusObserver()
     let connectivityProvider = ConnectivityProvider()
     
     init() {
+        FirebaseApp.configure()
         UNUserNotificationCenter.current().delegate = notificationDelegate
         setupWatchConnectivity()
         Thread.sleep(forTimeInterval: 2)
-        FirebaseApp.configure()
     }
-  
-  @AppStorage("isOnboarding") var isOnboarding = true
-  @StateObject var firestoreManager = FireStoreManager()
+    
+    @AppStorage("isOnboarding") var isOnboarding = true
+    @StateObject var firestoreManager = FireStoreManager()
+    
+    
     
     var body: some Scene {
         WindowGroup {
-//            ContentView()
-//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-          Group {
-            if isOnboarding {
-              OnboardingMainView()
-            } else {
-              MainView()
-            }
-          }.environmentObject(firestoreManager)
+            //            ContentView()
+            //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            Group {
+                if isOnboarding {
+                    OnboardingMainView()
+                } else {
+                    MainView()
+                }
+            }.environmentObject(firestoreManager)
         }
     }
     
@@ -83,7 +93,7 @@ class ConnectivityProvider: NSObject, WCSessionDelegate {
     }
     
     var pillStatusObserver: PillStatusObserver?
-
+    
     override init() {
         super.init()
         if WCSession.isSupported() {
@@ -92,12 +102,12 @@ class ConnectivityProvider: NSObject, WCSessionDelegate {
             session.activate()
         }
     }
-
+    
     // 세션 활성화 완료 처리
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         // 세션 활성화 완료 처리
     }
-
+    
     // 메시지 수신 처리
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         if let status = message["PillEaten"] as? Bool {
