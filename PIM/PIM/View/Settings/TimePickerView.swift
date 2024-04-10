@@ -16,6 +16,7 @@ struct TimePickerView: View {
   let notificationManager = LocalNotificationManager()
   @State var selectedTime: Date = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? Date()
   @ObservedObject var settingViewModel: SettingViewModel
+  @EnvironmentObject var firestoreManager: FireStoreManager
   
   var body: some View {
     VStack(spacing: 0) {
@@ -56,7 +57,7 @@ struct TimePickerView: View {
           // 2. 새로운 알림 추가
           notificationManager.addNotification(title: "PIM")
           UserDefaults.standard.set(selectedTime, forKey: "SelectedTime")
-          
+          firestoreManager.updateNotificationTime(notificationTime: selectedTime)
           // 3. 스케줄링
           notificationManager.schedule()
 //          displayedTime = selectedTime

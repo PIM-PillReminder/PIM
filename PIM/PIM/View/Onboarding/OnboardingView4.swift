@@ -97,6 +97,13 @@ struct OnboardingView4: View {
                     // Onboarding 상태 업데이트
                     isMainViewActive = true
                     isOnboarding = false
+                  Task {
+                          do {
+                              await firestoreManager.createData(notificationTime: selectedTime, isPillEaten: false)
+                          } catch {
+                              print("Error: \(error)")
+                          }
+                      }
                 }) {
                     Text("선택했어요")
                         .font(.pretendard(.bold, size: 20))
