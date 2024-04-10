@@ -24,6 +24,7 @@ struct MainView: View {
     @State private var isPillEaten: Bool = false
     @State private var playLottie: Bool = true
     @State private var tapPlay: Bool = true
+    @EnvironmentObject var firestoreManager: FireStoreManager
     
     init() {
         let currentDateStr = DateFormatter.localizedString(from: Date(), dateStyle: .medium, timeStyle: .none)
@@ -123,6 +124,9 @@ struct MainView: View {
                     }
                 }
             }
+            .onChange(of: pillStatusObserver.isPillEaten) {
+                firestoreManager.updateIsPillEaten(isPillEaten: pillStatusObserver.isPillEaten)
+            }
             .navigationBarBackButtonHidden(true)
             .navigationTitle("")
             .background(Color.backgroundWhite)
@@ -147,6 +151,9 @@ struct MainView: View {
             
             // 워치로부터 약 복용 상태를 받아오는 함수 호출
             fetchPillStatusFromWatch()
+            
+            //firestore
+            firestoreManager.fetchData()
         }
         
     }
