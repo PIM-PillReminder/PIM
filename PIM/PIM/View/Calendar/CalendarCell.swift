@@ -34,7 +34,8 @@ class CalendarCell: FSCalendarCell {
         backImageView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).inset(-6)
             make.centerX.equalTo(contentView)
-            make.size.equalTo(minSize()/1.3)
+            make.size.equalTo(30)
+//            make.size.equalTo(minSize()/1.3)
         }
         backImageView.layer.cornerRadius = minSize()/3
         backImageView.backgroundColor = .clear
