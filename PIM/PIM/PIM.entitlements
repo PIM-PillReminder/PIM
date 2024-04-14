@@ -5,18 +5,14 @@
 	<key>aps-environment</key>
 	<string>development</string>
 	<key>com.apple.developer.icloud-container-identifiers</key>
-	<array>
-		<string>iCloud.mmhmjg.pim</string>
-	</array>
+	<array/>
 	<key>com.apple.developer.icloud-services</key>
 	<array>
 		<string>CloudKit</string>
 		<string>CloudDocuments</string>
 	</array>
 	<key>com.apple.developer.ubiquity-container-identifiers</key>
-	<array>
-		<string>iCloud.mmhmjg.pim</string>
-	</array>
+	<array/>
 	<key>com.apple.security.app-sandbox</key>
 	<true/>
 </dict>

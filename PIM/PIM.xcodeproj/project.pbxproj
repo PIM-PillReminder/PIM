@@ -47,6 +47,8 @@
 		7907B96B2B374733002596E8 /* clockPimi.json in Resources */ = {isa = PBXBuildFile; fileRef = 7907B96A2B374733002596E8 /* clockPimi.json */; };
 		7907B96D2B374773002596E8 /* happyPimiwoArms.json in Resources */ = {isa = PBXBuildFile; fileRef = 7907B96C2B374773002596E8 /* happyPimiwoArms.json */; };
 		7907B96F2B374781002596E8 /* sadPimiwoArms.json in Resources */ = {isa = PBXBuildFile; fileRef = 7907B96E2B374781002596E8 /* sadPimiwoArms.json */; };
+		7918E9A22BC41EF60093ACDC /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7918E9A12BC41EF60093ACDC /* FirebaseAnalyticsSwift */; };
+		7918E9A32BC4223F0093ACDC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79D550DA2B9DE4230006DADB /* GoogleService-Info.plist */; };
 		79326FCD2B371A3F0038CD7C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79326FCC2B371A3F0038CD7C /* Colors.xcassets */; };
 		79326FD12B3728770038CD7C /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79326FD02B3728770038CD7C /* SettingViewModel.swift */; };
 		79326FD22B3728770038CD7C /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79326FD02B3728770038CD7C /* SettingViewModel.swift */; };
@@ -66,6 +68,12 @@
 		7954A8042ABA88E8000D1E8F /* Pretendard-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7954A7FA2ABA88E8000D1E8F /* Pretendard-Light.ttf */; };
 		799B0EC82ABEEE5200AE9865 /* CustomStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799B0EC72ABEEE5200AE9865 /* CustomStyle.swift */; };
 		799B0ECA2ABEEE9300AE9865 /* PIMCustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799B0EC92ABEEE9300AE9865 /* PIMCustomSlider.swift */; };
+		79D550DB2B9DE4230006DADB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79D550DA2B9DE4230006DADB /* GoogleService-Info.plist */; };
+		79D550DF2B9DE6190006DADB /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 79D550DE2B9DE6190006DADB /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		79D550E12B9DE6190006DADB /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 79D550E02B9DE6190006DADB /* FirebaseCrashlytics */; };
+		79D550E32B9DE6190006DADB /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 79D550E22B9DE6190006DADB /* FirebaseFirestore */; };
+		79D550E52B9DE6190006DADB /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 79D550E42B9DE6190006DADB /* FirebaseFirestoreSwift */; };
+		79D550E72B9DE9C80006DADB /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D550E62B9DE9C80006DADB /* FirestoreManager.swift */; };
 		79DD3B7F2AC3DCC600837E11 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD3B7E2AC3DCC600837E11 /* TimePickerView.swift */; };
 		79FA64882B41277200DEA24D /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79FA64872B41277200DEA24D /* Launch Screen.storyboard */; };
 		79FA64A42B4143AF00DEA24D /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FA64A32B4143AF00DEA24D /* ViewExtension.swift */; };
@@ -108,7 +116,7 @@
 		573942542ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cafe24OhsquareAir-v2.0.ttf"; sourceTree = "<group>"; };
 		573942562ABEE85C0001906B /* OnboardingMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingMainView.swift; sourceTree = "<group>"; };
 		57461C432AB58C520026F903 /* PIM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PIM.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		57461C462AB58C520026F903 /* PIMApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIMApp.swift; sourceTree = "<group>"; };
+		57461C462AB58C520026F903 /* PIMApp.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = PIMApp.swift; sourceTree = "<group>"; tabWidth = 4; };
 		57461C482AB58C520026F903 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		57461C4A2AB58C540026F903 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57461C4D2AB58C540026F903 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -116,9 +124,9 @@
 		57461C522AB58C540026F903 /* PIM.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PIM.xcdatamodel; sourceTree = "<group>"; };
 		57461C592AB5919F0026F903 /* OnboardingView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView1.swift; sourceTree = "<group>"; };
 		57461C5B2AB59B070026F903 /* OnboardingView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView2.swift; sourceTree = "<group>"; };
-		57461C5D2AB59D5F0026F903 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		57461C5D2AB59D5F0026F903 /* MainView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; tabWidth = 4; };
 		57461C5F2AB59E0A0026F903 /* OnboardingView3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView3.swift; sourceTree = "<group>"; };
-		57461C612AB5B0220026F903 /* OnboardingView4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView4.swift; sourceTree = "<group>"; };
+		57461C612AB5B0220026F903 /* OnboardingView4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView4.swift; sourceTree = "<group>"; tabWidth = 4; };
 		57461C9B2AB76ABC0026F903 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		57461C9D2AB773430026F903 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5762705E2B28AD7700115612 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -143,6 +151,7 @@
 		7907B96A2B374733002596E8 /* clockPimi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clockPimi.json; sourceTree = "<group>"; };
 		7907B96C2B374773002596E8 /* happyPimiwoArms.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = happyPimiwoArms.json; sourceTree = "<group>"; };
 		7907B96E2B374781002596E8 /* sadPimiwoArms.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sadPimiwoArms.json; sourceTree = "<group>"; };
+		7918E99F2BC41CCE0093ACDC /* PIM-watch-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "PIM-watch-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		79326FCC2B371A3F0038CD7C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		79326FD02B3728770038CD7C /* SettingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		7954A7DF2AB9D082000D1E8F /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
@@ -159,6 +168,8 @@
 		7954A7FA2ABA88E8000D1E8F /* Pretendard-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.ttf"; sourceTree = "<group>"; };
 		799B0EC72ABEEE5200AE9865 /* CustomStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStyle.swift; sourceTree = "<group>"; };
 		799B0EC92ABEEE9300AE9865 /* PIMCustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIMCustomSlider.swift; sourceTree = "<group>"; };
+		79D550DA2B9DE4230006DADB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		79D550E62B9DE9C80006DADB /* FirestoreManager.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; tabWidth = 4; };
 		79DD3B7E2AC3DCC600837E11 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		79FA64872B41277200DEA24D /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		79FA64A32B4143AF00DEA24D /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
@@ -175,8 +186,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7918E9A22BC41EF60093ACDC /* FirebaseAnalyticsSwift in Frameworks */,
+				79D550E52B9DE6190006DADB /* FirebaseFirestoreSwift in Frameworks */,
+				79D550E12B9DE6190006DADB /* FirebaseCrashlytics in Frameworks */,
+				79D550E32B9DE6190006DADB /* FirebaseFirestore in Frameworks */,
 				C1BC9A5B2B888A6F0083E181 /* SnapKit in Frameworks */,
 				57022BF82AC45C6500070276 /* Lottie in Frameworks */,
+				79D550DF2B9DE6190006DADB /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				C1BC9A582B8889EF0083E181 /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,6 +252,7 @@
 				57461C452AB58C520026F903 /* PIM */,
 				576270652B299B2F00115612 /* PIM_watch Watch App */,
 				57461C442AB58C520026F903 /* Products */,
+				7918E9A02BC41EF60093ACDC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -251,6 +268,7 @@
 		57461C452AB58C520026F903 /* PIM */ = {
 			isa = PBXGroup;
 			children = (
+				79D550DA2B9DE4230006DADB /* GoogleService-Info.plist */,
 				C188793E2B6398E5000A770C /* PIM.entitlements */,
 				57461C462AB58C520026F903 /* PIMApp.swift */,
 				57461C482AB58C520026F903 /* ContentView.swift */,
@@ -258,6 +276,7 @@
 				7954A7EB2ABA8862000D1E8F /* Extension */,
 				573942582ABEE8820001906B /* View */,
 				57461C9B2AB76ABC0026F903 /* LocalNotificationManager.swift */,
+				79D550E62B9DE9C80006DADB /* FirestoreManager.swift */,
 				57461C9D2AB773430026F903 /* Info.plist */,
 				57461C4A2AB58C540026F903 /* Assets.xcassets */,
 				79326FCC2B371A3F0038CD7C /* Colors.xcassets */,
@@ -279,6 +298,7 @@
 		576270652B299B2F00115612 /* PIM_watch Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				7918E99F2BC41CCE0093ACDC /* PIM-watch-Watch-App-Info.plist */,
 				5762707A2B299F2100115612 /* Font */,
 				576270662B299B2F00115612 /* PIM_watchApp.swift */,
 				C188793F2B63A540000A770C /* WatchSessionManager.swift */,
@@ -312,6 +332,13 @@
 				5762707B2B299F5600115612 /* Pretendard-Thin.ttf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		7918E9A02BC41EF60093ACDC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		7954A7DE2AB9D069000D1E8F /* Settings */ = {
@@ -402,8 +429,6 @@
 			name = PIM;
 			packageProductDependencies = (
 				57022BF72AC45C6500070276 /* Lottie */,
-				C1BC9A572B8889EF0083E181 /* FSCalendar */,
-				C1BC9A5A2B888A6F0083E181 /* SnapKit */,
 			);
 			productName = PIM;
 			productReference = 57461C432AB58C520026F903 /* PIM.app */;
@@ -455,6 +480,7 @@
 			mainGroup = 57461C3A2AB58C520026F903;
 			packageReferences = (
 				57022BF62AC45C6500070276 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				79D550DD2B9DE6190006DADB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				C1BC9A562B8889EF0083E181 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				C1BC9A592B888A6F0083E181 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
@@ -493,6 +519,7 @@
 				79326FCD2B371A3F0038CD7C /* Colors.xcassets in Resources */,
 				79FA64882B41277200DEA24D /* Launch Screen.storyboard in Resources */,
 				573942552ABEE80E0001906B /* Cafe24OhsquareAir-v2.0.ttf in Resources */,
+				79D550DB2B9DE4230006DADB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +527,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7918E9A32BC4223F0093ACDC /* GoogleService-Info.plist in Resources */,
 				576270882B299F8700115612 /* Pretendard-ExtraBold.ttf in Resources */,
 				5762707E2B299F5E00115612 /* Pretendard-SemiBold.ttf in Resources */,
 				79326FD32B3736780038CD7C /* Colors.xcassets in Resources */,
@@ -522,6 +550,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79D550E72B9DE9C80006DADB /* FirestoreManager.swift in Sources */,
 				7954A7ED2ABA8881000D1E8F /* FontExtension.swift in Sources */,
 				79DD3B7F2AC3DCC600837E11 /* TimePickerView.swift in Sources */,
 				57461C9C2AB76ABC0026F903 /* LocalNotificationManager.swift in Sources */,
@@ -709,6 +738,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PIM/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Pim;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -720,6 +750,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mmhmjg.pim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -737,7 +768,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = PIM/PIM.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Distribution";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -747,6 +778,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PIM/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Pim;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -758,6 +790,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mmhmjg.pim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -775,6 +808,7 @@
 				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOL_FRAMEWORKS = SwiftUI;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -785,6 +819,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PIM-watch-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Pim;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.mmhmjg.pim;
@@ -816,6 +851,7 @@
 				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOL_FRAMEWORKS = SwiftUI;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -826,6 +862,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PIM-watch-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Pim;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.mmhmjg.pim;
@@ -890,6 +927,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		79D550DD2B9DE6190006DADB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.22.1;
+			};
+		};
 		C1BC9A562B8889EF0083E181 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
@@ -913,16 +958,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 57022BF62AC45C6500070276 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
-		};
-		C1BC9A572B8889EF0083E181 /* FSCalendar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C1BC9A562B8889EF0083E181 /* XCRemoteSwiftPackageReference "FSCalendar" */;
-			productName = FSCalendar;
-		};
-		C1BC9A5A2B888A6F0083E181 /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C1BC9A592B888A6F0083E181 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 
