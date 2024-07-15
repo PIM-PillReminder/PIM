@@ -15,7 +15,9 @@ struct MainView: View {
         formatter.dateFormat = "M월 d일"
         return formatter
     }()
+    
     let notificationManager = LocalNotificationManager()
+    @Environment(\.presentationMode) var presentationMode
     
     @Environment(\.scenePhase) var scenePhase
     
@@ -36,15 +38,18 @@ struct MainView: View {
             VStack {
                 HStack {
                     
-                    Image(systemName: "calendar")
-                        .font(.system(size: 24))
-                        .padding(.leading, 20)
-                        .foregroundColor(.disabledGray)
-                        .opacity(50)
+                    NavigationLink(destination: CalendarViewRepresentable()
+                        .navigationBarBackButtonHidden()
+                    ) {
+                        Image(systemName: "calendar")
+                            .font(.system(size: 24))
+                            .padding(.leading, 20)
+                            .foregroundColor(Color.primaryGreen)
+                            .opacity(100)
+                    }
                     
                     Spacer()
                     
-                    // MARK: 날짜(추가될 수 있음)
                     Text(dateFormatter.string(from: Date()))
                         .font(.pretendard(.bold, size: 18))
                     
@@ -56,15 +61,6 @@ struct MainView: View {
                             .foregroundColor(Color.primaryGreen)
                             .padding(.trailing, 20)
                     }
-                    
-                    // TODO: 2차 스프린트 - CalendarView로 연결
-                    //                NavigationLink(destination: MainView()) {
-                    //                    Image(systemName: "calendar")
-                    //                        .font(.system(size: 24))
-                    //                        .padding(.trailing, 20)
-                    //                        .foregroundColor(Color.green03)
-                    //                        .opacity(100)
-                    //                }
                 }
                 .padding(.top, 10)
                 .padding(.bottom, 50)
