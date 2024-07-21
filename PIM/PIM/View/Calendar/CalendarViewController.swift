@@ -128,14 +128,14 @@ class CalendarViewController: UIViewController {
     
     func configureView() {
         
-        bottomBackground.backgroundColor = UIColor(named: "settingChevronDisabledGray")
+        bottomBackground.backgroundColor = UIColor(named: "gray02")
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY년 M월"
         let title = dateFormatter.string(from: Date())
         
         monthLabel.text = title
-        monthLabel.textColor = .black
+        monthLabel.textColor = UIColor(named: "black")
         monthLabel.font = .systemFont(ofSize: 20, weight: .bold)
         
         backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
@@ -149,16 +149,16 @@ class CalendarViewController: UIViewController {
         dateFormatter.locale = Locale(identifier: "ko_KR")
         dateFormatter.dateFormat = "M월 d일 EEEE"
         
-        bottomView.backgroundColor = .white
+        bottomView.backgroundColor = UIColor(named: "white")
         bottomView.layer.cornerRadius = 16
         
         dateLabel.text = dateFormatter.string(from: Date())
         dateLabel.font = .systemFont(ofSize: 16, weight: .bold)
-        dateLabel.textColor = .black
+        dateLabel.textColor = UIColor(named: "black")
         
         pillLabel.text = "n번째 미뉴렛정 복용 완료"
         pillLabel.font = .systemFont(ofSize: 16, weight: .medium)
-        pillLabel.textColor = .black
+        pillLabel.textColor = UIColor(named: "black")
         
         pillImageView.image = UIImage(named: "calendar_green")
     }
@@ -202,11 +202,11 @@ extension CalendarViewController {
         calendar.appearance.todaySelectionColor = .clear
         calendar.appearance.selectionColor = .clear
         calendar.appearance.todayColor = .clear
-        calendar.appearance.titleTodayColor = .black
-        calendar.appearance.titleDefaultColor = .black
-        calendar.appearance.titleWeekendColor = .black
+        calendar.appearance.titleTodayColor = UIColor(named: "black")
+        calendar.appearance.titleDefaultColor = UIColor(named: "black")
+        calendar.appearance.titleWeekendColor = UIColor(named: "black")
         calendar.appearance.weekdayFont = .systemFont(ofSize: 14, weight: .light)
-        calendar.appearance.weekdayTextColor = .black
+        calendar.appearance.weekdayTextColor = UIColor(named: "gray08")
         calendar.appearance.eventDefaultColor = UIColor(named: "primaryGreen")
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
         
@@ -263,28 +263,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
             calendar.reloadData()
         }
     }
-//    
-//    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
-//        let calendar = Calendar.current
-//        let today = calendar.startOfDay(for: Date())
-//        let cellDate = calendar.startOfDay(for: date)
-//        
-//        if calendar.isDate(cellDate, inSameDayAs: today) {
-//            if let selectedDate = selectedDate, calendar.isDate(selectedDate, inSameDayAs: today) {
-//                // 오늘 날짜이고 선택되었을 때
-//                return .red
-//            } else {
-//                // 오늘 날짜이지만 선택되지 않았을 때
-//                return .lightGray
-//            }
-//        } else if let selectedDate = selectedDate, calendar.isDate(selectedDate, inSameDayAs: cellDate) {
-//            // 오늘이 아닌 날짜가 선택되었을 때
-//            return .red
-//        }
-//        
-//        return nil
-//    }
-    
+
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY년 M월"

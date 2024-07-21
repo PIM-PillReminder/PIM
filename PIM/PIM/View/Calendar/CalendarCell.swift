@@ -60,18 +60,18 @@ class CalendarCell: FSCalendarCell {
         
         if isToday {
             if isSelected {
-                self.backgroundColor = .black
-                titleLabel.textColor = .white
+                self.backgroundColor = UIColor(named: "black")
+                titleLabel.textColor = UIColor(named: "white")
             } else {
                 self.backgroundColor = UIColor(named: "gray03")
-                titleLabel.textColor = .black
+                titleLabel.textColor = UIColor(named: "black")
             }
         } else if isSelected {
-            self.backgroundColor = .black
-            titleLabel.textColor = .white
+            self.backgroundColor = UIColor(named: "black")
+            titleLabel.textColor = UIColor(named: "white")
         } else {
             self.backgroundColor = .clear
-            titleLabel.textColor = .black
+            titleLabel.textColor = UIColor(named: "black")
         }
     }
     
