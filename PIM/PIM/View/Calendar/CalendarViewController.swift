@@ -5,6 +5,7 @@
 //  Created by Madeline on 2/23/24.
 //
 
+import Combine
 import FSCalendar
 import SnapKit
 import UIKit
@@ -25,12 +26,19 @@ class CalendarViewController: UIViewController {
     let timeLabel = UILabel()
     var selectedDate: Date?
     
+    let firestoreManager = FireStoreManager()
+    var pillEatenStatus: [Date: Bool] = [:]
+    
+    private var cancellables = Set<AnyCancellable>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureHierarchy()
         configureConstraints()
         configureView()
+        
+        fetchPillEatenStatus()
         
     }
     
@@ -154,6 +162,26 @@ class CalendarViewController: UIViewController {
         
         pillImageView.image = UIImage(named: "calendar_green")
     }
+    
+    func fetchPillEatenStatus() {
+        firestoreManager.fetchData()
+        
+        // FirestoreManager의 Published 프로퍼티들을 관찰합니다.
+        firestoreManager.$isPillEaten
+            .combineLatest(firestoreManager.$notificationTime)
+            .sink { [weak self] (isPillEaten, notificationTime) in
+                guard let self = self,
+                      let isPillEaten = isPillEaten,
+                      let notificationTime = notificationTime else { return }
+                
+                let date = Calendar.current.startOfDay(for: notificationTime)
+                self.pillEatenStatus[date] = isPillEaten
+                DispatchQueue.main.async {
+                    self.calendar.reloadData()
+                }
+            }
+            .store(in: &cancellables)
+    }
 }
 
 extension CalendarViewController {
@@ -200,18 +228,26 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         cell.clipsToBounds = true
         cell.layer.cornerRadius = 21
         
-        // TODO: 약 먹었는지 검사 후 green / red 분리
         let today = Date()
-        if Calendar.current.isDate(date, equalTo: today, toGranularity: .day) &&
-            Calendar.current.isDate(date, equalTo: today, toGranularity: .month) &&
-            Calendar.current.isDate(date, equalTo: today, toGranularity: .year) {
-            cell.backImageView.image = UIImage(named: "calendar_today")
-            cell.backImageView.backgroundColor = .clear
-        } else if date < today {
-            cell.backImageView.image = UIImage(named: "calendar_green")
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: date)
+        
+        if startOfDay > today {
+            // 오늘 이후의 날짜는 이미지를 비워둠
+            cell.backImageView.image = nil
+        } else if let isPillEaten = pillEatenStatus[startOfDay] {
+            if isPillEaten {
+                cell.backImageView.image = UIImage(named: "calendar_green")
+            } else {
+                cell.backImageView.image = UIImage(named: "calendar_red")
+            }
         } else {
-            cell.backImageView.image = UIImage(named: "calendar_red")
+            // 약을 아직 체크하지 않은 경우
+            cell.backImageView.image = UIImage(named: "calendar_today")
         }
+        
+        cell.backImageView.backgroundColor = .clear
+        cell.isToday = Calendar.current.isDateInToday(date)
         
         return cell
     }
@@ -227,13 +263,27 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
             calendar.reloadData()
         }
     }
-    
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
-        if let selectedDate = selectedDate, Calendar.current.isDate(selectedDate, inSameDayAs: date) {
-            return .black
-        }
-        return nil
-    }
+//    
+//    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
+//        let calendar = Calendar.current
+//        let today = calendar.startOfDay(for: Date())
+//        let cellDate = calendar.startOfDay(for: date)
+//        
+//        if calendar.isDate(cellDate, inSameDayAs: today) {
+//            if let selectedDate = selectedDate, calendar.isDate(selectedDate, inSameDayAs: today) {
+//                // 오늘 날짜이고 선택되었을 때
+//                return .red
+//            } else {
+//                // 오늘 날짜이지만 선택되지 않았을 때
+//                return .lightGray
+//            }
+//        } else if let selectedDate = selectedDate, calendar.isDate(selectedDate, inSameDayAs: cellDate) {
+//            // 오늘이 아닌 날짜가 선택되었을 때
+//            return .red
+//        }
+//        
+//        return nil
+//    }
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         let dateFormatter = DateFormatter()
