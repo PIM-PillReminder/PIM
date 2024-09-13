@@ -164,24 +164,26 @@ class CalendarViewController: UIViewController {
     }
     
     func fetchPillEatenStatus() {
-        firestoreManager.fetchData()
-        
-        // FirestoreManager의 Published 프로퍼티들을 관찰합니다.
-        firestoreManager.$isPillEaten
-            .combineLatest(firestoreManager.$notificationTime)
-            .sink { [weak self] (isPillEaten, notificationTime) in
-                guard let self = self,
-                      let isPillEaten = isPillEaten,
-                      let notificationTime = notificationTime else { return }
-                
-                let date = Calendar.current.startOfDay(for: notificationTime)
-                self.pillEatenStatus[date] = isPillEaten
-                DispatchQueue.main.async {
-                    self.calendar.reloadData()
-                }
+        firestoreManager.fetchData { success in
+            if success {
+                self.firestoreManager.$isPillEaten
+                    .combineLatest(self.firestoreManager.$notificationTime)
+                    .sink { [weak self] (isPillEaten, notificationTime) in
+                        guard let self = self,
+                              let isPillEaten = isPillEaten,
+                              let notificationTime = notificationTime else { return }
+                        
+                        let date = Calendar.current.startOfDay(for: notificationTime)
+                        self.pillEatenStatus[date] = isPillEaten
+                        DispatchQueue.main.async {
+                            self.calendar.reloadData()
+                        }
+                    }
+                    .store(in: &self.cancellables)
             }
-            .store(in: &cancellables)
+        }
     }
+
 }
 
 extension CalendarViewController {
@@ -228,7 +230,8 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         cell.clipsToBounds = true
         cell.layer.cornerRadius = 21
         
-        let today = Date()
+//        let today = Date()
+        let today = Calendar.current.startOfDay(for: Date())
         let calendar = Calendar.current
         let startOfDay = calendar.startOfDay(for: date)
         
@@ -259,10 +262,26 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         dateFormatter.locale = Locale(identifier: "ko_KR")
         dateFormatter.dateFormat = "M월 d일 EEEE"
         dateLabel.text = dateFormatter.string(from: date)
+        
+        // pillEatenStatus에서 선택된 날짜에 해당하는 값을 확인하여 pillLabel.text를 업데이트
+        let startOfDay = Calendar.current.startOfDay(for: date)
+        
+        if let isPillEaten = pillEatenStatus[startOfDay] {
+            if isPillEaten {
+                pillLabel.text = "피임약 복용 완료"
+            } else {
+                pillLabel.text = "안먹었어요"
+                pillImageView.image = UIImage(named: "calendar_red")
+            }
+        } else {
+            pillLabel.text = "안먹었어요"
+        }
+        
         if selectedDate != nil {
             calendar.reloadData()
         }
     }
+
 
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         let dateFormatter = DateFormatter()

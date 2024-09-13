@@ -24,9 +24,10 @@ class FireStoreManager: ObservableObject {
     }
     
     //MARK: 파이어스토어에서 값 가져오는 함수
-    func fetchData() {
+    func fetchData(completion: @escaping (Bool) -> Void) {
         guard let documentID = self.documentID else {
             print("Document ID is nil")
+            completion(false)
             return
         }
         let db = Firestore.firestore()
@@ -34,6 +35,7 @@ class FireStoreManager: ObservableObject {
         docRef.getDocument { (document, error) in
             guard error == nil else {
                 print("Error fetching document:", error ?? "")
+                completion(false)
                 return
             }
             
@@ -50,7 +52,9 @@ class FireStoreManager: ObservableObject {
                     self.isPillEaten = data["isPillEaten"] as? Bool
                     print("Is Pill Eaten:", self.isPillEaten ?? "N/A")
                 }
+                completion(true)
             }
+            completion(false)
         }
     }
 
