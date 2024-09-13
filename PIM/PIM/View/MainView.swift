@@ -121,11 +121,23 @@ struct MainView: View {
                 }
             }
             .onChange(of: pillStatusObserver.isPillEaten) { newValue in
+/*
+                firestoreManager.fetchData { exists in
+                    if exists {
+                        firestoreManager.updateIsPillEaten(isPillEaten: newValue)
+                    } else {
+                        Task {
+                            await firestoreManager.createData(notificationTime: Date(), isPillEaten: newValue)
+                        }
+                    }
+                }
+*/
                 // 현재 시간과 함께 새로운 PillStatus 객체를 생성
                 let newPillStatus = PillStatus(isPillEaten: newValue, pillDate: Date().getFormattedDate())
                 
                 // FirestoreManager에 새 PillStatus 객체 저장
                 firestoreManager.savePillStatus(pillStatus: newPillStatus)
+
             }
             .navigationBarBackButtonHidden(true)
             .navigationTitle("")
@@ -153,7 +165,11 @@ struct MainView: View {
             fetchPillStatusFromWatch()
             
             //firestore
-            firestoreManager.fetchData()
+//            firestoreManager.fetchData { exists in
+//                if exists {
+//                    // Firestore 데이터 처리 (필요 시)
+//                }
+//            }
         }
         
     }
@@ -161,6 +177,7 @@ struct MainView: View {
     // 상태 업데이트 및 워치에 전송
     private func updatePillStatus(_ status: Bool) {
         pillStatusObserver.isPillEaten = status
+        
     }
     
     // MARK: (GET) 워치로부터 데이터 받아오기
