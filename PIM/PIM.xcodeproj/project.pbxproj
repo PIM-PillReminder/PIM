@@ -98,6 +98,7 @@
 		C1BC9A5D2B888C6A0083E181 /* CalendarViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC9A5C2B888C6A0083E181 /* CalendarViewRepresentable.swift */; };
 		C1BC9A5F2B888FA10083E181 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC9A5E2B888FA10083E181 /* CalendarCell.swift */; };
 		C1DE878E2B8A4717007DAC81 /* CalendarInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DE878D2B8A4717007DAC81 /* CalendarInfoViewController.swift */; };
+		C1E66FD62C9AE0D7006420B6 /* CalendarBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E66FD52C9AE0D7006420B6 /* CalendarBottomView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,6 +197,7 @@
 		C1BC9A5C2B888C6A0083E181 /* CalendarViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewRepresentable.swift; sourceTree = "<group>"; };
 		C1BC9A5E2B888FA10083E181 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		C1DE878D2B8A4717007DAC81 /* CalendarInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarInfoViewController.swift; sourceTree = "<group>"; };
+		C1E66FD52C9AE0D7006420B6 /* CalendarBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarBottomView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -453,6 +455,7 @@
 				C1BC9A542B88896D0083E181 /* CalendarViewController.swift */,
 				C1BC9A5C2B888C6A0083E181 /* CalendarViewRepresentable.swift */,
 				C1BC9A5E2B888FA10083E181 /* CalendarCell.swift */,
+				C1E66FD52C9AE0D7006420B6 /* CalendarBottomView.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -632,6 +635,7 @@
 				57461C5E2AB59D5F0026F903 /* MainView.swift in Sources */,
 				57461C492AB58C520026F903 /* ContentView.swift in Sources */,
 				799B0EC82ABEEE5200AE9865 /* CustomStyle.swift in Sources */,
+				C1E66FD62C9AE0D7006420B6 /* CalendarBottomView.swift in Sources */,
 				C185D6D12C9AC72E00CEB5A6 /* DateExtension.swift in Sources */,
 				7954A7EF2ABA888B000D1E8F /* ColorExtension.swift in Sources */,
 				57461C532AB58C540026F903 /* PIM.xcdatamodeld in Sources */,

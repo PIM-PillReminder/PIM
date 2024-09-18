@@ -18,16 +18,9 @@ class CalendarViewController: UIViewController {
     let monthLabel = UILabel()
     let infoButton = UIButton()
     
-    let bottomView = UIView()
-    let bottomBackground = UIView()
-    let dateLabel = UILabel()
-    let todayLabel = UILabel()
-    let pillLabel = UILabel()
-    let pillTimeImage = UIImageView()
-    let pillTakenTimeLabel = UILabel()
-    let pillImageView = UIImageView()
-    let timeLabel = UILabel()
-    var selectedDate: Date?
+    let bottomView = CalendarBottomView()
+    
+    private var selectedDate: Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,15 +53,7 @@ class CalendarViewController: UIViewController {
         view.addSubview(backButton)
         view.addSubview(monthLabel)
         view.addSubview(infoButton)
-        view.addSubview(bottomBackground)
         view.addSubview(bottomView)
-        view.addSubview(dateLabel)
-        view.addSubview(todayLabel)
-        view.addSubview(pillLabel)
-        view.addSubview(pillTimeImage)
-        view.addSubview(pillTakenTimeLabel)
-        view.addSubview(pillImageView)
-        view.addSubview(timeLabel)
     }
     
     func configureConstraints() {
@@ -90,44 +75,10 @@ class CalendarViewController: UIViewController {
             make.height.equalTo(UIScreen.main.bounds.height * 0.65)
         }
         
-        bottomBackground.snp.makeConstraints { make in
-            make.top.equalTo(calendar.snp.bottom)
-            make.horizontalEdges.equalTo(view)
-            make.bottom.equalTo(view).inset(-50)
-        }
-        
-        dateLabel.snp.makeConstraints { make in
-            make.top.equalTo(calendar.snp.bottom).offset(20)
-            make.centerX.equalTo(view)
-        }
-        
         bottomView.snp.makeConstraints { make in
-            make.top.equalTo(dateLabel.snp.bottom).offset(20)
-            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(18)
-            make.height.equalTo(70)
-        }
-        
-        pillLabel.snp.makeConstraints { make in
-            make.top.equalTo(bottomView.snp.top).offset(12)
-            make.leading.equalTo(bottomView.snp.leading).offset(18)
-        }
-        
-        pillTimeImage.snp.makeConstraints { make in
-            make.top.equalTo(pillLabel.snp.bottom).offset(3)
-            make.leading.equalTo(bottomView.snp.leading).offset(18)
-            make.size.equalTo(17)
-        }
-        
-        pillTakenTimeLabel.snp.makeConstraints { make in
-            make.top.equalTo(pillLabel.snp.bottom).offset(6)
-            make.leading.equalTo(pillTimeImage.snp.trailing).offset(6)
-        }
-        
-        pillImageView.snp.makeConstraints { make in
-            make.top.equalTo(bottomView.snp.top).offset(20)
-            make.trailing.equalTo(bottomView.snp.trailing).inset(16)
-            make.centerY.equalTo(bottomView)
-            make.size.equalTo(30)
+            make.top.equalTo(calendar.snp.bottom).offset(20)
+            make.horizontalEdges.equalTo(view)
+            make.bottom.equalTo(view).offset(32)
         }
     }
     
@@ -153,8 +104,6 @@ class CalendarViewController: UIViewController {
     
     func configureView() {
         
-        bottomBackground.backgroundColor = UIColor(named: "gray02")
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY년 M월"
         let title = dateFormatter.string(from: Date())
@@ -170,28 +119,6 @@ class CalendarViewController: UIViewController {
         infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
         
         configureCalendar()
-        
-        dateFormatter.locale = Locale(identifier: "ko_KR")
-        dateFormatter.dateFormat = "M월 d일 EEEE"
-        
-        bottomView.backgroundColor = .white
-        bottomView.layer.cornerRadius = 16
-        
-        dateLabel.text = dateFormatter.string(from: Date())
-        dateLabel.font = .systemFont(ofSize: 18, weight: .bold)
-        dateLabel.textColor = .black
-        
-        pillLabel.text = "복용 완료"
-        pillLabel.font = .systemFont(ofSize: 18, weight: .medium)
-        pillLabel.textColor = .black
-        
-        pillTimeImage.image = UIImage(named: "clock")
-        
-        pillTakenTimeLabel.text = "오후 5:13"
-        pillTakenTimeLabel.font = .systemFont(ofSize: 14, weight: .regular)
-        pillTakenTimeLabel.textColor = UIColor(named: "gray07")
-        
-        pillImageView.image = UIImage(named: "calendar_green")
     }
 }
 
@@ -256,7 +183,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
             }
         } else {
             // 약 복용 여부를 체크하지 않은 경우
-            cell.backImageView.image = UIImage(named: "calendar_today")
+            cell.backImageView.image = UIImage(named: "calendar_red")
         }
         
         cell.backImageView.backgroundColor = .clear
@@ -271,7 +198,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ko_KR")
         dateFormatter.dateFormat = "M월 d일 EEEE"
-        dateLabel.text = dateFormatter.string(from: date)
+        bottomView.dateLabel.text = dateFormatter.string(from: date) // bottomView의 dateLabel 업데이트
         
         let startOfDay = Calendar.current.startOfDay(for: date)
         
@@ -280,30 +207,29 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         
         if let isPillEaten = pillStatus[startOfDay] {
             if isPillEaten {
-                pillLabel.text = "피임약 복용 완료"
+                bottomView.pillLabel.text = "복용 완료" // bottomView의 pillLabel 업데이트
+                bottomView.pillImageView.image = UIImage(named: "calendar_green") // bottomView의 pillImageView 업데이트
             } else {
-                pillLabel.text = "안먹었어요"
-                pillImageView.image = UIImage(named: "calendar_red")
+                bottomView.pillLabel.text = "안 먹었어요"
+                bottomView.pillImageView.image = UIImage(named: "calendar_red")
             }
         } else {
-            pillLabel.text = "안먹었어요"
+            bottomView.pillLabel.text = "안 먹었어요"
+            bottomView.pillImageView.image = UIImage(named: "calendar_red")
         }
 
         if selectedDate != nil {
             calendar.reloadData()
         }
     }
+    
+    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY년 M월"
+        let title = dateFormatter.string(from: calendar.currentPage)
+        monthLabel.text = title
+    }
 }
-
-
-//    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "YYYY년 M월"
-//        let title = dateFormatter.string(from: calendar.currentPage)
-//        monthLabel.text = title
-//    }
-//}
-
 
 #Preview {
     CalendarViewController()
