@@ -204,11 +204,11 @@ struct MainView: View {
 class PillStatusObserver: ObservableObject {
     @Published var isPillEaten: Bool = false {
         didSet {
-            let currentDateStr = getCurrentDateString()
-            UserDefaults.standard.set(isPillEaten, forKey: currentDateStr)
+            let currentDate = Date()
+            UserDefaultsManager.shared.savePillStatus(date: currentDate, isPillEaten: isPillEaten)
             sendPillStatusToWatch(isPillEaten)
             print("isPillEaten updated to: \(isPillEaten)")
-            print("저장된 값 (\(currentDateStr)): \(isPillEaten)")
+            print("저장된 값 (\(currentDate)): \(isPillEaten)")
         }
     }
     
@@ -217,12 +217,9 @@ class PillStatusObserver: ObservableObject {
     }
     
     private func getCurrentPillStatus() -> Bool {
-        let currentDateStr = getCurrentDateString()
-        return UserDefaults.standard.bool(forKey: currentDateStr)
-    }
-    
-    private func getCurrentDateString() -> String {
-        return DateFormatter.localizedString(from: Date(), dateStyle: .medium, timeStyle: .none)
+        let currentDate = Date()
+        let pillStatus = UserDefaultsManager.shared.getPillStatus()
+        return pillStatus[Calendar.current.startOfDay(for: currentDate)] ?? false
     }
     
     // MARK: (POST) 워치로 데이터 보내기
@@ -235,6 +232,7 @@ class PillStatusObserver: ObservableObject {
         }
     }
 }
+
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {

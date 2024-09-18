@@ -76,7 +76,7 @@ class FireStoreManager: ObservableObject {
             }
         }
     }
-
+    
     // Firestore에 PillStatus 배열 저장하는 함수
     func savePillStatus(pillStatus: PillStatus) {
         guard let documentID = self.documentID else {
@@ -88,7 +88,7 @@ class FireStoreManager: ObservableObject {
         let docRef = db.collection("userData").document(documentID)
         
         let pillStatusData = pillStatus.toDictionary()
-
+        
         // 기존 날짜와 동일한 데이터를 삭제 (arrayRemove)
         docRef.getDocument { (document, error) in
             guard let document = document, document.exists else {
@@ -134,8 +134,8 @@ class FireStoreManager: ObservableObject {
             }
         }
     }
-
-
+    
+    
     // Firestore에 알림 시간을 저장하는 함수
     func updateNotificationTime(notificationTime: Date) {
         guard let documentID = self.documentID else {
