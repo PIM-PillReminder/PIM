@@ -5,7 +5,6 @@
 //  Created by Madeline on 2/23/24.
 //
 
-import Combine
 import FSCalendar
 import SnapKit
 import UIKit
@@ -26,19 +25,12 @@ class CalendarViewController: UIViewController {
     let timeLabel = UILabel()
     var selectedDate: Date?
     
-    let firestoreManager = FireStoreManager()
-    var pillEatenStatus: [Date: Bool] = [:]
-    
-    private var cancellables = Set<AnyCancellable>()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureHierarchy()
         configureConstraints()
         configureView()
-        
-        fetchPillEatenStatus()
         
     }
     
@@ -128,14 +120,14 @@ class CalendarViewController: UIViewController {
     
     func configureView() {
         
-        bottomBackground.backgroundColor = UIColor(named: "gray02")
+        bottomBackground.backgroundColor = UIColor(named: "settingChevronDisabledGray")
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY년 M월"
         let title = dateFormatter.string(from: Date())
         
         monthLabel.text = title
-        monthLabel.textColor = UIColor(named: "black")
+        monthLabel.textColor = .black
         monthLabel.font = .systemFont(ofSize: 20, weight: .bold)
         
         backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
@@ -149,41 +141,19 @@ class CalendarViewController: UIViewController {
         dateFormatter.locale = Locale(identifier: "ko_KR")
         dateFormatter.dateFormat = "M월 d일 EEEE"
         
-        bottomView.backgroundColor = UIColor(named: "white")
+        bottomView.backgroundColor = .white
         bottomView.layer.cornerRadius = 16
         
         dateLabel.text = dateFormatter.string(from: Date())
         dateLabel.font = .systemFont(ofSize: 16, weight: .bold)
-        dateLabel.textColor = UIColor(named: "black")
+        dateLabel.textColor = .black
         
-        pillLabel.text = "n번째 미뉴렛정 복용 완료"
+        pillLabel.text = "복용 완료"
         pillLabel.font = .systemFont(ofSize: 16, weight: .medium)
-        pillLabel.textColor = UIColor(named: "black")
+        pillLabel.textColor = .black
         
         pillImageView.image = UIImage(named: "calendar_green")
     }
-    
-    func fetchPillEatenStatus() {
-        firestoreManager.fetchData { success in
-            if success {
-                self.firestoreManager.$isPillEaten
-                    .combineLatest(self.firestoreManager.$notificationTime)
-                    .sink { [weak self] (isPillEaten, notificationTime) in
-                        guard let self = self,
-                              let isPillEaten = isPillEaten,
-                              let notificationTime = notificationTime else { return }
-                        
-                        let date = Calendar.current.startOfDay(for: notificationTime)
-                        self.pillEatenStatus[date] = isPillEaten
-                        DispatchQueue.main.async {
-                            self.calendar.reloadData()
-                        }
-                    }
-                    .store(in: &self.cancellables)
-            }
-        }
-    }
-
 }
 
 extension CalendarViewController {
@@ -204,11 +174,11 @@ extension CalendarViewController {
         calendar.appearance.todaySelectionColor = .clear
         calendar.appearance.selectionColor = .clear
         calendar.appearance.todayColor = .clear
-        calendar.appearance.titleTodayColor = UIColor(named: "black")
-        calendar.appearance.titleDefaultColor = UIColor(named: "black")
-        calendar.appearance.titleWeekendColor = UIColor(named: "black")
+        calendar.appearance.titleTodayColor = .black
+        calendar.appearance.titleDefaultColor = .black
+        calendar.appearance.titleWeekendColor = .black
         calendar.appearance.weekdayFont = .systemFont(ofSize: 14, weight: .light)
-        calendar.appearance.weekdayTextColor = UIColor(named: "gray08")
+        calendar.appearance.weekdayTextColor = .black
         calendar.appearance.eventDefaultColor = UIColor(named: "primaryGreen")
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
         
@@ -230,27 +200,18 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         cell.clipsToBounds = true
         cell.layer.cornerRadius = 21
         
-//        let today = Date()
-        let today = Calendar.current.startOfDay(for: Date())
-        let calendar = Calendar.current
-        let startOfDay = calendar.startOfDay(for: date)
-        
-        if startOfDay > today {
-            // 오늘 이후의 날짜는 이미지를 비워둠
-            cell.backImageView.image = nil
-        } else if let isPillEaten = pillEatenStatus[startOfDay] {
-            if isPillEaten {
-                cell.backImageView.image = UIImage(named: "calendar_green")
-            } else {
-                cell.backImageView.image = UIImage(named: "calendar_red")
-            }
-        } else {
-            // 약을 아직 체크하지 않은 경우
+        // TODO: 약 먹었는지 검사 후 green / red 분리
+        let today = Date()
+        if Calendar.current.isDate(date, equalTo: today, toGranularity: .day) &&
+            Calendar.current.isDate(date, equalTo: today, toGranularity: .month) &&
+            Calendar.current.isDate(date, equalTo: today, toGranularity: .year) {
             cell.backImageView.image = UIImage(named: "calendar_today")
+            cell.backImageView.backgroundColor = .clear
+        } else if date < today {
+            cell.backImageView.image = UIImage(named: "calendar_green")
+        } else {
+            cell.backImageView.image = UIImage(named: "calendar_red")
         }
-        
-        cell.backImageView.backgroundColor = .clear
-        cell.isToday = Calendar.current.isDateInToday(date)
         
         return cell
     }
@@ -262,27 +223,18 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         dateFormatter.locale = Locale(identifier: "ko_KR")
         dateFormatter.dateFormat = "M월 d일 EEEE"
         dateLabel.text = dateFormatter.string(from: date)
-        
-        // pillEatenStatus에서 선택된 날짜에 해당하는 값을 확인하여 pillLabel.text를 업데이트
-        let startOfDay = Calendar.current.startOfDay(for: date)
-        
-        if let isPillEaten = pillEatenStatus[startOfDay] {
-            if isPillEaten {
-                pillLabel.text = "피임약 복용 완료"
-            } else {
-                pillLabel.text = "안먹었어요"
-                pillImageView.image = UIImage(named: "calendar_red")
-            }
-        } else {
-            pillLabel.text = "안먹었어요"
-        }
-        
         if selectedDate != nil {
             calendar.reloadData()
         }
     }
-
-
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
+        if let selectedDate = selectedDate, Calendar.current.isDate(selectedDate, inSameDayAs: date) {
+            return .black
+        }
+        return nil
+    }
+    
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY년 M월"

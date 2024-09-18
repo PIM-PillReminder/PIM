@@ -88,6 +88,8 @@
 		C16946662C4D131600A79FF8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = C16946652C4D131600A79FF8 /* FirebaseStorage */; };
 		C16946692C4D133900A79FF8 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = C16946682C4D133900A79FF8 /* FSCalendar */; };
 		C169466C2C4D134F00A79FF8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C169466B2C4D134F00A79FF8 /* SnapKit */; };
+		C185D6CF2C9AC69800CEB5A6 /* PillStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C185D6CE2C9AC69800CEB5A6 /* PillStatus.swift */; };
+		C185D6D12C9AC72E00CEB5A6 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C185D6D02C9AC72E00CEB5A6 /* DateExtension.swift */; };
 		C18879402B63A540000A770C /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C188793F2B63A540000A770C /* WatchSessionManager.swift */; };
 		C1BC9A552B88896D0083E181 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC9A542B88896D0083E181 /* CalendarViewController.swift */; };
 		C1BC9A582B8889EF0083E181 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -184,6 +186,8 @@
 		79FA64872B41277200DEA24D /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		79FA64A32B4143AF00DEA24D /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		C169464E2C4D129800A79FF8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C185D6CE2C9AC69800CEB5A6 /* PillStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PillStatus.swift; sourceTree = "<group>"; };
+		C185D6D02C9AC72E00CEB5A6 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		C188793E2B6398E5000A770C /* PIM.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PIM.entitlements; sourceTree = "<group>"; };
 		C188793F2B63A540000A770C /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		C1BC9A542B88896D0083E181 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -300,6 +304,7 @@
 				573942582ABEE8820001906B /* View */,
 				57461C9B2AB76ABC0026F903 /* LocalNotificationManager.swift */,
 				79D550E62B9DE9C80006DADB /* FirestoreManager.swift */,
+				C185D6CE2C9AC69800CEB5A6 /* PillStatus.swift */,
 				57461C9D2AB773430026F903 /* Info.plist */,
 				57461C4A2AB58C540026F903 /* Assets.xcassets */,
 				79326FCC2B371A3F0038CD7C /* Colors.xcassets */,
@@ -381,6 +386,7 @@
 			children = (
 				573919ED2B3C433F008A7787 /* View+SwipeGesture.swift */,
 				79FA64A32B4143AF00DEA24D /* ViewExtension.swift */,
+				C185D6D02C9AC72E00CEB5A6 /* DateExtension.swift */,
 				7954A7EE2ABA888B000D1E8F /* ColorExtension.swift */,
 				7954A7EC2ABA8881000D1E8F /* FontExtension.swift */,
 				799B0EC62ABEEE3D00AE9865 /* Style */,
@@ -592,12 +598,14 @@
 				C1BC9A5F2B888FA10083E181 /* CalendarCell.swift in Sources */,
 				C1BC9A552B88896D0083E181 /* CalendarViewController.swift in Sources */,
 				57461C502AB58C540026F903 /* Persistence.swift in Sources */,
+				C185D6CF2C9AC69800CEB5A6 /* PillStatus.swift in Sources */,
 				7954A7E02AB9D082000D1E8F /* SettingView.swift in Sources */,
 				79FA64A42B4143AF00DEA24D /* ViewExtension.swift in Sources */,
 				57461C602AB59E0A0026F903 /* OnboardingView3.swift in Sources */,
 				57461C5E2AB59D5F0026F903 /* MainView.swift in Sources */,
 				57461C492AB58C520026F903 /* ContentView.swift in Sources */,
 				799B0EC82ABEEE5200AE9865 /* CustomStyle.swift in Sources */,
+				C185D6D12C9AC72E00CEB5A6 /* DateExtension.swift in Sources */,
 				7954A7EF2ABA888B000D1E8F /* ColorExtension.swift in Sources */,
 				57461C532AB58C540026F903 /* PIM.xcdatamodeld in Sources */,
 				57022BF52AC45B7A00070276 /* LottieView.swift in Sources */,

@@ -41,12 +41,11 @@ class FireStoreManager: ObservableObject {
             throw error
         }
     }
-   
+    
     // Firestore에서 데이터를 가져오는 함수
     func fetchData() {
         guard let documentID = self.documentID else {
             print("Document ID is nil")
-            completion(false)
             return
         }
         let db = Firestore.firestore()
@@ -55,7 +54,6 @@ class FireStoreManager: ObservableObject {
         docRef.getDocument { (document, error) in
             guard error == nil else {
                 print("Error fetching document:", error ?? "")
-                completion(false)
                 return
             }
             
@@ -75,9 +73,7 @@ class FireStoreManager: ObservableObject {
                 if let notificationTime = data?["notificationTime"] as? String {
                     self.notificationTime = notificationTime
                 }
-                completion(true)
             }
-            completion(false)
         }
     }
 
