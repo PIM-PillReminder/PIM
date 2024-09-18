@@ -21,6 +21,8 @@ class CalendarViewController: UIViewController {
     let dateLabel = UILabel()
     let todayLabel = UILabel()
     let pillLabel = UILabel()
+    let pillTimeImage = UIImageView()
+    let pillTakenTimeLabel = UILabel()
     let pillImageView = UIImageView()
     let timeLabel = UILabel()
     var selectedDate: Date?
@@ -44,6 +46,8 @@ class CalendarViewController: UIViewController {
         view.addSubview(dateLabel)
         view.addSubview(todayLabel)
         view.addSubview(pillLabel)
+        view.addSubview(pillTimeImage)
+        view.addSubview(pillTakenTimeLabel)
         view.addSubview(pillImageView)
         view.addSubview(timeLabel)
     }
@@ -80,14 +84,24 @@ class CalendarViewController: UIViewController {
         
         bottomView.snp.makeConstraints { make in
             make.top.equalTo(dateLabel.snp.bottom).offset(20)
-            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(18)
             make.height.equalTo(70)
         }
         
         pillLabel.snp.makeConstraints { make in
-            make.top.equalTo(bottomView.snp.top).offset(20)
-            make.leading.equalTo(bottomView.snp.leading).offset(16)
-            make.centerY.equalTo(bottomView)
+            make.top.equalTo(bottomView.snp.top).offset(12)
+            make.leading.equalTo(bottomView.snp.leading).offset(18)
+        }
+        
+        pillTimeImage.snp.makeConstraints { make in
+            make.top.equalTo(pillLabel.snp.bottom).offset(3)
+            make.leading.equalTo(bottomView.snp.leading).offset(18)
+            make.size.equalTo(17)
+        }
+        
+        pillTakenTimeLabel.snp.makeConstraints { make in
+            make.top.equalTo(pillLabel.snp.bottom).offset(6)
+            make.leading.equalTo(pillTimeImage.snp.trailing).offset(6)
         }
         
         pillImageView.snp.makeConstraints { make in
@@ -120,7 +134,7 @@ class CalendarViewController: UIViewController {
     
     func configureView() {
         
-        bottomBackground.backgroundColor = UIColor(named: "settingChevronDisabledGray")
+        bottomBackground.backgroundColor = UIColor(named: "gray02")
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY년 M월"
@@ -145,12 +159,18 @@ class CalendarViewController: UIViewController {
         bottomView.layer.cornerRadius = 16
         
         dateLabel.text = dateFormatter.string(from: Date())
-        dateLabel.font = .systemFont(ofSize: 16, weight: .bold)
+        dateLabel.font = .systemFont(ofSize: 18, weight: .bold)
         dateLabel.textColor = .black
         
         pillLabel.text = "복용 완료"
-        pillLabel.font = .systemFont(ofSize: 16, weight: .medium)
+        pillLabel.font = .systemFont(ofSize: 18, weight: .medium)
         pillLabel.textColor = .black
+        
+        pillTimeImage.image = UIImage(named: "clock")
+        
+        pillTakenTimeLabel.text = "오후 5:13"
+        pillTakenTimeLabel.font = .systemFont(ofSize: 14, weight: .regular)
+        pillTakenTimeLabel.textColor = UIColor(named: "gray07")
         
         pillImageView.image = UIImage(named: "calendar_green")
     }
