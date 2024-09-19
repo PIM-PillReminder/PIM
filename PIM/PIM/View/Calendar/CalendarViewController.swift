@@ -179,6 +179,7 @@ extension CalendarViewController {
 
 extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     
+    
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
         guard let cell = calendar.dequeueReusableCell(withIdentifier: CalendarCell.description(), for: date, at: position) as? CalendarCell else { return FSCalendarCell() }
         
@@ -261,5 +262,18 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         dateFormatter.dateFormat = "YYYY년 M월"
         let title = dateFormatter.string(from: calendar.currentPage)
         monthLabel.text = title
+    }
+}
+
+extension CalendarViewController: FSCalendarDelegateAppearance {
+
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date, at position: FSCalendarMonthPosition) -> UIColor? {
+        if position == .current {
+            // 현재 달에 속하는 날짜는 검정색
+            return UIColor.black
+        } else {
+            // 이전/다음 달 날짜는 회색
+            return UIColor.lightGray
+        }
     }
 }
