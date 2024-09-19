@@ -29,9 +29,14 @@ struct MainView: View {
     @EnvironmentObject var firestoreManager: FireStoreManager
     
     init() {
-        let currentDateStr = DateFormatter.localizedString(from: Date(), dateStyle: .medium, timeStyle: .none)
-        isPillEaten = UserDefaults.standard.bool(forKey: currentDateStr)
+        let currentDate = Calendar.current.startOfDay(for: Date())
+        isPillEaten = UserDefaultsManager.shared.getPillStatus()[currentDate] ?? false
     }
+
+//    init() {
+//        let currentDateStr = DateFormatter.localizedString(from: Date(), dateStyle: .medium, timeStyle: .none)
+//        isPillEaten = UserDefaults.standard.bool(forKey: currentDateStr)
+//    }
     
     var body: some View {
         NavigationStack {
@@ -144,34 +149,16 @@ struct MainView: View {
             .background(Color.backgroundWhite)
         }
         .onAppear {
-            // 현재 날짜를 문자열로 가져옴
-            let currentDateStr = getCurrentDateString()
-            
-            // 현재 날짜에 대한 isPillEaten 값을 가져오기
-            if let pillStatus = UserDefaults.standard.object(forKey: currentDateStr) as? Bool {
-                pillStatusObserver.isPillEaten = pillStatus
+            let currentDate = Calendar.current.startOfDay(for: Date()) // 오늘 날짜의 시작 시간
+
+            if let pillStatus = UserDefaultsManager.shared.getPillStatus()[currentDate] {
+                pillStatusObserver.isPillEaten = pillStatus // 저장된 값이 있으면 상태 업데이트
             } else {
-                // 값이 없다면 false로 설정
-                pillStatusObserver.isPillEaten = false
+                pillStatusObserver.isPillEaten = false // 값이 없으면 false로 설정
             }
             
-            // UserDefaults에서 현재 날짜에 해당하는 isPillEaten 값을 가져옴
-            let eatenStatus = UserDefaults.standard.bool(forKey: currentDateStr)
-            
-            // 가져온 값으로 isPillEaten 상태를 업데이트
-            pillStatusObserver.isPillEaten = eatenStatus
-            
-            // 워치로부터 약 복용 상태를 받아오는 함수 호출
-            fetchPillStatusFromWatch()
-            
-            //firestore
-//            firestoreManager.fetchData { exists in
-//                if exists {
-//                    // Firestore 데이터 처리 (필요 시)
-//                }
-//            }
+            fetchPillStatusFromWatch() // 워치로부터 값 불러오기
         }
-        
     }
     
     // 상태 업데이트 및 워치에 전송
