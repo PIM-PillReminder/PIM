@@ -58,12 +58,20 @@ class CalendarCell: FSCalendarCell {
     override func configureAppearance() {
         super.configureAppearance()
         
-        if isSelected {
-            self.backgroundColor = .black
-        } else if isToday {
-            backImageView.backgroundColor = .gray
+        if isToday {
+            if isSelected {
+                self.backgroundColor = UIColor(named: "black")
+                titleLabel.textColor = UIColor(named: "white")
+            } else {
+                self.backgroundColor = UIColor(named: "gray03")
+                titleLabel.textColor = UIColor(named: "black")
+            }
+        } else if isSelected {
+            self.backgroundColor = UIColor(named: "black")
+            titleLabel.textColor = UIColor(named: "white")
         } else {
             self.backgroundColor = .clear
+            titleLabel.textColor = UIColor(named: "black")
         }
     }
     

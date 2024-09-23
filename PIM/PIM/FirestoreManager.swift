@@ -33,10 +33,11 @@ class FireStoreManager: ObservableObject {
             throw error
         }
     }
-    
+  
     func fetchData() {
         guard let documentID = self.documentID else {
             print("Document ID is nil")
+            completion(false)
             return
         }
         let db = Firestore.firestore()
@@ -45,6 +46,7 @@ class FireStoreManager: ObservableObject {
         docRef.getDocument { (document, error) in
             guard error == nil else {
                 print("Error fetching document:", error ?? "")
+                completion(false)
                 return
             }
             
@@ -65,7 +67,9 @@ class FireStoreManager: ObservableObject {
                 if let notificationTimestamp = data?["notificationTime"] as? Timestamp {
                     self.notificationTime = notificationTimestamp.dateValue()
                 }
+                completion(true)
             }
+            completion(false)
         }
     }
 
@@ -142,7 +146,6 @@ class FireStoreManager: ObservableObject {
         let db = Firestore.firestore()
         let docRef = db.collection("userData").document(documentID)
         
-        // Firestore에 Date 타입을 Timestamp로 변환하여 저장
         docRef.updateData([
             "notificationTime": Timestamp(date: notificationTime)
         ]) { error in
