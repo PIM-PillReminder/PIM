@@ -17,6 +17,7 @@ struct SettingView: View {
   @State private var selectedTime: Date? = UserDefaults.standard.object(forKey: "SelectedTime") as? Date ?? nil
   @StateObject var settingViewModel = SettingViewModel()
   @State var modalBackground: Bool = false
+  @ObservedObject var fireStoreManager = FireStoreManager()
   @Environment(\.presentationMode) var presentationMode
   
   let notificationManager = LocalNotificationManager()

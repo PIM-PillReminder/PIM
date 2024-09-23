@@ -102,13 +102,13 @@ struct OnboardingView4: View {
                             if firestoreManager.documentID == nil {
                                 // DocumentID가 없는 경우 새 문서 생성
                                 try await firestoreManager.createData(
-                                    notificationTime: selectedTime.getFormattedDate(),
-                                    pillStatus: PillStatus(isPillEaten: false, pillDate: Date().getFormattedDate())
+                                    notificationTime: selectedTime,
+                                    pillStatus: PillStatus(isPillEaten: false, pillDate: Date())
                                 )
                             } else {
                                 // DocumentID가 있는 경우 알림 시간과 약 복용 상태 업데이트
                                 firestoreManager.updateNotificationTime(notificationTime: selectedTime)
-                                let initialPillStatus = PillStatus(isPillEaten: false, pillDate: Date().getFormattedDate())
+                                let initialPillStatus = PillStatus(isPillEaten: false, pillDate: Date())
                                 firestoreManager.savePillStatus(pillStatus: initialPillStatus)
                             }
                         } catch {
