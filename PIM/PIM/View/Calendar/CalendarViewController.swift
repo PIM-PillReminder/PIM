@@ -222,6 +222,8 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         
         if pillStatus[startOfDay] == true {
             let eatenView = CalendarBottomView()
+            eatenView.selectedDate = date
+            eatenView.updateSelectedDate(newDate: date)
             eatenView.dateLabel.text = dateFormatter.string(from: date)
             
             if let pillTime = UserDefaults.standard.object(forKey: "pillTakenTime_\(startOfDay)") as? Date {

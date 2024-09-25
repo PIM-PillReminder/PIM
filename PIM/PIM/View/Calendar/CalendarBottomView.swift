@@ -11,6 +11,7 @@ import SnapKit
 class CalendarBottomView: UIView {
     
     let dateLabel = UILabel()
+    let todayLabel = UILabel()
     let bottomBackground = UIView()
     let pillLabel = UILabel()
     let pillTimeImage = UIImageView()
@@ -38,6 +39,7 @@ class CalendarBottomView: UIView {
         self.backgroundColor = UIColor(named: "gray02")
         
         self.addSubview(dateLabel)
+        self.addSubview(todayLabel)
         self.addSubview(bottomBackground)
         self.addSubview(pillLabel)
         self.addSubview(pillTimeImage)
@@ -54,6 +56,15 @@ class CalendarBottomView: UIView {
         dateLabel.text = dateFormatter.string(from: Date())
         dateLabel.font = .systemFont(ofSize: 18, weight: .bold)
         dateLabel.textColor = .black
+        
+        todayLabel.text = "오늘"
+        todayLabel.font = .boldSystemFont(ofSize: 12)
+        todayLabel.textColor = .white
+        todayLabel.backgroundColor = UIColor(named: "Green04")
+        todayLabel.layer.cornerRadius = 10
+        todayLabel.clipsToBounds = true
+        todayLabel.textAlignment = .center
+        todayLabel.isHidden = false
         
         pillLabel.text = "복용 완료"
         pillLabel.font = .systemFont(ofSize: 18, weight: .medium)
@@ -89,9 +100,16 @@ class CalendarBottomView: UIView {
     
     private func configureConstraints() {
         
-        dateLabel.snp.makeConstraints { make in
+        dateLabel.snp.remakeConstraints { make in
             make.top.equalToSuperview().offset(20)
-            make.centerX.equalToSuperview()
+            make.centerX.equalToSuperview().offset(-24) // 중앙에서 왼쪽으로 24 이동
+        }
+        
+        todayLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(dateLabel)
+            make.leading.equalTo(dateLabel.snp.trailing).offset(8)
+            make.height.equalTo(20)
+            make.width.equalTo(40)
         }
         
         bottomBackground.snp.makeConstraints { make in
@@ -123,6 +141,45 @@ class CalendarBottomView: UIView {
         }
     }
     
+    private func selectedDateIsToday() -> Bool {
+        guard let selectedDate = selectedDate else {
+            return false // selectedDate가 없으면 false 반환
+        }
+        // 선택된 날짜가 오늘인지 확인
+        return Calendar.current.isDateInToday(selectedDate)
+    }
+    
+    func updateSelectedDate(newDate: Date) {
+        updateDateUI() // 날짜 변경 시 UI 업데이트
+        fetchPillTakenTime() // 날짜에 맞춰 약 복용 시간도 업데이트
+    }
+
+    private func updateDateUI() {
+        let isToday = selectedDateIsToday()
+
+        // 오늘일 경우 todayLabel을 보여주고 dateLabel을 왼쪽으로 이동
+        if isToday {
+            print("1today")
+            todayLabel.isHidden = false
+            dateLabel.snp.remakeConstraints { make in
+                make.top.equalToSuperview().offset(20)
+                make.centerX.equalToSuperview().offset(-24) // 중앙에서 왼쪽으로 24 이동
+            }
+        } else {
+            todayLabel.isHidden = true
+            dateLabel.snp.remakeConstraints { make in
+                make.top.equalToSuperview().offset(20)
+                make.centerX.equalToSuperview() // 중앙에 위치
+            }
+        }
+    }
+    
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        updateDateUI()
+        fetchPillTakenTime()
+    }
+
     func fetchPillTakenTime() {
         guard let selectedDate = selectedDate else { return }
         
@@ -138,10 +195,5 @@ class CalendarBottomView: UIView {
         } else {
             pillTakenTimeLabel.text = "복용 기록 없음"
         }
-    }
-    
-    override func didMoveToWindow() {
-        super.didMoveToWindow()
-        fetchPillTakenTime() // 화면이 나타날 때 다시 데이터를 불러옴
     }
 }
