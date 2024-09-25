@@ -4,8 +4,6 @@
 //
 //  Created by Madeline on 2/23/24.
 //
-
-import Combine
 import FSCalendar
 import SnapKit
 import UIKit
@@ -17,19 +15,8 @@ class CalendarViewController: UIViewController {
     let monthLabel = UILabel()
     let infoButton = UIButton()
     
-    let bottomView = UIView()
-    let bottomBackground = UIView()
-    let dateLabel = UILabel()
-    let todayLabel = UILabel()
-    let pillLabel = UILabel()
-    let pillImageView = UIImageView()
-    let timeLabel = UILabel()
-    var selectedDate: Date?
-    
-    let firestoreManager = FireStoreManager()
-    var pillEatenStatus: [Date: Bool] = [:]
-    
-    private var cancellables = Set<AnyCancellable>()
+    private var currentBottomView: UIView? // 현재 보여지고 있는 바텀뷰
+    private var selectedDate: Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +24,61 @@ class CalendarViewController: UIViewController {
         configureHierarchy()
         configureConstraints()
         configureView()
+        checkTodayPillStatus() // 처음 로드될 때 오늘 날짜의 복용 상태와 시간 표시
+    }
+
+    private func checkTodayPillStatus() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        dateFormatter.dateFormat = "M월 d일 EEEE"
         
-        fetchPillEatenStatus()
+        let today = Date()
+        let todayStartOfDay = Calendar.current.startOfDay(for: today)
         
+        // UserDefaultsManager에서 오늘 날짜의 pill status를 가져옴
+        let pillStatus = UserDefaultsManager.shared.getPillStatus()
+        
+        // 기존 bottomView 제거
+        currentBottomView?.removeFromSuperview()
+        
+        if pillStatus[todayStartOfDay] == true {
+            // 약을 먹은 경우 -> CalendarBottomView로 설정
+            let eatenView = CalendarBottomView()
+            eatenView.dateLabel.text = dateFormatter.string(from: today)
+            eatenView.pillLabel.text = "복용 완료"
+            eatenView.pillImageView.image = UIImage(named: "calendar_green")
+            
+            // 저장된 복용 시간 가져오기
+            if let pillTime = UserDefaults.standard.object(forKey: "pillTakenTime_\(todayStartOfDay)") as? Date {
+                let timeFormatter = DateFormatter()
+                timeFormatter.locale = Locale(identifier: "ko_KR")
+                timeFormatter.dateFormat = "a h:mm"
+                eatenView.pillTakenTimeLabel.text = timeFormatter.string(from: pillTime)
+            } else {
+                eatenView.pillTakenTimeLabel.text = "복용 기록 없음"
+            }
+            
+            view.addSubview(eatenView)
+            eatenView.snp.makeConstraints { make in
+                make.top.equalTo(calendar.snp.bottom).offset(20)
+                make.horizontalEdges.equalTo(view)
+                make.bottom.equalTo(view).offset(32)
+            }
+            
+            currentBottomView = eatenView
+        } else {
+            // 오늘 약을 먹지 않았거나 복용 여부가 nil인 경우 -> CalendarTodayNotYetBottomView로 설정
+            let todayNotYetView = CalendarTodayNotYetBottomView()
+            todayNotYetView.dateLabel.text = dateFormatter.string(from: today)
+            view.addSubview(todayNotYetView)
+            todayNotYetView.snp.makeConstraints { make in
+                make.top.equalTo(calendar.snp.bottom).offset(20)
+                make.horizontalEdges.equalTo(view)
+                make.bottom.equalTo(view).offset(32)
+            }
+            
+            currentBottomView = todayNotYetView
+        }
     }
     
     func configureHierarchy() {
@@ -47,13 +86,6 @@ class CalendarViewController: UIViewController {
         view.addSubview(backButton)
         view.addSubview(monthLabel)
         view.addSubview(infoButton)
-        view.addSubview(bottomBackground)
-        view.addSubview(bottomView)
-        view.addSubview(dateLabel)
-        view.addSubview(todayLabel)
-        view.addSubview(pillLabel)
-        view.addSubview(pillImageView)
-        view.addSubview(timeLabel)
     }
     
     func configureConstraints() {
@@ -73,36 +105,6 @@ class CalendarViewController: UIViewController {
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
             make.top.equalTo(view.safeAreaLayoutGuide).inset(16)
             make.height.equalTo(UIScreen.main.bounds.height * 0.65)
-        }
-        
-        bottomBackground.snp.makeConstraints { make in
-            make.top.equalTo(calendar.snp.bottom)
-            make.horizontalEdges.equalTo(view)
-            make.bottom.equalTo(view).inset(-50)
-        }
-        
-        dateLabel.snp.makeConstraints { make in
-            make.top.equalTo(calendar.snp.bottom).offset(20)
-            make.centerX.equalTo(view)
-        }
-        
-        bottomView.snp.makeConstraints { make in
-            make.top.equalTo(dateLabel.snp.bottom).offset(20)
-            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
-            make.height.equalTo(70)
-        }
-        
-        pillLabel.snp.makeConstraints { make in
-            make.top.equalTo(bottomView.snp.top).offset(20)
-            make.leading.equalTo(bottomView.snp.leading).offset(16)
-            make.centerY.equalTo(bottomView)
-        }
-        
-        pillImageView.snp.makeConstraints { make in
-            make.top.equalTo(bottomView.snp.top).offset(20)
-            make.trailing.equalTo(bottomView.snp.trailing).inset(16)
-            make.centerY.equalTo(bottomView)
-            make.size.equalTo(30)
         }
     }
     
@@ -127,15 +129,12 @@ class CalendarViewController: UIViewController {
     }
     
     func configureView() {
-        
-        bottomBackground.backgroundColor = UIColor(named: "gray02")
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY년 M월"
         let title = dateFormatter.string(from: Date())
         
         monthLabel.text = title
-        monthLabel.textColor = UIColor(named: "black")
+        monthLabel.textColor = .black
         monthLabel.font = .systemFont(ofSize: 20, weight: .bold)
         
         backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
@@ -145,50 +144,11 @@ class CalendarViewController: UIViewController {
         infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
         
         configureCalendar()
-        
-        dateFormatter.locale = Locale(identifier: "ko_KR")
-        dateFormatter.dateFormat = "M월 d일 EEEE"
-        
-        bottomView.backgroundColor = UIColor(named: "white")
-        bottomView.layer.cornerRadius = 16
-        
-        dateLabel.text = dateFormatter.string(from: Date())
-        dateLabel.font = .systemFont(ofSize: 16, weight: .bold)
-        dateLabel.textColor = UIColor(named: "black")
-        
-        pillLabel.text = "n번째 미뉴렛정 복용 완료"
-        pillLabel.font = .systemFont(ofSize: 16, weight: .medium)
-        pillLabel.textColor = UIColor(named: "black")
-        
-        pillImageView.image = UIImage(named: "calendar_green")
     }
-    
-    func fetchPillEatenStatus() {
-        firestoreManager.fetchData { success in
-            if success {
-                self.firestoreManager.$isPillEaten
-                    .combineLatest(self.firestoreManager.$notificationTime)
-                    .sink { [weak self] (isPillEaten, notificationTime) in
-                        guard let self = self,
-                              let isPillEaten = isPillEaten,
-                              let notificationTime = notificationTime else { return }
-                        
-                        let date = Calendar.current.startOfDay(for: notificationTime)
-                        self.pillEatenStatus[date] = isPillEaten
-                        DispatchQueue.main.async {
-                            self.calendar.reloadData()
-                        }
-                    }
-                    .store(in: &self.cancellables)
-            }
-        }
-    }
-
 }
 
 extension CalendarViewController {
     func configureCalendar() {
-        // MARK: Calendar View
         calendar.delegate = self
         calendar.dataSource = self
         
@@ -196,9 +156,7 @@ extension CalendarViewController {
         calendar.select(Date())
         
         calendar.register(CalendarCell.self, forCellReuseIdentifier: CalendarCell.description())
-        
         calendar.locale = Locale(identifier: "ko_KR")
-        
         calendar.scope = .month
         
         calendar.appearance.todaySelectionColor = .clear
@@ -211,9 +169,7 @@ extension CalendarViewController {
         calendar.appearance.weekdayTextColor = UIColor(named: "gray08")
         calendar.appearance.eventDefaultColor = UIColor(named: "primaryGreen")
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
-        
         calendar.weekdayHeight = 60
-        
         calendar.calendarHeaderView.isHidden = true
         calendar.placeholderType = .fillHeadTail
         calendar.scrollDirection = .vertical
@@ -223,30 +179,26 @@ extension CalendarViewController {
 
 extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     
+    
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
-        
         guard let cell = calendar.dequeueReusableCell(withIdentifier: CalendarCell.description(), for: date, at: position) as? CalendarCell else { return FSCalendarCell() }
         
         cell.clipsToBounds = true
         cell.layer.cornerRadius = 21
         
-//        let today = Date()
         let today = Calendar.current.startOfDay(for: Date())
-        let calendar = Calendar.current
-        let startOfDay = calendar.startOfDay(for: date)
+        let startOfDay = Calendar.current.startOfDay(for: date)
+        
+        let pillStatus = UserDefaultsManager.shared.getPillStatus()
         
         if startOfDay > today {
-            // 오늘 이후의 날짜는 이미지를 비워둠
             cell.backImageView.image = nil
-        } else if let isPillEaten = pillEatenStatus[startOfDay] {
-            if isPillEaten {
-                cell.backImageView.image = UIImage(named: "calendar_green")
-            } else {
-                cell.backImageView.image = UIImage(named: "calendar_red")
-            }
-        } else {
-            // 약을 아직 체크하지 않은 경우
+        } else if startOfDay == today && (pillStatus[startOfDay] == nil || pillStatus[startOfDay] == false) {
             cell.backImageView.image = UIImage(named: "calendar_today")
+        } else if let isPillEaten = pillStatus[startOfDay], isPillEaten {
+            cell.backImageView.image = UIImage(named: "calendar_green")
+        } else {
+            cell.backImageView.image = UIImage(named: "calendar_red")
         }
         
         cell.backImageView.backgroundColor = .clear
@@ -261,28 +213,52 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ko_KR")
         dateFormatter.dateFormat = "M월 d일 EEEE"
-        dateLabel.text = dateFormatter.string(from: date)
         
-        // pillEatenStatus에서 선택된 날짜에 해당하는 값을 확인하여 pillLabel.text를 업데이트
         let startOfDay = Calendar.current.startOfDay(for: date)
+        let pillStatus = UserDefaultsManager.shared.getPillStatus()
         
-        if let isPillEaten = pillEatenStatus[startOfDay] {
-            if isPillEaten {
-                pillLabel.text = "피임약 복용 완료"
+        // 기존 bottomView 제거
+        currentBottomView?.removeFromSuperview()
+        
+        if pillStatus[startOfDay] == true {
+            let eatenView = CalendarBottomView()
+            eatenView.selectedDate = date
+            eatenView.updateSelectedDate(newDate: date)
+            eatenView.dateLabel.text = dateFormatter.string(from: date)
+            
+            if let pillTime = UserDefaults.standard.object(forKey: "pillTakenTime_\(startOfDay)") as? Date {
+                let timeFormatter = DateFormatter()
+                timeFormatter.locale = Locale(identifier: "ko_KR")
+                timeFormatter.dateFormat = "a h:mm"
+                eatenView.pillTakenTimeLabel.text = timeFormatter.string(from: pillTime)
             } else {
-                pillLabel.text = "안먹었어요"
-                pillImageView.image = UIImage(named: "calendar_red")
+                eatenView.pillTakenTimeLabel.text = "복용 기록 없음"
             }
+            
+            view.addSubview(eatenView)
+            eatenView.snp.makeConstraints { make in
+                make.top.equalTo(calendar.snp.bottom).offset(20)
+                make.horizontalEdges.equalTo(view)
+                make.bottom.equalTo(view).offset(32)
+            }
+            
+            currentBottomView = eatenView
         } else {
-            pillLabel.text = "안먹었어요"
+            let notEatenView = CalendarNotEatenBottomView()
+            notEatenView.dateLabel.text = dateFormatter.string(from: date)
+            view.addSubview(notEatenView)
+            notEatenView.snp.makeConstraints { make in
+                make.top.equalTo(calendar.snp.bottom).offset(20)
+                make.horizontalEdges.equalTo(view)
+                make.bottom.equalTo(view).offset(32)
+            }
+            
+            currentBottomView = notEatenView
         }
         
-        if selectedDate != nil {
-            calendar.reloadData()
-        }
+        calendar.reloadData()
     }
-
-
+    
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY년 M월"
@@ -291,6 +267,15 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     }
 }
 
-#Preview {
-    CalendarViewController()
+extension CalendarViewController: FSCalendarDelegateAppearance {
+
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date, at position: FSCalendarMonthPosition) -> UIColor? {
+        if position == .current {
+            // 현재 달에 속하는 날짜는 검정색
+            return UIColor.black
+        } else {
+            // 이전/다음 달 날짜는 회색
+            return UIColor.lightGray
+        }
+    }
 }

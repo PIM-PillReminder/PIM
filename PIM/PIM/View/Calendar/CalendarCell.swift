@@ -71,7 +71,7 @@ class CalendarCell: FSCalendarCell {
             titleLabel.textColor = UIColor(named: "white")
         } else {
             self.backgroundColor = .clear
-            titleLabel.textColor = UIColor(named: "black")
+            //titleLabel.textColor = UIColor(named: "black")
         }
     }
     
