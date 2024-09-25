@@ -101,6 +101,7 @@
 		C1E66FD62C9AE0D7006420B6 /* CalendarBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E66FD52C9AE0D7006420B6 /* CalendarBottomView.swift */; };
 		C1E66FD82C9AE7AD006420B6 /* CalendarNotEatenBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E66FD72C9AE7AD006420B6 /* CalendarNotEatenBottomView.swift */; };
 		C1E66FDA2C9AE814006420B6 /* CalendarTodayNotYetBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E66FD92C9AE814006420B6 /* CalendarTodayNotYetBottomView.swift */; };
+		C1E670082CA46AC7006420B6 /* CalendarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E670072CA46AC7006420B6 /* CalendarDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -202,6 +203,7 @@
 		C1E66FD52C9AE0D7006420B6 /* CalendarBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarBottomView.swift; sourceTree = "<group>"; };
 		C1E66FD72C9AE7AD006420B6 /* CalendarNotEatenBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarNotEatenBottomView.swift; sourceTree = "<group>"; };
 		C1E66FD92C9AE814006420B6 /* CalendarTodayNotYetBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTodayNotYetBottomView.swift; sourceTree = "<group>"; };
+		C1E670072CA46AC7006420B6 /* CalendarDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -455,6 +457,7 @@
 		C1BC9A532B8889600083E181 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				C1E670062CA467E5006420B6 /* CalendarDetail */,
 				C1DE878C2B8A46FE007DAC81 /* CalendarInformation */,
 				C1BC9A542B88896D0083E181 /* CalendarViewController.swift */,
 				C1BC9A5C2B888C6A0083E181 /* CalendarViewRepresentable.swift */,
@@ -472,6 +475,14 @@
 				C1DE878D2B8A4717007DAC81 /* CalendarInfoViewController.swift */,
 			);
 			path = CalendarInformation;
+			sourceTree = "<group>";
+		};
+		C1E670062CA467E5006420B6 /* CalendarDetail */ = {
+			isa = PBXGroup;
+			children = (
+				C1E670072CA46AC7006420B6 /* CalendarDetailViewController.swift */,
+			);
+			path = CalendarDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -647,6 +658,7 @@
 				7954A7EF2ABA888B000D1E8F /* ColorExtension.swift in Sources */,
 				57461C532AB58C540026F903 /* PIM.xcdatamodeld in Sources */,
 				57022BF52AC45B7A00070276 /* LottieView.swift in Sources */,
+				C1E670082CA46AC7006420B6 /* CalendarDetailViewController.swift in Sources */,
 				57461C472AB58C520026F903 /* PIMApp.swift in Sources */,
 				7954A7E22AB9D096000D1E8F /* SettingNotiVIew.swift in Sources */,
 				C1E66FDA2C9AE814006420B6 /* CalendarTodayNotYetBottomView.swift in Sources */,
