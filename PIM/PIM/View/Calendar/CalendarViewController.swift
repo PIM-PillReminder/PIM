@@ -25,6 +25,10 @@ class CalendarViewController: UIViewController {
         configureConstraints()
         configureView()
         checkTodayPillStatus() // 처음 로드될 때 오늘 날짜의 복용 상태와 시간 표시
+        
+        let today = Date()
+        calendar.select(today)
+        calendar(calendar, didSelect: today, at: .current)
     }
 
     private func checkTodayPillStatus() {
@@ -90,21 +94,29 @@ class CalendarViewController: UIViewController {
     
     func configureConstraints() {
         backButton.snp.makeConstraints { make in
-            make.top.leading.equalTo(view).inset(16)
+            make.top.equalTo(view).inset(16)
+            make.leading.equalTo(view).inset(18)
         }
         monthLabel.snp.makeConstraints { make in
-            make.top.equalTo(view).inset(16)
+            make.top.equalTo(view).inset(18)
             make.centerX.equalTo(view)
         }
         
         infoButton.snp.makeConstraints { make in
-            make.top.trailing.equalTo(view).inset(16)
+            make.trailing.equalTo(view).inset(18)
+            make.top.equalTo(view).inset(16)
         }
         
+        let screenHeight = UIScreen.main.bounds.height
+        let topInset = screenHeight < 700 ? 0 : 16
+        let minCalendarHeight: CGFloat = 500
+        let maxCalendarHeight: CGFloat = screenHeight * 0.6
+
         calendar.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(16)
-            make.height.equalTo(UIScreen.main.bounds.height * 0.6)
+            make.horizontalEdges.equalTo(view).inset(16)
+            make.top.equalTo(view).inset(topInset)
+            make.height.greaterThanOrEqualTo(minCalendarHeight)
+            make.height.lessThanOrEqualTo(maxCalendarHeight)
         }
     }
     
@@ -135,7 +147,7 @@ class CalendarViewController: UIViewController {
         
         monthLabel.text = title
         monthLabel.textColor = .black
-        monthLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        monthLabel.font = .systemFont(ofSize: 16, weight: .bold)
         
         backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
@@ -165,7 +177,7 @@ extension CalendarViewController {
         calendar.appearance.titleTodayColor = UIColor(named: "black")
         calendar.appearance.titleDefaultColor = UIColor(named: "black")
         calendar.appearance.titleWeekendColor = UIColor(named: "black")
-        calendar.appearance.weekdayFont = .systemFont(ofSize: 14, weight: .light)
+        calendar.appearance.weekdayFont = .systemFont(ofSize: 14, weight: .medium)
         calendar.appearance.weekdayTextColor = UIColor(named: "gray08")
         calendar.appearance.eventDefaultColor = UIColor(named: "primaryGreen")
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
@@ -178,7 +190,6 @@ extension CalendarViewController {
 }
 
 extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
-    
     
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
         guard let cell = calendar.dequeueReusableCell(withIdentifier: CalendarCell.description(), for: date, at: position) as? CalendarCell else { return FSCalendarCell() }
@@ -216,6 +227,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         
         let startOfDay = Calendar.current.startOfDay(for: date)
         let pillStatus = UserDefaultsManager.shared.getPillStatus()
+        let height = UIScreen.main.bounds.height * 0.27
         
         // 기존 bottomView 제거
         currentBottomView?.removeFromSuperview()
@@ -237,9 +249,10 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
             
             view.addSubview(eatenView)
             eatenView.snp.makeConstraints { make in
-                make.top.equalTo(calendar.snp.bottom).offset(20)
+                // make.top.equalTo(calendar.snp.bottom).offset(20)
+                make.height.equalTo(height)
                 make.horizontalEdges.equalTo(view)
-                make.bottom.equalTo(view).offset(32)
+                make.bottom.equalTo(view.safeAreaLayoutGuide).offset(32)
             }
             
             currentBottomView = eatenView
@@ -250,7 +263,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
             notEatenView.showDetailVC()
             view.addSubview(notEatenView)
             notEatenView.snp.makeConstraints { make in
-                make.top.equalTo(calendar.snp.bottom).offset(20)
+                make.height.equalTo(height)
                 make.horizontalEdges.equalTo(view)
                 make.bottom.equalTo(view).offset(32)
             }

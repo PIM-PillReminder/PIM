@@ -96,13 +96,14 @@ class CalendarTodayNotYetBottomView: UIView {
     
     private func showDetailModal(for selectedDate: Date) {
         print("showDetailModal called for date: \(selectedDate)")
-        let height = UIScreen.main.bounds.height * 0.6
+        let height = UIScreen.main.bounds.height
+        let modalHeight = height < 700 ? height * 0.8 : height * 0.6
         let detailVC = CalendarDetailViewController(modalHeight: height, selectedDate: selectedDate)
         if let parentVC = self.window?.rootViewController {
             detailVC.modalPresentationStyle = .pageSheet
             if let sheet = detailVC.sheetPresentationController {
                 sheet.detents = [.custom { context in
-                    return height
+                    return modalHeight
                 }]
                 sheet.selectedDetentIdentifier = .large
                 sheet.prefersGrabberVisible = false
