@@ -41,6 +41,10 @@ class FireStoreManager: ObservableObject {
         }
     }
     
+<<<<<<< HEAD:PIM/PIM/FirestoreManager.swift
+=======
+    // Firestore에서 데이터를 가져오는 함수
+>>>>>>> main:PIM/PIM/Manager/FirestoreManager.swift
     func fetchData() {
         guard let documentID = self.documentID else {
             print("Document ID is nil")
@@ -75,7 +79,12 @@ class FireStoreManager: ObservableObject {
             }
         }
     }
+<<<<<<< HEAD:PIM/PIM/FirestoreManager.swift
 
+=======
+    
+    // Firestore에 PillStatus 배열 저장하는 함수
+>>>>>>> main:PIM/PIM/Manager/FirestoreManager.swift
     func savePillStatus(pillStatus: PillStatus) {
         guard let documentID = self.documentID else {
             print("Document ID is nil")
@@ -86,7 +95,7 @@ class FireStoreManager: ObservableObject {
         let docRef = db.collection("userData").document(documentID)
         
         let pillStatusData = pillStatus.toDictionary()
-
+        
         // 기존 날짜와 동일한 데이터를 삭제 (arrayRemove)
         docRef.getDocument { (document, error) in
             guard let document = document, document.exists else {
@@ -137,8 +146,8 @@ class FireStoreManager: ObservableObject {
             }
         }
     }
-
-
+    
+    
     // Firestore에 알림 시간을 저장하는 함수
     func updateNotificationTime(notificationTime: Date) {
         guard let documentID = self.documentID else {
