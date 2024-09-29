@@ -104,7 +104,7 @@ class CalendarDetailViewController: UIViewController {
     
     @objc private func datePickerValueChanged() {
         updatePillTimeLabel()
-        savePillStatus()
+        savePillStatus(isPillEaten: true)
     }
     
     private func updatePillTimeLabel() {
@@ -115,18 +115,24 @@ class CalendarDetailViewController: UIViewController {
         pillTimeLabel.text = formatter.string(from: datePicker.date)
     }
     
-    private func savePillStatus() {
+    private func savePillStatus(isPillEaten: Bool) {
         let calendar = Calendar.current
         let startOfDay = calendar.startOfDay(for: selectedDate)
-        var components = calendar.dateComponents([.year, .month, .day], from: startOfDay)
-        let timeComponents = calendar.dateComponents([.hour, .minute], from: datePicker.date)
         
-        components.hour = timeComponents.hour
-        components.minute = timeComponents.minute
+        UserDefaultsManager.shared.savePillStatus(date: selectedDate, isPillEaten: isPillEaten)
         
-        if let finalDate = calendar.date(from: components) {
-            UserDefaultsManager.shared.savePillStatus(date: selectedDate, isPillEaten: true)
-            UserDefaults.standard.set(finalDate, forKey: "pillTakenTime_\(startOfDay)")
+        if isPillEaten {
+            var components = calendar.dateComponents([.year, .month, .day], from: startOfDay)
+            let timeComponents = calendar.dateComponents([.hour, .minute], from: datePicker.date)
+            
+            components.hour = timeComponents.hour
+            components.minute = timeComponents.minute
+            
+            if let finalDate = calendar.date(from: components) {
+                UserDefaults.standard.set(finalDate, forKey: "pillTakenTime_\(startOfDay)")
+            }
+        } else {
+            UserDefaults.standard.removeObject(forKey: "pillTakenTime_\(startOfDay)")
         }
     }
     
@@ -150,6 +156,7 @@ class CalendarDetailViewController: UIViewController {
         updateRadioButtonTexts()
         isShowingTimePickerSection = isTaken
         updateUIForSelection()
+        divider.isHidden = !isTaken
     }
     
     private func setupUI() {
@@ -338,6 +345,8 @@ class CalendarDetailViewController: UIViewController {
         takenRadioButton.isHidden = !isShowingRadioButtons
         datePicker.isHidden = !isShowingDatePicker
         
+        divider.isHidden = !isTaken && !isShowingRadioButtons
+        
         var newHeight: CGFloat = 54
         
         if isShowingRadioButtons {
@@ -354,6 +363,22 @@ class CalendarDetailViewController: UIViewController {
             self.pillTimeTitleLabel.isHidden = !self.isShowingTimePickerSection && !self.isShowingDatePicker
             self.pillTimeLabel.isHidden = !self.isShowingTimePickerSection && !self.isShowingDatePicker
             
+            if self.isShowingRadioButtons {
+                self.divider.snp.remakeConstraints { make in
+                    make.top.equalTo(self.takenRadioButton.snp.bottom).offset(16)
+                    make.centerX.equalToSuperview()
+                    make.horizontalEdges.equalToSuperview().inset(38)
+                    make.height.equalTo(1)
+                }
+            } else {
+                self.divider.snp.remakeConstraints { make in
+                    make.top.equalTo(self.pillStatusLabel.snp.bottom).offset(16)
+                    make.centerX.equalToSuperview()
+                    make.horizontalEdges.equalToSuperview().inset(38)
+                    make.height.equalTo(1)
+                }
+            }
+            
             self.bottomBackground.snp.updateConstraints { make in
                 make.height.equalTo(newHeight)
             }
@@ -366,9 +391,11 @@ class CalendarDetailViewController: UIViewController {
         isShowingTimePickerSection = false
         isShowingDatePicker = false
         updateUIForSelection()
+        savePillStatus(isPillEaten: false)
         pillStatusLabel.text = "아직 안 먹었어요"
         updatePillStatusImage()
         updateRadioButtonTexts()
+        divider.isHidden = true
     }
     
     @objc private func takenSelected() {
@@ -376,10 +403,11 @@ class CalendarDetailViewController: UIViewController {
         isShowingTimePickerSection = true
         isShowingDatePicker = false
         updateUIForSelection()
-        savePillStatus()
+        savePillStatus(isPillEaten: true)
         pillStatusLabel.text = "먹었어요"
         updatePillStatusImage()
         updateRadioButtonTexts()
+        divider.isHidden = false
     }
     
     @objc private func dismissModal() {
@@ -419,40 +447,6 @@ class CalendarDetailViewController: UIViewController {
         isShowingRadioButtons = false
         isShowingDatePicker = true
         updateUIForSelection()
-        // DatePicker가 나타날 때 높이를 345로 설정
-        //        UIView.animate(withDuration: 0.3) {
-        //            self.notTakenRadioButton.isHidden = true
-        //            self.takenRadioButton.isHidden = true
-        //            self.divider.isHidden = false
-        //
-        //            // 복용 시간 레이블과 DatePicker를 위로 이동
-        //            self.divider.snp.makeConstraints { make in
-        //                make.top.equalTo(self.pillStatusLabel.snp.bottom).offset(16)
-        //            }
-        //
-        //            self.pillTimeTitleLabel.snp.remakeConstraints { make in
-        //                make.top.equalTo(self.pillStatusLabel.snp.bottom).offset(32)
-        //                make.leading.equalToSuperview().inset(38)
-        //            }
-        //
-        //            self.pillTimeLabel.snp.remakeConstraints { make in
-        //                make.top.equalTo(self.pillStatusLabel.snp.bottom).offset(32)
-        //                make.trailing.equalToSuperview().inset(38)
-        //            }
-        //
-        //            self.datePicker.snp.remakeConstraints { make in
-        //                make.top.equalTo(self.pillTimeLabel.snp.bottom).offset(16)
-        //                make.centerX.equalToSuperview()
-        //                make.height.equalTo(150)
-        //            }
-        //
-        //            // DatePicker가 보여지면서 높이를 345로 설정
-        //            self.bottomBackground.snp.updateConstraints { make in
-        //                make.height.equalTo(345)
-        //            }
-        //
-        //            self.view.layoutIfNeeded() // 레이아웃 변경 사항 적용
-        //        }
     }
     
     @objc private func dateChanged(_ datePicker: UIDatePicker) {
