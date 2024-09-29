@@ -27,9 +27,6 @@ class CalendarViewController: UIViewController {
         configureView()
         checkTodayPillStatus() // 처음 로드될 때 오늘 날짜의 복용 상태와 시간 표시
         
-<<<<<<< HEAD
-//        fetchPillEatenStatus()
-=======
         let today = Date()
         calendar.select(today)
         calendar(calendar, didSelect: today, at: .current)
@@ -39,7 +36,6 @@ class CalendarViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ko_KR")
         dateFormatter.dateFormat = "M월 d일 EEEE"
->>>>>>> main
         
         let today = Date()
         let todayStartOfDay = Calendar.current.startOfDay(for: today)
@@ -171,37 +167,13 @@ class CalendarViewController: UIViewController {
         todayButton.setImage(UIImage(named: "today"), for: .normal)
         todayButton.addTarget(self, action: #selector(todayButtonTapped), for: .touchUpInside)
     }
-    
-<<<<<<< HEAD
-//    func fetchPillEatenStatus() {
-//        firestoreManager.fetchData { success in
-//            if success {
-//                self.firestoreManager.$isPillEaten
-//                    .combineLatest(self.firestoreManager.$notificationTime)
-//                    .sink { [weak self] (isPillEaten, notificationTime) in
-//                        guard let self = self,
-//                              let isPillEaten = isPillEaten,
-//                              let notificationTime = notificationTime else { return }
-//                        
-//                        let date = Calendar.current.startOfDay(for: notificationTime)
-//                        self.pillEatenStatus[date] = isPillEaten
-//                        DispatchQueue.main.async {
-//                            self.calendar.reloadData()
-//                        }
-//                    }
-//                    .store(in: &self.cancellables)
-//            }
-//        }
-//    }
 
-=======
     @objc func todayButtonTapped() {
         let today = Date()
         calendar.select(today)
         calendar.setCurrentPage(today, animated: true)
         calendar(calendar, didSelect: today, at: .current)
     }
->>>>>>> main
 }
 
 extension CalendarViewController {
