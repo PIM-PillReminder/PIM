@@ -32,7 +32,12 @@ struct MainView: View {
     
     init() {
         let currentDate = Calendar.current.startOfDay(for: Date())
-        isPillEaten = UserDefaultsManager.shared.getPillStatus()[currentDate] ?? false
+        let pillStatus = UserDefaultsManager.shared.getPillStatus()[currentDate] ?? false
+        if pillStatus, let _ = UserDefaultsManager.shared.getPillTakenTime(for: currentDate) {
+            isPillEaten = true
+        } else {
+            isPillEaten = false
+        }
     }
 
 //    init() {
@@ -118,7 +123,7 @@ struct MainView: View {
                 
                 if(!pillStatusObserver.isPillEaten){
                     Button("오늘의 약을 먹었어요") {
-                        pillStatusObserver.isPillEaten = true
+                        // pillStatusObserver.isPillEaten = true
                         let currentTime = Date()
                         updatePillStatus(true, takenTime: currentTime)
                     }
@@ -126,7 +131,7 @@ struct MainView: View {
                     .padding(.bottom, 10)
                 } else {
                     Button("앗! 잘못 눌렀어요") {
-                        pillStatusObserver.isPillEaten = false
+                        // pillStatusObserver.isPillEaten = false
                         updatePillStatus(false)
                     }
                     .buttonStyle(PIMStrokeButton())
@@ -158,39 +163,55 @@ struct MainView: View {
         }
         .onAppear {
             let currentDate = Calendar.current.startOfDay(for: Date())
-            if let pillStatus = UserDefaultsManager.shared.getPillStatus()[currentDate] {
-                pillStatusObserver.isPillEaten = pillStatus
+            if let pillStatus = UserDefaultsManager.shared.getPillStatus()[currentDate], pillStatus {
+                // 복용 여부가 true인 경우에만 시간 확인
+                if let pillTakenTime = UserDefaultsManager.shared.getPillTakenTime(for: currentDate) {
+                    pillStatusObserver.isPillEaten = true
+                    updatePillTakenTimeString() // 복용 시간 업데이트
+                } else {
+                    pillStatusObserver.isPillEaten = false // 복용 시간이 없으면 false로 설정
+                }
             } else {
                 pillStatusObserver.isPillEaten = false
             }
-            updatePillTakenTimeString()
             fetchPillStatusFromWatch()
         }
     }
     
     // 상태 업데이트 및 워치에 전송
     private func updatePillStatus(_ status: Bool, takenTime: Date? = nil) {
-        pillStatusObserver.isPillEaten = status
         let today = Calendar.current.startOfDay(for: Date())
-        if status && takenTime != nil {
-            UserDefaultsManager.shared.savePillTakenTime(date: takenTime!)
+        if status {
+            if let time = takenTime {
+                UserDefaultsManager.shared.savePillTakenTime(date: time)
+            }
+            UserDefaultsManager.shared.savePillStatus(date: today, isPillEaten: true)
+        } else {
+            UserDefaultsManager.shared.removePillTakenTime(for: today)
+            UserDefaultsManager.shared.savePillStatus(date: today, isPillEaten: false)
         }
-        UserDefaultsManager.shared.savePillStatus(date: today, isPillEaten: status)
-        updatePillTakenTimeString()
+        pillStatusObserver.isPillEaten = status
+        updatePillTakenTimeString() // 상태 업데이트 후 복용 시간 다시 체크
     }
     
     // MARK: (GET) 워치로부터 데이터 받아오기
     private func fetchPillStatusFromWatch() {
         if WCSession.default.isReachable {
+            print("Watch is reachable, requesting pill status.")
             WCSession.default.sendMessage(["RequestPillStatus": true], replyHandler: { response in
                 DispatchQueue.main.async {
                     if let status = response["PillEaten"] as? Bool {
+                        print("Received pill status from Watch: \(status)")
                         pillStatusObserver.isPillEaten = status
+                    } else {
+                        print("Error: No pill status found in Watch response.")
                     }
                 }
             }) { error in
-                print("Error requesting pill status: \(error.localizedDescription)")
+                print("Error requesting pill status from Watch: \(error.localizedDescription)")
             }
+        } else {
+            print("Watch is not reachable.")
         }
     }
     
@@ -206,7 +227,7 @@ struct MainView: View {
             formatter.dateFormat = "M월 d일 a h시 m분"
             pillTakenTimeString = formatter.string(from: pillTakenTime) + "에 복용했어요"
         } else {
-            pillTakenTimeString = ""
+            pillTakenTimeString = "" // 복용 시간이 없으면 빈 문자열로 설정
         }
     }
 }
@@ -216,15 +237,42 @@ class PillStatusObserver: ObservableObject {
     @Published var isPillEaten: Bool = false {
         didSet {
             let currentDate = Calendar.current.startOfDay(for: Date())
-            UserDefaultsManager.shared.savePillStatus(date: currentDate, isPillEaten: isPillEaten)
-            sendPillStatusToWatch(isPillEaten)
-            print("isPillEaten updated to: \(isPillEaten)")
-            print("저장된 값 (\(currentDate)): \(isPillEaten)")
+            if UserDefaultsManager.shared.getPillStatus()[currentDate] != isPillEaten {
+                print("Updating isPillEaten in didSet with value: \(isPillEaten)")
+                
+                if isPillEaten {
+                    // 복용 여부가 true일 때만 복용 시간 확인
+                    if let _ = UserDefaultsManager.shared.getPillTakenTime(for: currentDate) {
+                        UserDefaultsManager.shared.savePillStatus(date: currentDate, isPillEaten: true)
+                    } else {
+                        // 복용 시간이 없으면 false로 변경
+                        print("Pill taken time is nil, setting isPillEaten to false.")
+                        isPillEaten = false
+                        UserDefaultsManager.shared.savePillStatus(date: currentDate, isPillEaten: false)
+                    }
+                } else {
+                    UserDefaultsManager.shared.savePillStatus(date: currentDate, isPillEaten: false)
+                    UserDefaultsManager.shared.removePillTakenTime(for: currentDate)
+                }
+                
+                sendPillStatusToWatch(isPillEaten)
+                print("Final saved isPillEaten value: \(isPillEaten)")
+            } else {
+                print("isPillEaten did not change, skipping save.")
+            }
         }
     }
     
     init() {
-        self.isPillEaten = getCurrentPillStatus()
+        let currentDate = Calendar.current.startOfDay(for: Date())
+        let savedStatus = UserDefaultsManager.shared.getPillStatus()[currentDate] ?? false
+        // 초기화 시 중복 설정 방지
+        if savedStatus != isPillEaten {
+            print("Initializing PillStatusObserver: setting isPillEaten to \(savedStatus)")
+            self.isPillEaten = savedStatus
+        } else {
+            print("Skipping initialization as the value matches UserDefaults.")
+        }
     }
     
     private func getCurrentPillStatus() -> Bool {
