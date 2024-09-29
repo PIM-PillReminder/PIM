@@ -67,12 +67,12 @@ struct SettingView: View {
                 
                 if let selectedTime = settingViewModel.selectedTime {
                   Text("\(selectedTime, formatter: SettingView.dateFormatter)")
-                    .font(.pretendard(.medium, size: 18))
+                    .font(.pretendard(.medium, size: 16))
                     .environment(\.locale, .init(identifier: "ko_KR"))
                     .foregroundStyle(Color.pimBlack)
                 } else {
                   Text("알림 시간을 선택하지 않았습니다.")
-                    .font(.pretendard(.medium, size: 18))
+                    .font(.pretendard(.medium, size: 16))
                     .foregroundStyle(Color.pimBlack)
                 }
                 
@@ -81,8 +81,8 @@ struct SettingView: View {
                   .foregroundColor(.pimBlack)
                   .font(.title3)
               }
-              .padding(.vertical, 8)
               .padding(.horizontal, 10)
+              .padding(.vertical, 5)
             }
             .sheet(isPresented: $showSheet) {
               TimePickerView(showSheet1: $showSheet, modalBackground: $modalBackground, settingViewModel: settingViewModel)
@@ -113,7 +113,7 @@ struct SettingView: View {
                   .foregroundStyle(Color.pimBlack)
                 
                 Text("알림")
-                  .font(.pretendard(.medium, size: 18))
+                  .font(.pretendard(.medium, size: 16))
                   .foregroundStyle(Color.pimBlack)
                 
                 Spacer()
@@ -129,7 +129,6 @@ struct SettingView: View {
               //                  .presentationDetents([.height(geo.size.width * 1.3)])
               //                  .presentationDragIndicator(.hidden)
               //              }
-              .padding(.vertical, 8)
               .padding(.horizontal, 10)
             }
             Divider()
@@ -141,7 +140,7 @@ struct SettingView: View {
                 .padding(.trailing, 8)
                 .font(.title3)
               Text("앱 잠금")
-                .font(.pretendard(.medium, size: 18))
+                .font(.pretendard(.medium, size: 16))
               Spacer()
               Toggle("", isOn: $isLocked)
                 .toggleStyle(SwitchToggleStyle(tint: Color.primaryGreen))
@@ -223,7 +222,7 @@ func plainCell(icon: String, text: String) -> some View {
       .foregroundStyle(Color.settingDisabledGray)
     
     Text("\(text)")
-      .font(.pretendard(.medium, size: 18))
+      .font(.pretendard(.medium, size: 16))
       .foregroundColor(Color.settingDisabledGray)
     
     Spacer()
@@ -236,7 +235,7 @@ func plainCell(icon: String, text: String) -> some View {
     .disabled(isDeactivated)
   }
   .padding(.horizontal, 10)
-  .padding(.vertical, 8)
+  .padding(.vertical, 5)
 }
 
 struct CustomListGroupBoxStyle: GroupBoxStyle {

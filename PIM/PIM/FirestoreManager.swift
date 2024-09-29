@@ -10,7 +10,7 @@ import FirebaseFirestore
 
 class FireStoreManager: ObservableObject {
     @Published var pillStatusList: [PillStatus] = []
-    @Published var notificationTime: String?
+    @Published var notificationTime: Date?
     
     var documentID: String? {
         get {
@@ -21,17 +21,16 @@ class FireStoreManager: ObservableObject {
         }
     }
     
-    func createData(notificationTime: String, pillStatus: PillStatus) async throws {
+    func createData(notificationTime: Date, pillStatus: PillStatus) async throws {
         let db = Firestore.firestore()
         
         do {
-            // 새로운 문서 생성
+            
             let ref = try await db.collection("userData").addDocument(data: [
-                "notificationTime": notificationTime,
+                "notificationTime": Timestamp(date: notificationTime),
                 "pillDataArray": [pillStatus.toDictionary()]
             ])
             
-            // 생성된 documentID를 UserDefaults에 저장
             UserDefaults.standard.set(ref.documentID, forKey: "documentID")
             self.documentID = ref.documentID
             print("Document created with ID: \(ref.documentID)")
@@ -41,12 +40,10 @@ class FireStoreManager: ObservableObject {
             throw error
         }
     }
-   
-    // Firestore에서 데이터를 가져오는 함수
+    
     func fetchData() {
         guard let documentID = self.documentID else {
             print("Document ID is nil")
-            completion(false)
             return
         }
         let db = Firestore.firestore()
@@ -55,33 +52,30 @@ class FireStoreManager: ObservableObject {
         docRef.getDocument { (document, error) in
             guard error == nil else {
                 print("Error fetching document:", error ?? "")
-                completion(false)
                 return
             }
             
             if let document = document, document.exists {
                 let data = document.data()
                 
-                // Firestore에서 가져온 pillDataArray 배열을 변환
                 if let pillDataArray = data?["pillDataArray"] as? [[String: Any]] {
                     self.pillStatusList = pillDataArray.map { dict in
                         let isPillEaten = dict["isPillEaten"] as? Bool ?? false
-                        let pillDate = dict["pillDate"] as? String ?? ""
-                        return PillStatus(isPillEaten: isPillEaten, pillDate: pillDate)
+                        if let timestamp = dict["pillDate"] as? Timestamp {
+                            let pillDate = timestamp.dateValue()
+                            return PillStatus(isPillEaten: isPillEaten, pillDate: pillDate)
+                        }
+                        return PillStatus(isPillEaten: isPillEaten, pillDate: Date())
                     }
                 }
                 
-                // Firestore에서 가져온 notificationTime을 변환
-                if let notificationTime = data?["notificationTime"] as? String {
-                    self.notificationTime = notificationTime
+                if let notificationTimestamp = data?["notificationTime"] as? Timestamp {
+                    self.notificationTime = notificationTimestamp.dateValue()
                 }
-                completion(true)
             }
-            completion(false)
         }
     }
 
-    // Firestore에 PillStatus 배열 저장하는 함수
     func savePillStatus(pillStatus: PillStatus) {
         guard let documentID = self.documentID else {
             print("Document ID is nil")
@@ -102,7 +96,12 @@ class FireStoreManager: ObservableObject {
             
             if let data = document.data(), let pillDataArray = data["pillDataArray"] as? [[String: Any]] {
                 // 동일한 날짜의 데이터가 있는지 확인
-                if let existingPillData = pillDataArray.first(where: { $0["pillDate"] as? String == pillStatus.pillDate }) {
+                if let existingPillData = pillDataArray.first(where: {
+                    if let existingTimestamp = $0["pillDate"] as? Timestamp {
+                        return existingTimestamp.dateValue() == pillStatus.pillDate
+                    }
+                    return false
+                }) {
                     // 동일한 날짜의 데이터를 arrayRemove로 삭제
                     docRef.updateData([
                         "pillDataArray": FieldValue.arrayRemove([existingPillData])
@@ -150,9 +149,9 @@ class FireStoreManager: ObservableObject {
         let db = Firestore.firestore()
         let docRef = db.collection("userData").document(documentID)
         
-        // Firestore에 Date 타입으로 저장
+        // Firestore에 Date 타입을 Timestamp로 변환하여 저장
         docRef.updateData([
-            "notificationTime": notificationTime
+            "notificationTime": Timestamp(date: notificationTime)
         ]) { error in
             if let error = error {
                 print("Error updating notification time: \(error)")

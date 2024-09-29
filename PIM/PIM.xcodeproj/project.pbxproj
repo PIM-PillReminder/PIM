@@ -52,6 +52,7 @@
 		79326FD22B3728770038CD7C /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79326FD02B3728770038CD7C /* SettingViewModel.swift */; };
 		79326FD32B3736780038CD7C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79326FCC2B371A3F0038CD7C /* Colors.xcassets */; };
 		79326FD42B3736D30038CD7C /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7EE2ABA888B000D1E8F /* ColorExtension.swift */; };
+		7952D0FC2CA4157C0021383A /* PillStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7952D0FB2CA4157C0021383A /* PillStatus.swift */; };
 		7954A7E02AB9D082000D1E8F /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7DF2AB9D082000D1E8F /* SettingView.swift */; };
 		7954A7E22AB9D096000D1E8F /* SettingNotiVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7E12AB9D096000D1E8F /* SettingNotiVIew.swift */; };
 		7954A7ED2ABA8881000D1E8F /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954A7EC2ABA8881000D1E8F /* FontExtension.swift */; };
@@ -165,6 +166,7 @@
 		7918E99F2BC41CCE0093ACDC /* PIM-watch-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "PIM-watch-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		79326FCC2B371A3F0038CD7C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		79326FD02B3728770038CD7C /* SettingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		7952D0FB2CA4157C0021383A /* PillStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillStatus.swift; sourceTree = "<group>"; };
 		7954A7DF2AB9D082000D1E8F /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		7954A7E12AB9D096000D1E8F /* SettingNotiVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotiVIew.swift; sourceTree = "<group>"; };
 		7954A7EC2ABA8881000D1E8F /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				7954A7EB2ABA8862000D1E8F /* Extension */,
 				573942582ABEE8820001906B /* View */,
 				57461C9B2AB76ABC0026F903 /* LocalNotificationManager.swift */,
+				7952D0FB2CA4157C0021383A /* PillStatus.swift */,
 				79D550E62B9DE9C80006DADB /* FirestoreManager.swift */,
 				57461C9D2AB773430026F903 /* Info.plist */,
 				57461C4A2AB58C540026F903 /* Assets.xcassets */,
@@ -597,6 +600,7 @@
 				57461C602AB59E0A0026F903 /* OnboardingView3.swift in Sources */,
 				57461C5E2AB59D5F0026F903 /* MainView.swift in Sources */,
 				57461C492AB58C520026F903 /* ContentView.swift in Sources */,
+				7952D0FC2CA4157C0021383A /* PillStatus.swift in Sources */,
 				799B0EC82ABEEE5200AE9865 /* CustomStyle.swift in Sources */,
 				7954A7EF2ABA888B000D1E8F /* ColorExtension.swift in Sources */,
 				57461C532AB58C540026F903 /* PIM.xcdatamodeld in Sources */,

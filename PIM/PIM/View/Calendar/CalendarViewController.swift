@@ -38,7 +38,7 @@ class CalendarViewController: UIViewController {
         configureConstraints()
         configureView()
         
-        fetchPillEatenStatus()
+//        fetchPillEatenStatus()
         
     }
     
@@ -163,26 +163,26 @@ class CalendarViewController: UIViewController {
         pillImageView.image = UIImage(named: "calendar_green")
     }
     
-    func fetchPillEatenStatus() {
-        firestoreManager.fetchData { success in
-            if success {
-                self.firestoreManager.$isPillEaten
-                    .combineLatest(self.firestoreManager.$notificationTime)
-                    .sink { [weak self] (isPillEaten, notificationTime) in
-                        guard let self = self,
-                              let isPillEaten = isPillEaten,
-                              let notificationTime = notificationTime else { return }
-                        
-                        let date = Calendar.current.startOfDay(for: notificationTime)
-                        self.pillEatenStatus[date] = isPillEaten
-                        DispatchQueue.main.async {
-                            self.calendar.reloadData()
-                        }
-                    }
-                    .store(in: &self.cancellables)
-            }
-        }
-    }
+//    func fetchPillEatenStatus() {
+//        firestoreManager.fetchData { success in
+//            if success {
+//                self.firestoreManager.$isPillEaten
+//                    .combineLatest(self.firestoreManager.$notificationTime)
+//                    .sink { [weak self] (isPillEaten, notificationTime) in
+//                        guard let self = self,
+//                              let isPillEaten = isPillEaten,
+//                              let notificationTime = notificationTime else { return }
+//                        
+//                        let date = Calendar.current.startOfDay(for: notificationTime)
+//                        self.pillEatenStatus[date] = isPillEaten
+//                        DispatchQueue.main.async {
+//                            self.calendar.reloadData()
+//                        }
+//                    }
+//                    .store(in: &self.cancellables)
+//            }
+//        }
+//    }
 
 }
 
