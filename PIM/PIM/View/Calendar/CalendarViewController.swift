@@ -14,6 +14,7 @@ class CalendarViewController: UIViewController {
     let backButton = UIButton()
     let monthLabel = UILabel()
     let infoButton = UIButton()
+    let todayButton = UIButton()
     
     private var currentBottomView: UIView? // 현재 보여지고 있는 바텀뷰
     private var selectedDate: Date?
@@ -90,6 +91,7 @@ class CalendarViewController: UIViewController {
         view.addSubview(backButton)
         view.addSubview(monthLabel)
         view.addSubview(infoButton)
+        view.addSubview(todayButton)
     }
     
     func configureConstraints() {
@@ -104,6 +106,11 @@ class CalendarViewController: UIViewController {
         
         infoButton.snp.makeConstraints { make in
             make.trailing.equalTo(view).inset(18)
+            make.top.equalTo(view).inset(16)
+        }
+        
+        todayButton.snp.makeConstraints { make in
+            make.trailing.equalTo(infoButton.snp.leading).offset(-18)
             make.top.equalTo(view).inset(16)
         }
         
@@ -152,10 +159,20 @@ class CalendarViewController: UIViewController {
         backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         
-        infoButton.setImage(UIImage(systemName: "info.circle"), for: .normal)
+        infoButton.setImage(UIImage(named: "info"), for: .normal)
         infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
         
         configureCalendar()
+        
+        todayButton.setImage(UIImage(named: "today"), for: .normal)
+        todayButton.addTarget(self, action: #selector(todayButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func todayButtonTapped() {
+        let today = Date()
+        calendar.select(today)
+        calendar.setCurrentPage(today, animated: true)
+        calendar(calendar, didSelect: today, at: .current)
     }
 }
 
