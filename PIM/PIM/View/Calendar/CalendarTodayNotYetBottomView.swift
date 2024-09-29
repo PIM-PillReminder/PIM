@@ -10,6 +10,7 @@ import UIKit
 class CalendarTodayNotYetBottomView: UIView {
     
     let dateLabel = UILabel()
+    let todayLabel = UILabel()
     let bottomBackground = UIView()
     let pillLabel = UILabel()
     let pillImageView = UIImageView()
@@ -33,6 +34,7 @@ class CalendarTodayNotYetBottomView: UIView {
         self.backgroundColor = UIColor(named: "gray02")
         
         self.addSubview(dateLabel)
+        self.addSubview(todayLabel)
         self.addSubview(bottomBackground)
         self.addSubview(pillLabel)
         self.addSubview(pillImageView)
@@ -48,6 +50,15 @@ class CalendarTodayNotYetBottomView: UIView {
         dateLabel.font = .systemFont(ofSize: 18, weight: .bold)
         dateLabel.textColor = .black
         
+        todayLabel.text = "오늘"
+        todayLabel.font = .boldSystemFont(ofSize: 12)
+        todayLabel.textColor = .white
+        todayLabel.backgroundColor = UIColor(named: "Green04")
+        todayLabel.layer.cornerRadius = 10
+        todayLabel.clipsToBounds = true
+        todayLabel.textAlignment = .center
+        todayLabel.isHidden = false
+        
         pillLabel.text = "아직 안 먹었어요"
         pillLabel.font = .systemFont(ofSize: 16, weight: .medium)
         pillLabel.textColor = .black
@@ -57,9 +68,16 @@ class CalendarTodayNotYetBottomView: UIView {
     
     private func configureConstraints() {
         
-        dateLabel.snp.makeConstraints { make in
+        dateLabel.snp.remakeConstraints { make in
             make.top.equalToSuperview().offset(20)
-            make.centerX.equalToSuperview()
+            make.centerX.equalToSuperview().offset(-24) // 중앙에서 왼쪽으로 24 이동
+        }
+        
+        todayLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(dateLabel)
+            make.leading.equalTo(dateLabel.snp.trailing).offset(8)
+            make.height.equalTo(20)
+            make.width.equalTo(40)
         }
         
         bottomBackground.snp.makeConstraints { make in
