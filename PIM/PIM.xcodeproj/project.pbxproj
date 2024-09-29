@@ -74,6 +74,7 @@
 		79DD3B7F2AC3DCC600837E11 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DD3B7E2AC3DCC600837E11 /* TimePickerView.swift */; };
 		79FA64882B41277200DEA24D /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79FA64872B41277200DEA24D /* Launch Screen.storyboard */; };
 		79FA64A42B4143AF00DEA24D /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FA64A32B4143AF00DEA24D /* ViewExtension.swift */; };
+		C1576C3E2CA9B8C700B8AA9E /* CalendarFutureBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1576C3D2CA9B8C700B8AA9E /* CalendarFutureBottomView.swift */; };
 		C169464F2C4D129800A79FF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C169464E2C4D129800A79FF8 /* GoogleService-Info.plist */; };
 		C16946542C4D131600A79FF8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C16946532C4D131600A79FF8 /* FirebaseAnalytics */; };
 		C16946562C4D131600A79FF8 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C16946552C4D131600A79FF8 /* FirebaseAnalyticsSwift */; };
@@ -190,6 +191,7 @@
 		79DD3B7E2AC3DCC600837E11 /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		79FA64872B41277200DEA24D /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		79FA64A32B4143AF00DEA24D /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		C1576C3D2CA9B8C700B8AA9E /* CalendarFutureBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarFutureBottomView.swift; sourceTree = "<group>"; };
 		C169464E2C4D129800A79FF8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C185D6CE2C9AC69800CEB5A6 /* PillStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PillStatus.swift; sourceTree = "<group>"; };
 		C185D6D02C9AC72E00CEB5A6 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
@@ -466,6 +468,7 @@
 				C1E66FD52C9AE0D7006420B6 /* CalendarBottomView.swift */,
 				C1E66FD72C9AE7AD006420B6 /* CalendarNotEatenBottomView.swift */,
 				C1E66FD92C9AE814006420B6 /* CalendarTodayNotYetBottomView.swift */,
+				C1576C3D2CA9B8C700B8AA9E /* CalendarFutureBottomView.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -677,6 +680,7 @@
 				57461C5C2AB59B070026F903 /* OnboardingView2.swift in Sources */,
 				C185D6D52C9AD9DB00CEB5A6 /* UserDefaultsManager.swift in Sources */,
 				573942572ABEE85C0001906B /* OnboardingMainView.swift in Sources */,
+				C1576C3E2CA9B8C700B8AA9E /* CalendarFutureBottomView.swift in Sources */,
 				57461C5A2AB5919F0026F903 /* OnboardingView1.swift in Sources */,
 				799B0ECA2ABEEE9300AE9865 /* PIMCustomSlider.swift in Sources */,
 			);
