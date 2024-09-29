@@ -154,21 +154,17 @@ struct MainView: View {
                 pillStatusObserver.isPillEaten = false // 값이 없으면 false로 설정
             }
             
-<<<<<<< HEAD
             // UserDefaults에서 현재 날짜에 해당하는 isPillEaten 값을 가져옴
-            let eatenStatus = UserDefaults.standard.bool(forKey: currentDateStr)
+//            let eatenStatus = UserDefaults.standard.bool(forKey: currentDateStr)
             
             // 가져온 값으로 isPillEaten 상태를 업데이트
-            pillStatusObserver.isPillEaten = eatenStatus
+//            pillStatusObserver.isPillEaten = eatenStatus
             
             // 워치로부터 약 복용 상태를 받아오는 함수 호출
             fetchPillStatusFromWatch()
             
             //firestore
 //            firestoreManager.fetchData()
-=======
-            fetchPillStatusFromWatch() // 워치로부터 값 불러오기
->>>>>>> main
         }
     }
     

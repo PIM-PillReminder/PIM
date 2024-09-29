@@ -41,10 +41,6 @@ class FireStoreManager: ObservableObject {
         }
     }
     
-<<<<<<< HEAD:PIM/PIM/FirestoreManager.swift
-=======
-    // Firestore에서 데이터를 가져오는 함수
->>>>>>> main:PIM/PIM/Manager/FirestoreManager.swift
     func fetchData() {
         guard let documentID = self.documentID else {
             print("Document ID is nil")
@@ -79,12 +75,7 @@ class FireStoreManager: ObservableObject {
             }
         }
     }
-<<<<<<< HEAD:PIM/PIM/FirestoreManager.swift
 
-=======
-    
-    // Firestore에 PillStatus 배열 저장하는 함수
->>>>>>> main:PIM/PIM/Manager/FirestoreManager.swift
     func savePillStatus(pillStatus: PillStatus) {
         guard let documentID = self.documentID else {
             print("Document ID is nil")
