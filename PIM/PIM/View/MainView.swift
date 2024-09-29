@@ -28,6 +28,8 @@ struct MainView: View {
     @State private var tapPlay: Bool = true
     @EnvironmentObject var firestoreManager: FireStoreManager
     
+    @State private var pillTakenTimeString: String = ""
+    
     init() {
         let currentDate = Calendar.current.startOfDay(for: Date())
         isPillEaten = UserDefaultsManager.shared.getPillStatus()[currentDate] ?? false
@@ -77,15 +79,20 @@ struct MainView: View {
 
                 }
                 .padding(.top, 10)
-                .padding(.bottom, 50)
+                .padding(.bottom, 95)
                 
                 VStack{
-                    Image("pill")
-                        .padding(.bottom, 30)
-                    
                     Text(pillStatusObserver.isPillEaten ? "약 먹기 완료! 내일 만나요!" : "오늘 약을 먹었나요?")
                         .font(.pretendard(.bold, size: 18))
                         .multilineTextAlignment(.center)
+                    
+                    if pillStatusObserver.isPillEaten {
+                        Text(pillTakenTimeString)
+                            .font(.pretendard(.regular, size: 16))
+                            .foregroundColor(Color("gray08"))
+                            .multilineTextAlignment(.center)
+                            .padding(.top, 8)
+                    }
                 }
                 
                 Spacer()
@@ -108,7 +115,7 @@ struct MainView: View {
                 Spacer()
                 
                 if(!pillStatusObserver.isPillEaten){
-                    Button("네! 먹었어요") {
+                    Button("오늘의 약을 먹었어요") {
                         pillStatusObserver.isPillEaten = true
                         updatePillStatus(true)
                     }
@@ -125,6 +132,7 @@ struct MainView: View {
             }
             .onAppear {
                 fetchPillStatusFromWatch()
+                updatePillTakenTimeString()
             }
             .onChange(of: scenePhase) { newPhase in
                 if newPhase == .active {
@@ -190,6 +198,18 @@ struct MainView: View {
     
     private func getCurrentDateString() -> String {
         return DateFormatter.localizedString(from: Date(), dateStyle: .medium, timeStyle: .none)
+    }
+    
+    private func updatePillTakenTimeString() {
+        let today = Calendar.current.startOfDay(for: Date())
+        if let pillTakenTime = UserDefaults.standard.object(forKey: "pillTakenTime_\(today)") as? Date {
+            let formatter = DateFormatter()
+            formatter.locale = Locale(identifier: "ko_KR")
+            formatter.dateFormat = "M월 d일 a h시 m분"
+            pillTakenTimeString = formatter.string(from: pillTakenTime) + "에 복용했어요"
+        } else {
+            pillTakenTimeString = ""
+        }
     }
 }
 
