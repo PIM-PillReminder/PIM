@@ -167,7 +167,7 @@ class CalendarViewController: UIViewController {
         todayButton.setImage(UIImage(named: "today"), for: .normal)
         todayButton.addTarget(self, action: #selector(todayButtonTapped), for: .touchUpInside)
     }
-    
+
     @objc func todayButtonTapped() {
         let today = Date()
         calendar.select(today)

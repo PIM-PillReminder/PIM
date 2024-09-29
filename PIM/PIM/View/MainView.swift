@@ -41,31 +41,40 @@ struct MainView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                HStack {
+                ZStack {
+                    
+                    HStack {
+                        Spacer()
+                        
+                        NavigationLink(destination: SettingView()) {
+                            Image(systemName: "gearshape")
+                                .font(.system(size: 24))
+                                .foregroundColor(Color.primaryGreen)
+                                .padding(.trailing, 20)
+                        }
+                    }
                     
                     NavigationLink(destination: CalendarViewRepresentable()
-                        .navigationBarBackButtonHidden()
-                    ) {
-                        Image(systemName: "calendar")
-                            .font(.system(size: 24))
-                            .padding(.leading, 20)
-                            .foregroundColor(Color.primaryGreen)
-                            .opacity(100)
+                                    .navigationBarBackButtonHidden()) {
+                        HStack(spacing: 8) {
+                            Image(systemName: "calendar")
+                                .foregroundColor(.buttonStrokeGreen)
+                            Text(dateFormatter.string(from: Date())) // Text를 사용하여 날짜 표시
+                                .foregroundColor(.pimBlack)
+                                .font(.pretendard(.medium, size: 16))
+                        }
+                        .padding(8)
+                        .multilineTextAlignment(.center)
+                        .background(
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(Color.clear) // 기본 배경을 투명으로 설정
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .stroke(Color.buttonStrokeGreen, lineWidth: 1)
+                                )
+                        )
                     }
-                    
-                    Spacer()
-                    
-                    Text(dateFormatter.string(from: Date()))
-                        .font(.pretendard(.bold, size: 18))
-                    
-                    Spacer()
-                    
-                    NavigationLink(destination: SettingView()) {
-                        Image(systemName: "gearshape")
-                            .font(.system(size: 24))
-                            .foregroundColor(Color.primaryGreen)
-                            .padding(.trailing, 20)
-                    }
+
                 }
                 .padding(.top, 10)
                 .padding(.bottom, 50)
@@ -126,23 +135,11 @@ struct MainView: View {
                 }
             }
             .onChange(of: pillStatusObserver.isPillEaten) { newValue in
-/*
-                firestoreManager.fetchData { exists in
-                    if exists {
-                        firestoreManager.updateIsPillEaten(isPillEaten: newValue)
-                    } else {
-                        Task {
-                            await firestoreManager.createData(notificationTime: Date(), isPillEaten: newValue)
-                        }
-                    }
-                }
-*/
                 // 현재 시간과 함께 새로운 PillStatus 객체를 생성
-                let newPillStatus = PillStatus(isPillEaten: newValue, pillDate: Date().getFormattedDate())
+//                let newPillStatus = PillStatus(isPillEaten: newValue, pillDate: Date())
                 
                 // FirestoreManager에 새 PillStatus 객체 저장
-                firestoreManager.savePillStatus(pillStatus: newPillStatus)
-
+//                firestoreManager.savePillStatus(pillStatus: newPillStatus)
             }
             .navigationBarBackButtonHidden(true)
             .navigationTitle("")
@@ -157,14 +154,23 @@ struct MainView: View {
                 pillStatusObserver.isPillEaten = false // 값이 없으면 false로 설정
             }
             
-            fetchPillStatusFromWatch() // 워치로부터 값 불러오기
+            // UserDefaults에서 현재 날짜에 해당하는 isPillEaten 값을 가져옴
+//            let eatenStatus = UserDefaults.standard.bool(forKey: currentDateStr)
+            
+            // 가져온 값으로 isPillEaten 상태를 업데이트
+//            pillStatusObserver.isPillEaten = eatenStatus
+            
+            // 워치로부터 약 복용 상태를 받아오는 함수 호출
+            fetchPillStatusFromWatch()
+            
+            //firestore
+//            firestoreManager.fetchData()
         }
     }
     
     // 상태 업데이트 및 워치에 전송
     private func updatePillStatus(_ status: Bool) {
         pillStatusObserver.isPillEaten = status
-        
     }
     
     // MARK: (GET) 워치로부터 데이터 받아오기

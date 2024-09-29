@@ -22,7 +22,7 @@ struct TimePickerView: View {
     VStack(spacing: 0) {
         ZStack(alignment: .centerFirstTextBaseline) {
           Text("알림 시간 설정하기")
-            .font(.pretendard(.bold, size: 18))
+            .font(.pretendard(.bold, size: 16))
             .foregroundStyle(Color.pimBlack)
           HStack {
             Spacer()

@@ -17,7 +17,7 @@ struct OnboardingMainView: View {
                 Spacer()
                 
                 Text("반가워요!")
-                    .font(.pretendard(.bold, size: 24))
+                    .font(.pretendard(.bold, size: 20))
                     .padding(.top, 50)
                     .padding(.bottom, 13)
                 
@@ -40,7 +40,7 @@ struct OnboardingMainView: View {
                 // TODO: 2차 스프린트 업데이트때 OnboardingView2로 수정
                 NavigationLink(destination: OnboardingView4(selectedTime: Date())) {
                     Text("시작하기")
-                        .font(.pretendard(.bold, size: 20))
+                        .font(.pretendard(.bold, size: 18))
                         .foregroundColor(Color.white)
                         .padding(40)
                 }

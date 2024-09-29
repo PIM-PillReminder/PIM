@@ -75,7 +75,6 @@
 		79FA64882B41277200DEA24D /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79FA64872B41277200DEA24D /* Launch Screen.storyboard */; };
 		79FA64A42B4143AF00DEA24D /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FA64A32B4143AF00DEA24D /* ViewExtension.swift */; };
 		C169464F2C4D129800A79FF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C169464E2C4D129800A79FF8 /* GoogleService-Info.plist */; };
-		C16946522C4D12C300A79FF8 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C16946512C4D12C300A79FF8 /* Lottie */; };
 		C16946542C4D131600A79FF8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C16946532C4D131600A79FF8 /* FirebaseAnalytics */; };
 		C16946562C4D131600A79FF8 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C16946552C4D131600A79FF8 /* FirebaseAnalyticsSwift */; };
 		C16946582C4D131600A79FF8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C16946572C4D131600A79FF8 /* FirebaseAuth */; };
@@ -102,6 +101,7 @@
 		C1E66FD82C9AE7AD006420B6 /* CalendarNotEatenBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E66FD72C9AE7AD006420B6 /* CalendarNotEatenBottomView.swift */; };
 		C1E66FDA2C9AE814006420B6 /* CalendarTodayNotYetBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E66FD92C9AE814006420B6 /* CalendarTodayNotYetBottomView.swift */; };
 		C1E670082CA46AC7006420B6 /* CalendarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E670072CA46AC7006420B6 /* CalendarDetailViewController.swift */; };
+		C1E6700E2CA9A902006420B6 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C1E6700D2CA9A902006420B6 /* Lottie */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -226,10 +226,10 @@
 				C16946602C4D131600A79FF8 /* FirebaseFirestore in Frameworks */,
 				C16946662C4D131600A79FF8 /* FirebaseStorage in Frameworks */,
 				79D550DF2B9DE6190006DADB /* (null) in Frameworks */,
+				C1E6700E2CA9A902006420B6 /* Lottie in Frameworks */,
 				C16946582C4D131600A79FF8 /* FirebaseAuth in Frameworks */,
 				C1BC9A582B8889EF0083E181 /* (null) in Frameworks */,
 				C169465A2C4D131600A79FF8 /* FirebaseCrashlytics in Frameworks */,
-				C16946522C4D12C300A79FF8 /* Lottie in Frameworks */,
 				C16946542C4D131600A79FF8 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,6 +291,7 @@
 				576270652B299B2F00115612 /* PIM_watch Watch App */,
 				57461C442AB58C520026F903 /* Products */,
 				7918E9A02BC41EF60093ACDC /* Frameworks */,
+				C1E6700B2CA9A89F006420B6 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -485,6 +486,13 @@
 			path = CalendarDetail;
 			sourceTree = "<group>";
 		};
+		C1E6700B2CA9A89F006420B6 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -504,7 +512,6 @@
 			);
 			name = PIM;
 			packageProductDependencies = (
-				C16946512C4D12C300A79FF8 /* Lottie */,
 				C16946532C4D131600A79FF8 /* FirebaseAnalytics */,
 				C16946552C4D131600A79FF8 /* FirebaseAnalyticsSwift */,
 				C16946572C4D131600A79FF8 /* FirebaseAuth */,
@@ -517,6 +524,7 @@
 				C16946652C4D131600A79FF8 /* FirebaseStorage */,
 				C16946682C4D133900A79FF8 /* FSCalendar */,
 				C169466B2C4D134F00A79FF8 /* SnapKit */,
+				C1E6700D2CA9A902006420B6 /* Lottie */,
 			);
 			productName = PIM;
 			productReference = 57461C432AB58C520026F903 /* PIM.app */;
@@ -568,9 +576,9 @@
 			mainGroup = 57461C3A2AB58C520026F903;
 			packageReferences = (
 				79D550DD2B9DE6190006DADB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				C16946502C4D12C300A79FF8 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				C16946672C4D133800A79FF8 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				C169466A2C4D134F00A79FF8 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				C1E6700C2CA9A902006420B6 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 57461C442AB58C520026F903 /* Products */;
 			projectDirPath = "";
@@ -1021,14 +1029,6 @@
 				minimumVersion = 10.22.1;
 			};
 		};
-		C16946502C4D12C300A79FF8 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.5.0;
-			};
-		};
 		C16946672C4D133800A79FF8 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
@@ -1045,14 +1045,17 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		C1E6700C2CA9A902006420B6 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C16946512C4D12C300A79FF8 /* Lottie */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C16946502C4D12C300A79FF8 /* XCRemoteSwiftPackageReference "lottie-ios" */;
-			productName = Lottie;
-		};
 		C16946532C4D131600A79FF8 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 79D550DD2B9DE6190006DADB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -1112,6 +1115,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C169466A2C4D134F00A79FF8 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		C1E6700D2CA9A902006420B6 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1E6700C2CA9A902006420B6 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 

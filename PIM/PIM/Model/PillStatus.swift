@@ -6,22 +6,27 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
+import FirebaseFirestore
 
-class PillStatus {
+struct PillStatus: CustomStringConvertible {
     var isPillEaten: Bool
-    var pillDate: String
-    
-    init(isPillEaten: Bool, pillDate: String) {
-        self.isPillEaten = isPillEaten
-        self.pillDate = pillDate
-    }
+    var pillDate: Date
     
     func toDictionary() -> [String: Any] {
         return [
             "isPillEaten": isPillEaten,
-            "pillDate": pillDate
+            "pillDate": Timestamp(date: pillDate)
         ]
     }
+    
+    // CustomStringConvertible 프로토콜을 구현하여 출력 형식 정의
+    var description: String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateString = dateFormatter.string(from: pillDate)
+        
+        return "PillStatus(isPillEaten: \(isPillEaten), pillDate: \(dateString))"
+    }
 }
-
-

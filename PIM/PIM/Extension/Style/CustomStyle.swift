@@ -16,7 +16,7 @@ struct PIMGreenButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .foregroundColor(.white)
-            .font(.pretendard(.bold, size: 20))
+            .font(.pretendard(.bold, size: 18))
             .multilineTextAlignment(.center)
             .frame(width: UIScreen.main.bounds.width * 0.9)
             .frame(height: 74)
@@ -63,7 +63,7 @@ struct PIMStrokeButton: ButtonStyle {
     func makeBody (configuration: Configuration) -> some View {
         configuration.label
             .foregroundColor(.buttonStrokeGreen)
-            .font(.pretendard(.bold, size: 20))
+            .font(.pretendard(.bold, size: 18))
             .multilineTextAlignment(.center)
             .frame(width: UIScreen.main.bounds.width * 0.9)
             .frame(height: 74)
@@ -102,6 +102,31 @@ struct PIMSmallStrokeButton: ButtonStyle {
             .opacity(configuration.isPressed ? 0.9 : 1.0)
       }
 }
+
+struct PIMCalendarButton: ButtonStyle {
+
+    func makeBody(configuration: Configuration) -> some View {
+        HStack(spacing: 8) {
+            Image(systemName: "calendar")
+                .foregroundColor(.buttonStrokeGreen)
+            configuration.label
+                .foregroundColor(.buttonStrokeGreen)
+                .font(.pretendard(.medium, size: 16))
+        }
+        .padding(8)
+        .multilineTextAlignment(.center)
+        .background(
+            RoundedRectangle(cornerRadius: 20)
+                .fill(configuration.isPressed ? Color.buttonStrokeGreen.opacity(0.1) : Color.clear)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.buttonStrokeGreen, lineWidth: 1)
+                )
+        )
+    }
+}
+
+
 
 struct OnboardingButton: ButtonStyle {
     let scaledAmount: CGFloat
@@ -153,6 +178,7 @@ struct CustomStyle_Previews: PreviewProvider {
                 
             }
             .buttonStyle(OnboardingButton())
+            Button("92월 20일"){}.buttonStyle(PIMCalendarButton())
         }
     }
 }
