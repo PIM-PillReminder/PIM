@@ -61,9 +61,11 @@ struct MainView: View {
                         HStack(spacing: 8) {
                             Image(systemName: "calendar")
                                 .foregroundColor(.buttonStrokeGreen)
+                                .padding(.leading, 6)
                             Text(dateFormatter.string(from: Date())) // Text를 사용하여 날짜 표시
                                 .foregroundColor(.pimBlack)
                                 .font(.pretendard(.medium, size: 16))
+                                .padding(.trailing, 6)
                         }
                         .padding(8)
                         .multilineTextAlignment(.center)
@@ -117,7 +119,8 @@ struct MainView: View {
                 if(!pillStatusObserver.isPillEaten){
                     Button("오늘의 약을 먹었어요") {
                         pillStatusObserver.isPillEaten = true
-                        updatePillStatus(true)
+                        let currentTime = Date()
+                        updatePillStatus(true, takenTime: currentTime)
                     }
                     .buttonStyle(PIMGreenButton())
                     .padding(.bottom, 10)
@@ -154,31 +157,26 @@ struct MainView: View {
             .background(Color.backgroundWhite)
         }
         .onAppear {
-            let currentDate = Calendar.current.startOfDay(for: Date()) // 오늘 날짜의 시작 시간
-
+            let currentDate = Calendar.current.startOfDay(for: Date())
             if let pillStatus = UserDefaultsManager.shared.getPillStatus()[currentDate] {
-                pillStatusObserver.isPillEaten = pillStatus // 저장된 값이 있으면 상태 업데이트
+                pillStatusObserver.isPillEaten = pillStatus
             } else {
-                pillStatusObserver.isPillEaten = false // 값이 없으면 false로 설정
+                pillStatusObserver.isPillEaten = false
             }
-            
-            // UserDefaults에서 현재 날짜에 해당하는 isPillEaten 값을 가져옴
-//            let eatenStatus = UserDefaults.standard.bool(forKey: currentDateStr)
-            
-            // 가져온 값으로 isPillEaten 상태를 업데이트
-//            pillStatusObserver.isPillEaten = eatenStatus
-            
-            // 워치로부터 약 복용 상태를 받아오는 함수 호출
+            updatePillTakenTimeString()
             fetchPillStatusFromWatch()
-            
-            //firestore
-//            firestoreManager.fetchData()
         }
     }
     
     // 상태 업데이트 및 워치에 전송
-    private func updatePillStatus(_ status: Bool) {
+    private func updatePillStatus(_ status: Bool, takenTime: Date? = nil) {
         pillStatusObserver.isPillEaten = status
+        let today = Calendar.current.startOfDay(for: Date())
+        if status && takenTime != nil {
+            UserDefaultsManager.shared.savePillTakenTime(date: takenTime!)
+        }
+        UserDefaultsManager.shared.savePillStatus(date: today, isPillEaten: status)
+        updatePillTakenTimeString()
     }
     
     // MARK: (GET) 워치로부터 데이터 받아오기
@@ -202,7 +200,7 @@ struct MainView: View {
     
     private func updatePillTakenTimeString() {
         let today = Calendar.current.startOfDay(for: Date())
-        if let pillTakenTime = UserDefaults.standard.object(forKey: "pillTakenTime_\(today)") as? Date {
+        if let pillTakenTime = UserDefaultsManager.shared.getPillTakenTime(for: today) {
             let formatter = DateFormatter()
             formatter.locale = Locale(identifier: "ko_KR")
             formatter.dateFormat = "M월 d일 a h시 m분"
@@ -217,7 +215,7 @@ struct MainView: View {
 class PillStatusObserver: ObservableObject {
     @Published var isPillEaten: Bool = false {
         didSet {
-            let currentDate = Date()
+            let currentDate = Calendar.current.startOfDay(for: Date())
             UserDefaultsManager.shared.savePillStatus(date: currentDate, isPillEaten: isPillEaten)
             sendPillStatusToWatch(isPillEaten)
             print("isPillEaten updated to: \(isPillEaten)")
@@ -230,9 +228,9 @@ class PillStatusObserver: ObservableObject {
     }
     
     private func getCurrentPillStatus() -> Bool {
-        let currentDate = Date()
+        let currentDate = Calendar.current.startOfDay(for: Date())
         let pillStatus = UserDefaultsManager.shared.getPillStatus()
-        return pillStatus[Calendar.current.startOfDay(for: currentDate)] ?? false
+        return pillStatus[currentDate] ?? false
     }
     
     // MARK: (POST) 워치로 데이터 보내기
@@ -245,7 +243,6 @@ class PillStatusObserver: ObservableObject {
         }
     }
 }
-
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {

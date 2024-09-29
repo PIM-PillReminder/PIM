@@ -14,7 +14,7 @@ class UserDefaultsManager {
     
     private let pillEatenKey = "pillEatenStatus"
     
-    // 약 복용 상태와 복용 시간을 저장하는 함수
+    // 약 복용 상태를 저장하는 함수
     func savePillStatus(date: Date, isPillEaten: Bool) {
         var pillStatus = getPillStatus() // 기존 데이터 불러오기
         let dateKey = startOfDay(for: date) // 날짜를 '시작 시간'으로 구분
@@ -22,15 +22,16 @@ class UserDefaultsManager {
         // 날짜에 해당하는 약 복용 여부 저장
         pillStatus[dateKey] = isPillEaten
         
-        // 약을 먹었을 경우 복용 시간 저장
-        if isPillEaten {
-            UserDefaults.standard.set(Date(), forKey: "pillTakenTime_\(dateKey)") // 복용 시간 저장
-        }
-        
         // 상태를 UserDefaults에 저장
         if let encodedData = try? JSONEncoder().encode(pillStatus) {
             UserDefaults.standard.set(encodedData, forKey: pillEatenKey)
         }
+    }
+    
+    // 약 복용 시간을 저장하는 함수
+    func savePillTakenTime(date: Date) {
+        let dateKey = startOfDay(for: date)
+        UserDefaults.standard.set(date, forKey: "pillTakenTime_\(dateKey)")
     }
     
     // 저장된 약 복용 상태를 불러오는 함수
@@ -40,6 +41,12 @@ class UserDefaultsManager {
             return decodedStatus
         }
         return [:]
+    }
+    
+    // 저장된 약 복용 시간을 불러오는 함수
+    func getPillTakenTime(for date: Date) -> Date? {
+        let dateKey = startOfDay(for: date)
+        return UserDefaults.standard.object(forKey: "pillTakenTime_\(dateKey)") as? Date
     }
     
     // 날짜의 시작 시간만 저장하도록 처리
