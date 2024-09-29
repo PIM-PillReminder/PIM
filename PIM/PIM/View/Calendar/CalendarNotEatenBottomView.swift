@@ -13,17 +13,20 @@ class CalendarNotEatenBottomView: UIView {
     let bottomBackground = UIView()
     let pillLabel = UILabel()
     let pillImageView = UIImageView()
-
+    var selectedDate: Date?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
         configureConstraints()
+        //showDetailVC()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configureView()
         configureConstraints()
+        //showDetailVC()
     }
 
     private func configureView() {
@@ -47,7 +50,7 @@ class CalendarNotEatenBottomView: UIView {
         dateLabel.textColor = .black
 
         pillLabel.text = "안 먹었어요"
-        pillLabel.font = .systemFont(ofSize: 18, weight: .medium)
+        pillLabel.font = .systemFont(ofSize: 16, weight: .medium)
         pillLabel.textColor = .black
 
         pillImageView.image = UIImage(named: "calendar_red")
@@ -75,6 +78,38 @@ class CalendarNotEatenBottomView: UIView {
             make.centerY.equalTo(bottomBackground)
             make.trailing.equalTo(bottomBackground.snp.trailing).inset(18)
             make.size.equalTo(30)
+        }
+    }
+    
+    func showDetailVC() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(bottomBackgroundTapped))
+        bottomBackground.addGestureRecognizer(tapGesture)
+        bottomBackground.isUserInteractionEnabled = true
+    }
+    
+    @objc private func bottomBackgroundTapped() {
+        guard let date = selectedDate else {
+            print("No date selected")
+            return
+        }
+        showDetailModal(for: date)
+    }
+    
+    // 제스처를 처리할 함수
+    private func showDetailModal(for selectedDate: Date) {
+        print("showDetailModal called for date: \(selectedDate)")
+        let height = UIScreen.main.bounds.height * 0.6
+        let detailVC = CalendarDetailViewController(modalHeight: height, selectedDate: selectedDate)
+        if let parentVC = self.window?.rootViewController {
+            detailVC.modalPresentationStyle = .pageSheet
+            if let sheet = detailVC.sheetPresentationController {
+                sheet.detents = [.custom { context in
+                    return height
+                }]
+                sheet.selectedDetentIdentifier = .large
+                sheet.prefersGrabberVisible = false
+            }
+            parentVC.present(detailVC, animated: true, completion: nil)
         }
     }
 }

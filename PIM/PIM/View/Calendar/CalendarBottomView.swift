@@ -25,6 +25,7 @@ class CalendarBottomView: UIView {
         configureView()
         configureConstraints()
         fetchPillTakenTime()
+        showDetailVC()
     }
     
     required init?(coder: NSCoder) {
@@ -67,7 +68,7 @@ class CalendarBottomView: UIView {
         todayLabel.isHidden = false
         
         pillLabel.text = "복용 완료"
-        pillLabel.font = .systemFont(ofSize: 18, weight: .medium)
+        pillLabel.font = .systemFont(ofSize: 16, weight: .medium)
         pillLabel.textColor = .black
         
         pillTimeImage.image = UIImage(named: "clock")
@@ -141,6 +142,37 @@ class CalendarBottomView: UIView {
         }
     }
     
+    func showDetailVC() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(bottomBackgroundTapped))
+        bottomBackground.addGestureRecognizer(tapGesture)
+        bottomBackground.isUserInteractionEnabled = true
+    }
+    
+    @objc private func bottomBackgroundTapped() {
+        guard let date = selectedDate else {
+            print("No date selected")
+            return
+        }
+        showDetailModal(for: date)
+    }
+    
+    private func showDetailModal(for selectedDate: Date) {
+        print("showDetailModal called for date: \(selectedDate)")
+        let height = UIScreen.main.bounds.height * 0.6
+        let detailVC = CalendarDetailViewController(modalHeight: height, selectedDate: selectedDate)
+        if let parentVC = self.window?.rootViewController {
+            detailVC.modalPresentationStyle = .pageSheet
+            if let sheet = detailVC.sheetPresentationController {
+                sheet.detents = [.custom { context in
+                    return height
+                }]
+                sheet.selectedDetentIdentifier = .large
+                sheet.prefersGrabberVisible = false
+            }
+            parentVC.present(detailVC, animated: true, completion: nil)
+        }
+    }
+
     private func selectedDateIsToday() -> Bool {
         guard let selectedDate = selectedDate else {
             return false // selectedDate가 없으면 false 반환
@@ -183,15 +215,19 @@ class CalendarBottomView: UIView {
     func fetchPillTakenTime() {
         guard let selectedDate = selectedDate else { return }
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let dateKey = dateFormatter.string(from: Calendar.current.startOfDay(for: selectedDate))
+        let status = UserDefaultsManager.shared.getPillStatus()
+        let startOfDay = Calendar.current.startOfDay(for: selectedDate)
         
-        if let pillTime = UserDefaults.standard.object(forKey: "pillTakenTime_\(dateKey)") as? Date {
-            let timeFormatter = DateFormatter()
-            timeFormatter.locale = Locale(identifier: "ko_KR")
-            timeFormatter.dateFormat = "a h:mm"
-            pillTakenTimeLabel.text = timeFormatter.string(from: pillTime)
+        if let savedStatus = status[startOfDay] {
+            if savedStatus,
+               let savedTime = UserDefaults.standard.object(forKey: "pillTakenTime_\(startOfDay)") as? Date {
+                let timeFormatter = DateFormatter()
+                timeFormatter.locale = Locale(identifier: "ko_KR")
+                timeFormatter.dateFormat = "a h:mm"
+                pillTakenTimeLabel.text = timeFormatter.string(from: savedTime)
+            } else {
+                pillTakenTimeLabel.text = "복용 기록 없음"
+            }
         } else {
             pillTakenTimeLabel.text = "복용 기록 없음"
         }

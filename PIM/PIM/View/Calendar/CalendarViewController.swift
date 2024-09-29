@@ -104,7 +104,7 @@ class CalendarViewController: UIViewController {
         calendar.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
             make.top.equalTo(view.safeAreaLayoutGuide).inset(16)
-            make.height.equalTo(UIScreen.main.bounds.height * 0.65)
+            make.height.equalTo(UIScreen.main.bounds.height * 0.6)
         }
     }
     
@@ -246,6 +246,8 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         } else {
             let notEatenView = CalendarNotEatenBottomView()
             notEatenView.dateLabel.text = dateFormatter.string(from: date)
+            notEatenView.selectedDate = date
+            notEatenView.showDetailVC()
             view.addSubview(notEatenView)
             notEatenView.snp.makeConstraints { make in
                 make.top.equalTo(calendar.snp.bottom).offset(20)
