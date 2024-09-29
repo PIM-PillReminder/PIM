@@ -97,24 +97,24 @@ struct OnboardingView4: View {
                     // Onboarding 상태 업데이트
                     isMainViewActive = true
                     isOnboarding = false
-                    Task {
-                        do {
-                            if firestoreManager.documentID == nil {
-                                // DocumentID가 없는 경우 새 문서 생성
-                                try await firestoreManager.createData(
-                                    notificationTime: selectedTime,
-                                    pillStatus: PillStatus(isPillEaten: false, pillDate: Date())
-                                )
-                            } else {
-                                // DocumentID가 있는 경우 알림 시간과 약 복용 상태 업데이트
-                                firestoreManager.updateNotificationTime(notificationTime: selectedTime)
-                                let initialPillStatus = PillStatus(isPillEaten: false, pillDate: Date())
-                                firestoreManager.savePillStatus(pillStatus: initialPillStatus)
-                            }
-                        } catch {
-                            print("Error: \(error)")
-                        }
-                    }
+//                    Task {
+//                        do {
+//                            if firestoreManager.documentID == nil {
+//                                // DocumentID가 없는 경우 새 문서 생성
+//                                try await firestoreManager.createData(
+//                                    notificationTime: selectedTime,
+//                                    pillStatus: PillStatus(isPillEaten: false, pillDate: Date())
+//                                )
+//                            } else {
+//                                // DocumentID가 있는 경우 알림 시간과 약 복용 상태 업데이트
+//                                firestoreManager.updateNotificationTime(notificationTime: selectedTime)
+//                                let initialPillStatus = PillStatus(isPillEaten: false, pillDate: Date())
+//                                firestoreManager.savePillStatus(pillStatus: initialPillStatus)
+//                            }
+//                        } catch {
+//                            print("Error: \(error)")
+//                        }
+//                    }
                 }) {
                     Text("선택했어요")
                         .font(.pretendard(.bold, size: 20))

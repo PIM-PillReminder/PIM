@@ -131,10 +131,10 @@ struct MainView: View {
             }
             .onChange(of: pillStatusObserver.isPillEaten) { newValue in
                 // 현재 시간과 함께 새로운 PillStatus 객체를 생성
-                let newPillStatus = PillStatus(isPillEaten: newValue, pillDate: Date())
+//                let newPillStatus = PillStatus(isPillEaten: newValue, pillDate: Date())
                 
                 // FirestoreManager에 새 PillStatus 객체 저장
-                firestoreManager.savePillStatus(pillStatus: newPillStatus)
+//                firestoreManager.savePillStatus(pillStatus: newPillStatus)
             }
             .navigationBarBackButtonHidden(true)
             .navigationTitle("")
@@ -162,7 +162,7 @@ struct MainView: View {
             fetchPillStatusFromWatch()
             
             //firestore
-            firestoreManager.fetchData()
+//            firestoreManager.fetchData()
         }
         
     }
