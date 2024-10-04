@@ -70,7 +70,7 @@ struct PIMStrokeButton: ButtonStyle {
             .background(
                 RoundedRectangle(cornerRadius: 37.5)
                     .stroke(Color.buttonStrokeGreen, lineWidth: 2)
-                    .foregroundColor(.clear)
+                    .foregroundColor(.pimWhite)
             )
             .scaleEffect(configuration.isPressed ? scaledAmount : 1.0)
             .brightness(configuration.isPressed ? 0.1 : 0)
@@ -113,7 +113,8 @@ struct PIMCalendarButton: ButtonStyle {
                 .foregroundColor(.buttonStrokeGreen)
                 .font(.pretendard(.medium, size: 16))
         }
-        .padding(8)
+        .padding(.vertical, 9)
+        .padding(.horizontal, 12)
         .multilineTextAlignment(.center)
         .background(
             RoundedRectangle(cornerRadius: 20)

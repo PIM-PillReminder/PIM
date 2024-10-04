@@ -63,42 +63,29 @@ struct MainView: View {
                     
                     NavigationLink(destination: CalendarViewRepresentable()
                                     .navigationBarBackButtonHidden()) {
-                        HStack(spacing: 8) {
-                            Image(systemName: "calendar")
-                                .foregroundColor(.buttonStrokeGreen)
-                                .padding(.leading, 6)
                             Text(dateFormatter.string(from: Date())) // Text를 사용하여 날짜 표시
                                 .foregroundColor(.pimBlack)
                                 .font(.pretendard(.medium, size: 16))
                                 .padding(.trailing, 6)
-                        }
-                        .padding(8)
-                        .multilineTextAlignment(.center)
-                        .background(
-                            RoundedRectangle(cornerRadius: 20)
-                                .fill(Color.clear) // 기본 배경을 투명으로 설정
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 20)
-                                        .stroke(Color.buttonStrokeGreen, lineWidth: 1)
-                                )
-                        )
                     }
+                                    .buttonStyle(PIMCalendarButton())
 
                 }
-                .padding(.top, 10)
+                .padding(.top, 15)
                 .padding(.bottom, 95)
                 
-                VStack{
+                VStack(spacing:0){
                     Text(pillStatusObserver.isPillEaten ? "약 먹기 완료! 내일 만나요!" : "오늘 약을 먹었나요?")
                         .font(.pretendard(.bold, size: 18))
                         .multilineTextAlignment(.center)
+                        .padding(.bottom, 8)
                     
                     if pillStatusObserver.isPillEaten {
                         Text(pillTakenTimeString)
                             .font(.pretendard(.regular, size: 16))
                             .foregroundColor(Color("gray08"))
                             .multilineTextAlignment(.center)
-                            .padding(.top, 8)
+                            
                     }
                 }
                 
