@@ -127,7 +127,7 @@ class CalendarBottomView: UIView {
         pillTimeImage.snp.makeConstraints { make in
             make.top.equalTo(pillLabel.snp.bottom).offset(6)
             make.leading.equalTo(bottomBackground.snp.leading).inset(18)
-            make.size.equalTo(17)
+            make.size.equalTo(15)
         }
         
         pillTakenTimeLabel.snp.makeConstraints { make in

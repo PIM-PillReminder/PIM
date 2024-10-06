@@ -53,7 +53,7 @@ class CalendarNotEatenBottomView: UIView {
         pillLabel.font = .systemFont(ofSize: 16, weight: .medium)
         pillLabel.textColor = .black
 
-        pillImageView.image = UIImage(named: "calendar_red")
+        pillImageView.image = UIImage(named: "calendar_notEaten")
     }
 
     private func configureConstraints() {
