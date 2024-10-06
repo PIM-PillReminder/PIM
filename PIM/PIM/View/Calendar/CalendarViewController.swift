@@ -96,22 +96,22 @@ class CalendarViewController: UIViewController {
     
     func configureConstraints() {
         backButton.snp.makeConstraints { make in
-            make.top.equalTo(view).inset(16)
+            make.top.equalTo(view).inset(26)
             make.leading.equalTo(view).inset(18)
         }
         monthLabel.snp.makeConstraints { make in
-            make.top.equalTo(view).inset(18)
+            make.top.equalTo(view).inset(26)
             make.centerX.equalTo(view)
         }
         
         infoButton.snp.makeConstraints { make in
+            make.top.equalTo(view).inset(26)
             make.trailing.equalTo(view).inset(18)
-            make.top.equalTo(view).inset(16)
         }
         
         todayButton.snp.makeConstraints { make in
+            make.top.equalTo(view).inset(26)
             make.trailing.equalTo(infoButton.snp.leading).offset(-18)
-            make.top.equalTo(view).inset(16)
         }
         
         let screenHeight = UIScreen.main.bounds.height

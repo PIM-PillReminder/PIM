@@ -305,7 +305,7 @@ class CalendarDetailViewController: UIViewController {
         }
         
         takenRadioButton.snp.makeConstraints { make in
-            make.top.equalTo(notTakenRadioButton.snp.bottom).offset(16)
+            make.top.equalTo(notTakenRadioButton.snp.bottom).offset(12)
             make.leading.equalToSuperview().inset(38)
         }
         
