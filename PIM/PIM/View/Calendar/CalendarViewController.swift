@@ -138,12 +138,12 @@ class CalendarViewController: UIViewController {
         
         infoViewController.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         
-        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        // self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         
         present(infoViewController, animated: true)
         
         infoViewController.dismissalCompletion = { [weak self] in
-            self?.view.backgroundColor = .white
+            // self?.view.backgroundColor = .white
         }
     }
     
