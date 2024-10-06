@@ -33,26 +33,29 @@ struct SettingView: View {
     ZStack {
       GeometryReader { geo in
         VStack {
-//          ZStack {
-//            HStack {
-//              Button(action: {
-//                presentationMode.wrappedValue.dismiss()
-//              }) {
-//                Image(systemName: "chevron.left")
-//                  .foregroundColor(Color.pimBlack)
-//                  .font(.title3)
-//              }
-//              Spacer()
-//            }
-//            Text("설정")
-//              .font(.pretendard(.bold, size: 18))
-//              .frame(alignment: .center)
-//          }
-//          .padding(.bottom)
-          
           GroupBox {
-            plainCell(icon: "pill", text: "복용중인 약")
-            
+              HStack {
+                Image(systemName: "pill")
+                  .font(.title3)
+                  .foregroundStyle(Color.settingDisabledGray)
+                
+                Text("복용죽인 약")
+                  .font(.pretendard(.medium, size: 16))
+                  .padding(.leading, 10)
+                  .foregroundColor(Color.settingDisabledGray)
+                
+                Spacer()
+                
+                NavigationLink(destination: Text("추후 업데이트 예정")) {
+                  Image(systemName: "chevron.right")
+                    .foregroundColor(.settingChevronDisabledGray)
+                    .font(.title3)
+                }
+                .disabled(isDeactivated)
+              }
+              .padding(.horizontal, 10)
+              .padding(.vertical, 5)
+              
             Divider()
             Button {
               showSheet = true
@@ -62,7 +65,6 @@ struct SettingView: View {
               HStack {
                 Image(systemName: "clock")
                   .font(.title3)
-                  .padding(.trailing, 8)
                   .foregroundStyle(Color.pimBlack)
                 
                 if let selectedTime = settingViewModel.selectedTime {
@@ -70,6 +72,7 @@ struct SettingView: View {
                     .font(.pretendard(.medium, size: 16))
                     .environment(\.locale, .init(identifier: "ko_KR"))
                     .foregroundStyle(Color.pimBlack)
+                    .padding(.leading, 10)
                 } else {
                   Text("알림 시간을 선택하지 않았습니다.")
                     .font(.pretendard(.medium, size: 16))
@@ -109,12 +112,12 @@ struct SettingView: View {
               HStack {
                 Image(systemName: "bell")
                   .font(.title3)
-                  .padding(.trailing, 8)
                   .foregroundStyle(Color.pimBlack)
                 
                 Text("알림")
                   .font(.pretendard(.medium, size: 16))
                   .foregroundStyle(Color.pimBlack)
+                  .padding(.leading, 10)
                 
                 Spacer()
                 
@@ -132,15 +135,38 @@ struct SettingView: View {
               .padding(.horizontal, 10)
             }
             Divider()
-            plainCell(icon: "message", text: "FAQ")
+              HStack {
+                Image(systemName: "message")
+                  .font(.title3)
+                  .padding(.trailing, 2)
+                  .foregroundStyle(Color.settingDisabledGray)
+                
+                Text("FAQ")
+                  .font(.pretendard(.medium, size: 16))
+                  .padding(.leading, 7)
+                  .foregroundColor(Color.settingDisabledGray)
+                
+                Spacer()
+                
+                NavigationLink(destination: Text("추후 업데이트 예정")) {
+                  Image(systemName: "chevron.right")
+                    .foregroundColor(.settingChevronDisabledGray)
+                    .font(.title3)
+                }
+                .disabled(isDeactivated)
+              }
+              .padding(.trailing, 11)
+              .padding(.leading, 10)
+              .padding(.vertical, 5)
             
             Divider()
-            HStack{
+            HStack {
               Image(systemName: "lock")
-                .padding(.trailing, 8)
-                .font(.title3)
+                    .font(.title3)
+                
               Text("앱 잠금")
                 .font(.pretendard(.medium, size: 16))
+                .padding(.leading, 12)
               Spacer()
               Toggle("", isOn: $isLocked)
                 .toggleStyle(SwitchToggleStyle(tint: Color.primaryGreen))
@@ -151,15 +177,34 @@ struct SettingView: View {
             .padding(.vertical, 5)
             
             Divider()
-            
-            plainCell(icon: "arrow.down.to.line", text: "데이터 백업")
-            
+              HStack {
+                Image(systemName: "arrow.down.to.line")
+                  .font(.title3)
+                  .padding(.trailing, 1)
+                  .foregroundStyle(Color.settingDisabledGray)
+                
+                Text("데이터 백업")
+                  .font(.pretendard(.medium, size: 16))
+                  .padding(.leading, 11)
+                  .foregroundColor(Color.settingDisabledGray)
+                
+                Spacer()
+                
+                NavigationLink(destination: Text("추후 업데이트 예정")) {
+                  Image(systemName: "chevron.right")
+                    .foregroundColor(.settingChevronDisabledGray)
+                    .font(.title3)
+                }
+                .disabled(isDeactivated)
+              }
+              .padding(.trailing, 10)
+              .padding(.leading, 12)
+              .padding(.vertical, 5)
           }
           .groupBoxStyle(CustomListGroupBoxStyle())
           
           Spacer()
         }
-        .padding(.top, 10)
         .padding(.bottom)
         .padding(.horizontal, 18)
         .navigationBarBackButtonHidden(true)
@@ -218,11 +263,11 @@ func plainCell(icon: String, text: String) -> some View {
   HStack {
     Image(systemName: "\(icon)")
       .font(.title3)
-      .padding(.trailing, 8)
       .foregroundStyle(Color.settingDisabledGray)
     
     Text("\(text)")
       .font(.pretendard(.medium, size: 16))
+      .padding(.leading, 10)
       .foregroundColor(Color.settingDisabledGray)
     
     Spacer()
