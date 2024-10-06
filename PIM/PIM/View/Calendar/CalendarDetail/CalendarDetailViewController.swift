@@ -28,6 +28,8 @@ class CalendarDetailViewController: UIViewController {
     private var modalHeight: CGFloat
     private var selectedDate: Date
     
+    var dismissalCompletion: (() -> Void)?
+    
     private var isTaken = false {
         didSet {
             updateRadioButtonUI()
@@ -161,6 +163,9 @@ class CalendarDetailViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = UIColor(named: "gray02")
+        view.layer.cornerRadius = 20 // 원하는 반경으로 조절
+        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        view.clipsToBounds = true
         
         // Close Button
         closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -410,8 +415,14 @@ class CalendarDetailViewController: UIViewController {
         divider.isHidden = false
     }
     
+//    @objc private func dismissModal() {
+//        dismiss(animated: true, completion: nil)
+    //    }
+    
     @objc private func dismissModal() {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true) {
+            self.dismissalCompletion?()
+        }
     }
     
     @objc private func radioButtonsTapped() {

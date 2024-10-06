@@ -17,6 +17,7 @@ class CalendarBottomView: UIView {
     let pillTimeImage = UIImageView()
     let pillTakenTimeLabel = UILabel()
     let pillImageView = UIImageView()
+    private var dimView: UIView?
     
     var selectedDate: Date?
     
@@ -125,13 +126,13 @@ class CalendarBottomView: UIView {
         }
         
         pillTimeImage.snp.makeConstraints { make in
-            make.top.equalTo(pillLabel.snp.bottom).offset(6)
+            make.centerY.equalTo(pillTakenTimeLabel)
             make.leading.equalTo(bottomBackground.snp.leading).inset(18)
-            make.size.equalTo(15)
+            make.size.equalTo(14)
         }
         
         pillTakenTimeLabel.snp.makeConstraints { make in
-            make.top.equalTo(pillLabel.snp.bottom).offset(6)
+            make.top.equalTo(pillLabel.snp.bottom).offset(8)
             make.leading.equalTo(pillTimeImage.snp.trailing).offset(6)
         }
         
@@ -162,6 +163,7 @@ class CalendarBottomView: UIView {
         let modalHeight = height < 700 ? height * 0.8 : height * 0.6
         let detailVC = CalendarDetailViewController(modalHeight: height, selectedDate: selectedDate)
         if let parentVC = self.window?.rootViewController {
+            parentVC.view.backgroundColor = UIColor.black.withAlphaComponent(0.1)
             detailVC.modalPresentationStyle = .pageSheet
             if let sheet = detailVC.sheetPresentationController {
                 sheet.detents = [.custom { context in

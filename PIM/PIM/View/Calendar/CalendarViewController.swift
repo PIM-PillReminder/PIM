@@ -95,22 +95,26 @@ class CalendarViewController: UIViewController {
     }
     
     func configureConstraints() {
+        let topPadding = view.safeAreaInsets.top + 10
+        
         backButton.snp.makeConstraints { make in
-            make.top.equalTo(view).inset(26)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(topPadding)
             make.leading.equalTo(view).inset(18)
+            make.centerY.equalTo(monthLabel)
+            make.width.height.equalTo(44)
         }
         monthLabel.snp.makeConstraints { make in
-            make.top.equalTo(view).inset(26)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(topPadding)
             make.centerX.equalTo(view)
         }
         
         infoButton.snp.makeConstraints { make in
-            make.top.equalTo(view).inset(26)
+            make.centerY.equalTo(monthLabel)
             make.trailing.equalTo(view).inset(18)
         }
         
         todayButton.snp.makeConstraints { make in
-            make.top.equalTo(view).inset(26)
+            make.centerY.equalTo(monthLabel)
             make.trailing.equalTo(infoButton.snp.leading).offset(-18)
         }
         
@@ -198,7 +202,7 @@ extension CalendarViewController {
         calendar.appearance.weekdayTextColor = UIColor(named: "gray08")
         calendar.appearance.eventDefaultColor = UIColor(named: "primaryGreen")
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
-        calendar.weekdayHeight = 60
+        calendar.weekdayHeight = 70
         calendar.calendarHeaderView.isHidden = true
         calendar.placeholderType = .fillHeadTail
         calendar.scrollDirection = .vertical
