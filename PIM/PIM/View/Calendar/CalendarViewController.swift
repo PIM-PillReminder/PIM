@@ -22,6 +22,8 @@ class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        edgesForExtendedLayout = []
+        
         configureHierarchy()
         configureConstraints()
         configureView()
@@ -95,23 +97,27 @@ class CalendarViewController: UIViewController {
     }
     
     func configureConstraints() {
+        let topPadding = view.safeAreaInsets.top + 10
+        
         backButton.snp.makeConstraints { make in
-            make.top.equalTo(view).inset(16)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(topPadding)
             make.leading.equalTo(view).inset(18)
+            make.centerY.equalTo(monthLabel)
+            make.width.height.equalTo(44)
         }
         monthLabel.snp.makeConstraints { make in
-            make.top.equalTo(view).inset(18)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(topPadding)
             make.centerX.equalTo(view)
         }
         
         infoButton.snp.makeConstraints { make in
+            make.centerY.equalTo(monthLabel)
             make.trailing.equalTo(view).inset(18)
-            make.top.equalTo(view).inset(16)
         }
         
         todayButton.snp.makeConstraints { make in
+            make.centerY.equalTo(monthLabel)
             make.trailing.equalTo(infoButton.snp.leading).offset(-18)
-            make.top.equalTo(view).inset(16)
         }
         
         let screenHeight = UIScreen.main.bounds.height
@@ -120,8 +126,8 @@ class CalendarViewController: UIViewController {
         let maxCalendarHeight: CGFloat = screenHeight * 0.6
 
         calendar.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(view).inset(16)
-            make.top.equalTo(view).inset(topInset)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(topInset)
             make.height.greaterThanOrEqualTo(minCalendarHeight)
             make.height.lessThanOrEqualTo(maxCalendarHeight)
         }
@@ -138,22 +144,23 @@ class CalendarViewController: UIViewController {
         
         infoViewController.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         
-        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        
         present(infoViewController, animated: true)
         
         infoViewController.dismissalCompletion = { [weak self] in
-            self?.view.backgroundColor = .white
+            // self?.view.backgroundColor = .white
         }
     }
     
     func configureView() {
+        view.backgroundColor = UIColor(named: "BGWhite")
+        view.insetsLayoutMarginsFromSafeArea = false
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY년 M월"
         let title = dateFormatter.string(from: Date())
         
         monthLabel.text = title
-        monthLabel.textColor = .black
+        monthLabel.textColor = UIColor(named: "black")
         monthLabel.font = .systemFont(ofSize: 16, weight: .bold)
         
         backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
@@ -198,7 +205,7 @@ extension CalendarViewController {
         calendar.appearance.weekdayTextColor = UIColor(named: "gray08")
         calendar.appearance.eventDefaultColor = UIColor(named: "primaryGreen")
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
-        calendar.weekdayHeight = 60
+        calendar.weekdayHeight = 70
         calendar.calendarHeaderView.isHidden = true
         calendar.placeholderType = .fillHeadTail
         calendar.scrollDirection = .vertical
@@ -358,10 +365,16 @@ extension CalendarViewController: FSCalendarDelegateAppearance {
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date, at position: FSCalendarMonthPosition) -> UIColor? {
         if position == .current {
             // 현재 달에 속하는 날짜는 검정색
-            return UIColor.black
+            return UIColor(named: "black")
         } else {
             // 이전/다음 달 날짜는 회색
-            return UIColor.lightGray
+            return UIColor(named: "gray05")
         }
+    }
+}
+
+extension CalendarViewController {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .darkContent
     }
 }

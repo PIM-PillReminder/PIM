@@ -20,10 +20,10 @@ class CalendarInfoViewController: UIViewController {
         let width = UIScreen.main.bounds.width * 0.9
         let height = UIScreen.main.bounds.height * 0.15
         let xPosition = (UIScreen.main.bounds.width - width) / 3
-        let yPosition = UIScreen.main.bounds.height * 0.15
+        let yPosition = view.safeAreaInsets.top + 64
         
         let popupView = UIView()
-        popupView.backgroundColor = .white
+        popupView.backgroundColor = UIColor(named: "ExcptWhite12")
         popupView.layer.cornerRadius = 12
         view.addSubview(popupView)
         
@@ -39,69 +39,53 @@ class CalendarInfoViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissModal))
         view.addGestureRecognizer(tapGesture)
         
-        let imageView1 = UIImageView(image: UIImage(named: "calendar_today"))
-        imageView1.backgroundColor = .clear
-        imageView1.contentMode = .scaleAspectFit
-        imageView1.clipsToBounds = true
-        imageView1.snp.makeConstraints { make in
-            make.size.equalTo(30)
+        // 각 세트(이미지+라벨)를 위한 수직 스택뷰 생성
+        func createSetStackView(image: UIImage?, text: String) -> UIStackView {
+            let imageView = UIImageView(image: image)
+            imageView.contentMode = .scaleAspectFit
+            imageView.clipsToBounds = true
+            imageView.snp.makeConstraints { make in
+                make.size.equalTo(30)
+            }
+            
+            let label = UILabel()
+            label.text = text
+            label.textAlignment = .center
+            label.font = .systemFont(ofSize: 14, weight: .medium)
+            
+            let stackView = UIStackView(arrangedSubviews: [imageView, label])
+            stackView.axis = .vertical
+            stackView.alignment = .center
+            stackView.spacing = 12
+            return stackView
         }
         
-        let imageView2 = UIImageView(image: UIImage(named: "calendar_green"))
-        imageView2.contentMode = .scaleAspectFit
-        imageView2.clipsToBounds = true
+        let set1 = createSetStackView(image: UIImage(named: "calendar_today"), text: "복용 전")
+        let set2 = createSetStackView(image: UIImage(named: "calendar_green"), text: "복용 완료")
+        let set3 = createSetStackView(image: UIImage(named: "calendar_red"), text: "미복용")
         
-        let imageView3 = UIImageView(image: UIImage(named: "calendar_red"))
-        imageView3.contentMode = .scaleAspectFit
-        imageView3.clipsToBounds = true
-        
-        // let imageView4 = UIImageView(image: UIImage(named: "calendar_gray"))
-        // imageView4.contentMode = .scaleAspectFit
-        // imageView4.clipsToBounds = true
-        
-        // 이미지 뷰들을 위한 수평 스택 뷰 생성
-        let imagesStackView = UIStackView(arrangedSubviews: [imageView1, imageView2, imageView3])
-        imagesStackView.axis = .horizontal
-        imagesStackView.distribution = .equalSpacing
-        imagesStackView.layoutMargins = UIEdgeInsets(top: 20, left: 60, bottom: 0, right: 60)
-        imagesStackView.isLayoutMarginsRelativeArrangement = true
-        
-        // 레이블들을 초기화하고 텍스트 설정
-        let infoLabel1 = UILabel()
-        infoLabel1.text = "복용 전"
-        infoLabel1.textAlignment = .center
-        infoLabel1.font = .systemFont(ofSize: 14, weight: .medium)
-        let infoLabel2 = UILabel()
-        infoLabel2.text = "복용 완료"
-        infoLabel2.textAlignment = .center
-        infoLabel2.font = .systemFont(ofSize: 14, weight: .medium)
-        let infoLabel3 = UILabel()
-        infoLabel3.text = "미복용"
-        infoLabel3.textAlignment = .center
-        infoLabel3.font = .systemFont(ofSize: 14, weight: .medium)
-        
-        // let infoLabel4 = UILabel()
-        // infoLabel4.text = "휴약기"
-        // infoLabel4.textAlignment = .center
-        // infoLabel4.font = .systemFont(ofSize: 14, weight: .medium)
-        
-        // 레이블들을 위한 수평 스택 뷰 생성
-        let labelsStackView = UIStackView(arrangedSubviews: [infoLabel1, infoLabel2, infoLabel3])
-        labelsStackView.axis = .horizontal
-        labelsStackView.distribution = .equalSpacing
-        labelsStackView.layoutMargins = UIEdgeInsets(top: 0, left: 60, bottom: 0, right: 60)
-        labelsStackView.isLayoutMarginsRelativeArrangement = true
-        
-        // 이미지와 레이블 스택 뷰를 포함하는 수직 스택 뷰 생성
-        let mainStackView = UIStackView(arrangedSubviews: [imagesStackView, labelsStackView])
-        mainStackView.axis = .vertical
-        mainStackView.spacing = 8
+        // 세트들을 담는 수평 스택뷰 생성
+        let mainStackView = UIStackView(arrangedSubviews: [set1, set2, set3])
+        mainStackView.axis = .horizontal
+        mainStackView.distribution = .equalCentering
+        mainStackView.alignment = .center
+        mainStackView.layoutMargins = UIEdgeInsets(top: 20, left: 30, bottom: 20, right: 30)
+        mainStackView.isLayoutMarginsRelativeArrangement = true
         
         popupView.addSubview(mainStackView)
         
         mainStackView.snp.makeConstraints { make in
             make.edges.equalTo(popupView).inset(16)
         }
+        
+        // let imageView4 = UIImageView(image: UIImage(named: "calendar_gray"))
+        // imageView4.contentMode = .scaleAspectFit
+        // imageView4.clipsToBounds = true
+        
+        // let infoLabel4 = UILabel()
+        // infoLabel4.text = "휴약기"
+        // infoLabel4.textAlignment = .center
+        // infoLabel4.font = .systemFont(ofSize: 14, weight: .medium)
     }
     
     @objc func dismissModal() {
@@ -109,8 +93,4 @@ class CalendarInfoViewController: UIViewController {
             self?.dismissalCompletion?()
         }
     }
-}
-
-#Preview {
-    CalendarInfoViewController()
 }

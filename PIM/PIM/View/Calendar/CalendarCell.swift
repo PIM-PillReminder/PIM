@@ -34,10 +34,10 @@ class CalendarCell: FSCalendarCell {
         backImageView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).inset(-6)
             make.centerX.equalTo(contentView)
-            make.size.equalTo(30)
+            make.size.equalTo(28)
 //            make.size.equalTo(minSize()/1.3)
         }
-        backImageView.layer.cornerRadius = minSize()/3
+        // backImageView.layer.cornerRadius = minSize()/3
         backImageView.backgroundColor = .clear
     }
     
@@ -58,21 +58,34 @@ class CalendarCell: FSCalendarCell {
     override func configureAppearance() {
         super.configureAppearance()
         
+        // 배경을 위한 뷰를 생성합니다 (아직 없다면)
+        if self.backgroundView == nil {
+            let backgroundView = UIView()
+            backgroundView.layer.cornerRadius = 21 // 원하는 모서리 반경으로 조정
+            self.backgroundView = backgroundView
+        }
+        
         if isToday {
             if isSelected {
-                self.backgroundColor = UIColor(named: "black")
+                self.backgroundView?.backgroundColor = UIColor(named: "black")
                 titleLabel.textColor = UIColor(named: "white")
             } else {
-                self.backgroundColor = UIColor(named: "gray03")
+                self.backgroundView?.backgroundColor = UIColor(named: "gray03")
                 titleLabel.textColor = UIColor(named: "black")
             }
         } else if isSelected {
-            self.backgroundColor = UIColor(named: "black")
+            self.backgroundView?.backgroundColor = UIColor(named: "black")
             titleLabel.textColor = UIColor(named: "white")
         } else {
-            self.backgroundColor = .clear
-            //titleLabel.textColor = UIColor(named: "black")
+            self.backgroundView?.backgroundColor = .clear
+            titleLabel.textColor = UIColor(named: "black")
         }
+        
+        // 배경 뷰의 크기를 조정합니다
+        self.backgroundView?.frame = CGRect(x: bounds.width * 0.1,
+                                            y: bounds.height * 0,
+                                            width: bounds.width * 0.8,
+                                            height: bounds.height * 1)
     }
     
     // 셀의 높이와 너비 중 작은 값을 리턴한다

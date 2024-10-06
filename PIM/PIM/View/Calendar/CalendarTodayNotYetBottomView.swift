@@ -39,7 +39,7 @@ class CalendarTodayNotYetBottomView: UIView {
         self.addSubview(pillLabel)
         self.addSubview(pillImageView)
         
-        bottomBackground.backgroundColor = .white
+        bottomBackground.backgroundColor = UIColor(named: "white")
         bottomBackground.layer.cornerRadius = 16
         
         let dateFormatter = DateFormatter()
@@ -48,12 +48,12 @@ class CalendarTodayNotYetBottomView: UIView {
         
         dateLabel.text = dateFormatter.string(from: Date())
         dateLabel.font = .systemFont(ofSize: 18, weight: .bold)
-        dateLabel.textColor = .black
+        dateLabel.textColor = UIColor(named: "black")
         
         todayLabel.text = "오늘"
         todayLabel.font = .boldSystemFont(ofSize: 12)
-        todayLabel.textColor = .white
-        todayLabel.backgroundColor = UIColor(named: "Green04")
+        todayLabel.textColor = UIColor(named: "white")
+        todayLabel.backgroundColor = UIColor(named: "green02")
         todayLabel.layer.cornerRadius = 10
         todayLabel.clipsToBounds = true
         todayLabel.textAlignment = .center
@@ -61,7 +61,7 @@ class CalendarTodayNotYetBottomView: UIView {
         
         pillLabel.text = "아직 안 먹었어요"
         pillLabel.font = .systemFont(ofSize: 16, weight: .medium)
-        pillLabel.textColor = .black
+        pillLabel.textColor = UIColor(named: "black")
         
         pillImageView.image = UIImage(named: "calendar_today")
     }

@@ -28,6 +28,8 @@ class CalendarDetailViewController: UIViewController {
     private var modalHeight: CGFloat
     private var selectedDate: Date
     
+    var dismissalCompletion: (() -> Void)?
+    
     private var isTaken = false {
         didSet {
             updateRadioButtonUI()
@@ -161,6 +163,9 @@ class CalendarDetailViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = UIColor(named: "gray02")
+        view.layer.cornerRadius = 20 // 원하는 반경으로 조절
+        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        view.clipsToBounds = true
         
         // Close Button
         closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -179,13 +184,13 @@ class CalendarDetailViewController: UIViewController {
         
         dateLabel.text = dateFormatter.string(from: Date())
         dateLabel.font = .systemFont(ofSize: 18, weight: .bold)
-        dateLabel.textColor = .black
+        dateLabel.textColor = UIColor(named: "black")
         view.addSubview(dateLabel)
         
         todayLabel.text = "오늘"
         todayLabel.font = .boldSystemFont(ofSize: 12)
-        todayLabel.textColor = .white
-        todayLabel.backgroundColor = UIColor(named: "Green04")
+        todayLabel.textColor = UIColor(named: "white")
+        todayLabel.backgroundColor = UIColor(named: "green02")
         todayLabel.layer.cornerRadius = 10
         todayLabel.clipsToBounds = true
         todayLabel.textAlignment = .center
@@ -193,7 +198,7 @@ class CalendarDetailViewController: UIViewController {
         view.addSubview(todayLabel)
         
         // bottom background
-        bottomBackground.backgroundColor = .white
+        bottomBackground.backgroundColor = UIColor(named: "ExcptWhite10")
         bottomBackground.layer.cornerRadius = 16
         view.addSubview(bottomBackground)
         
@@ -305,7 +310,7 @@ class CalendarDetailViewController: UIViewController {
         }
         
         takenRadioButton.snp.makeConstraints { make in
-            make.top.equalTo(notTakenRadioButton.snp.bottom).offset(16)
+            make.top.equalTo(notTakenRadioButton.snp.bottom).offset(12)
             make.leading.equalToSuperview().inset(38)
         }
         
@@ -336,8 +341,8 @@ class CalendarDetailViewController: UIViewController {
         notTakenRadioButton.isSelected = !isTaken
         takenRadioButton.isSelected = isTaken
         
-        notTakenRadioButton.setTitleColor(isTaken ? UIColor(named: "gray07") : .black, for: .normal)
-        takenRadioButton.setTitleColor(isTaken ? .black : UIColor(named: "gray07"), for: .normal)
+        notTakenRadioButton.setTitleColor(isTaken ? UIColor(named: "gray07") : UIColor(named: "black"), for: .normal)
+        takenRadioButton.setTitleColor(isTaken ? UIColor(named: "black") : UIColor(named: "gray07"), for: .normal)
     }
     
     private func updateUIForSelection() {
@@ -410,8 +415,14 @@ class CalendarDetailViewController: UIViewController {
         divider.isHidden = false
     }
     
+//    @objc private func dismissModal() {
+//        dismiss(animated: true, completion: nil)
+    //    }
+    
     @objc private func dismissModal() {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true) {
+            self.dismissalCompletion?()
+        }
     }
     
     @objc private func radioButtonsTapped() {

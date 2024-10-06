@@ -44,7 +44,7 @@ class CalendarFutureBottomView: UIView {
         
         dateLabel.text = dateFormatter.string(from: selectedDate ?? Date())
         dateLabel.font = .systemFont(ofSize: 18, weight: .bold)
-        dateLabel.textColor = .black
+        dateLabel.textColor = UIColor(named: "black")
         
         pillLabel.text = "복약 기록은 해당 날짜부터 표시돼요"
         pillLabel.font = .systemFont(ofSize: 16, weight: .medium)
