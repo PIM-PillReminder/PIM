@@ -184,13 +184,13 @@ class CalendarDetailViewController: UIViewController {
         
         dateLabel.text = dateFormatter.string(from: Date())
         dateLabel.font = .systemFont(ofSize: 18, weight: .bold)
-        dateLabel.textColor = .black
+        dateLabel.textColor = UIColor(named: "black")
         view.addSubview(dateLabel)
         
         todayLabel.text = "오늘"
         todayLabel.font = .boldSystemFont(ofSize: 12)
-        todayLabel.textColor = .white
-        todayLabel.backgroundColor = UIColor(named: "Green04")
+        todayLabel.textColor = UIColor(named: "white")
+        todayLabel.backgroundColor = UIColor(named: "green02")
         todayLabel.layer.cornerRadius = 10
         todayLabel.clipsToBounds = true
         todayLabel.textAlignment = .center
@@ -198,7 +198,7 @@ class CalendarDetailViewController: UIViewController {
         view.addSubview(todayLabel)
         
         // bottom background
-        bottomBackground.backgroundColor = .white
+        bottomBackground.backgroundColor = UIColor(named: "ExcptWhite10")
         bottomBackground.layer.cornerRadius = 16
         view.addSubview(bottomBackground)
         
@@ -341,8 +341,8 @@ class CalendarDetailViewController: UIViewController {
         notTakenRadioButton.isSelected = !isTaken
         takenRadioButton.isSelected = isTaken
         
-        notTakenRadioButton.setTitleColor(isTaken ? UIColor(named: "gray07") : .black, for: .normal)
-        takenRadioButton.setTitleColor(isTaken ? .black : UIColor(named: "gray07"), for: .normal)
+        notTakenRadioButton.setTitleColor(isTaken ? UIColor(named: "gray07") : UIColor(named: "black"), for: .normal)
+        takenRadioButton.setTitleColor(isTaken ? UIColor(named: "black") : UIColor(named: "gray07"), for: .normal)
     }
     
     private func updateUIForSelection() {

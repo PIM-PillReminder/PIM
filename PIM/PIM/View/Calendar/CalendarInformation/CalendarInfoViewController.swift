@@ -23,7 +23,7 @@ class CalendarInfoViewController: UIViewController {
         let yPosition = view.safeAreaInsets.top + 64
         
         let popupView = UIView()
-        popupView.backgroundColor = .white
+        popupView.backgroundColor = UIColor(named: "ExcptWhite12")
         popupView.layer.cornerRadius = 12
         view.addSubview(popupView)
         

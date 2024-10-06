@@ -38,7 +38,7 @@ class CalendarNotEatenBottomView: UIView {
         self.addSubview(pillLabel)
         self.addSubview(pillImageView)
 
-        bottomBackground.backgroundColor = .white
+        bottomBackground.backgroundColor = UIColor(named: "white")
         bottomBackground.layer.cornerRadius = 16
         
         let dateFormatter = DateFormatter()
@@ -47,11 +47,11 @@ class CalendarNotEatenBottomView: UIView {
 
         dateLabel.text = dateFormatter.string(from: Date())
         dateLabel.font = .systemFont(ofSize: 18, weight: .bold)
-        dateLabel.textColor = .black
+        dateLabel.textColor = UIColor(named: "black")
 
         pillLabel.text = "안 먹었어요"
         pillLabel.font = .systemFont(ofSize: 16, weight: .medium)
-        pillLabel.textColor = .black
+        pillLabel.textColor = UIColor(named: "black")
 
         pillImageView.image = UIImage(named: "calendar_notEaten")
     }

@@ -48,7 +48,7 @@ class CalendarBottomView: UIView {
         self.addSubview(pillTakenTimeLabel)
         self.addSubview(pillImageView)
         
-        bottomBackground.backgroundColor = .white
+        bottomBackground.backgroundColor = UIColor(named: "ExcptWhite10")
         bottomBackground.layer.cornerRadius = 16
         
         let dateFormatter = DateFormatter()
@@ -57,12 +57,12 @@ class CalendarBottomView: UIView {
         
         dateLabel.text = dateFormatter.string(from: Date())
         dateLabel.font = .systemFont(ofSize: 18, weight: .bold)
-        dateLabel.textColor = .black
+        dateLabel.textColor = UIColor(named: "black")
         
         todayLabel.text = "오늘"
         todayLabel.font = .boldSystemFont(ofSize: 12)
-        todayLabel.textColor = .white
-        todayLabel.backgroundColor = UIColor(named: "Green04")
+        todayLabel.textColor = UIColor(named: "white")
+        todayLabel.backgroundColor = UIColor(named: "green02")
         todayLabel.layer.cornerRadius = 10
         todayLabel.clipsToBounds = true
         todayLabel.textAlignment = .center
@@ -70,7 +70,7 @@ class CalendarBottomView: UIView {
         
         pillLabel.text = "복용 완료"
         pillLabel.font = .systemFont(ofSize: 16, weight: .medium)
-        pillLabel.textColor = .black
+        pillLabel.textColor = UIColor(named: "black")
         
         pillTimeImage.image = UIImage(named: "clock")
         

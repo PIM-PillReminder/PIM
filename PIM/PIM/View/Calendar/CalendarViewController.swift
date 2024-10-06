@@ -22,6 +22,8 @@ class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        edgesForExtendedLayout = []
+        
         configureHierarchy()
         configureConstraints()
         configureView()
@@ -124,8 +126,8 @@ class CalendarViewController: UIViewController {
         let maxCalendarHeight: CGFloat = screenHeight * 0.6
 
         calendar.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(view).inset(16)
-            make.top.equalTo(view).inset(topInset)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(topInset)
             make.height.greaterThanOrEqualTo(minCalendarHeight)
             make.height.lessThanOrEqualTo(maxCalendarHeight)
         }
@@ -142,8 +144,6 @@ class CalendarViewController: UIViewController {
         
         infoViewController.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         
-        // self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        
         present(infoViewController, animated: true)
         
         infoViewController.dismissalCompletion = { [weak self] in
@@ -152,12 +152,15 @@ class CalendarViewController: UIViewController {
     }
     
     func configureView() {
+        view.backgroundColor = UIColor(named: "BGWhite")
+        view.insetsLayoutMarginsFromSafeArea = false
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY년 M월"
         let title = dateFormatter.string(from: Date())
         
         monthLabel.text = title
-        monthLabel.textColor = .black
+        monthLabel.textColor = UIColor(named: "black")
         monthLabel.font = .systemFont(ofSize: 16, weight: .bold)
         
         backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
@@ -362,10 +365,16 @@ extension CalendarViewController: FSCalendarDelegateAppearance {
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date, at position: FSCalendarMonthPosition) -> UIColor? {
         if position == .current {
             // 현재 달에 속하는 날짜는 검정색
-            return UIColor.black
+            return UIColor(named: "black")
         } else {
             // 이전/다음 달 날짜는 회색
-            return UIColor.lightGray
+            return UIColor(named: "gray05")
         }
+    }
+}
+
+extension CalendarViewController {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .darkContent
     }
 }
