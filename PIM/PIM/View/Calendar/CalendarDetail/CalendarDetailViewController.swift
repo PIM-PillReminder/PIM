@@ -8,6 +8,10 @@
 import UIKit
 import SnapKit
 
+protocol CalendarDetailViewControllerDelegate: AnyObject {
+    func calendarDetailViewControllerDidUpdatePillStatus(_ controller: CalendarDetailViewController, date: Date)
+}
+
 class CalendarDetailViewController: UIViewController {
     
     private let closeButton = UIButton()
@@ -29,6 +33,7 @@ class CalendarDetailViewController: UIViewController {
     private var selectedDate: Date
     
     var dismissalCompletion: (() -> Void)?
+    weak var delegate: CalendarDetailViewControllerDelegate?
     
     private var isTaken = false {
         didSet {
@@ -157,6 +162,7 @@ class CalendarDetailViewController: UIViewController {
         } else {
             UserDefaults.standard.removeObject(forKey: "pillTakenTime_\(startOfDay)")
         }
+        delegate?.calendarDetailViewControllerDidUpdatePillStatus(self, date: selectedDate)
     }
     
     private func loadSavedPillTime() {
@@ -443,6 +449,7 @@ class CalendarDetailViewController: UIViewController {
     
     @objc private func dismissModal() {
         dismiss(animated: true) {
+            self.delegate?.calendarDetailViewControllerDidUpdatePillStatus(self, date: self.selectedDate)
             self.dismissalCompletion?()
         }
     }
