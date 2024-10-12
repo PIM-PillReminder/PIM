@@ -74,6 +74,27 @@ class CalendarDetailViewController: UIViewController {
         loadSavedPillTime()
         updatePillStatusImage()
         updateRadioButtonTexts()
+        loadUserDefaultPillTime()
+    }
+    
+    private func loadUserDefaultPillTime() {
+        if let defaultPillTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date {
+            let calendar = Calendar.current
+            var components = calendar.dateComponents([.year, .month, .day], from: selectedDate)
+            let timeComponents = calendar.dateComponents([.hour, .minute], from: defaultPillTime)
+            
+            components.hour = timeComponents.hour
+            components.minute = timeComponents.minute
+            
+            if let finalDate = calendar.date(from: components) {
+                datePicker.date = finalDate
+                updatePillTimeLabel()
+            }
+        } else {
+            // 사용자가 설정한 시간이 없는 경우 오전 9시로 설정
+            datePicker.date = Calendar.current.date(bySettingHour: 9, minute: 0, second: 0, of: selectedDate) ?? selectedDate
+            updatePillTimeLabel()
+        }
     }
     
     private func updateRadioButtonTexts() {
@@ -148,11 +169,12 @@ class CalendarDetailViewController: UIViewController {
                let savedTime = UserDefaults.standard.object(forKey: "pillTakenTime_\(startOfDay)") as? Date {
                 datePicker.date = savedTime
                 updatePillTimeLabel()
+            } else {
+                loadUserDefaultPillTime()
             }
         } else {
             isTaken = false
-            datePicker.date = Calendar.current.date(bySettingHour: 9, minute: 0, second: 0, of: selectedDate) ?? selectedDate
-            updatePillTimeLabel()
+            loadUserDefaultPillTime()
         }
         
         updateRadioButtonTexts()
