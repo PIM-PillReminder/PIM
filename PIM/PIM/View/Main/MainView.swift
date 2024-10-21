@@ -30,10 +30,10 @@ struct MainView: View {
                 pillActionButton
             }
             .onAppear {
-                viewModel.updatePillStatus()
+                viewModel.loadPillStatus()
             }
             .onChange(of: viewModel.isPillEaten) { newValue in
-                viewModel.sendPillStatusToWatch(newValue)
+                viewModel.updatePillStatus(newValue, takenTime: newValue ? Date() : nil)
             }
             .background(Color.backgroundWhite)
             .navigationBarBackButtonHidden(true)
