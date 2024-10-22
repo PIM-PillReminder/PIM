@@ -13,13 +13,15 @@ class CalendarNotEatenBottomView: UIView {
     let bottomBackground = UIView()
     let pillLabel = UILabel()
     let pillImageView = UIImageView()
+    
     var selectedDate: Date?
+    weak var delegate: CalendarDetailViewControllerDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
         configureConstraints()
-        //showDetailVC()
+        showDetailVC()
     }
 
     required init?(coder: NSCoder) {
@@ -99,7 +101,7 @@ class CalendarNotEatenBottomView: UIView {
         print("showDetailModal called for date: \(selectedDate)")
         let height = UIScreen.main.bounds.height
         let modalHeight = height < 700 ? height * 0.8 : height * 0.6
-        let detailVC = CalendarDetailViewController(modalHeight: height, selectedDate: selectedDate)
+        let detailVC = CalendarDetailViewController(modalHeight: modalHeight, selectedDate: selectedDate)
         if let parentVC = self.window?.rootViewController {
             detailVC.modalPresentationStyle = .pageSheet
             if let sheet = detailVC.sheetPresentationController {

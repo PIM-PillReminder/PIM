@@ -75,6 +75,8 @@
 		79FA64882B41277200DEA24D /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79FA64872B41277200DEA24D /* Launch Screen.storyboard */; };
 		79FA64A42B4143AF00DEA24D /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FA64A32B4143AF00DEA24D /* ViewExtension.swift */; };
 		C1576C3E2CA9B8C700B8AA9E /* CalendarFutureBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1576C3D2CA9B8C700B8AA9E /* CalendarFutureBottomView.swift */; };
+		C1576C412CBA126800B8AA9E /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1576C402CBA126800B8AA9E /* MainViewModel.swift */; };
+		C1576C432CBA132D00B8AA9E /* PillStatusObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1576C422CBA132D00B8AA9E /* PillStatusObserver.swift */; };
 		C169464F2C4D129800A79FF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C169464E2C4D129800A79FF8 /* GoogleService-Info.plist */; };
 		C16946542C4D131600A79FF8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C16946532C4D131600A79FF8 /* FirebaseAnalytics */; };
 		C16946562C4D131600A79FF8 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C16946552C4D131600A79FF8 /* FirebaseAnalyticsSwift */; };
@@ -192,6 +194,8 @@
 		79FA64872B41277200DEA24D /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		79FA64A32B4143AF00DEA24D /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		C1576C3D2CA9B8C700B8AA9E /* CalendarFutureBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarFutureBottomView.swift; sourceTree = "<group>"; };
+		C1576C402CBA126800B8AA9E /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		C1576C422CBA132D00B8AA9E /* PillStatusObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillStatusObserver.swift; sourceTree = "<group>"; };
 		C169464E2C4D129800A79FF8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C185D6CE2C9AC69800CEB5A6 /* PillStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PillStatus.swift; sourceTree = "<group>"; };
 		C185D6D02C9AC72E00CEB5A6 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
@@ -262,10 +266,10 @@
 		573942582ABEE8820001906B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C1576C3F2CBA126000B8AA9E /* Main */,
 				C1BC9A532B8889600083E181 /* Calendar */,
 				7954A7DE2AB9D069000D1E8F /* Settings */,
 				57022BF42AC45B7A00070276 /* LottieView.swift */,
-				57461C5D2AB59D5F0026F903 /* MainView.swift */,
 				573942592ABEE88B0001906B /* Onboarding */,
 			);
 			path = View;
@@ -424,6 +428,16 @@
 				799B0EC72ABEEE5200AE9865 /* CustomStyle.swift */,
 			);
 			path = Style;
+			sourceTree = "<group>";
+		};
+		C1576C3F2CBA126000B8AA9E /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				57461C5D2AB59D5F0026F903 /* MainView.swift */,
+				C1576C402CBA126800B8AA9E /* MainViewModel.swift */,
+				C1576C422CBA132D00B8AA9E /* PillStatusObserver.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		C185D6D22C9AD9B100CEB5A6 /* Manager */ = {
@@ -659,6 +673,7 @@
 				57461C502AB58C540026F903 /* Persistence.swift in Sources */,
 				C185D6CF2C9AC69800CEB5A6 /* PillStatus.swift in Sources */,
 				7954A7E02AB9D082000D1E8F /* SettingView.swift in Sources */,
+				C1576C432CBA132D00B8AA9E /* PillStatusObserver.swift in Sources */,
 				79FA64A42B4143AF00DEA24D /* ViewExtension.swift in Sources */,
 				57461C602AB59E0A0026F903 /* OnboardingView3.swift in Sources */,
 				57461C5E2AB59D5F0026F903 /* MainView.swift in Sources */,
@@ -683,6 +698,7 @@
 				C1576C3E2CA9B8C700B8AA9E /* CalendarFutureBottomView.swift in Sources */,
 				57461C5A2AB5919F0026F903 /* OnboardingView1.swift in Sources */,
 				799B0ECA2ABEEE9300AE9865 /* PIMCustomSlider.swift in Sources */,
+				C1576C412CBA126800B8AA9E /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -835,12 +851,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PIM/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = GUAHJNJ9AX;
+				DEVELOPMENT_TEAM = GUAHJNJ9AX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PIM/Resource/Info.plist;
@@ -860,7 +874,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mmhmjg.pim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = dev_pim_241001;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -875,12 +888,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PIM/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = GUAHJNJ9AX;
+				DEVELOPMENT_TEAM = GUAHJNJ9AX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PIM/Resource/Info.plist;
@@ -900,7 +911,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mmhmjg.pim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = dev_pim_241001;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -915,12 +925,10 @@
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PIM_watch Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=watchos*]" = GUAHJNJ9AX;
+				DEVELOPMENT_TEAM = GUAHJNJ9AX;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -929,7 +937,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Pim;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.mmhmjg.pim;
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -939,7 +947,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mmhmjg.pim.watch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = adhoc_pim_watch_241001;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
@@ -958,12 +965,10 @@
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PIM_watch Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=watchos*]" = GUAHJNJ9AX;
+				DEVELOPMENT_TEAM = GUAHJNJ9AX;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -972,7 +977,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Pim;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.mmhmjg.pim;
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -982,7 +987,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mmhmjg.pim.watch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=watchos*]" = dev_pim_watch_241001;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;

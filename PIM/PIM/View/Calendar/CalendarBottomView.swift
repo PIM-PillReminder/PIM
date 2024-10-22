@@ -20,6 +20,7 @@ class CalendarBottomView: UIView {
     private var dimView: UIView?
     
     var selectedDate: Date?
+    weak var delegate: CalendarDetailViewControllerDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -161,7 +162,7 @@ class CalendarBottomView: UIView {
         print("showDetailModal called for date: \(selectedDate)")
         let height = UIScreen.main.bounds.height
         let modalHeight = height < 700 ? height * 0.8 : height * 0.6
-        let detailVC = CalendarDetailViewController(modalHeight: height, selectedDate: selectedDate)
+        let detailVC = CalendarDetailViewController(modalHeight: modalHeight, selectedDate: selectedDate)
         if let parentVC = self.window?.rootViewController {
             parentVC.view.backgroundColor = UIColor.black.withAlphaComponent(0.1)
             detailVC.modalPresentationStyle = .pageSheet

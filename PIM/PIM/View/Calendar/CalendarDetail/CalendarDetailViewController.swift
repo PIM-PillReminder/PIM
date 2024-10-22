@@ -8,6 +8,10 @@
 import UIKit
 import SnapKit
 
+protocol CalendarDetailViewControllerDelegate: AnyObject {
+    func calendarDetailViewControllerDidUpdatePillStatus(_ controller: CalendarDetailViewController, date: Date)
+}
+
 class CalendarDetailViewController: UIViewController {
     
     private let closeButton = UIButton()
@@ -29,6 +33,7 @@ class CalendarDetailViewController: UIViewController {
     private var selectedDate: Date
     
     var dismissalCompletion: (() -> Void)?
+    weak var delegate: CalendarDetailViewControllerDelegate?
     
     private var isTaken = false {
         didSet {
@@ -74,6 +79,27 @@ class CalendarDetailViewController: UIViewController {
         loadSavedPillTime()
         updatePillStatusImage()
         updateRadioButtonTexts()
+        loadUserDefaultPillTime()
+    }
+    
+    private func loadUserDefaultPillTime() {
+        if let defaultPillTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date {
+            let calendar = Calendar.current
+            var components = calendar.dateComponents([.year, .month, .day], from: selectedDate)
+            let timeComponents = calendar.dateComponents([.hour, .minute], from: defaultPillTime)
+            
+            components.hour = timeComponents.hour
+            components.minute = timeComponents.minute
+            
+            if let finalDate = calendar.date(from: components) {
+                datePicker.date = finalDate
+                updatePillTimeLabel()
+            }
+        } else {
+            // 사용자가 설정한 시간이 없는 경우 오전 9시로 설정
+            datePicker.date = Calendar.current.date(bySettingHour: 9, minute: 0, second: 0, of: selectedDate) ?? selectedDate
+            updatePillTimeLabel()
+        }
     }
     
     private func updateRadioButtonTexts() {
@@ -136,6 +162,7 @@ class CalendarDetailViewController: UIViewController {
         } else {
             UserDefaults.standard.removeObject(forKey: "pillTakenTime_\(startOfDay)")
         }
+        delegate?.calendarDetailViewControllerDidUpdatePillStatus(self, date: selectedDate)
     }
     
     private func loadSavedPillTime() {
@@ -148,11 +175,12 @@ class CalendarDetailViewController: UIViewController {
                let savedTime = UserDefaults.standard.object(forKey: "pillTakenTime_\(startOfDay)") as? Date {
                 datePicker.date = savedTime
                 updatePillTimeLabel()
+            } else {
+                loadUserDefaultPillTime()
             }
         } else {
             isTaken = false
-            datePicker.date = Calendar.current.date(bySettingHour: 9, minute: 0, second: 0, of: selectedDate) ?? selectedDate
-            updatePillTimeLabel()
+            loadUserDefaultPillTime()
         }
         
         updateRadioButtonTexts()
@@ -421,6 +449,7 @@ class CalendarDetailViewController: UIViewController {
     
     @objc private func dismissModal() {
         dismiss(animated: true) {
+            self.delegate?.calendarDetailViewControllerDidUpdatePillStatus(self, date: self.selectedDate)
             self.dismissalCompletion?()
         }
     }
