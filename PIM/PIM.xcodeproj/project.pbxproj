@@ -94,6 +94,7 @@
 		C185D6D12C9AC72E00CEB5A6 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C185D6D02C9AC72E00CEB5A6 /* DateExtension.swift */; };
 		C185D6D52C9AD9DB00CEB5A6 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C185D6D42C9AD9DB00CEB5A6 /* UserDefaultsManager.swift */; };
 		C18879402B63A540000A770C /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C188793F2B63A540000A770C /* WatchSessionManager.swift */; };
+		C1A2EDC92CC7F40D0029A046 /* PillStatusObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A2EDC82CC7F40D0029A046 /* PillStatusObserver.swift */; };
 		C1BC9A552B88896D0083E181 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC9A542B88896D0083E181 /* CalendarViewController.swift */; };
 		C1BC9A582B8889EF0083E181 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		C1BC9A5B2B888A6F0083E181 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -202,6 +203,7 @@
 		C185D6D42C9AD9DB00CEB5A6 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		C185D6D82C9ADDB600CEB5A6 /* PIM.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = PIM.entitlements; sourceTree = "<group>"; };
 		C188793F2B63A540000A770C /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
+		C1A2EDC82CC7F40D0029A046 /* PillStatusObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillStatusObserver.swift; sourceTree = "<group>"; };
 		C1BC9A542B88896D0083E181 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		C1BC9A5C2B888C6A0083E181 /* CalendarViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewRepresentable.swift; sourceTree = "<group>"; };
 		C1BC9A5E2B888FA10083E181 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 				7918E99F2BC41CCE0093ACDC /* PIM-watch-Watch-App-Info.plist */,
 				5762707A2B299F2100115612 /* Font */,
 				576270662B299B2F00115612 /* PIM_watchApp.swift */,
+				C1A2EDC82CC7F40D0029A046 /* PillStatusObserver.swift */,
 				C188793F2B63A540000A770C /* WatchSessionManager.swift */,
 				576270682B299B2F00115612 /* ContentView.swift */,
 				576270762B299ED800115612 /* WatchButtonStyle.swift */,
@@ -706,6 +709,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1A2EDC92CC7F40D0029A046 /* PillStatusObserver.swift in Sources */,
 				576270692B299B2F00115612 /* ContentView.swift in Sources */,
 				79326FD22B3728770038CD7C /* SettingViewModel.swift in Sources */,
 				576270772B299ED800115612 /* WatchButtonStyle.swift in Sources */,
@@ -937,7 +941,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Pim;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.mmhmjg.pim;
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -977,7 +981,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Pim;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.mmhmjg.pim;
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

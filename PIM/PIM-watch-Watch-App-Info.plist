@@ -4,5 +4,7 @@
 <dict>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
+	<key>WKRunsIndependentlyOfCompanionApp</key>
+	<true/>
 </dict>
 </plist>
