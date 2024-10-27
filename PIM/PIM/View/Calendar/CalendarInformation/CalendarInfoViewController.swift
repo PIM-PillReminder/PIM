@@ -17,24 +17,20 @@ class CalendarInfoViewController: UIViewController {
 
         view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         
-        let width = UIScreen.main.bounds.width * 0.9
-        let height = UIScreen.main.bounds.height * 0.15
-        let xPosition = (UIScreen.main.bounds.width - width) / 3
-        let yPosition = view.safeAreaInsets.top + 64
+        let xPosition = (UIScreen.main.bounds.width - UIScreen.main.bounds.width * 0.9) / 3
+        let yPosition = view.safeAreaInsets.top + 60
         
         let popupView = UIView()
         popupView.backgroundColor = UIColor(named: "ExcptWhite12")
-        popupView.layer.cornerRadius = 12
+        popupView.layer.cornerRadius = 16
         view.addSubview(popupView)
         
         popupView.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.9)
-            make.height.equalToSuperview().multipliedBy(0.15)
+            make.height.equalToSuperview().multipliedBy(0.17)
             make.centerX.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(yPosition)
         }
-        
-        popupView.frame = CGRect(x: xPosition, y: yPosition, width: width, height: height)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissModal))
         view.addGestureRecognizer(tapGesture)

@@ -87,14 +87,7 @@ struct MainView: View {
                    playLottie: $viewModel.playLottie,
                    tapPlay: true)
         .padding(.bottom, 50)
-        .id(viewModel.isPillEaten)
-        .onTapGesture {
-            withAnimation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3)) {
-                viewModel.playLottie.toggle()
-            }
-        }
-        .scaleEffect(viewModel.playLottie ? 1.1 : 1.0)
-        .animation(.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.3), value: viewModel.playLottie)
+        .id(UUID())
     }
     
     private var pillActionButton: some View {

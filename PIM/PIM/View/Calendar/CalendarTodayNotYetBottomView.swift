@@ -42,7 +42,7 @@ class CalendarTodayNotYetBottomView: UIView {
         self.addSubview(pillLabel)
         self.addSubview(pillImageView)
         
-        bottomBackground.backgroundColor = UIColor(named: "white")
+        bottomBackground.backgroundColor = UIColor(named: "ExcptWhite10")
         bottomBackground.layer.cornerRadius = 16
         
         let dateFormatter = DateFormatter()

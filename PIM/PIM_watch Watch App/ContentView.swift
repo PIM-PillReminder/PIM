@@ -78,6 +78,7 @@ struct ContentView: View {
             .onAppear {
                 print(WKInterfaceDevice.current().screenBounds.size.height)
                 sessionManager.loadPillStatus()
+                requestCurrentStatusFromiOS()
             }
         }
     }
@@ -110,6 +111,35 @@ struct ContentView: View {
         sessionManager.sendPillStatusToiOS(status, time: time)
         sessionManager.isPillEaten = status
         sessionManager.pillTakenTime = time
+    }
+    
+    // iOS에 현재 상태를 요청하는 함수
+    private func requestCurrentStatusFromiOS() {
+        guard WCSession.default.activationState == .activated else { return }
+        
+        WCSession.default.sendMessage(
+            ["RequestCurrentStatus": true],
+            replyHandler: { response in
+                handleStatusResponse(response)
+            },
+            errorHandler: { error in
+                print("Error requesting status: \(error.localizedDescription)")
+            }
+        )
+    }
+    
+    // iOS로부터 받은 응답을 처리하는 함수
+    private func handleStatusResponse(_ response: [String: Any]) {
+        DispatchQueue.main.async {
+            if let pillEaten = response["PillEaten"] as? Bool {
+                sessionManager.isPillEaten = pillEaten
+                if let timeString = response["PillTakenTime"] as? String,
+                   let pillTakenTime = ISO8601DateFormatter().date(from: timeString) {
+                    sessionManager.pillTakenTime = pillTakenTime
+                }
+                sessionManager.savePillStatus()
+            }
+        }
     }
 }
 

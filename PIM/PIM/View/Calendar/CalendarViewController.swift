@@ -33,7 +33,7 @@ class CalendarViewController: UIViewController {
         calendar.select(today)
         calendar(calendar, didSelect: today, at: .current)
     }
-
+    
     private func checkTodayPillStatus() {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ko_KR")
@@ -101,7 +101,7 @@ class CalendarViewController: UIViewController {
         
         backButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(topPadding)
-            make.leading.equalTo(view).inset(18)
+            make.leading.equalTo(view).offset(3)
             make.centerY.equalTo(monthLabel)
             make.width.height.equalTo(44)
         }
@@ -124,7 +124,7 @@ class CalendarViewController: UIViewController {
         let topInset = screenHeight < 700 ? 0 : 16
         let minCalendarHeight: CGFloat = 500
         let maxCalendarHeight: CGFloat = screenHeight * 0.6
-
+        
         calendar.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
             make.top.equalTo(view.safeAreaLayoutGuide).inset(topInset)
@@ -142,7 +142,7 @@ class CalendarViewController: UIViewController {
         infoViewController.modalPresentationStyle = .overCurrentContext
         infoViewController.modalTransitionStyle = .crossDissolve
         
-        infoViewController.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        infoViewController.view.backgroundColor = UIColor(named: "B")?.withAlphaComponent(0.6)
         
         present(infoViewController, animated: true)
         
@@ -163,7 +163,15 @@ class CalendarViewController: UIViewController {
         monthLabel.textColor = UIColor(named: "black")
         monthLabel.font = .systemFont(ofSize: 16, weight: .bold)
         
-        backButton.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        // title3와 동일한 크기의 configuration 생성
+        let config = UIImage.SymbolConfiguration(pointSize: 25, weight: .regular)
+        
+        // 이미지 생성 및 설정
+        let backImage = UIImage(systemName: "chevron.left")?
+            .withConfiguration(config)
+            .withTintColor(UIColor(named: "black") ?? .black, renderingMode: .alwaysOriginal)
+        
+        backButton.setImage(backImage, for: .normal)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         
         infoButton.setImage(UIImage(named: "info"), for: .normal)
@@ -174,7 +182,7 @@ class CalendarViewController: UIViewController {
         todayButton.setImage(UIImage(named: "today"), for: .normal)
         todayButton.addTarget(self, action: #selector(todayButtonTapped), for: .touchUpInside)
     }
-
+    
     @objc func todayButtonTapped() {
         let today = Date()
         calendar.select(today)
@@ -198,14 +206,14 @@ extension CalendarViewController {
         calendar.appearance.todaySelectionColor = .clear
         calendar.appearance.selectionColor = .clear
         calendar.appearance.todayColor = .clear
-        calendar.appearance.titleTodayColor = UIColor(named: "black")
-        calendar.appearance.titleDefaultColor = UIColor(named: "black")
-        calendar.appearance.titleWeekendColor = UIColor(named: "black")
+        calendar.appearance.titleDefaultColor = nil  // delegate에서 처리하도록 nil로 설정
+        calendar.appearance.titleTodayColor = nil    // delegate에서 처리하도록 nil로 설정
+        calendar.appearance.titleWeekendColor = nil
         calendar.appearance.weekdayFont = .systemFont(ofSize: 14, weight: .medium)
         calendar.appearance.weekdayTextColor = UIColor(named: "gray08")
         calendar.appearance.eventDefaultColor = UIColor(named: "primaryGreen")
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
-        calendar.weekdayHeight = 70
+        calendar.weekdayHeight = 60
         calendar.calendarHeaderView.isHidden = true
         calendar.placeholderType = .fillHeadTail
         calendar.scrollDirection = .vertical
@@ -216,6 +224,7 @@ extension CalendarViewController {
 extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
+        
         guard let cell = calendar.dequeueReusableCell(withIdentifier: CalendarCell.description(), for: date, at: position) as? CalendarCell else { return FSCalendarCell() }
         
         cell.clipsToBounds = true
@@ -236,6 +245,12 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
             cell.backImageView.image = UIImage(named: "calendar_red")
         }
         
+        if position != .current {
+            cell.backImageView.alpha = 0.5
+        } else {
+            cell.backImageView.alpha = 1.0
+        }
+        
         cell.backImageView.backgroundColor = .clear
         cell.isToday = Calendar.current.isDateInToday(date)
         
@@ -249,6 +264,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     }
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYY년 M월"
         let title = dateFormatter.string(from: calendar.currentPage)
@@ -257,7 +273,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
 }
 
 extension CalendarViewController: FSCalendarDelegateAppearance {
-
+    
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date, at position: FSCalendarMonthPosition) -> UIColor? {
         if position == .current {
             // 현재 달에 속하는 날짜는 검정색
@@ -270,6 +286,7 @@ extension CalendarViewController: FSCalendarDelegateAppearance {
 }
 
 extension CalendarViewController {
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .darkContent
     }
@@ -284,6 +301,7 @@ extension CalendarViewController: CalendarDetailViewControllerDelegate {
     }
     
     private func updateBottomView(for date: Date) {
+        
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ko_KR")
         dateFormatter.dateFormat = "M월 d일 EEEE"
@@ -298,6 +316,7 @@ extension CalendarViewController: CalendarDetailViewControllerDelegate {
         currentBottomView?.removeFromSuperview()
         
         if startOfDay > today {
+            
             let futureView = CalendarFutureBottomView()
             futureView.updateSelectedDate(newDate: date)
             
@@ -309,7 +328,9 @@ extension CalendarViewController: CalendarDetailViewControllerDelegate {
             }
             
             currentBottomView = futureView
+            
         } else if startOfDay == today {
+            
             if pillStatus[startOfDay] == true {
                 let eatenView = CalendarBottomView()
                 eatenView.selectedDate = date
@@ -334,7 +355,9 @@ extension CalendarViewController: CalendarDetailViewControllerDelegate {
                 }
                 
                 currentBottomView = eatenView
+                
             } else {
+                
                 let todayNotYetView = CalendarTodayNotYetBottomView()
                 todayNotYetView.dateLabel.text = dateFormatter.string(from: date)
                 todayNotYetView.selectedDate = date
@@ -349,7 +372,9 @@ extension CalendarViewController: CalendarDetailViewControllerDelegate {
                 currentBottomView = todayNotYetView
             }
         } else {
+            
             if pillStatus[startOfDay] == true {
+                
                 let eatenView = CalendarBottomView()
                 eatenView.selectedDate = date
                 eatenView.updateSelectedDate(newDate: date)
@@ -366,6 +391,7 @@ extension CalendarViewController: CalendarDetailViewControllerDelegate {
                 }
                 
                 view.addSubview(eatenView)
+                
                 eatenView.snp.makeConstraints { make in
                     make.height.equalTo(height)
                     make.horizontalEdges.equalTo(view)
@@ -373,7 +399,9 @@ extension CalendarViewController: CalendarDetailViewControllerDelegate {
                 }
                 
                 currentBottomView = eatenView
+                
             } else {
+                
                 let notEatenView = CalendarNotEatenBottomView()
                 notEatenView.dateLabel.text = dateFormatter.string(from: date)
                 notEatenView.selectedDate = date

@@ -83,7 +83,14 @@ class CalendarDetailViewController: UIViewController {
     }
     
     private func loadUserDefaultPillTime() {
-        if let defaultPillTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date {
+        let isToday = Calendar.current.isDateInToday(selectedDate)
+        
+        if isToday {
+            // 오늘인 경우 현재 시간으로 설정
+            datePicker.date = Date()
+            updatePillTimeLabel()
+        } else if let defaultPillTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date {
+            // 다른 날짜인 경우 기존 로직대로 설정된 알림 시간 사용
             let calendar = Calendar.current
             var components = calendar.dateComponents([.year, .month, .day], from: selectedDate)
             let timeComponents = calendar.dateComponents([.hour, .minute], from: defaultPillTime)
@@ -111,12 +118,17 @@ class CalendarDetailViewController: UIViewController {
     
     private func updatePillStatusImage() {
         let isToday = Calendar.current.isDateInToday(selectedDate)
+        let isDarkMode = traitCollection.userInterfaceStyle == .dark
+        
         if isToday && !isTaken {
             pillStatusImageView.image = UIImage(named: "calendar_today")
         } else if !isToday && !isTaken {
-            pillStatusImageView.image = UIImage(named: "calendar_notEaten")
+            // 다크모드일 때는 다크모드용 이미지 사용
+            let imageName = isDarkMode ? "calendar_notEaten_dark" : "calendar_notEaten"
+            pillStatusImageView.image = UIImage(named: imageName)
         } else {
-            pillStatusImageView.image = UIImage(named: "calendar_eaten")
+            let imageName = isDarkMode ? "calendar_eaten_dark" : "calendar_eaten"
+            pillStatusImageView.image = UIImage(named: imageName)
         }
     }
     
