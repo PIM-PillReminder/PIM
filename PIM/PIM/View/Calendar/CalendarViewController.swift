@@ -142,7 +142,7 @@ class CalendarViewController: UIViewController {
         infoViewController.modalPresentationStyle = .overCurrentContext
         infoViewController.modalTransitionStyle = .crossDissolve
         
-        infoViewController.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        infoViewController.view.backgroundColor = UIColor(named: "B")?.withAlphaComponent(0.6)
         
         present(infoViewController, animated: true)
         
