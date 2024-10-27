@@ -83,7 +83,14 @@ class CalendarDetailViewController: UIViewController {
     }
     
     private func loadUserDefaultPillTime() {
-        if let defaultPillTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date {
+        let isToday = Calendar.current.isDateInToday(selectedDate)
+        
+        if isToday {
+            // 오늘인 경우 현재 시간으로 설정
+            datePicker.date = Date()
+            updatePillTimeLabel()
+        } else if let defaultPillTime = UserDefaults.standard.object(forKey: "SelectedTime") as? Date {
+            // 다른 날짜인 경우 기존 로직대로 설정된 알림 시간 사용
             let calendar = Calendar.current
             var components = calendar.dateComponents([.year, .month, .day], from: selectedDate)
             let timeComponents = calendar.dateComponents([.hour, .minute], from: defaultPillTime)
