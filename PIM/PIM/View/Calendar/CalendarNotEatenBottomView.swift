@@ -40,7 +40,7 @@ class CalendarNotEatenBottomView: UIView {
         self.addSubview(pillLabel)
         self.addSubview(pillImageView)
 
-        bottomBackground.backgroundColor = UIColor(named: "white")
+        bottomBackground.backgroundColor = UIColor(named: "ExcptWhite10")
         bottomBackground.layer.cornerRadius = 16
         
         let dateFormatter = DateFormatter()
@@ -55,7 +55,9 @@ class CalendarNotEatenBottomView: UIView {
         pillLabel.font = .systemFont(ofSize: 16, weight: .medium)
         pillLabel.textColor = UIColor(named: "black")
 
-        pillImageView.image = UIImage(named: "calendar_notEaten")
+        let isDarkMode = traitCollection.userInterfaceStyle == .dark
+        let imageName = isDarkMode ? "calendar_notEaten_dark" : "calendar_notEaten"
+        pillImageView.image = UIImage(named: imageName)
     }
 
     private func configureConstraints() {

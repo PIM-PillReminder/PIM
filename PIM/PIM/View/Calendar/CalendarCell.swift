@@ -67,18 +67,14 @@ class CalendarCell: FSCalendarCell {
         
         if isToday {
             if isSelected {
-                self.backgroundView?.backgroundColor = UIColor(named: "black")
-                titleLabel.textColor = UIColor(named: "white")
+                self.backgroundView?.backgroundColor = UIColor(named: "gray11")
             } else {
                 self.backgroundView?.backgroundColor = UIColor(named: "gray03")
-                titleLabel.textColor = UIColor(named: "black")
             }
         } else if isSelected {
-            self.backgroundView?.backgroundColor = UIColor(named: "black")
-            titleLabel.textColor = UIColor(named: "white")
+            self.backgroundView?.backgroundColor = UIColor(named: "gray11")
         } else {
             self.backgroundView?.backgroundColor = .clear
-            titleLabel.textColor = UIColor(named: "black")
         }
         
         // 배경 뷰의 크기를 조정합니다

@@ -39,7 +39,7 @@ struct SettingView: View {
                   .font(.title3)
                   .foregroundStyle(Color.settingDisabledGray)
                 
-                Text("복용죽인 약")
+                Text("복용중인 약")
                   .font(.pretendard(.medium, size: 16))
                   .padding(.leading, 10)
                   .foregroundColor(Color.settingDisabledGray)

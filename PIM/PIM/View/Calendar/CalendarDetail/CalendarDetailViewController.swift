@@ -118,12 +118,17 @@ class CalendarDetailViewController: UIViewController {
     
     private func updatePillStatusImage() {
         let isToday = Calendar.current.isDateInToday(selectedDate)
+        let isDarkMode = traitCollection.userInterfaceStyle == .dark
+        
         if isToday && !isTaken {
             pillStatusImageView.image = UIImage(named: "calendar_today")
         } else if !isToday && !isTaken {
-            pillStatusImageView.image = UIImage(named: "calendar_notEaten")
+            // 다크모드일 때는 다크모드용 이미지 사용
+            let imageName = isDarkMode ? "calendar_notEaten_dark" : "calendar_notEaten"
+            pillStatusImageView.image = UIImage(named: imageName)
         } else {
-            pillStatusImageView.image = UIImage(named: "calendar_eaten")
+            let imageName = isDarkMode ? "calendar_eaten_dark" : "calendar_eaten"
+            pillStatusImageView.image = UIImage(named: imageName)
         }
     }
     
