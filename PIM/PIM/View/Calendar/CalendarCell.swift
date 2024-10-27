@@ -68,11 +68,22 @@ class CalendarCell: FSCalendarCell {
         if isToday {
             if isSelected {
                 self.backgroundView?.backgroundColor = UIColor(named: "gray11")
+                // 라이트 모드와 다크 모드에 따른 텍스트 색상 설정
+                if traitCollection.userInterfaceStyle == .dark {
+                    titleLabel.textColor = .black
+                } else {
+                    titleLabel.textColor = .white
+                }
             } else {
                 self.backgroundView?.backgroundColor = UIColor(named: "gray03")
             }
         } else if isSelected {
             self.backgroundView?.backgroundColor = UIColor(named: "gray11")
+            if traitCollection.userInterfaceStyle == .dark {
+                titleLabel.textColor = .black
+            } else {
+                titleLabel.textColor = .white
+            }
         } else {
             self.backgroundView?.backgroundColor = .clear
         }
