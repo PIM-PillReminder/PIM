@@ -77,6 +77,7 @@ class MainViewModel: NSObject, ObservableObject {
         
         updatePillTakenTimeString()
         sendPillStatusToWatch(status, time: takenTime)
+        updateApplicationContext()  // ApplicationContext 업데이트 추가
     }
     
     private func updatePillTakenTimeString() {
@@ -129,9 +130,28 @@ class MainViewModel: NSObject, ObservableObject {
             print("Watch is not reachable.")
         }
     }
+    
+    // ApplicationContext 업데이트 함수
+    private func updateApplicationContext() {
+        var context: [String: Any] = ["PillEaten": isPillEaten]
+        if let time = pillTakenTime {
+            context["PillTakenTime"] = ISO8601DateFormatter().string(from: time)
+        }
+        
+        do {
+            try WCSession.default.updateApplicationContext(context)
+            print("iOS: Updated application context - isPillEaten: \(isPillEaten)")
+            if let time = pillTakenTime {
+                print("iOS: Updated application context - pillTakenTime: \(time)")
+            }
+        } catch {
+            print("iOS: Failed to update application context:", error)
+        }
+    }
 }
 
 extension MainViewModel: WCSessionDelegate {
+    
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         // 활성화 완료 처리
     }
@@ -149,6 +169,20 @@ extension MainViewModel: WCSessionDelegate {
         DispatchQueue.main.async {
             if let pillEaten = message["PillEaten"] as? Bool {
                 if let timeString = message["PillTakenTime"] as? String,
+                   let pillTakenTime = ISO8601DateFormatter().date(from: timeString) {
+                    self.updatePillStatus(pillEaten, takenTime: pillTakenTime)
+                } else {
+                    self.updatePillStatus(pillEaten, takenTime: pillEaten ? Date() : nil)
+                }
+            }
+        }
+    }
+    
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+        print("iOS: Received application context update:", applicationContext)
+        DispatchQueue.main.async {
+            if let pillEaten = applicationContext["PillEaten"] as? Bool {
+                if let timeString = applicationContext["PillTakenTime"] as? String,
                    let pillTakenTime = ISO8601DateFormatter().date(from: timeString) {
                     self.updatePillStatus(pillEaten, takenTime: pillTakenTime)
                 } else {
