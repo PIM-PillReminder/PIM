@@ -17,6 +17,9 @@ class CalendarInfoViewController: UIViewController {
 
         view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         
+        let screenHeight = UIScreen.main.bounds.height
+        let isSmallDevice = screenHeight <= 700
+        
         let xPosition = (UIScreen.main.bounds.width - UIScreen.main.bounds.width * 0.9) / 3
         let yPosition = view.safeAreaInsets.top + 60
         
@@ -27,7 +30,7 @@ class CalendarInfoViewController: UIViewController {
         
         popupView.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.9)
-            make.height.equalToSuperview().multipliedBy(0.17)
+            make.height.equalToSuperview().multipliedBy(isSmallDevice ? 0.2 : 0.17)
             make.centerX.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(yPosition)
         }
