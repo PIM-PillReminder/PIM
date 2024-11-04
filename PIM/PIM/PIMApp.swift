@@ -13,6 +13,13 @@ import FirebaseCore
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        // 앱 첫 실행시 설치 날짜 저장
+        if UserDefaults.standard.object(forKey: "app_install_date") == nil {
+            UserDefaults.standard.set(Date(), forKey: "app_install_date")
+            print("앱 첫 실행, 설치 날짜:", Date())
+        }
+        
         return true
     }
 }

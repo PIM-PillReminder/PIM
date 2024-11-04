@@ -147,7 +147,10 @@ class CalendarViewController: UIViewController {
         present(infoViewController, animated: true)
         
         infoViewController.dismissalCompletion = { [weak self] in
-            // self?.view.backgroundColor = .white
+            self?.calendar.reloadData()
+            if let date = self?.selectedDate {
+                self?.updateBottomView(for: date)
+            }
         }
     }
     
@@ -232,10 +235,14 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         
         let today = Calendar.current.startOfDay(for: Date())
         let startOfDay = Calendar.current.startOfDay(for: date)
+        // 앱 설치 날짜 확인
+        guard let installDate = UserDefaults.standard.object(forKey: "app_install_date") as? Date else { return cell }
+        let startOfInstallDay = Calendar.current.startOfDay(for: installDate)
         
         let pillStatus = UserDefaultsManager.shared.getPillStatus()
         
-        if startOfDay > today {
+        // 설치 날짜 이전의 날짜는 이미지 표시하지 않음
+        if startOfDay > today || startOfDay < startOfInstallDay {
             cell.backImageView.image = nil
         } else if startOfDay == today && (pillStatus[startOfDay] == nil || pillStatus[startOfDay] == false) {
             cell.backImageView.image = UIImage(named: "calendar_today")
@@ -300,7 +307,7 @@ extension CalendarViewController: CalendarDetailViewControllerDelegate {
         updateBottomView(for: date) // Bottom View 업데이트
     }
     
-    private func updateBottomView(for date: Date) {
+    func updateBottomView(for date: Date) {
         
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ko_KR")
@@ -312,13 +319,21 @@ extension CalendarViewController: CalendarDetailViewControllerDelegate {
         
         let today = Calendar.current.startOfDay(for: Date())
         
+        // 앱 설치 날짜 가져오기
+        guard let installDate = UserDefaults.standard.object(forKey: "app_install_date") as? Date else { return }
+        let startOfInstallDay = Calendar.current.startOfDay(for: installDate)
+        
+        
         // 기존 bottomView 제거
         currentBottomView?.removeFromSuperview()
         
-        if startOfDay > today {
+        if startOfDay < startOfInstallDay || startOfDay > today {
             
             let futureView = CalendarFutureBottomView()
-            futureView.updateSelectedDate(newDate: date)
+            futureView.updateSelectedDate(
+                newDate: date,
+                isBeforeInstallDate: startOfDay < startOfInstallDay
+            )
             
             view.addSubview(futureView)
             futureView.snp.makeConstraints { make in

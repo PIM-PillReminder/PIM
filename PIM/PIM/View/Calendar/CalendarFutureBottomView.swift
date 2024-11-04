@@ -15,6 +15,11 @@ class CalendarFutureBottomView: UIView {
     let pillLabel = UILabel()
     
     var selectedDate: Date?
+    var message: String? {
+        didSet {
+            pillLabel.text = message
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,7 +51,6 @@ class CalendarFutureBottomView: UIView {
         dateLabel.font = .systemFont(ofSize: 18, weight: .bold)
         dateLabel.textColor = UIColor(named: "black")
         
-        pillLabel.text = "복약 기록은 해당 날짜부터 표시돼요"
         pillLabel.font = .systemFont(ofSize: 16, weight: .medium)
         pillLabel.textColor = UIColor(named: "gray06")
     }
@@ -67,12 +71,19 @@ class CalendarFutureBottomView: UIView {
             make.center.equalTo(bottomBackground)
         }
     }
-
-    func updateSelectedDate(newDate: Date) {
+    
+    func updateSelectedDate(newDate: Date, isBeforeInstallDate: Bool = false) {
         selectedDate = newDate
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ko_KR")
         dateFormatter.dateFormat = "M월 d일 EEEE"
         dateLabel.text = dateFormatter.string(from: newDate)
+        
+        // 설치 이전 날짜와 미래 날짜에 대한 다른 메시지 설정
+        if isBeforeInstallDate {
+            message = "앱 설치 이전 날짜의 복약 기록은 확인할 수 없어요"
+        } else {
+            message = "복약 기록은 해당 날짜부터 표시돼요"
+        }
     }
 }
