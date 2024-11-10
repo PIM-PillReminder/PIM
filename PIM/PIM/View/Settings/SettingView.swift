@@ -59,6 +59,7 @@ struct SettingView: View {
                         .padding(.vertical, 5)
                         
                         Divider()
+                        
                         Button {
                             showSheet = true
                             settingViewModel.modalBackground = true
@@ -102,6 +103,30 @@ struct SettingView: View {
                                     settingViewModel.modalBackground = false
                                 }
                         }
+                        
+                        Divider()
+                        
+                        HStack {
+                            Image(systemName: "lightbulb")
+                                .font(.title3)
+                                .foregroundStyle(Color.settingDisabledGray)
+                            
+                            Text("피임약 바로 알기")
+                                .font(.pretendard(.medium, size: 16))
+                                .padding(.leading, 10)
+                                .foregroundColor(Color.settingDisabledGray)
+                            
+                            Spacer()
+                            
+                            NavigationLink(destination: Text("추후 업데이트 예정")) {
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.settingChevronDisabledGray)
+                                    .font(.title3)
+                            }
+                            .disabled(isDeactivated)
+                        }
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
                     }
                     .groupBoxStyle(CustomListGroupBoxStyle())
                     .padding(.vertical)
@@ -131,9 +156,9 @@ struct SettingView: View {
                                 Text("선택 후 잠시 기다리면 기기의 앱 설정 화면으로\n이동해요.")
                                     .font(.pretendard(.medium, size: 11))
                                     .lineSpacing(4.4)
-                                    .foregroundStyle(Color("gray05"))
+                                    .foregroundStyle(Color("gray08"))
                                     .multilineTextAlignment(.leading)
-                                    .padding(.leading, 36)
+                                    .padding(.leading, 40)
                             }
                             .padding(.horizontal, 10)
                         }
