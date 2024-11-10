@@ -96,6 +96,7 @@
 		C18879402B63A540000A770C /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C188793F2B63A540000A770C /* WatchSessionManager.swift */; };
 		C1A2EDC92CC7F40D0029A046 /* PillStatusObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A2EDC82CC7F40D0029A046 /* PillStatusObserver.swift */; };
 		C1A2EDCB2CE0F96B0029A046 /* MailContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A2EDCA2CE0F96B0029A046 /* MailContentView.swift */; };
+		C1A2EDCE2CE101B50029A046 /* NoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A2EDCD2CE101B50029A046 /* NoticeView.swift */; };
 		C1BC9A552B88896D0083E181 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC9A542B88896D0083E181 /* CalendarViewController.swift */; };
 		C1BC9A582B8889EF0083E181 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		C1BC9A5B2B888A6F0083E181 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -206,6 +207,7 @@
 		C188793F2B63A540000A770C /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		C1A2EDC82CC7F40D0029A046 /* PillStatusObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillStatusObserver.swift; sourceTree = "<group>"; };
 		C1A2EDCA2CE0F96B0029A046 /* MailContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailContentView.swift; sourceTree = "<group>"; };
+		C1A2EDCD2CE101B50029A046 /* NoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeView.swift; sourceTree = "<group>"; };
 		C1BC9A542B88896D0083E181 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		C1BC9A5C2B888C6A0083E181 /* CalendarViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewRepresentable.swift; sourceTree = "<group>"; };
 		C1BC9A5E2B888FA10083E181 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 		573942582ABEE8820001906B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C1A2EDCC2CE101AD0029A046 /* Notice */,
 				C1576C3F2CBA126000B8AA9E /* Main */,
 				C1BC9A532B8889600083E181 /* Calendar */,
 				7954A7DE2AB9D069000D1E8F /* Settings */,
@@ -477,6 +480,14 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		C1A2EDCC2CE101AD0029A046 /* Notice */ = {
+			isa = PBXGroup;
+			children = (
+				C1A2EDCD2CE101B50029A046 /* NoticeView.swift */,
+			);
+			path = Notice;
+			sourceTree = "<group>";
+		};
 		C1BC9A532B8889600083E181 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -668,6 +679,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1A2EDCE2CE101B50029A046 /* NoticeView.swift in Sources */,
 				79D550E72B9DE9C80006DADB /* FirestoreManager.swift in Sources */,
 				7954A7ED2ABA8881000D1E8F /* FontExtension.swift in Sources */,
 				79DD3B7F2AC3DCC600837E11 /* TimePickerView.swift in Sources */,
