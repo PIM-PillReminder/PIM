@@ -2,10 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+	<key>CFBundleGetInfoString</key>
+	<string>사용자 의견을 받기 위해 메일 서비스를 사용합니다.</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>mailto</string>
+	</array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Pretendard-Regular.ttf</string>
@@ -14,5 +18,7 @@
 		<string>Pretendard-Medium.ttf</string>
 		<string>Pretendard-Bold.ttf</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>
