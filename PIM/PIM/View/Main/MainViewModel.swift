@@ -43,6 +43,16 @@ class MainViewModel: NSObject, ObservableObject {
             let session = WCSession.default
             session.delegate = self
             session.activate()
+            
+            // 이전 ApplicationContext 복구
+            if let context = session.receivedApplicationContext as? [String: Any],
+               let pillEaten = context["PillEaten"] as? Bool {
+                self.isPillEaten = pillEaten
+                if let timeString = context["PillTakenTime"] as? String,
+                   let pillTakenTime = ISO8601DateFormatter().date(from: timeString) {
+                    self.updatePillStatus(pillEaten, takenTime: pillTakenTime)
+                }
+            }
         }
     }
     
@@ -92,16 +102,27 @@ class MainViewModel: NSObject, ObservableObject {
         }
     }
     
+    // sendPillStatusToWatch 함수 수정
     func sendPillStatusToWatch(_ status: Bool, time: Date?) {
+        guard WCSession.default.activationState == .activated else {
+            print("WCSession is not activated")
+            return
+        }
+        
         var message: [String: Any] = ["PillEaten": status]
         if let time = time {
             message["PillTakenTime"] = ISO8601DateFormatter().string(from: time)
         }
+        
         if WCSession.default.isReachable {
-            WCSession.default.sendMessage(message, replyHandler: nil) { error in
+            WCSession.default.sendMessage(message, replyHandler: { response in
+                print("Successfully sent message to watch: \(response)")
+            }) { error in
                 print("Error sending message: \(error.localizedDescription)")
             }
-            print("iOS App: Sent PillEaten status (\(status)) to Watch App")
+        } else {
+            // 워치에 즉시 전송할 수 없는 경우 ApplicationContext 업데이트
+            updateApplicationContext()
         }
     }
     
@@ -153,11 +174,36 @@ class MainViewModel: NSObject, ObservableObject {
 extension MainViewModel: WCSessionDelegate {
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        // 활성화 완료 처리
+        if let error = error {
+            print("WCSession activation failed with error: \(error.localizedDescription)")
+            return
+        }
+        
+        switch activationState {
+        case .activated:
+            print("WCSession is activated")
+            // 세션 활성화 직후 워치와 초기 동기화
+            fetchPillStatusFromWatch()
+            // 현재 상태를 ApplicationContext에 업데이트
+            updateApplicationContext()
+        case .inactive:
+            print("WCSession is inactive")
+        case .notActivated:
+            print("WCSession is not activated")
+        @unknown default:
+            print("WCSession is in unknown state")
+        }
     }
     
     func sessionDidBecomeInactive(_ session: WCSession) {
-        // 세션 비활성화 처리
+        print("WCSession became inactive")
+        // 현재 상태 저장
+        let context = ["PillEaten": isPillEaten]
+        do {
+            try session.updateApplicationContext(context)
+        } catch {
+            print("Failed to update context on session inactive: \(error)")
+        }
     }
     
     func sessionDidDeactivate(_ session: WCSession) {

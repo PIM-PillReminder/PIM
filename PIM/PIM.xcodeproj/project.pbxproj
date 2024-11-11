@@ -95,6 +95,8 @@
 		C185D6D52C9AD9DB00CEB5A6 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C185D6D42C9AD9DB00CEB5A6 /* UserDefaultsManager.swift */; };
 		C18879402B63A540000A770C /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C188793F2B63A540000A770C /* WatchSessionManager.swift */; };
 		C1A2EDC92CC7F40D0029A046 /* PillStatusObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A2EDC82CC7F40D0029A046 /* PillStatusObserver.swift */; };
+		C1A2EDCB2CE0F96B0029A046 /* MailContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A2EDCA2CE0F96B0029A046 /* MailContentView.swift */; };
+		C1A2EDCE2CE101B50029A046 /* NoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A2EDCD2CE101B50029A046 /* NoticeView.swift */; };
 		C1BC9A552B88896D0083E181 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC9A542B88896D0083E181 /* CalendarViewController.swift */; };
 		C1BC9A582B8889EF0083E181 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		C1BC9A5B2B888A6F0083E181 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -204,6 +206,8 @@
 		C185D6D82C9ADDB600CEB5A6 /* PIM.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = PIM.entitlements; sourceTree = "<group>"; };
 		C188793F2B63A540000A770C /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		C1A2EDC82CC7F40D0029A046 /* PillStatusObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillStatusObserver.swift; sourceTree = "<group>"; };
+		C1A2EDCA2CE0F96B0029A046 /* MailContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailContentView.swift; sourceTree = "<group>"; };
+		C1A2EDCD2CE101B50029A046 /* NoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeView.swift; sourceTree = "<group>"; };
 		C1BC9A542B88896D0083E181 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		C1BC9A5C2B888C6A0083E181 /* CalendarViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewRepresentable.swift; sourceTree = "<group>"; };
 		C1BC9A5E2B888FA10083E181 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
@@ -268,6 +272,7 @@
 		573942582ABEE8820001906B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C1A2EDCC2CE101AD0029A046 /* Notice */,
 				C1576C3F2CBA126000B8AA9E /* Main */,
 				C1BC9A532B8889600083E181 /* Calendar */,
 				7954A7DE2AB9D069000D1E8F /* Settings */,
@@ -391,6 +396,7 @@
 				79326FD02B3728770038CD7C /* SettingViewModel.swift */,
 				7954A7E12AB9D096000D1E8F /* SettingNotiVIew.swift */,
 				799B0EC92ABEEE9300AE9865 /* PIMCustomSlider.swift */,
+				C1A2EDCA2CE0F96B0029A046 /* MailContentView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -472,6 +478,14 @@
 				57022BF92AC45DE400070276 /* LottieFile */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		C1A2EDCC2CE101AD0029A046 /* Notice */ = {
+			isa = PBXGroup;
+			children = (
+				C1A2EDCD2CE101B50029A046 /* NoticeView.swift */,
+			);
+			path = Notice;
 			sourceTree = "<group>";
 		};
 		C1BC9A532B8889600083E181 /* Calendar */ = {
@@ -665,6 +679,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1A2EDCE2CE101B50029A046 /* NoticeView.swift in Sources */,
 				79D550E72B9DE9C80006DADB /* FirestoreManager.swift in Sources */,
 				7954A7ED2ABA8881000D1E8F /* FontExtension.swift in Sources */,
 				79DD3B7F2AC3DCC600837E11 /* TimePickerView.swift in Sources */,
@@ -688,6 +703,7 @@
 				57461C532AB58C540026F903 /* PIM.xcdatamodeld in Sources */,
 				57022BF52AC45B7A00070276 /* LottieView.swift in Sources */,
 				C1E670082CA46AC7006420B6 /* CalendarDetailViewController.swift in Sources */,
+				C1A2EDCB2CE0F96B0029A046 /* MailContentView.swift in Sources */,
 				57461C472AB58C520026F903 /* PIMApp.swift in Sources */,
 				7954A7E22AB9D096000D1E8F /* SettingNotiVIew.swift in Sources */,
 				C1E66FDA2C9AE814006420B6 /* CalendarTodayNotYetBottomView.swift in Sources */,

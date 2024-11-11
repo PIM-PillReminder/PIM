@@ -24,6 +24,7 @@ class CalendarBottomView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         configureView()
         configureConstraints()
         fetchPillTakenTime()
@@ -32,6 +33,7 @@ class CalendarBottomView: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        
         configureView()
         configureConstraints()
         fetchPillTakenTime()
@@ -147,24 +149,38 @@ class CalendarBottomView: UIView {
     }
     
     func showDetailVC() {
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(bottomBackgroundTapped))
         bottomBackground.addGestureRecognizer(tapGesture)
         bottomBackground.isUserInteractionEnabled = true
     }
     
     @objc private func bottomBackgroundTapped() {
+        
         guard let date = selectedDate else {
             print("No date selected")
             return
         }
+        
         showDetailModal(for: date)
     }
     
     private func showDetailModal(for selectedDate: Date) {
-        print("showDetailModal called for date: \(selectedDate)")
+        
         let height = UIScreen.main.bounds.height
         let modalHeight = height < 700 ? height * 0.8 : height * 0.6
         let detailVC = CalendarDetailViewController(modalHeight: modalHeight, selectedDate: selectedDate)
+        
+        detailVC.delegate = delegate
+        
+        // dismissalCompletion 추가
+        detailVC.dismissalCompletion = { [weak self] in
+            if let parentVC = self?.window?.rootViewController as? CalendarViewController {
+                parentVC.calendar.reloadData()
+                parentVC.updateBottomView(for: selectedDate)
+            }
+        }
+        
         if let parentVC = self.window?.rootViewController {
             parentVC.view.backgroundColor = UIColor.black.withAlphaComponent(0.1)
             detailVC.modalPresentationStyle = .pageSheet
@@ -188,16 +204,17 @@ class CalendarBottomView: UIView {
     }
     
     func updateSelectedDate(newDate: Date) {
+        
         updateDateUI() // 날짜 변경 시 UI 업데이트
         fetchPillTakenTime() // 날짜에 맞춰 약 복용 시간도 업데이트
     }
 
     private func updateDateUI() {
+        
         let isToday = selectedDateIsToday()
 
         // 오늘일 경우 todayLabel을 보여주고 dateLabel을 왼쪽으로 이동
         if isToday {
-            print("1today")
             todayLabel.isHidden = false
             dateLabel.snp.remakeConstraints { make in
                 make.top.equalToSuperview().offset(20)
@@ -214,11 +231,13 @@ class CalendarBottomView: UIView {
     
     override func didMoveToWindow() {
         super.didMoveToWindow()
+        
         updateDateUI()
         fetchPillTakenTime()
     }
 
     func fetchPillTakenTime() {
+        
         guard let selectedDate = selectedDate else { return }
         
         let status = UserDefaultsManager.shared.getPillStatus()
