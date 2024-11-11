@@ -18,10 +18,12 @@ struct NoticeData {
 }
 
 struct NoticeView: View {
+    
     @Environment(\.presentationMode) var presentationMode
     @Binding var hasVisitedNotice: Bool
     
     var body: some View {
+        
         VStack(spacing: 0) {
             List {
                 ForEach(NoticeData.noticeList, id: \.title) { notice in
@@ -61,7 +63,9 @@ struct NoticeRow: View {
     let date: String
     
     var body: some View {
+        
         HStack {
+            
             VStack(alignment: .leading, spacing: 4) {
                 
                 Text(title)
