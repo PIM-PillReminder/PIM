@@ -135,7 +135,7 @@ struct SettingView: View {
                         Button {
                             UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
                         } label: {
-                            VStack(alignment: .leading, spacing: 4) {
+                            VStack(alignment: .leading, spacing: 5) {
                                 HStack {
                                     Image(systemName: "bell")
                                         .font(.title3)
@@ -152,13 +152,14 @@ struct SettingView: View {
                                         .toggleStyle(SwitchToggleStyle(tint: Color.primaryGreen))
                                         .allowsHitTesting(false)
                                 }
+                                    Text("선택 후 잠시 기다리면 기기의 앱 설정 화면\n으로 이동해요.")
+                                        .font(.pretendard(.regular, size: 12))
+                                        .lineSpacing(4)
+                                        .foregroundStyle(Color("gray08"))
+                                        .multilineTextAlignment(.leading)
+                                        .padding(.leading, 40)
+                                        .padding(.bottom, 2)
                                 
-                                Text("선택 후 잠시 기다리면 기기의 앱 설정 화면으로\n이동해요.")
-                                    .font(.pretendard(.medium, size: 11))
-                                    .lineSpacing(4.4)
-                                    .foregroundStyle(Color("gray08"))
-                                    .multilineTextAlignment(.leading)
-                                    .padding(.leading, 40)
                             }
                             .padding(.horizontal, 10)
                         }
