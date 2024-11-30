@@ -227,41 +227,65 @@ extension CalendarViewController {
 extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
-        
-        guard let cell = calendar.dequeueReusableCell(withIdentifier: CalendarCell.description(), for: date, at: position) as? CalendarCell else { return FSCalendarCell() }
-        
-        cell.clipsToBounds = true
-        cell.layer.cornerRadius = 21
-        
-        let today = Calendar.current.startOfDay(for: Date())
-        let startOfDay = Calendar.current.startOfDay(for: date)
-        // 앱 설치 날짜 확인
-        guard let installDate = UserDefaults.standard.object(forKey: "app_install_date") as? Date else { return cell }
-        let startOfInstallDay = Calendar.current.startOfDay(for: installDate)
-        
-        let pillStatus = UserDefaultsManager.shared.getPillStatus()
-        
-        // 설치 날짜 이전의 날짜는 이미지 표시하지 않음
-        if startOfDay > today || startOfDay < startOfInstallDay {
-            cell.backImageView.image = nil
-        } else if startOfDay == today && (pillStatus[startOfDay] == nil || pillStatus[startOfDay] == false) {
-            cell.backImageView.image = UIImage(named: "calendar_today")
-        } else if let isPillEaten = pillStatus[startOfDay], isPillEaten {
-            cell.backImageView.image = UIImage(named: "calendar_green")
-        } else {
-            cell.backImageView.image = UIImage(named: "calendar_red")
-        }
-        
-        if position != .current {
-            cell.backImageView.alpha = 0.5
-        } else {
-            cell.backImageView.alpha = 1.0
-        }
-        
-        cell.backImageView.backgroundColor = .clear
-        cell.isToday = Calendar.current.isDateInToday(date)
-        
-        return cell
+       guard let cell = calendar.dequeueReusableCell(withIdentifier: CalendarCell.description(), for: date, at: position) as? CalendarCell else { return FSCalendarCell() }
+       
+       cell.clipsToBounds = true
+       cell.layer.cornerRadius = 21
+       
+       let today = Calendar.current.startOfDay(for: Date())
+       let startOfDay = Calendar.current.startOfDay(for: date)
+       guard let installDate = UserDefaults.standard.object(forKey: "app_install_date") as? Date else { return cell }
+       let startOfInstallDay = Calendar.current.startOfDay(for: installDate)
+       
+       let pillStatus = UserDefaultsManager.shared.getPillStatus()
+       
+       if startOfDay > today {
+           // 미래 날짜는 이미지 없음
+           cell.backImageView.image = nil
+           
+       } else if startOfDay < startOfInstallDay {
+           // 앱 설치 이전 날짜
+           if let isPillEaten = pillStatus[startOfDay] {
+               // 데이터가 있는 경우
+               if isPillEaten {
+                   cell.backImageView.image = UIImage(named: "calendar_green")
+               } else {
+                   cell.backImageView.image = UIImage(named: "calendar_red")
+               }
+           } else {
+               // 데이터가 없는 경우 이미지 없음
+               cell.backImageView.image = nil
+           }
+           
+       } else {
+           // 앱 설치 이후 날짜
+           if startOfDay == today {
+               // 오늘
+               if pillStatus[startOfDay] == true {
+                   cell.backImageView.image = UIImage(named: "calendar_green")
+               } else {
+                   cell.backImageView.image = UIImage(named: "calendar_today")
+               }
+           } else {
+               // 설치 이후의 과거 날짜는 데이터 없으면 안먹은 것으로 처리
+               if pillStatus[startOfDay] == true {
+                   cell.backImageView.image = UIImage(named: "calendar_green")
+               } else {
+                   cell.backImageView.image = UIImage(named: "calendar_red")
+               }
+           }
+       }
+       
+       if position != .current {
+           cell.backImageView.alpha = 0.5
+       } else {
+           cell.backImageView.alpha = 1.0
+       }
+       
+       cell.backImageView.backgroundColor = .clear
+       cell.isToday = Calendar.current.isDateInToday(date)
+       
+       return cell
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
@@ -308,130 +332,181 @@ extension CalendarViewController: CalendarDetailViewControllerDelegate {
     }
     
     func updateBottomView(for date: Date) {
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ko_KR")
-        dateFormatter.dateFormat = "M월 d일 EEEE"
-        
-        let startOfDay = Calendar.current.startOfDay(for: date)
-        let pillStatus = UserDefaultsManager.shared.getPillStatus()
-        let height = UIScreen.main.bounds.height * 0.27
-        
-        let today = Calendar.current.startOfDay(for: Date())
-        
-        // 앱 설치 날짜 가져오기
-        guard let installDate = UserDefaults.standard.object(forKey: "app_install_date") as? Date else { return }
-        let startOfInstallDay = Calendar.current.startOfDay(for: installDate)
-        
-        
-        // 기존 bottomView 제거
-        currentBottomView?.removeFromSuperview()
-        
-        if startOfDay < startOfInstallDay || startOfDay > today {
-            
-            let futureView = CalendarFutureBottomView()
-            futureView.updateSelectedDate(
-                newDate: date,
-                isBeforeInstallDate: startOfDay < startOfInstallDay
-            )
-            
-            view.addSubview(futureView)
-            futureView.snp.makeConstraints { make in
-                make.height.equalTo(height)
-                make.horizontalEdges.equalTo(view)
-                make.bottom.equalTo(view.safeAreaLayoutGuide).offset(32)
-            }
-            
-            currentBottomView = futureView
-            
-        } else if startOfDay == today {
-            
-            if pillStatus[startOfDay] == true {
-                let eatenView = CalendarBottomView()
-                eatenView.selectedDate = date
-                eatenView.updateSelectedDate(newDate: date)
-                eatenView.dateLabel.text = dateFormatter.string(from: date)
-                eatenView.delegate = self
-                
-                if let pillTime = UserDefaults.standard.object(forKey: "pillTakenTime_\(startOfDay)") as? Date {
-                    let timeFormatter = DateFormatter()
-                    timeFormatter.locale = Locale(identifier: "ko_KR")
-                    timeFormatter.dateFormat = "a h:mm"
-                    eatenView.pillTakenTimeLabel.text = timeFormatter.string(from: pillTime)
-                } else {
-                    eatenView.pillTakenTimeLabel.text = "복용 기록 없음"
-                }
-                
-                view.addSubview(eatenView)
-                eatenView.snp.makeConstraints { make in
-                    make.height.equalTo(height)
-                    make.horizontalEdges.equalTo(view)
-                    make.bottom.equalTo(view.safeAreaLayoutGuide).offset(32)
-                }
-                
-                currentBottomView = eatenView
-                
-            } else {
-                
-                let todayNotYetView = CalendarTodayNotYetBottomView()
-                todayNotYetView.dateLabel.text = dateFormatter.string(from: date)
-                todayNotYetView.selectedDate = date
-                todayNotYetView.delegate = self
-                view.addSubview(todayNotYetView)
-                todayNotYetView.snp.makeConstraints { make in
-                    make.height.equalTo(height)
-                    make.horizontalEdges.equalTo(view)
-                    make.bottom.equalTo(view.safeAreaLayoutGuide).offset(32)
-                }
-                
-                currentBottomView = todayNotYetView
-            }
-        } else {
-            
-            if pillStatus[startOfDay] == true {
-                
-                let eatenView = CalendarBottomView()
-                eatenView.selectedDate = date
-                eatenView.updateSelectedDate(newDate: date)
-                eatenView.dateLabel.text = dateFormatter.string(from: date)
-                eatenView.delegate = self
-                
-                if let pillTime = UserDefaults.standard.object(forKey: "pillTakenTime_\(startOfDay)") as? Date {
-                    let timeFormatter = DateFormatter()
-                    timeFormatter.locale = Locale(identifier: "ko_KR")
-                    timeFormatter.dateFormat = "a h:mm"
-                    eatenView.pillTakenTimeLabel.text = timeFormatter.string(from: pillTime)
-                } else {
-                    eatenView.pillTakenTimeLabel.text = "복용 기록 없음"
-                }
-                
-                view.addSubview(eatenView)
-                
-                eatenView.snp.makeConstraints { make in
-                    make.height.equalTo(height)
-                    make.horizontalEdges.equalTo(view)
-                    make.bottom.equalTo(view.safeAreaLayoutGuide).offset(32)
-                }
-                
-                currentBottomView = eatenView
-                
-            } else {
-                
-                let notEatenView = CalendarNotEatenBottomView()
-                notEatenView.dateLabel.text = dateFormatter.string(from: date)
-                notEatenView.selectedDate = date
-                notEatenView.delegate = self
-                view.addSubview(notEatenView)
-                notEatenView.snp.makeConstraints { make in
-                    make.height.equalTo(height)
-                    make.horizontalEdges.equalTo(view)
-                    make.bottom.equalTo(view.safeAreaLayoutGuide).offset(32)
-                }
-                
-                currentBottomView = notEatenView
-            }
-        }
-        
-        calendar.reloadData()
+       let dateFormatter = DateFormatter()
+       dateFormatter.locale = Locale(identifier: "ko_KR")
+       dateFormatter.dateFormat = "M월 d일 EEEE"
+       
+       let startOfDay = Calendar.current.startOfDay(for: date)
+       let pillStatus = UserDefaultsManager.shared.getPillStatus()
+       let height = UIScreen.main.bounds.height * 0.27
+       
+       let today = Calendar.current.startOfDay(for: Date())
+       
+       // 앱 설치 날짜 가져오기
+       guard let installDate = UserDefaults.standard.object(forKey: "app_install_date") as? Date else { return }
+       let startOfInstallDay = Calendar.current.startOfDay(for: installDate)
+       
+       // 기존 bottomView 제거
+       currentBottomView?.removeFromSuperview()
+       
+       // 미래 날짜는 future view 표시
+       if startOfDay > today {
+           let futureView = CalendarFutureBottomView()
+           futureView.updateSelectedDate(newDate: date)
+           
+           view.addSubview(futureView)
+           futureView.snp.makeConstraints { make in
+               make.height.equalTo(height)
+               make.horizontalEdges.equalTo(view)
+               make.bottom.equalTo(view.safeAreaLayoutGuide).offset(32)
+           }
+           
+           currentBottomView = futureView
+           
+       } else if startOfDay < startOfInstallDay { // 앱 설치 이전 날짜
+           // 먼저 pill status 확인
+           if let isPillEaten = pillStatus[startOfDay] {
+               // 복용 데이터가 있는 경우
+               if isPillEaten {
+                   let eatenView = CalendarBottomView()
+                   eatenView.selectedDate = date
+                   eatenView.updateSelectedDate(newDate: date)
+                   eatenView.dateLabel.text = dateFormatter.string(from: date)
+                   eatenView.delegate = self
+                   
+                   if let pillTime = UserDefaults.standard.object(forKey: "pillTakenTime_\(startOfDay)") as? Date {
+                       let timeFormatter = DateFormatter()
+                       timeFormatter.locale = Locale(identifier: "ko_KR")
+                       timeFormatter.dateFormat = "a h:mm"
+                       eatenView.pillTakenTimeLabel.text = timeFormatter.string(from: pillTime)
+                   } else {
+                       eatenView.pillTakenTimeLabel.text = "복용 기록 없음"
+                   }
+                   
+                   view.addSubview(eatenView)
+                   eatenView.snp.makeConstraints { make in
+                       make.height.equalTo(height)
+                       make.horizontalEdges.equalTo(view)
+                       make.bottom.equalTo(view.safeAreaLayoutGuide).offset(32)
+                   }
+                   
+                   currentBottomView = eatenView
+                   
+               } else {
+                   let notEatenView = CalendarNotEatenBottomView()
+                   notEatenView.dateLabel.text = dateFormatter.string(from: date)
+                   notEatenView.selectedDate = date
+                   notEatenView.delegate = self
+                   view.addSubview(notEatenView)
+                   notEatenView.snp.makeConstraints { make in
+                       make.height.equalTo(height)
+                       make.horizontalEdges.equalTo(view)
+                       make.bottom.equalTo(view.safeAreaLayoutGuide).offset(32)
+                   }
+                   
+                   currentBottomView = notEatenView
+               }
+           } else {
+               // 앱 설치 이전 날짜이고 데이터가 없는 경우에만 NoDataView 표시
+               let noDataView = CalendarNoDataBottomView(delegate: self)
+               noDataView.updateSelectedDate(newDate: date)
+               noDataView.delegate = self
+               
+               view.addSubview(noDataView)
+               noDataView.snp.makeConstraints { make in
+                   make.height.equalTo(height)
+                   make.horizontalEdges.equalTo(view)
+                   make.bottom.equalTo(view.safeAreaLayoutGuide).offset(32)
+               }
+               
+               currentBottomView = noDataView
+           }
+           
+       } else { // 앱 설치 이후 날짜 (오늘 포함)
+           if startOfDay == today {
+               if pillStatus[startOfDay] == true {
+                   let eatenView = CalendarBottomView()
+                   eatenView.selectedDate = date
+                   eatenView.updateSelectedDate(newDate: date)
+                   eatenView.dateLabel.text = dateFormatter.string(from: date)
+                   eatenView.delegate = self
+                   
+                   if let pillTime = UserDefaults.standard.object(forKey: "pillTakenTime_\(startOfDay)") as? Date {
+                       let timeFormatter = DateFormatter()
+                       timeFormatter.locale = Locale(identifier: "ko_KR")
+                       timeFormatter.dateFormat = "a h:mm"
+                       eatenView.pillTakenTimeLabel.text = timeFormatter.string(from: pillTime)
+                   } else {
+                       eatenView.pillTakenTimeLabel.text = "복용 기록 없음"
+                   }
+                   
+                   view.addSubview(eatenView)
+                   eatenView.snp.makeConstraints { make in
+                       make.height.equalTo(height)
+                       make.horizontalEdges.equalTo(view)
+                       make.bottom.equalTo(view.safeAreaLayoutGuide).offset(32)
+                   }
+                   
+                   currentBottomView = eatenView
+                   
+               } else {
+                   let todayNotYetView = CalendarTodayNotYetBottomView()
+                   todayNotYetView.dateLabel.text = dateFormatter.string(from: date)
+                   todayNotYetView.selectedDate = date
+                   todayNotYetView.delegate = self
+                   view.addSubview(todayNotYetView)
+                   todayNotYetView.snp.makeConstraints { make in
+                       make.height.equalTo(height)
+                       make.horizontalEdges.equalTo(view)
+                       make.bottom.equalTo(view.safeAreaLayoutGuide).offset(32)
+                   }
+                   
+                   currentBottomView = todayNotYetView
+               }
+           } else {
+               // 앱 설치 이후의 과거 날짜는 데이터 없으면 안먹은 것으로 처리
+               if pillStatus[startOfDay] == true {
+                   let eatenView = CalendarBottomView()
+                   eatenView.selectedDate = date
+                   eatenView.updateSelectedDate(newDate: date)
+                   eatenView.dateLabel.text = dateFormatter.string(from: date)
+                   eatenView.delegate = self
+                   
+                   if let pillTime = UserDefaults.standard.object(forKey: "pillTakenTime_\(startOfDay)") as? Date {
+                       let timeFormatter = DateFormatter()
+                       timeFormatter.locale = Locale(identifier: "ko_KR")
+                       timeFormatter.dateFormat = "a h:mm"
+                       eatenView.pillTakenTimeLabel.text = timeFormatter.string(from: pillTime)
+                   } else {
+                       eatenView.pillTakenTimeLabel.text = "복용 기록 없음"
+                   }
+                   
+                   view.addSubview(eatenView)
+                   eatenView.snp.makeConstraints { make in
+                       make.height.equalTo(height)
+                       make.horizontalEdges.equalTo(view)
+                       make.bottom.equalTo(view.safeAreaLayoutGuide).offset(32)
+                   }
+                   
+                   currentBottomView = eatenView
+                   
+               } else {
+                   let notEatenView = CalendarNotEatenBottomView()
+                   notEatenView.dateLabel.text = dateFormatter.string(from: date)
+                   notEatenView.selectedDate = date
+                   notEatenView.delegate = self
+                   view.addSubview(notEatenView)
+                   notEatenView.snp.makeConstraints { make in
+                       make.height.equalTo(height)
+                       make.horizontalEdges.equalTo(view)
+                       make.bottom.equalTo(view.safeAreaLayoutGuide).offset(32)
+                   }
+                   
+                   currentBottomView = notEatenView
+               }
+           }
+       }
+       
+       calendar.reloadData()
     }
 }
