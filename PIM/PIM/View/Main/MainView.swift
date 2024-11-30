@@ -35,7 +35,7 @@ struct MainView: View {
             .onChange(of: viewModel.isPillEaten) { newValue in
                 viewModel.updatePillStatus(newValue, takenTime: newValue ? Date() : nil)
             }
-            .background(Color.backgroundWhite)
+            .background(Color("ExcptWhite12"))
             .navigationBarBackButtonHidden(true)
         }
     }
