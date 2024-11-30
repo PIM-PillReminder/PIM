@@ -31,6 +31,7 @@ class CalendarDetailViewController: UIViewController {
     
     private var modalHeight: CGFloat
     private var selectedDate: Date
+    private var isFromNoDataView: Bool
     
     var dismissalCompletion: (() -> Void)?
     weak var delegate: CalendarDetailViewControllerDelegate?
@@ -59,9 +60,10 @@ class CalendarDetailViewController: UIViewController {
         }
     }
     
-    init(modalHeight: CGFloat, selectedDate: Date) {
+    init(modalHeight: CGFloat, selectedDate: Date, isFromNoDataView: Bool = false) {
         self.modalHeight = modalHeight
         self.selectedDate = selectedDate
+        self.isFromNoDataView = isFromNoDataView
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -80,6 +82,11 @@ class CalendarDetailViewController: UIViewController {
         updatePillStatusImage()
         updateRadioButtonTexts()
         loadUserDefaultPillTime()
+        
+        if isFromNoDataView {
+            pillStatusLabel.text = "복용 기록이 없어요"
+            pillStatusImageView.isHidden = true
+        }
     }
     
     private func loadUserDefaultPillTime() {
@@ -437,10 +444,16 @@ class CalendarDetailViewController: UIViewController {
         isShowingDatePicker = false
         updateUIForSelection()
         savePillStatus(isPillEaten: false)
-        pillStatusLabel.text = "아직 안 먹었어요"
+        if isFromNoDataView {
+            pillStatusLabel.text = "안 먹었어요"
+            pillStatusImageView.isHidden = false
+        } else {
+            pillStatusLabel.text = "아직 안 먹었어요"
+        }
         updatePillStatusImage()
         updateRadioButtonTexts()
         divider.isHidden = true
+        delegate?.calendarDetailViewControllerDidUpdatePillStatus(self, date: selectedDate)
     }
     
     @objc private func takenSelected() {
@@ -449,10 +462,16 @@ class CalendarDetailViewController: UIViewController {
         isShowingDatePicker = false
         updateUIForSelection()
         savePillStatus(isPillEaten: true)
-        pillStatusLabel.text = "먹었어요"
+        if isFromNoDataView {
+            pillStatusLabel.text = "먹었어요"
+            pillStatusImageView.isHidden = false
+        } else {
+            pillStatusLabel.text = "먹었어요"
+        }
         updatePillStatusImage()
         updateRadioButtonTexts()
         divider.isHidden = false
+        delegate?.calendarDetailViewControllerDidUpdatePillStatus(self, date: selectedDate)
     }
     
 //    @objc private func dismissModal() {

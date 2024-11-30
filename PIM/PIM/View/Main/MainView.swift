@@ -44,23 +44,26 @@ struct MainView: View {
         
         ZStack {
             HStack {
-//                NavigationLink(destination: NoticeView(hasVisitedNotice: $hasVisitedNotice)) {
-//                    ZStack {
-//                        
-//                        Image(systemName: "bell")
-//                            .font(.system(size: 24))
-//                            .foregroundColor(Color.pimBlack)
-//                        
-//                        // 뱃지 추가
-//                        if !hasVisitedNotice {
-//                            Circle()
-//                                .fill(Color.red)
-//                                .frame(width: 7, height: 7)
-//                                .offset(x: 11, y: -11)
-//                        }
-//                    }
-//                    .padding(.leading, 18)
-//                }
+
+                NavigationLink(destination: NoticeView(hasVisitedNotice: $hasVisitedNotice)) {
+                    ZStack {
+                        
+                        LottieView(jsonName: "BellIcon",
+                                   loopMode: .playOnce,
+                                   playLottie: .constant(true))
+                            .frame(width: 30, height: 30)
+                            .padding(.leading, 18)
+                        
+                        // 뱃지 추가
+                        if !hasVisitedNotice {
+                            Circle()
+                                .fill(Color.red)
+                                .frame(width: 7, height: 7)
+                                .offset(x: 11, y: -11)
+                        }
+                    }
+                    .padding(.leading, 18)
+                }
                 
                 Spacer()
                 
