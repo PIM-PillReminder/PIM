@@ -35,7 +35,7 @@ struct SettingView: View {
         ZStack {
             GeometryReader { geo in
                 VStack {
-                    GroupBox {
+                    GroupBox{
                         HStack {
                             Image(systemName: "pill")
                                 .font(.title3)
@@ -152,9 +152,9 @@ struct SettingView: View {
                                         .toggleStyle(SwitchToggleStyle(tint: Color.primaryGreen))
                                         .allowsHitTesting(false)
                                 }
-                                    Text("선택 후 잠시 기다리면 기기의 앱 설정 화면\n으로 이동해요.")
+                                    Text("선택 시 기기의 앱설정으로 이동해요.")
                                         .font(.pretendard(.regular, size: 12))
-                                        .lineSpacing(4)
+                                        .lineSpacing(2)
                                         .foregroundStyle(Color("gray08"))
                                         .multilineTextAlignment(.leading)
                                         .padding(.leading, 40)
@@ -183,6 +183,7 @@ struct SettingView: View {
                                 .foregroundColor(.pimBlack)
                                 .font(.title3)
                         }
+                        .padding(.vertical, 5)
                         .contentShape(Rectangle())
                         .onTapGesture {
                             if MFMailComposeViewController.canSendMail() {
@@ -210,7 +211,7 @@ struct SettingView: View {
                         .sheet(isPresented: $showMailView) {
                             MailContentView(
                                 toRecipients: ["pim.connect2024@gmail.com"],
-                                subject: "[Pim] 소중한 의견"
+                                subject: "[Pim] 의견 보내기"
                             )
                         }
                         .padding(.trailing, 11)

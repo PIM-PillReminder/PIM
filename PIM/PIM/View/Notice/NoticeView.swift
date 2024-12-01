@@ -58,7 +58,7 @@ struct NoticeRow: View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
                 Text(title)
-                    .font(.pretendard(.medium, size: 18))
+                    .font(.pretendard(.medium, size: 16))
                     .foregroundColor(.pimBlack)
                     .padding(.top, 28)
                     .padding(.leading, 26)
