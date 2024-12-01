@@ -115,7 +115,7 @@ class CalendarNotEatenBottomView: UIView {
         }
         
         if let parentVC = self.window?.rootViewController {
-            detailVC.view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+            
             detailVC.modalPresentationStyle = .pageSheet
             if let sheet = detailVC.sheetPresentationController {
                 sheet.detents = [.custom { context in

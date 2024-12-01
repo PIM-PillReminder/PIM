@@ -110,7 +110,6 @@ class CalendarNoDataBottomView: UIView {
         }
         
         if let parentVC = self.window?.rootViewController {
-            parentVC.view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
             detailVC.modalPresentationStyle = UIModalPresentationStyle.pageSheet
             if let sheet = detailVC.sheetPresentationController {
                 sheet.detents = [.custom { _ in

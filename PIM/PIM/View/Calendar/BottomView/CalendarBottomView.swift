@@ -166,14 +166,11 @@ class CalendarBottomView: UIView {
     }
     
     private func showDetailModal(for selectedDate: Date) {
-        
         let height = UIScreen.main.bounds.height
         let modalHeight = height < 700 ? height * 0.8 : height * 0.6
         let detailVC = CalendarDetailViewController(modalHeight: modalHeight, selectedDate: selectedDate)
         
         detailVC.delegate = delegate
-        
-        // dismissalCompletion 추가
         detailVC.dismissalCompletion = { [weak self] in
             if let parentVC = self?.window?.rootViewController as? CalendarViewController {
                 parentVC.calendar.reloadData()
@@ -182,7 +179,6 @@ class CalendarBottomView: UIView {
         }
         
         if let parentVC = self.window?.rootViewController {
-            parentVC.view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
             detailVC.modalPresentationStyle = .pageSheet
             if let sheet = detailVC.sheetPresentationController {
                 sheet.detents = [.custom { context in
@@ -190,7 +186,7 @@ class CalendarBottomView: UIView {
                 }]
                 sheet.selectedDetentIdentifier = .large
                 sheet.prefersGrabberVisible = false
-                sheet.largestUndimmedDetentIdentifier = nil
+                sheet.largestUndimmedDetentIdentifier = nil  // 이 줄이 중요합니다
             }
             parentVC.present(detailVC, animated: true, completion: nil)
         }
