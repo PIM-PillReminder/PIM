@@ -139,7 +139,7 @@ struct OnboardingView2: View {
             .padding(.bottom, 10)
             .background(Color.primaryGreen)
         }
-        .background(Color.backgroundWhite)
+        .background(Color("ExcptWhite11"))
         .navigationBarBackButtonHidden(true)
     }
     

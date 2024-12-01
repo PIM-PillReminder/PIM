@@ -30,11 +30,20 @@ struct SettingView: View {
     }()
     
     //TODO: 다음 스프린트 때 나머지 리스트 버튼 영역 수정하기!
-    
     var body: some View {
         ZStack {
             GeometryReader { geo in
+                
                 VStack {
+                    
+                    Text("복약 정보")
+                        .font(.pretendard(.regular, size: 14))
+                        .foregroundColor(Color("gray08"))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top, 16)
+                        .padding(.leading, 6)
+                        .padding(.bottom, 4)
+                    
                     GroupBox {
                         HStack {
                             Image(systemName: "pill")
@@ -129,7 +138,15 @@ struct SettingView: View {
                         .padding(.vertical, 5)
                     }
                     .groupBoxStyle(CustomListGroupBoxStyle())
-                    .padding(.vertical)
+                    .padding(.bottom)
+                    
+                    Text("앱 관리")
+                        .font(.pretendard(.regular, size: 14))
+                        .foregroundColor(Color("gray08"))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top, 20)
+                        .padding(.leading, 6)
+                        .padding(.bottom, 4)
                     
                     GroupBox {
                         Button {
@@ -152,13 +169,13 @@ struct SettingView: View {
                                         .toggleStyle(SwitchToggleStyle(tint: Color.primaryGreen))
                                         .allowsHitTesting(false)
                                 }
-                                    Text("선택 후 잠시 기다리면 기기의 앱 설정 화면\n으로 이동해요.")
-                                        .font(.pretendard(.regular, size: 12))
-                                        .lineSpacing(4)
-                                        .foregroundStyle(Color("gray08"))
-                                        .multilineTextAlignment(.leading)
-                                        .padding(.leading, 40)
-                                        .padding(.bottom, 2)
+                                Text("선택 후 잠시 기다리면 기기의 앱 설정 화면\n으로 이동해요.")
+                                    .font(.pretendard(.regular, size: 12))
+                                    .lineSpacing(4)
+                                    .foregroundStyle(Color("gray08"))
+                                    .multilineTextAlignment(.leading)
+                                    .padding(.leading, 40)
+                                    .padding(.bottom, 2)
                                 
                             }
                             .padding(.horizontal, 10)
@@ -268,7 +285,7 @@ struct SettingView: View {
                 .padding(.bottom)
                 .padding(.horizontal, 18)
                 .navigationBarBackButtonHidden(true)
-                .background(Color.backgroundGray)
+                .background(Color("Excpt2-12"))
             }
             .onAppear {
                 checkNotificationSettings()
@@ -352,6 +369,6 @@ struct CustomListGroupBoxStyle: GroupBoxStyle {
         }
         .frame(maxWidth: .infinity)
         .padding()
-        .background(RoundedRectangle(cornerRadius: 16).fill(Color.boxWhite))
+        .background(RoundedRectangle(cornerRadius: 16).fill(Color("ExcptWhite11")))
     }
 }

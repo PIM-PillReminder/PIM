@@ -126,7 +126,7 @@ struct OnboardingView4: View {
                 .background(Color.primaryGreen)
 
             }
-            .background(Color.backgroundWhite)
+            .background(Color("ExcptWhite11"))
         }
         .navigationBarBackButtonHidden(true)
         .onAppear {
