@@ -98,6 +98,7 @@ class CalendarNoDataBottomView: UIView {
     }
     
     private func showDetailModal(for selectedDate: Date) {
+        
         let height = UIScreen.main.bounds.height
         let modalHeight = height < 700 ? height * 0.8 : height * 0.6
         let detailVC = CalendarDetailViewController(modalHeight: modalHeight, selectedDate: selectedDate, isFromNoDataView: true)
@@ -109,7 +110,7 @@ class CalendarNoDataBottomView: UIView {
         }
         
         if let parentVC = self.window?.rootViewController {
-            parentVC.view.backgroundColor = UIColor.black.withAlphaComponent(0.1)
+            parentVC.view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
             detailVC.modalPresentationStyle = UIModalPresentationStyle.pageSheet
             if let sheet = detailVC.sheetPresentationController {
                 sheet.detents = [.custom { _ in
@@ -117,6 +118,7 @@ class CalendarNoDataBottomView: UIView {
                 }]
                 sheet.selectedDetentIdentifier = .large
                 sheet.prefersGrabberVisible = false
+                sheet.largestUndimmedDetentIdentifier = nil
             }
             parentVC.present(detailVC, animated: true, completion: nil)
         }

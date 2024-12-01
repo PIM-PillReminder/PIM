@@ -85,7 +85,8 @@ class CalendarDetailViewController: UIViewController {
         
         if isFromNoDataView {
             pillStatusLabel.text = "복용 기록이 없어요"
-            pillStatusImageView.isHidden = true
+//            pillStatusImageView.isHidden = true
+            pillStatusImageView.image = UIImage(named: "calendar_noData")
         }
     }
     
@@ -464,7 +465,7 @@ class CalendarDetailViewController: UIViewController {
         savePillStatus(isPillEaten: true)
         if isFromNoDataView {
             pillStatusLabel.text = "먹었어요"
-            pillStatusImageView.isHidden = false
+            pillStatusImageView.image = UIImage(named: "calendar_noData")
         } else {
             pillStatusLabel.text = "먹었어요"
         }

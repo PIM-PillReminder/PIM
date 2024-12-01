@@ -182,7 +182,7 @@ class CalendarBottomView: UIView {
         }
         
         if let parentVC = self.window?.rootViewController {
-            parentVC.view.backgroundColor = UIColor.black.withAlphaComponent(0.1)
+            parentVC.view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
             detailVC.modalPresentationStyle = .pageSheet
             if let sheet = detailVC.sheetPresentationController {
                 sheet.detents = [.custom { context in
@@ -190,6 +190,7 @@ class CalendarBottomView: UIView {
                 }]
                 sheet.selectedDetentIdentifier = .large
                 sheet.prefersGrabberVisible = false
+                sheet.largestUndimmedDetentIdentifier = nil
             }
             parentVC.present(detailVC, animated: true, completion: nil)
         }

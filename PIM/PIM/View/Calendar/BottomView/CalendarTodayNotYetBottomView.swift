@@ -116,7 +116,7 @@ class CalendarTodayNotYetBottomView: UIView {
     }
     
     private func showDetailModal(for selectedDate: Date) {
-        print("showDetailModal called for date: \(selectedDate)")
+        
         let height = UIScreen.main.bounds.height
         let modalHeight = height < 700 ? height * 0.8 : height * 0.6
         let detailVC = CalendarDetailViewController(modalHeight: modalHeight, selectedDate: selectedDate)
@@ -132,6 +132,7 @@ class CalendarTodayNotYetBottomView: UIView {
         }
         
         if let parentVC = self.window?.rootViewController {
+            parentVC.view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
             detailVC.modalPresentationStyle = .pageSheet
             if let sheet = detailVC.sheetPresentationController {
                 sheet.detents = [.custom { context in
