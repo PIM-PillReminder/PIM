@@ -23,7 +23,7 @@ struct NoticeContentView: View {
                 Text(date)
                     .font(.pretendard(.regular, size: 14))
                     .foregroundStyle(Color("gray06"))
-                    //padding(.top, 4)
+                    .padding(.vertical, 2)
                 
                 Text(content)
                     .font(.pretendard(.regular, size: 16))
