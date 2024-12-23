@@ -35,7 +35,7 @@ struct MainView: View {
             .onChange(of: viewModel.isPillEaten) { newValue in
                 viewModel.updatePillStatus(newValue, takenTime: newValue ? Date() : nil)
             }
-            .background(Color("ExcptWhite12"))
+            .background(Color.excpt12)
             .navigationBarBackButtonHidden(true)
         }
     }
@@ -43,25 +43,23 @@ struct MainView: View {
     private var headerView: some View {
         
         ZStack {
+            
             HStack {
 
                 NavigationLink(destination: NoticeView(hasVisitedNotice: $hasVisitedNotice)) {
-                    ZStack {
-                        
-                        // 뱃지 추가
-                        if !hasVisitedNotice {
-                            LottieView(jsonName: "BellIcon",
-                                       loopMode: .playOnce,
-                                       playLottie: .constant(true))
-                                .frame(width: 30, height: 30)
-                                .padding(.leading, 18)
-                        } else {
-                            Image(systemName: "bell")
-                                .font(.system(size: 24))
-                                .foregroundColor(.primaryGreen)
-                        }
+                    
+                    if !hasVisitedNotice {
+                        LottieView(jsonName: "BellIcon",
+                                   loopMode: .playOnce,
+                                   playLottie: .constant(true))
+                            .frame(width: 30, height: 30)
+                            .padding(.leading, 18)
+                    } else {
+                        Image(systemName: "bell")
+                            .font(.system(size: 24))
+                            .foregroundColor(Color.green03)
+                            .padding(.leading, 18)
                     }
-                    .padding(.leading, 18)
                 }
                 
                 Spacer()
@@ -69,7 +67,7 @@ struct MainView: View {
                 NavigationLink(destination: SettingView()) {
                     Image(systemName: "gearshape")
                         .font(.system(size: 24))
-                        .foregroundColor(Color.primaryGreen)
+                        .foregroundColor(Color.green03)
                         .padding(.trailing, 18)
                 }
             }
@@ -97,7 +95,7 @@ struct MainView: View {
             if viewModel.isPillEaten {
                 Text(viewModel.pillTakenTimeString)
                     .font(.pretendard(.regular, size: 16))
-                    .foregroundColor(Color("gray08"))
+                    .foregroundColor(Color.gray08)
                     .multilineTextAlignment(.center)
             }
         }

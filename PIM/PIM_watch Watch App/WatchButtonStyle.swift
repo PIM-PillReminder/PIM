@@ -16,7 +16,7 @@ struct PIMGreenButton: View {
           RoundedRectangle(cornerRadius: 40)
             .frame(width: wLength())
             .frame(height: hLength())
-            .foregroundStyle(Color.primaryGreen)
+            .foregroundStyle(Color.green03)
             .overlay {
               Text(title)
                 .font(.caption)

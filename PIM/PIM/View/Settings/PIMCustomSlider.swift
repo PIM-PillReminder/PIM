@@ -63,7 +63,7 @@ struct NotiSlider: View {
                     HStack {
                         // 스냅된 값을 기반으로 표시 값을 설정
                         RoundedRectangle(cornerRadius: radius)
-                            .foregroundColor(.primaryGreen)
+                            .foregroundColor(.green03)
                             .frame(width: (self.value * maxValue) + (thumbSize / 2))
                         
                         Spacer()
@@ -81,7 +81,7 @@ struct NotiSlider: View {
                             .shadow(radius: 4)
                         
                         Circle()
-                            .foregroundColor(Color.primaryGreen)
+                            .foregroundColor(Color.green03)
                             .frame(width: thumbSize * 0.5, height: thumbSize * 0.5)
                             // 원의 위치를 스냅된 값에 따라 조정
                             .offset(x: snappedValue * (maxValue - minValue))

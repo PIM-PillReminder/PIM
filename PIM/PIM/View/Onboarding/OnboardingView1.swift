@@ -36,7 +36,7 @@ struct OnboardingView1: View {
             }
             .padding(.top, 10)
             ProgressView(value: 20, total: 100)
-                .progressViewStyle(LinearProgressViewStyle(tint: Color("primaryGreen")))
+                .progressViewStyle(LinearProgressViewStyle(tint: Color.green03))
                 .padding(.bottom, 40)
             Text("현재 복용중인 약이 있나요?")
                 .font(.pretendard(.bold, size: 24))
@@ -64,8 +64,8 @@ struct OnboardingView1: View {
                                 .stroke(
                                     RadialGradient(
                                         gradient: Gradient(stops: [
-                                            Gradient.Stop(color: .primaryGreen, location: 0),
-                                            Gradient.Stop(color: .primaryGreen, location: 1)
+                                            Gradient.Stop(color: .green03, location: 0),
+                                            Gradient.Stop(color: .green03, location: 1)
                                         ]),
                                         center: .leading,
                                         startRadius: 0,
@@ -105,8 +105,8 @@ struct OnboardingView1: View {
                                 .stroke(
                                     RadialGradient(
                                         gradient: Gradient(stops: [
-                                            Gradient.Stop(color: .primaryGreen, location: 0),
-                                            Gradient.Stop(color: .primaryGreen, location: 1)
+                                            Gradient.Stop(color: .green03, location: 0),
+                                            Gradient.Stop(color: .green03, location: 1)
                                         ]),
                                         center: .leading,
                                         startRadius: 0,
@@ -138,9 +138,9 @@ struct OnboardingView1: View {
             .frame(width: UIScreen.main.bounds.width)
             .padding(.top, 40)
             .padding(.bottom, 10)
-            .background(Color.primaryGreen)
+            .background(Color.green03)
         }
-        .background(Color("ExcptWhite11"))
+        .background(Color.excpt11)
         .navigationBarBackButtonHidden(true)
     }
 }

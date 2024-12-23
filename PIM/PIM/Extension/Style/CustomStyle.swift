@@ -22,7 +22,7 @@ struct PIMGreenButton: ButtonStyle {
             .frame(height: 74)
             .background(
                 RoundedRectangle(cornerRadius: 37.5)
-                    .foregroundColor(.primaryGreen)
+                    .foregroundColor(.green03)
             )
             .contentShape(RoundedRectangle(cornerRadius: 37.5))
             .scaleEffect(configuration.isPressed ? scaledAmount : 1.0)
@@ -47,7 +47,7 @@ struct PIMSmallGreenButton: ButtonStyle {
             .frame(height: 49)
             .background(
                 RoundedRectangle(cornerRadius: 37.5)
-                    .foregroundColor(.primaryGreen)
+                    .foregroundColor(.green03)
             )
             .scaleEffect(configuration.isPressed ? scaledAmount : 1.0)
             .brightness(configuration.isPressed ? 0.05 : 0)
@@ -147,7 +147,7 @@ struct OnboardingButton: ButtonStyle {
             .frame(height: 100)
             .background(
                 Rectangle()
-                    .foregroundColor(.primaryGreen)
+                    .foregroundColor(.green03)
             )
             .scaleEffect(configuration.isPressed ? scaledAmount : 1.0)
             .brightness(configuration.isPressed ? 0.1 : 0)

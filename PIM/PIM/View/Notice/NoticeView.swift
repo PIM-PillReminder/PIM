@@ -24,7 +24,7 @@ struct NoticeView: View {
            .listStyle(PlainListStyle())
            .padding(.top, 16)
        }
-       .background(Color("Excpt2-12"))
+       .background(Color.excpt212)
        .onDisappear() {
            hasVisitedNotice = true
        }
@@ -75,7 +75,7 @@ struct NoticeRow: View {
                         .padding(.horizontal, 7)
                         .background(
                             RoundedRectangle(cornerRadius: 10)
-                                .fill(Color("RedWarning"))
+                                .fill(Color.redwarning)
                         )
                         .padding(.trailing, 18)
                 }
@@ -95,7 +95,7 @@ struct NoticeRow: View {
         }
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color("ExcptWhite11"))
+                .fill(Color.excpt11)
         )
         .background(
             NavigationLink(destination: NoticeContentView(title: title, date: date, content: content), isActive: $isNavigating) {

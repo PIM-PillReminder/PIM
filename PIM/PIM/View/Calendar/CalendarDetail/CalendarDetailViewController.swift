@@ -28,6 +28,7 @@ class CalendarDetailViewController: UIViewController {
     private let divider = UIView()
     let pillTimeTitleLabel = UILabel()
     let pillTimeLabel = UILabel()
+    private var isDarkMode = false
     
     private var modalHeight: CGFloat
     private var selectedDate: Date
@@ -73,6 +74,7 @@ class CalendarDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        isDarkMode = traitCollection.userInterfaceStyle == .dark
         setupUI()
         setupConstraints()
         updateRadioButtonUI()
@@ -85,8 +87,8 @@ class CalendarDetailViewController: UIViewController {
         
         if isFromNoDataView {
             pillStatusLabel.text = "복용 기록이 없어요"
-//            pillStatusImageView.isHidden = true
-            pillStatusImageView.image = UIImage(named: "calendar_noData")
+            let imageName = isDarkMode ? "calendar_noData_dark" : "calendar_noData"
+            pillStatusImageView.image = UIImage(named: imageName)
         }
     }
     
@@ -126,7 +128,6 @@ class CalendarDetailViewController: UIViewController {
     
     private func updatePillStatusImage() {
         let isToday = Calendar.current.isDateInToday(selectedDate)
-        let isDarkMode = traitCollection.userInterfaceStyle == .dark
         
         if isToday && !isTaken {
             pillStatusImageView.image = UIImage(named: "calendar_today")
@@ -465,7 +466,8 @@ class CalendarDetailViewController: UIViewController {
         savePillStatus(isPillEaten: true)
         if isFromNoDataView {
             pillStatusLabel.text = "먹었어요"
-            pillStatusImageView.image = UIImage(named: "calendar_noData")
+            let imageName = isDarkMode ? "calendar_noData_dark" : "calendar_noData"
+            pillStatusImageView.image = UIImage(named: imageName)
         } else {
             pillStatusLabel.text = "먹었어요"
         }

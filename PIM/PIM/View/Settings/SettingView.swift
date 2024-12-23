@@ -38,7 +38,7 @@ struct SettingView: View {
                     
                     Text("복약 정보")
                         .font(.pretendard(.regular, size: 14))
-                        .foregroundColor(Color("gray08"))
+                        .foregroundColor(Color.gray08)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.top, 16)
                         .padding(.leading, 6)
@@ -142,7 +142,7 @@ struct SettingView: View {
                     
                     Text("앱 관리")
                         .font(.pretendard(.regular, size: 14))
-                        .foregroundColor(Color("gray08"))
+                        .foregroundColor(Color.gray08)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.top, 20)
                         .padding(.leading, 6)
@@ -166,13 +166,13 @@ struct SettingView: View {
                                     Spacer()
                                     
                                     Toggle("", isOn: .constant(isNotificationsEnabled))
-                                        .toggleStyle(SwitchToggleStyle(tint: Color.primaryGreen))
+                                        .toggleStyle(SwitchToggleStyle(tint: Color.green03))
                                         .allowsHitTesting(false)
                                 }
                                     Text("선택 시 기기의 앱설정으로 이동해요.")
                                         .font(.pretendard(.regular, size: 12))
                                         .lineSpacing(2)
-                                        .foregroundStyle(Color("gray08"))
+                                        .foregroundStyle(Color.gray08)
                                         .multilineTextAlignment(.leading)
                                         .padding(.leading, 40)
                                         .padding(.bottom, 2)
@@ -246,7 +246,7 @@ struct SettingView: View {
                                 .padding(.leading, 12)
                             Spacer()
                             Toggle("", isOn: $isLocked)
-                                .toggleStyle(SwitchToggleStyle(tint: Color.primaryGreen))
+                                .toggleStyle(SwitchToggleStyle(tint: Color.green03))
                                 .disabled(isDeactivated)
                         }
                         .foregroundColor(Color.settingDisabledGray)
@@ -286,7 +286,7 @@ struct SettingView: View {
                 .padding(.bottom)
                 .padding(.horizontal, 18)
                 .navigationBarBackButtonHidden(true)
-                .background(Color("Excpt2-12"))
+                .background(Color.excpt212)
             }
             .onAppear {
                 checkNotificationSettings()
@@ -370,6 +370,6 @@ struct CustomListGroupBoxStyle: GroupBoxStyle {
         }
         .frame(maxWidth: .infinity)
         .padding()
-        .background(RoundedRectangle(cornerRadius: 16).fill(Color("ExcptWhite11")))
+        .background(RoundedRectangle(cornerRadius: 16).fill(Color.excpt11))
     }
 }
