@@ -15,16 +15,17 @@ struct NoticeView: View {
        VStack(spacing: 0) {
            List {
                ForEach(NoticeData.noticeList, id: \.title) { notice in
-                   NoticeRow(title: notice.title, date: notice.date, content: notice.content)
+                   NoticeRow(title: notice.title, date: notice.date, content: notice.content, hasVisitedNotice: $hasVisitedNotice)
                        .listRowSeparator(.hidden)
                        .listRowBackground(Color.clear)
                        .padding(.vertical, 4)
                }
            }
            .listStyle(PlainListStyle())
+           .padding(.top, 16)
        }
        .background(Color("Excpt2-12"))
-       .onAppear {
+       .onDisappear() {
            hasVisitedNotice = true
        }
        .navigationBarBackButtonHidden(true)
@@ -53,25 +54,40 @@ struct NoticeRow: View {
     
     @Environment(\.presentationMode) var presentationMode
     @State private var isNavigating = false // 화면 전환 상태 관리
+    @Binding var hasVisitedNotice: Bool
     
     var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: 4) {
+            
+            HStack {
                 Text(title)
                     .font(.pretendard(.medium, size: 16))
                     .foregroundColor(.pimBlack)
-                    .padding(.top, 28)
-                    .padding(.leading, 26)
+                    .padding(.leading, 18)
                 
-                Text(date)
-                    .font(.pretendard(.regular, size: 11))
-                    .foregroundColor(.gray)
-                    .padding(.top, 7)
-                    .padding(.bottom, 22)
-                    .padding(.leading, 26)
+                Spacer()
+                
+                if !hasVisitedNotice {
+                    Text("New")
+                        .font(.pretendard(.bold, size: 12))
+                        .foregroundColor(.pimWhite)
+                        .padding(.vertical, 4)
+                        .padding(.horizontal, 7)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color("RedWarning"))
+                        )
+                        .padding(.trailing, 18)
+                }
             }
+            .padding(.top, 18)
             
-            Spacer()
+            Text(date)
+                .font(.pretendard(.regular, size: 14))
+                .foregroundColor(.gray)
+                .padding(.top, 4)
+                .padding(.bottom, 18)
+                .padding(.leading, 18)
         }
         .contentShape(Rectangle()) // 터치 영역 확장
         .onTapGesture {
@@ -81,7 +97,6 @@ struct NoticeRow: View {
             RoundedRectangle(cornerRadius: 16)
                 .fill(Color("ExcptWhite11"))
         )
-        .listRowInsets(EdgeInsets(top: 4, leading: 18, bottom: 4, trailing: 18))
         .background(
             NavigationLink(destination: NoticeContentView(title: title, date: date, content: content), isActive: $isNavigating) {
                 EmptyView()

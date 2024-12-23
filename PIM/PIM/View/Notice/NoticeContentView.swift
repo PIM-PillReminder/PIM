@@ -14,7 +14,9 @@ struct NoticeContentView: View {
     let content: String
     
     var body: some View {
+        
         ScrollView {
+            
             VStack(alignment: .leading) {
                 Text(title)
                     .font(.pretendard(.bold, size: 18))
