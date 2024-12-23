@@ -186,7 +186,7 @@ class CalendarBottomView: UIView {
                 }]
                 sheet.selectedDetentIdentifier = .large
                 sheet.prefersGrabberVisible = false
-                sheet.largestUndimmedDetentIdentifier = nil  // 이 줄이 중요합니다
+                sheet.largestUndimmedDetentIdentifier = nil
             }
             parentVC.present(detailVC, animated: true, completion: nil)
         }
