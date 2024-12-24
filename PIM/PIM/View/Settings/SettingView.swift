@@ -42,16 +42,16 @@ struct SettingView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.top, 16)
                         .padding(.leading, 6)
-                        .padding(.bottom, 4)
                     
                     GroupBox {
+                        
                         HStack {
                             Image("pill")
                                 .frame(width: 26, height: 26)
                             
                             Text("복용중인 약")
                                 .font(.pretendard(.medium, size: 16))
-                                .padding(.leading, 10)
+                                .padding(.leading, 8)
                                 .foregroundColor(Color.gray04)
                             
                             Spacer()
@@ -82,7 +82,7 @@ struct SettingView: View {
                                         .font(.pretendard(.medium, size: 16))
                                         .environment(\.locale, .init(identifier: "ko_KR"))
                                         .foregroundStyle(Color.pimBlack)
-                                        .padding(.leading, 10)
+                                        .padding(.leading, 8)
                                 } else {
                                     Text("알림 시간을 선택하지 않았습니다.")
                                         .font(.pretendard(.medium, size: 16))
@@ -119,7 +119,7 @@ struct SettingView: View {
                             
                             Text("피임약 바로 알기")
                                 .font(.pretendard(.medium, size: 16))
-                                .padding(.leading, 10)
+                                .padding(.leading, 8)
                                 .foregroundColor(Color.gray04)
                             
                             Spacer()
@@ -135,6 +135,7 @@ struct SettingView: View {
                         .padding(.vertical, 5)
                     }
                     .groupBoxStyle(CustomListGroupBoxStyle())
+                    .padding(.top, 4)
                     
                     Text("앱 관리")
                         .font(.pretendard(.regular, size: 14))
@@ -142,13 +143,14 @@ struct SettingView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.top, 20)
                         .padding(.leading, 6)
-                        .padding(.bottom, 4)
                     
                     GroupBox {
+                        
                         Button {
                             UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
                         } label: {
-                            VStack(alignment: .leading, spacing: 5) {
+                            VStack(alignment: .leading, spacing: 6) {
+                                
                                 HStack {
                                     Image("bell")
                                         .frame(width: 26, height: 26)
@@ -156,7 +158,7 @@ struct SettingView: View {
                                     Text("알림")
                                         .font(.pretendard(.medium, size: 16))
                                         .foregroundStyle(Color.pimBlack)
-                                        .padding(.leading, 10)
+                                        .padding(.leading, 8)
                                     
                                     Spacer()
                                     
@@ -169,11 +171,10 @@ struct SettingView: View {
                                         .lineSpacing(2)
                                         .foregroundStyle(Color.gray08)
                                         .multilineTextAlignment(.leading)
-                                        .padding(.leading, 40)
-                                        .padding(.bottom, 2)
-                                
+                                        .padding(.leading, 42)
+                                        .padding(.bottom, 6)
                             }
-                            .padding(.horizontal, 10)
+                            .padding(.leading, 10)
                         }
                         
                         Divider()
@@ -184,7 +185,7 @@ struct SettingView: View {
                             
                             Text("의견 보내기")
                                 .font(.pretendard(.medium, size: 16))
-                                .padding(.leading, 7)
+                                .padding(.leading, 8)
                                 .foregroundColor(Color.pimBlack)
                             
                             Spacer()
@@ -193,7 +194,7 @@ struct SettingView: View {
                                 .foregroundColor(.pimBlack)
                                 .font(.title3)
                         }
-                        .padding(.vertical, 5)
+                        .padding(.vertical, 6)
                         .contentShape(Rectangle())
                         .onTapGesture {
                             if MFMailComposeViewController.canSendMail() {
@@ -224,9 +225,7 @@ struct SettingView: View {
                                 subject: "[Pim] 의견 보내기"
                             )
                         }
-                        .padding(.trailing, 11)
                         .padding(.leading, 10)
-                        .padding(.vertical, 5)
                         
                         Divider()
                         
@@ -236,7 +235,7 @@ struct SettingView: View {
                             
                             Text("앱 잠금")
                                 .font(.pretendard(.medium, size: 16))
-                                .padding(.leading, 12)
+                                .padding(.leading, 8)
                                 .foregroundColor(Color.gray04)
                             
                             Spacer()
@@ -246,8 +245,8 @@ struct SettingView: View {
                                 .disabled(isDeactivated)
                         }
                         .foregroundColor(Color.settingDisabledGray)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 5)
+                        .padding(.leading, 10)
+                        .padding(.vertical, 6)
                         
                         Divider()
                         
@@ -257,7 +256,7 @@ struct SettingView: View {
                             
                             Text("데이터 백업")
                                 .font(.pretendard(.medium, size: 16))
-                                .padding(.leading, 11)
+                                .padding(.leading, 8)
                                 .foregroundColor(Color.gray04)
                             
                             Spacer()
@@ -269,15 +268,13 @@ struct SettingView: View {
                             }
                             .disabled(isDeactivated)
                         }
-                        .padding(.trailing, 10)
-                        .padding(.leading, 12)
-                        .padding(.vertical, 5)
+                        .padding(.leading, 10)
+                        .padding(.vertical, 6)
                     }
                     .groupBoxStyle(CustomListGroupBoxStyle())
                     
                     Spacer()
                 }
-                // .padding(.bottom)
                 .padding(.horizontal, 18)
                 .navigationBarBackButtonHidden(true)
                 .background(Color.excpt212)
@@ -313,6 +310,7 @@ struct SettingView: View {
                 .animation(.easeIn)
                 .ignoresSafeArea()
         }
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     private func checkNotificationSettings() {
