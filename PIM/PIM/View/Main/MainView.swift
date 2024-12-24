@@ -35,7 +35,7 @@ struct MainView: View {
             .onChange(of: viewModel.isPillEaten) { newValue in
                 viewModel.updatePillStatus(newValue, takenTime: newValue ? Date() : nil)
             }
-            .background(Color("ExcptWhite12"))
+            .background(Color.excpt12)
             .navigationBarBackButtonHidden(true)
         }
     }
@@ -43,34 +43,29 @@ struct MainView: View {
     private var headerView: some View {
         
         ZStack {
+            
             HStack {
 
                 NavigationLink(destination: NoticeView(hasVisitedNotice: $hasVisitedNotice)) {
-                    ZStack {
-                        
+                    
+                    if !hasVisitedNotice {
                         LottieView(jsonName: "BellIcon",
                                    loopMode: .playOnce,
                                    playLottie: .constant(true))
                             .frame(width: 30, height: 30)
                             .padding(.leading, 18)
-                        
-                        // 뱃지 추가
-                        if !hasVisitedNotice {
-                            Circle()
-                                .fill(Color.red)
-                                .frame(width: 7, height: 7)
-                                .offset(x: 11, y: -11)
-                        }
+                    } else {
+                        Image("mainBell")
+                            .frame(width: 30, height: 30)
+                            .padding(.leading, 18)
                     }
-                    .padding(.leading, 18)
                 }
                 
                 Spacer()
                 
                 NavigationLink(destination: SettingView()) {
-                    Image(systemName: "gearshape")
-                        .font(.system(size: 24))
-                        .foregroundColor(Color.primaryGreen)
+                    Image("mainSetting")
+                        .frame(width: 30, height: 30)
                         .padding(.trailing, 18)
                 }
             }
@@ -98,7 +93,7 @@ struct MainView: View {
             if viewModel.isPillEaten {
                 Text(viewModel.pillTakenTimeString)
                     .font(.pretendard(.regular, size: 16))
-                    .foregroundColor(Color("gray08"))
+                    .foregroundColor(Color.gray08)
                     .multilineTextAlignment(.center)
             }
         }

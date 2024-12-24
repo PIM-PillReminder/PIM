@@ -73,6 +73,7 @@ class CalendarDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupUI()
         setupConstraints()
         updateRadioButtonUI()
@@ -85,7 +86,6 @@ class CalendarDetailViewController: UIViewController {
         
         if isFromNoDataView {
             pillStatusLabel.text = "복용 기록이 없어요"
-//            pillStatusImageView.isHidden = true
             pillStatusImageView.image = UIImage(named: "calendar_noData")
         }
     }
@@ -126,17 +126,13 @@ class CalendarDetailViewController: UIViewController {
     
     private func updatePillStatusImage() {
         let isToday = Calendar.current.isDateInToday(selectedDate)
-        let isDarkMode = traitCollection.userInterfaceStyle == .dark
         
         if isToday && !isTaken {
             pillStatusImageView.image = UIImage(named: "calendar_today")
         } else if !isToday && !isTaken {
-            // 다크모드일 때는 다크모드용 이미지 사용
-            let imageName = isDarkMode ? "calendar_notEaten_dark" : "calendar_notEaten"
-            pillStatusImageView.image = UIImage(named: imageName)
+            pillStatusImageView.image = UIImage(named: "calendar_notEaten")
         } else {
-            let imageName = isDarkMode ? "calendar_eaten_dark" : "calendar_eaten"
-            pillStatusImageView.image = UIImage(named: imageName)
+            pillStatusImageView.image = UIImage(named: "calendar_eaten")
         }
     }
     
@@ -474,10 +470,6 @@ class CalendarDetailViewController: UIViewController {
         divider.isHidden = false
         delegate?.calendarDetailViewControllerDidUpdatePillStatus(self, date: selectedDate)
     }
-    
-//    @objc private func dismissModal() {
-//        dismiss(animated: true, completion: nil)
-    //    }
     
     @objc private func dismissModal() {
         dismiss(animated: true) {

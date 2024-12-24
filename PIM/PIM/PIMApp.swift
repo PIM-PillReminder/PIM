@@ -42,8 +42,6 @@ struct PIMApp: App {
     @AppStorage("isOnboarding") var isOnboarding = true
     @StateObject var firestoreManager = FireStoreManager()
     
-    
-    
     var body: some Scene {
         WindowGroup {
             //            ContentView()

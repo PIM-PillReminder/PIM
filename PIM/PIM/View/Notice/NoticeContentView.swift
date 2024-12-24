@@ -14,7 +14,9 @@ struct NoticeContentView: View {
     let content: String
     
     var body: some View {
+        
         ScrollView {
+            
             VStack(alignment: .leading) {
                 Text(title)
                     .font(.pretendard(.bold, size: 18))
@@ -22,7 +24,7 @@ struct NoticeContentView: View {
                 
                 Text(date)
                     .font(.pretendard(.regular, size: 14))
-                    .foregroundStyle(Color("gray06"))
+                    .foregroundStyle(Color.gray06)
                     .padding(.vertical, 2)
                 
                 Text(content)

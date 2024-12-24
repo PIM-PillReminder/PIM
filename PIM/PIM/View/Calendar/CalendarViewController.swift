@@ -214,7 +214,7 @@ extension CalendarViewController {
         calendar.appearance.titleWeekendColor = nil
         calendar.appearance.weekdayFont = .systemFont(ofSize: 14, weight: .medium)
         calendar.appearance.weekdayTextColor = UIColor(named: "gray08")
-        calendar.appearance.eventDefaultColor = UIColor(named: "primaryGreen")
+        calendar.appearance.eventDefaultColor = UIColor(named: "green03")
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
         calendar.weekdayHeight = 60
         calendar.calendarHeaderView.isHidden = true

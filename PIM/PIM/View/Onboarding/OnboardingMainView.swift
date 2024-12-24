@@ -47,9 +47,9 @@ struct OnboardingMainView: View {
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.025)
                 .padding(.top, 40)
                 .padding(.bottom, 10)
-                .background(Color.primaryGreen)
+                .background(Color.green03)
             }
-            .background(Color("ExcptWhite11"))
+            .background(Color.excpt11)
         }
         .navigationBarBackButtonHidden(true)
     }

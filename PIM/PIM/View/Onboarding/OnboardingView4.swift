@@ -44,7 +44,7 @@ struct OnboardingView4: View {
                 
                 // TODO: 2차 업데이트 시 value: 80으로 변경
                 ProgressView(value: 0, total: 100)
-                    .progressViewStyle(LinearProgressViewStyle(tint: .primaryGreen))
+                    .progressViewStyle(LinearProgressViewStyle(tint: .green03))
                     .padding(.bottom, 30)
                 
                 Text("몇 시에 약을 먹나요?")
@@ -123,10 +123,10 @@ struct OnboardingView4: View {
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.025)
                 .padding(.top, 40)
                 .padding(.bottom, 10)
-                .background(Color.primaryGreen)
+                .background(Color.green03)
 
             }
-            .background(Color("ExcptWhite11"))
+            .background(Color.excpt11)
         }
         .navigationBarBackButtonHidden(true)
         .onAppear {
