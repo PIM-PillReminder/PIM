@@ -54,9 +54,7 @@ class CalendarNoDataBottomView: UIView {
         pillLabel.font = .systemFont(ofSize: 16, weight: .medium)
         pillLabel.textColor = UIColor(named: "black")
         
-        let isDarkMode = traitCollection.userInterfaceStyle == .dark
-        let imageName = isDarkMode ? "calendar_no_dark" : "calendar_no"
-        pillImageView.image = UIImage(named: imageName)
+        pillImageView.image = UIImage(named: "calendar_no")
     }
     
     private func configureConstraints() {

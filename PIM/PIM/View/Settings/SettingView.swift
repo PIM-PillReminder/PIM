@@ -24,7 +24,7 @@ struct SettingView: View {
     let notificationManager = LocalNotificationManager()
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "a hh:mm"
+        formatter.dateFormat = "a    hh:mm"
         formatter.locale = Locale(identifier:"ko_KR")
         return formatter
     }()
@@ -46,20 +46,19 @@ struct SettingView: View {
                     
                     GroupBox {
                         HStack {
-                            Image(systemName: "pill")
-                                .font(.title3)
-                                .foregroundStyle(Color.settingDisabledGray)
+                            Image("pill")
+                                .frame(width: 26, height: 26)
                             
                             Text("복용중인 약")
                                 .font(.pretendard(.medium, size: 16))
                                 .padding(.leading, 10)
-                                .foregroundColor(Color.settingDisabledGray)
+                                .foregroundColor(Color.gray04)
                             
                             Spacer()
                             
                             NavigationLink(destination: Text("추후 업데이트 예정")) {
                                 Image(systemName: "chevron.right")
-                                    .foregroundColor(.settingChevronDisabledGray)
+                                    .foregroundColor(Color.gray04)
                                     .font(.title3)
                             }
                             .disabled(isDeactivated)
@@ -75,9 +74,8 @@ struct SettingView: View {
                             modalBackground = true
                         } label: {
                             HStack {
-                                Image(systemName: "clock")
-                                    .font(.title3)
-                                    .foregroundStyle(Color.pimBlack)
+                                Image("clock")
+                                    .frame(width: 26, height: 26)
                                 
                                 if let selectedTime = settingViewModel.selectedTime {
                                     Text("\(selectedTime, formatter: SettingView.dateFormatter)")
@@ -116,20 +114,19 @@ struct SettingView: View {
                         Divider()
                         
                         HStack {
-                            Image(systemName: "lightbulb")
-                                .font(.title3)
-                                .foregroundStyle(Color.settingDisabledGray)
+                            Image("lightbulb")
+                                .frame(width: 26, height: 26)
                             
                             Text("피임약 바로 알기")
                                 .font(.pretendard(.medium, size: 16))
                                 .padding(.leading, 10)
-                                .foregroundColor(Color.settingDisabledGray)
+                                .foregroundColor(Color.gray04)
                             
                             Spacer()
                             
                             NavigationLink(destination: Text("추후 업데이트 예정")) {
                                 Image(systemName: "chevron.right")
-                                    .foregroundColor(.settingChevronDisabledGray)
+                                    .foregroundColor(Color.gray04)
                                     .font(.title3)
                             }
                             .disabled(isDeactivated)
@@ -138,7 +135,6 @@ struct SettingView: View {
                         .padding(.vertical, 5)
                     }
                     .groupBoxStyle(CustomListGroupBoxStyle())
-                    .padding(.bottom)
                     
                     Text("앱 관리")
                         .font(.pretendard(.regular, size: 14))
@@ -154,9 +150,8 @@ struct SettingView: View {
                         } label: {
                             VStack(alignment: .leading, spacing: 5) {
                                 HStack {
-                                    Image(systemName: "bell")
-                                        .font(.title3)
-                                        .foregroundStyle(Color.pimBlack)
+                                    Image("bell")
+                                        .frame(width: 26, height: 26)
                                     
                                     Text("알림")
                                         .font(.pretendard(.medium, size: 16))
@@ -184,10 +179,8 @@ struct SettingView: View {
                         Divider()
                         
                         HStack {
-                            Image(systemName: "envelope")
-                                .font(.title3)
-                                .padding(.trailing, 2)
-                                .foregroundStyle(Color.pimBlack)
+                            Image("message")
+                                .frame(width: 26, height: 26)
                             
                             Text("의견 보내기")
                                 .font(.pretendard(.medium, size: 16))
@@ -238,13 +231,16 @@ struct SettingView: View {
                         Divider()
                         
                         HStack {
-                            Image(systemName: "lock")
-                                .font(.title3)
+                            Image("lock")
+                                .frame(width: 26, height: 26)
                             
                             Text("앱 잠금")
                                 .font(.pretendard(.medium, size: 16))
                                 .padding(.leading, 12)
+                                .foregroundColor(Color.gray04)
+                            
                             Spacer()
+                            
                             Toggle("", isOn: $isLocked)
                                 .toggleStyle(SwitchToggleStyle(tint: Color.green03))
                                 .disabled(isDeactivated)
@@ -256,21 +252,19 @@ struct SettingView: View {
                         Divider()
                         
                         HStack {
-                            Image(systemName: "arrow.down.to.line")
-                                .font(.title3)
-                                .padding(.trailing, 1)
-                                .foregroundStyle(Color.settingDisabledGray)
+                            Image("arrowDown")
+                                .frame(width: 26, height: 26)
                             
                             Text("데이터 백업")
                                 .font(.pretendard(.medium, size: 16))
                                 .padding(.leading, 11)
-                                .foregroundColor(Color.settingDisabledGray)
+                                .foregroundColor(Color.gray04)
                             
                             Spacer()
                             
                             NavigationLink(destination: Text("추후 업데이트 예정")) {
                                 Image(systemName: "chevron.right")
-                                    .foregroundColor(.settingChevronDisabledGray)
+                                    .foregroundColor(Color.gray04)
                                     .font(.title3)
                             }
                             .disabled(isDeactivated)
@@ -283,7 +277,7 @@ struct SettingView: View {
                     
                     Spacer()
                 }
-                .padding(.bottom)
+                // .padding(.bottom)
                 .padding(.horizontal, 18)
                 .navigationBarBackButtonHidden(true)
                 .background(Color.excpt212)

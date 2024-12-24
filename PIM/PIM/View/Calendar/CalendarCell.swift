@@ -35,9 +35,7 @@ class CalendarCell: FSCalendarCell {
             make.top.equalTo(titleLabel.snp.bottom).inset(-6)
             make.centerX.equalTo(contentView)
             make.size.equalTo(28)
-//            make.size.equalTo(minSize()/1.3)
         }
-        // backImageView.layer.cornerRadius = minSize()/3
         backImageView.backgroundColor = .clear
     }
     
@@ -88,7 +86,7 @@ class CalendarCell: FSCalendarCell {
             self.backgroundView?.backgroundColor = .clear
         }
         
-        // 배경 뷰의 크기를 조정합니다
+        // 배경 뷰의 크기를 조정
         self.backgroundView?.frame = CGRect(x: bounds.width * 0.1,
                                             y: bounds.height * 0,
                                             width: bounds.width * 0.8,

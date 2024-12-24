@@ -55,9 +55,8 @@ struct MainView: View {
                             .frame(width: 30, height: 30)
                             .padding(.leading, 18)
                     } else {
-                        Image(systemName: "bell")
-                            .font(.system(size: 24))
-                            .foregroundColor(Color.green03)
+                        Image("mainBell")
+                            .frame(width: 30, height: 30)
                             .padding(.leading, 18)
                     }
                 }
@@ -65,9 +64,8 @@ struct MainView: View {
                 Spacer()
                 
                 NavigationLink(destination: SettingView()) {
-                    Image(systemName: "gearshape")
-                        .font(.system(size: 24))
-                        .foregroundColor(Color.green03)
+                    Image("mainSetting")
+                        .frame(width: 30, height: 30)
                         .padding(.trailing, 18)
                 }
             }

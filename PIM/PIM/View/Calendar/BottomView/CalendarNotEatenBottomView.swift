@@ -55,9 +55,7 @@ class CalendarNotEatenBottomView: UIView {
         pillLabel.font = .systemFont(ofSize: 16, weight: .medium)
         pillLabel.textColor = UIColor(named: "black")
 
-        let isDarkMode = traitCollection.userInterfaceStyle == .dark
-        let imageName = isDarkMode ? "calendar_notEaten_dark" : "calendar_notEaten"
-        pillImageView.image = UIImage(named: imageName)
+        pillImageView.image = UIImage(named: "calendar_notEaten")
     }
 
     private func configureConstraints() {
